@@ -1,7 +1,10 @@
-\documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+\documentclass[11pt,letterpaper]{article}
+% Layout follows the official Apart Research sprint template (Google Docs): US letter, 1in margins, Old Standard TT,
+% ruled bold title with sprint footnote, centred author block "With Apart Research", italic abstract (150-250 words),
+% sections 1-6, Code and Data, Author Contributions, References, Appendix, LLM Usage Statement.
+\usepackage[letterpaper,margin=1in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage[lining,tabular]{OldStandard}
 \usepackage{microtype}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,array,tabularx}
@@ -9,7 +12,13 @@
 \usepackage{xcolor}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The Ledger Test: Can Reliability Scores Improve or Corrupt AI Forecast Aggregation?},pdfauthor={Harsh Bhatia}}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{10pt plus 2pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt plus 2pt}{3pt}
 \emergencystretch=2em
 \setlist{itemsep=1pt,topsep=3pt,parsep=0pt}
 \usepackage{caption}
@@ -18,38 +27,34 @@
 \input{generated/numbers.tex}
 \newcommand{\cstar}{c^{*}}
 
-\title{The Ledger Test: Can Reliability Scores Improve---or Corrupt---AI Forecast Aggregation?}
-\author{[Author names withheld for review]\\\small Apart Research AI $\times$ Epistemics Sprint, Trust Infrastructure track}
-\date{November 2026}
-
 \begin{document}
-\maketitle
-
-\begin{abstract}
-\noindent
-LLMs are increasingly asked to combine other people's judgements, and reliability metadata such as track records and
-accuracy scores is the obvious thing to show them. We test whether showing such metadata to an LLM aggregator helps,
-how much the model relies on it, and whether the metadata can be gamed. We use real individual forecasts from
-ForecastBench's 2024-07-21 human round (162 resolved binary questions) and build 972 frozen five-person panels, either
-mixed (MIX: two superforecasters, three public forecasters) or all-public (PUB). Four LLMs (two efficient, two
-strong) see the same forecasts under four presentations of the forecasters' records, plus paired interventions that
-swap or ``farm'' a record while the forecasts stay fixed. The confirmatory estimands and tests were pre-specified
-and frozen before data collection; analyses added afterwards are labelled post hoc. In MIX panels, one raw accuracy
-number per forecaster lowers the LLM's Brier score for all four models (Holm-adjusted $p<0.001$): by
-\eOneAbsHaiku--\eOneAbsLuna{} for the two efficient models on all 486 panels, and by
-\eOneCommonAbsMin--\eOneCommonAbsMax{} on the 108 panels that all four models share. This captures roughly half to
-three-quarters of the gain of knowing who the experts are. But no model beats a simple performance-weighted average
-tuned by cross-validation for that panel type, and in PUB panels records give no measurable benefit. In MIX every
-model moves too little: rescaling its record-induced shift by a factor fitted on other questions improves held-out
-accuracy. However, the models respond to scores in the same way whether or not experts are present. Padding a record
-with easy, confident forecasts improves its displayed raw mean Brier by \inflRawAbs{} on average (95\% CI
-[\inflRawLo, \inflRawHi]), and peer-relative or difficulty-adjusted scores remove this. The inflation is modest,
-reverses for the weakest forecasters, and did not make the score less predictive in these data. Our test of whether
-LLMs discount farmed records is not identified: a cache-busting line that we added to the control prompts changed one
-model's behaviour. We report this flaw in full. For trust infrastructure, reliability scores help AI aggregators when
-real skill differences exist, transparent statistical weighting is a strong default when the right rule for the
-regime is known, and peer-relative scoring removes the one form of record padding we could measure.
-\end{abstract}
+\thispagestyle{plain}
+\begin{center}
+\rule{\linewidth}{1pt}\par\vspace{8pt}
+{\Large\bfseries THE LEDGER TEST: CAN RELIABILITY SCORES IMPROVE---OR CORRUPT---AI FORECAST AGGREGATION?%
+\footnote{Research conducted at the \href{https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15}{AI x Epistemics Research Sprint}, November 2026.}}\par
+\vspace{6pt}\rule{\linewidth}{0.6pt}\par\vspace{10pt}
+Harsh Bhatia\\Independent researcher\par\vspace{6pt}
+\textbf{With}\\Apart Research\par\vspace{10pt}
+{\large\bfseries Abstract}\par\vspace{4pt}
+\begin{minipage}{0.84\linewidth}\itshape\small
+Track records are the obvious metadata to show an LLM asked to combine other people's forecasts. We test whether it helps, how much the model relies on it, and whether it can be
+gamed. From real individual forecasts in a ForecastBench human round (162 resolved binary questions) we build 972
+five-person panels, either mixed (MIX: two superforecasters, three public forecasters) or all-public (PUB). Four LLMs
+see identical forecasts under four record presentations, plus paired interventions that swap or ``farm'' a record. Confirmatory tests were frozen before data collection. In MIX panels, one raw accuracy score per
+forecaster lowers every model's Brier score (by \eOneAbsHaiku--\eOneAbsLuna{} for the efficient models,
+\eOneCommonAbsMin--\eOneCommonAbsMax{} on a sample shared by all four; Holm-adjusted $p<0.001$): about half
+to three-quarters of the gain from knowing who the experts are. But no model beats a cross-validated
+performance-weighted average tuned for the panel type, and in PUB panels records give no measurable benefit. In MIX
+the models under-react: scaling up their record-induced shift improves held-out accuracy, yet they respond to scores
+in the same way whether or not experts are present. Padding a record with easy, confident forecasts improves a raw
+mean Brier by \inflRawAbs, which peer-relative or difficulty-adjusted scores remove; the inflation is modest and did
+not reduce predictiveness. Whether LLMs discount farmed records is not identified, owing to a
+prompt artefact that we report in full. Reliability scores help AI aggregators when real skill differences
+exist, but transparent statistical weighting remains a strong default.
+\end{minipage}
+\end{center}
+\vspace{6pt}
 
 \section{Introduction}
 Forecast aggregation is an epistemic primitive: decision-makers rarely consult a single forecaster, and the
@@ -85,7 +90,7 @@ Code, frozen configurations, all 19,876 raw model responses, and every script th
 are in the project repository (link in the submission form). Each number in the text is generated from a result file and traced in a claims ledger
 (Appendix~\ref{app:repro}).
 
-\section{Related work}
+\section{Related Work}
 \textbf{Aggregation and reliability weighting.} Equal weighting is a robust default \citep{clemen1989}. Extremising
 the mean log-odds improves crowd forecasts \citep{satopaa2014}. Selecting a few top judges can beat averaging all
 of them \citep{mannes2014}, and weighting by performance \emph{relative to peers} identifies expertise better than absolute
@@ -315,7 +320,7 @@ reported probability (mean absolute gap at most \pwGapMax) and scores no better 
 the equal mean to the superforecasters' mean, against \revealedShareMin--\revealedShareMax{} for the answers: the
 under-reaction is already in the weights, and asking for weights is not a better recipe.
 
-\section{Discussion and conclusion}
+\section{Discussion and Limitations}
 \textbf{What this means for trust infrastructure.} (1) Reliability metadata is useful to an AI aggregator \emph{when
 there is real skill dispersion to find}. When there is not, it does not help, and a well-calibrated aggregator should
 largely ignore it. (2) Current LLMs read raw scores sensibly but conservatively, and they apply roughly the same policy
@@ -338,26 +343,62 @@ OpenRouter served the Anthropic models from three upstream providers, with balan
 convention and is not interpreted. \emph{In-sample magnitudes:} rescaling by $\cstar$ would push 14--18\% of MIX
 forecasts outside $[0,1]$. \emph{Farming:} E3b is not identified, and the fixed-effect abilities in E3a were fitted on
 data that include the target questions. \emph{Multiplicity:} the common-sample Holm correction divides by 4 for a
-3-test family (conservative); post hoc analyses have no multiplicity control. \emph{Dual use:} the paper describes how
-to pad a record, alongside the defence (peer-relative scoring).
+3-test family (conservative); post hoc analyses have no multiplicity control. Dual-use and ethical considerations, and
+a statement of what the results do and do not establish, are in Appendix~\ref{app:ethics}.
 
-\subsection*{Future work} A farming test needs an arm in which a discount \emph{is} warranted, for example records farmed
+\subsection*{Future Work} A farming test needs an arm in which a discount \emph{is} warranted, for example records farmed
 from a skill-uncorrelated pool, with power computed against that warranted effect. Cache-busting must go into request
 settings (for example a seed), never into prompt text. Next steps: regime-aware prompts, showing the statistical aggregate
 alongside the records, and chronologically built records from several rounds.
 
-\section*{AI use and process disclosure}
-This project was planned, implemented and analysed by AI agents under human direction. An Opus-class model led design
-and analysis; a Codex model implemented the engineering; a separate Claude model, as independent reviewer, audited the
-design and the results and reproduced every confirmatory number (to within $10^{-15}$). The human author set the
-question, budget and constraints, and approved each paid phase. API spend was \$12.52 of a \$20 budget. No result was
-fitted on held-out outcomes, no analysis was rerun to change a significance call, and all deviations from the frozen
-design (including the nonce flaw) are logged in the repository.
+\section{Conclusion}
+Showing an LLM one raw accuracy score per forecaster improves its aggregate when the panel contains identifiable
+experts, and does nothing measurable when it does not. The models use the scores sensibly but conservatively, with the
+same policy in both regimes, and none beats a transparent cross-validated weighting rule that knows the regime. Raw
+mean Brier can be padded with easy forecasts, and peer-relative or difficulty-adjusted scores remove that inflation at
+little cost. For trust infrastructure consumed by AI systems, reliability signals are worth exposing, but a statistical
+aggregate is a strong default, and score designs should be robust to selective-question farming.
+
+\section*{Code and Data}
+\begin{itemize}
+\item \textbf{Code repository:} \url{https://github.com/harshb16/ledger-test} (code, frozen configurations and
+  manifests, all 19,876 raw model responses, analysis scripts, reviews, and the claims ledger for this paper).
+\item \textbf{Data:} ForecastBench human-round datasets, commit \texttt{203a0d1}
+  (\url{https://github.com/forecastingresearch/forecastbench-datasets}), CC BY-SA 4.0; fetched and checksum-verified
+  by \texttt{scripts/fetch\_data.py}.
+\item \textbf{Prior work:} none. The repository's first commit is dated 13 November 2026, the first day of the sprint.
+\end{itemize}
+
+\section*{Author Contributions}
+H.B.\ set the research question, track, budget and constraints, approved each paid phase, and is responsible for the
+report. Design, implementation, analysis and drafting were carried out by AI agents under his direction (see the LLM
+Usage Statement).
 
 \bibliographystyle{plainnat}
 \bibliography{refs}
 
 \appendix
+\section{Limitations and Dual-Use / Ethical Considerations}\label{app:ethics}
+\textbf{What the results establish.} For one ForecastBench round, four models and the prompts used here: raw accuracy
+scores improve an LLM aggregate on panels with superforecasters; the models under-react relative to the outcome-optimal
+scale and use a regime-blind policy; a cross-validated performance-weighted rule is at least as good in mixed panels;
+record padding inflates raw mean Brier, and peer-relative or difficulty-adjusted scores remove the inflation.
+\textbf{What they do not establish.} Whether LLMs discount farmed records (E3b is not identified); whether the results
+hold for other rounds, chronological track records, other prompts, reasoning settings or models; whether showing the
+statistical aggregate to the model helps (untested); and any over-reaction in all-public panels (not supported). Cross-tier
+magnitudes are not comparable, and $\cstar$ magnitudes are in-sample. Section~5 lists the remaining limitations.
+
+\textbf{Dual use.} The farming intervention is a recipe for padding a public track record: forecast only questions
+that are easy for you. We describe it because it is simple, already known in forecasting communities, and comes with
+a cheap defence that we measure (peer-relative or difficulty-adjusted scoring). The swap and farming results also show
+that LLM aggregators can be steered by displayed scores, so a platform that feeds unverified reliability metadata to an
+AI system creates an attack surface; designers should verify scores and prefer manipulation-robust ones.
+
+\textbf{Personal data.} We use the public ForecastBench release (CC BY-SA 4.0), which identifies forecasters only by
+pseudonymous ids. We made no attempt to re-identify anyone. The ids appear in our derived panel files, as in the
+upstream data; prompts show members only as letters A--E with their numeric forecasts and records, never ids,
+free-text rationales or question text. No new human data were collected.
+
 \section{Reproducibility and claims ledger}\label{app:repro}
 All 19,876 raw responses are committed (gzipped) with frozen panels, manifests and configs. The frozen analysis
 (\texttt{scripts/analyze\_phase3.py}) generates every confirmatory estimand. Independent recomputations by the lead
@@ -395,5 +436,16 @@ and the retest SD (an upper bound on sampling noise).
   are excluded, on the common sample, and under four SE conventions.
 \item \textbf{Swap check:} with C2 records, 95--100\% of swaps move the aggregate in the expected direction.
 \end{itemize}
+
+\section*{LLM Usage Statement}
+This project was planned, implemented and analysed by AI agents under human direction. An Opus-class model led design
+and analysis; a Codex model implemented the engineering; a separate Claude model, as independent reviewer, audited the
+design and the results and reproduced every confirmatory number (to within $10^{-15}$). The human author set the
+question, budget and constraints, and approved each paid phase. API spend was \$12.52 of a \$20 budget. No result was
+fitted on held-out outcomes, no analysis was rerun to change a significance call, and all deviations from the frozen
+design (including the nonce flaw) are logged in the repository.
+The report text was drafted by the lead model and revised after an independent review. Every number in it is generated
+from committed result files and traced in a claims ledger (Appendix~\ref{app:repro}), and every reference was checked
+against Crossref, OpenAlex or the arXiv API.
 
 \end{document}
