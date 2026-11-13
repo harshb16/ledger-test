@@ -56,3 +56,12 @@ The tokenizer cost projection uses pilot-live billed completion counts by condit
 with control conditions mapped to corresponding farmed conditions. Anthropic prompt
 counts receive the pilot-measured 1.9 multiplier; projections do not guarantee retry
 costs fit within the cap. No live adapter was run and no `.env` file was accessed.
+
+Final retest selection is stratified with seeded RNGs within the nested strong
+panels and the remaining efficient panels: exactly 54/216 strong panels and
+243/972 efficient panels are retested, with identical shared retest prompts.
+The durable budget ledger also reads appended events incrementally under its lock;
+it retains conservative unsettled reservations and inter-process accounting.
+Final offline validation: 38 tests pass; all 19,876 MockAdapter responses parse,
+with zero billed cost. Tokenizer projection $12.91; pilot-condition projection
+$11.05. These are expectations, with the independent $14 runtime cap authoritative.

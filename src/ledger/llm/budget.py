@@ -37,15 +37,23 @@ class BudgetGuard:
         self.path.parent.mkdir(parents=True, exist_ok=True)
 
     def _state(self):
-        spent, reservations = 0., {}
+        # Caller holds the ledger lock. Incremental reads retain cross-process
+        # reservations without rescanning the entire append-only ledger.
+        if not hasattr(self, '_offset'):
+            self._offset, self._spent, self._pending = 0, 0., {}
         if self.path.exists():
-            for line in self.path.read_text().splitlines():
-                e = json.loads(line)
-                if e['event'] == 'reserve': reservations[e['id']] = e['amount']
-                else:
-                    reservations.pop(e['id'], None)
-                    spent += e['amount']
-        return spent, reservations
+            if self.path.stat().st_size < self._offset:
+                self._offset, self._spent, self._pending = 0, 0., {}
+            with self.path.open() as stream:
+                stream.seek(self._offset)
+                for line in stream:
+                    e = json.loads(line)
+                    if e['event'] == 'reserve': self._pending[e['id']] = e['amount']
+                    else:
+                        self._pending.pop(e['id'], None)
+                        self._spent += e['amount']
+                self._offset = stream.tell()
+        return self._spent, self._pending.copy()
 
     def _append(self, event):
         import os

@@ -36,6 +36,8 @@ def test_v2_manifests():
     root=Path('results/phase3/build');payload=json.loads((root/'panels.json').read_text());assert len(payload['selected_ids'])==162 and len(payload['strong_ids'])==108
     eff={r['request_id']:r for r in map(json.loads,(root/'manifest_efficient_openai.jsonl').read_text().splitlines())}
     strong=list(map(json.loads,(root/'manifest_strong_openai.jsonl').read_text().splitlines()))
+    assert sum(r['metadata']['condition']=='C2_retest' for r in strong)==54
+    assert sum(r['metadata']['condition']=='C2_retest' for r in eff.values())==243
     for r in strong:
         assert r['messages']==eff[r['request_id']]['messages']
         assert r['metadata']['condition'] not in ('C3_swap','C3_farmed','C3_control')
