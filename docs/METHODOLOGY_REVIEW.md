@@ -20,3 +20,15 @@ recomputed numbers, is in `docs/reviews/phase1_fable_review.md`. The lead verifi
 | m3 | MINOR | λ grid boundary (64) frequently chosen; extremizing always a = 1. | Grid extended to {128, 256, 1000}; reported. | Adopted |
 | m4 | MINOR | Missing baselines (oracle, length, top-2). | Added. | Adopted |
 | m5–m9 | MINOR | Same-population difficulty adjustment; FE unit-weighting; uninformative ASOF-11 rows; resolved-market selection; unstable ratio estimators. | Documented as limitations; ASOF-11 rows flagged as uninformative; ratio-of-sums estimators used. | Adopted |
+
+## Phase 2 review (`docs/reviews/phase2_fable_review.md`; verdict FREEZE WITH LISTED CHANGES)
+| ID | Severity | Objection | Resolution | Status |
+|---|---|---|---|---|
+| P1 | MINOR | The pilot text understated Luna's C1 truncation (60%), reported the swap check for C2 only, omitted that MIX C3 is worse than the aggregator, and overstated "move less, not wrong". | `PILOT_RESULTS.md` corrected. The C3 swap is reported (Haiku 78%/60%). The conjecture is labelled. The repair-induced change in Luna's C1 is shown. | Adopted |
+| P2 | MINOR | Merged retries over-represent short reasoning, and 2000 tokens is not a guaranteed ceiling. | v2 retries automatically at 4000 in every condition. The retried share is reported per condition, and C1 is reported with and without retries. | Adopted |
+| P3 | MAJOR | The E3b slope contrast is not identified: ΔS spread differs by arm, the sign is ambiguous (farming made 9 of 16 records look worse), there is a floor effect, the ±0.3 rule is lax, and there is no normative anchor. | Replaced by a **score-matched control** (closest of 2,000 uniform draws, tolerance 0.01). The estimand is D_x, with C2 as an exact placebo. A data-level normative check is added. The floor effect is declared in advance. | Adopted |
+| P4 | MAJOR | "β < 1 = under-reliance" treats a hindsight-tuned W as the unit (the pilot's β\* ranges 0.30–2.45). | The confirmatory E2 test is now the W-free c\*, with MIX and PUB tested separately. β\*, base-only and swap-only β, and an untuned benchmark are secondary. | Adopted |
+| P5 | MAJOR | Tiered samples make pooled β a different estimand across models. | The strong tier is nested in the efficient tier at draw 0. Cross-model claims use only the common 108 × draw-0 panels, base-only. C2 swap is kept in full for the strong tier; the C3 swap and farming arms are dropped. | Adopted |
+| P6 | MAJOR | The E3b direction was chosen after the pilot, and the pilot questions are reused. | Every confirmatory result is also reported excluding the 16 pilot questions (pre-declared sensitivity). | Adopted |
+| P7 | MAJOR | E2 and E3b were clustered on question only. | Two-way CGM for every confirmatory estimand. | Adopted |
+| P8 | MINOR | Holm wording; the uninformative probe; the reasoning confound. | 4-test Holm family per model, with "all models" claims requiring every model to pass. The probe is called uninformative. Sonnet's lack of reasoning is noted as a confound. | Adopted |

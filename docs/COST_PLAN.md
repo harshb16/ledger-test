@@ -34,18 +34,19 @@
 - Before the pilot, the tokenizer estimate (`estimate_cost.py`) was about $1.40 for the four models. The actual
   cost was $1.29.
 
-## Phase 3 projection (design v2; `scripts/project_phase3_cost.py`)
-The projection is built from measured per-condition pilot billing, scaled by questions and panels.
-| Model | Questions | Panels per type | Swap | Uplift | Projected |
+## Phase 3 projection (design v2; `scripts/project_phase3_cost.py` → `results/phase2/phase3_cost_projection.csv`)
+Measured per-condition pilot billing, scaled by questions and panels. New matched-control arms are priced like
+the corresponding farmed arms.
+| Model | Questions | Panels per type | Arms dropped | Uplift | Projected |
 |---|---|---|---|---|---|
-| efficient_openai (Luna) | 162 | 3 | 100% | ×1.15 (longer reasoning at max_tokens 2000) | $2.13 |
-| efficient_anthropic (Haiku) | 162 | 3 | 100% | ×1.05 | $1.59 |
-| strong_openai (Sol) | 108 | 1 | 25% | ×1.05 | $4.23 |
-| strong_anthropic (Sonnet) | 108 | 1 | 25% | ×1.00 | $4.36 |
-| **Total** | | | | | **$12.31** |
+| efficient_openai (Luna) | 162 | 3 | – | ×1.15 (longer reasoning; retries at 4000) | $2.13 |
+| efficient_anthropic (Haiku) | 162 | 3 | – | ×1.05 | $1.59 |
+| strong_openai (Sol) | 108 (nested) | 1 | C3_swap, C3_farmed, C3_control | ×1.05 | $3.96 |
+| strong_anthropic (Sonnet) | 108 (nested) | 1 | C3_swap, C3_farmed, C3_control | ×1.00 | $4.06 |
+| **Total** | | | | | **$11.74** |
 
-- **Hard cap: $14**, enforced on a separate Phase 3 ledger. This leaves at least $4.69 of the $18.69 still
-  unspent as contingency for reruns, ASOF robustness or a text-visible exploratory arm.
+- **Hard cap: $14**, enforced on a separate Phase 3 ledger. The projection leaves $2.26 of headroom under the
+  cap, and the cap leaves at least $4.69 of the $18.69 still unspent as contingency for reruns, ASOF robustness or a text-visible exploratory arm.
 - **Rejected alternatives:**
   - Running every model on 162 questions with 1 panel per type: $15.17.
   - Running the efficient models at 3 panels and the strong models on all 162 questions: $15.96.

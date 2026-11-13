@@ -26,30 +26,38 @@ hypotheses for Phase 3, not findings.
 | Parse failures at max_tokens 600 | 0 | 0 | **29 (11.3%)** | **7 (2.7%)** |
 | … after retry at max_tokens 2000 | 0 | 0 | 0 | 0 |
 | Test–retest SD of p (C2, MIX, n = 4) | 0.010 | 0.015 | 0.053 | **0.092** |
-| Swap check: correct direction (C2, n = 11) | 100% | 100% | 100% | 91% |
+| Swap check: correct direction, C2 (n = 11) | 100% | 100% | 100% | 91% |
+| Swap check: correct direction, C3 MIX / PUB (n = 9 / 10) | 100 / 100% | 89 / 90% | 100 / 100% | **78 / 60%** |
 | Spearman(stated weights, statistical weights), C2 MIX | 0.99 | 0.95 | 0.98 | 0.97 |
 
 - **Truncation:**
   - Every parse failure was a response cut off at max_tokens = 600 while the model was still reasoning.
   - The failures fall mostly on C1, the condition with itemised records (Luna: 18 C1, two of them empty completions, and 11 C1_farmed).
+  - **29 of Luna's 48 C1 and C1_farmed calls failed (60%).** The calls that parsed were the short-reasoning tail
+    (median 553 completion tokens). Luna's C1 cells are therefore mostly retry data, and the repair changed them:
+    MIX E1_C1 went from −0.014 to −0.030, and β_C1 from 0.34 to 0.52 (n 8 → 16).
   - Missingness therefore depends on condition, which would bias C1.
   - **Fix:** the failed requests were re-issued once at max_tokens = 2000 (`scripts/retry_truncated.py`), and
-    all 36 parsed. Their completions were 504–883 tokens. Run-to-run variation in reasoning length explains
+    all 36 parsed. Luna's retried completions were 504–883 tokens; Haiku's were 58–1,316. Run-to-run variation in reasoning length explains
     why some now fit under 600.
   - The merged view (`scripts/merge_retry.py`) is the primary pilot view; the unrepaired analysis is kept.
   - **Phase 3 uses max_tokens = 2000 throughout.** Billing is per token, so the higher limit costs almost
     nothing.
 - **Manipulation check:**
   - Swapping the best and worst records moves the LLM toward the newly "best" forecaster almost every time.
-  - Models read the records and act on them. This reproduces the known source-history effect
+  - For C2, models read the records and act on them. C3 is weaker for Haiku (78% MIX, 60% PUB).
+  - Overall, models generally act on the records. This reproduces the known source-history effect
     (arXiv:2610.12788), which here serves only as a check.
 - **Stated weights:**
   - Stated weights track the statistical weights closely (ρ ≈ 0.95–0.99).
   - They are descriptive. We do not treat them as faithful explanations of the model's reasoning.
 - **Contamination probe:**
-  - With the question text shown, the probes' Brier score is worse than the human crowd mean for every model
+  - With the question text shown, the probe's Brier score is worse than the human crowd mean for every model
     (+0.004 to +0.077).
-  - The probe is a weak test, but this gives no sign that pretraining knowledge recovers the outcomes.
+  - Every interval crosses zero. At n = 16 the probe is **uninformative**, not reassuring.
+- **Reasoning confound:** Sonnet produced 0 reasoning tokens at effort "low" while the other three reasoned.
+  Every cross-model contrast is confounded with reasoning.
+- **Retest SD** rests on 4 panels per type.
 
 ## 2. RQ1: utility (MIX; ΔBrier relative to C0, no records)
 | | Sol | Sonnet | Luna | Haiku |
@@ -64,7 +72,8 @@ hypotheses for Phase 3, not findings.
 - In MIX panels, every model improves when shown records.
 - The models recover about a quarter to a half of the gain available from knowing which forecasters are
   superforecasters.
-- The models roughly match, but do not beat, the cross-validated performance-weighted mean.
+- In MIX C2, the models roughly match, but do not beat, the cross-validated performance-weighted mean.
+- In MIX C3, Sol and Luna are *worse* than the aggregator: +0.017 [0.008, 0.027] and +0.015 [0.005, 0.025].
 - In PUB panels the gains are smaller, and every interval crosses zero.
 
 ## 3. RQ2: calibration of reliance (β; 1 = statistically warranted movement)
@@ -82,8 +91,13 @@ hypotheses for Phase 3, not findings.
   aggregator in MIX, and somewhat further in PUB.
 - **Peer-relative scores are discounted more than raw scores.** This shows clearly in PUB.
 - **Itemised records split by model.** Sonnet and Haiku largely ignore them (β about 0). Luna and Sol use them.
-- The MIX results are consistent with E1: models gain less than the statistical aggregator because they move
-  less, not because they move the wrong way.
+- *Conjecture, untested:* models gain less than the statistical aggregator because they move less, not because
+  they move the wrong way.
+- **Caveat from the review:** W is a hindsight-tuned benchmark, not a verified unit.
+  - The outcome-optimal scale of W − M on the pilot panels ranges from 0.30 to 2.45.
+  - So β < 1 is not yet evidence of under-reliance.
+  - v2 makes the W-free c* the confirmatory E2 test. On the pilot (my recomputation), c* for C2 is 1.63–3.50 in MIX and 0.57–2.37 in PUB, which mostly points the
+    same way but was not pre-specified.
 
 ## 4. RQ3: farming (PUB; 13–16 attacker panels)
 - **In this sample, farming inflated the displayed score by a negative amount.**
@@ -104,9 +118,11 @@ hypotheses for Phase 3, not findings.
   - Phase 3 therefore splits RQ3 (see `docs/PHASE3_PLAN.md`):
     - **RQ3a** (data level, no LLM, confirmatory): does farming inflate raw scores, and do peer and FE scores
       remove the inflation?
-    - **RQ3b** (LLM): does the model rely less on a farmed record than on an equally large random re-draw?
-      This is a slope contrast that uses the record-to-record variance as leverage instead of treating it as
-      noise.
+    - **RQ3b** (LLM): given an equal displayed score, does the model give a farmed record less pull than an
+      ordinary record?
+      - The comparison is against a score-matched uniform control.
+      - The first slope-contrast proposal was rejected in review: the ΔS spread differs between arms and the
+        sign is ambiguous.
 
 ## 5. Spending
 | | Sol | Sonnet | Luna | Haiku | Total |

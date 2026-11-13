@@ -1,7 +1,9 @@
 # Experiment Design (Phase 2 / Phase 3)
 
-**Version 1.1, frozen for the pilot on 2026-11-13** (before any paid call). Machine-readable twin:
-`configs/phase2_design.yaml`. Later changes are logged in §9 with reasons, and the version number is bumped.
+**Version 2 (Phase 3), frozen 2026-11-13 after the pilot and its independent review, before any Phase 3 call.**
+- §1–§8 describe v1.1, which was used for the pilot (twin: `configs/phase2_design.yaml`).
+- **§10 lists the v2 changes and overrides §1–§8 wherever they conflict** (twin: `configs/phase3_design.yaml`).
+- Changes are logged in §9.
 
 ## 1. Task shown to the LLM
 - The target is a binary question, presented **without question text**. Instead it gets an opaque category code
@@ -162,3 +164,81 @@ Swap shift sign: (L_swap − L_orig)·sign(p_worst − p_best) > 0.
   - Prompt template made explicit: forecasts are P(YES) for one question; question text is deliberately withheld;
     probabilities shown to 3 decimals. This is identical across conditions.
   - Retest adds a one-line cache nonce to the prompt (documented, negligible).
+- v2 (after the pilot, before any Phase 3 call): see §10. Motivation: `docs/PILOT_RESULTS.md` and
+  `docs/reviews/phase2_fable_review.md` (verdict: FREEZE WITH LISTED CHANGES; all required changes adopted).
+
+## 10. Design v2 (Phase 3), overriding §1–§8 where they conflict
+
+### 10.1 Generation
+- max_tokens = 2000 for every model.
+- A response with an empty or unparseable completion and finish_reason = length (or no content) is retried
+  **once** at max_tokens = 4000, in every condition.
+- The retried share is reported per model × condition, and C1 is reported both with and without retried calls.
+- Reasoning tokens are logged per condition. Sonnet runs without reasoning tokens at effort "low", so
+  cross-model contrasts are confounded with reasoning, and this is stated wherever they are reported.
+
+### 10.2 Samples and tiers (budget)
+- **Efficient tier (Luna, Haiku):**
+  - All 162 question ids, 3 panels per type (draws 0, 1, 2).
+  - Every arm.
+- **Strong tier (Sol, Sonnet):**
+  - A seeded subset of 108 question ids, drawn with seed 20261113 by `rng_for(seed, 'strong_subset')`. Only the
+    draw-0 panels.
+  - The C3_swap, C3_farmed and C3_control arms are dropped. C2_swap is kept in full.
+  - The strong panels are **identical** to the efficient tier's draw-0 panels on those ids (nested).
+- **Cross-model comparisons** use only the common 108 × draw-0 panels and base-only quantities.
+- **Hard cap:** $14 for Phase 3, on its own ledger. The projection is $11.74
+  (`scripts/project_phase3_cost.py`).
+
+### 10.3 Farming arms (replaces §4C honest/negative-control logic)
+- The attacker, eligibility and farmed record are unchanged from v1.1 (k = 8 confident ids).
+- **Score-matched control:**
+  - For each attacker, draw M = 2000 uniform k-id records offline from the attacker's LOO ledger, seeded per
+    panel. A draw identical in ids to the farmed record is not allowed.
+  - **C1/C2 control:** the draw closest to the farmed record in mean raw Brier.
+  - **C3 control:** the draw closest in mean peer score.
+  - Ties go to the lower draw index.
+  - The match is valid if |Δ| ≤ 0.01. Otherwise the panel is excluded from E3b, and the exclusion is reported.
+- **Arms:**
+  - C1_farmed vs C1_control (raw-matched).
+  - C2_farmed vs C2_control (raw-matched; this is the placebo, because the prompts differ only in a
+    third-decimal score).
+  - C3_farmed vs C3_control (peer-matched; efficient tier only).
+- The honest base (C1, C2, C3) is still used for E3a and descriptive shifts.
+
+### 10.4 Estimands
+- **E1 (unchanged):** ΔBrier for C2 vs C0 on MIX. The oracle-gain fraction is descriptive, not a separate
+  test.
+- **E2 (re-specified):**
+  - **Confirmatory:** c*_x, the outcome-optimal scale of the LLM's own record-induced shift:
+    c* = argmin_c Σ (L_C0 + c·ΔL − y)², which equals −Σ ΔL·(L_C0 − y) / Σ ΔL².
+  - Test: C2, H0: c* = 1, **MIX and PUB as separate tests**. c* > 1 means under-reliance (the model should
+    have moved further in the direction it moved); c* < 1 means over-reliance. This test does not use W.
+  - **Secondary:**
+    - β (slope against W, §6), reported base-only and swap-only, by type.
+    - β*, the outcome-optimal scale of W − M, with a CI. W is labelled a "hindsight-tuned benchmark", and β
+      is interpreted only relative to β*.
+    - The same quantities for an **untuned** benchmark: inverse-mean-Brier weights with fixed shrinkage
+      n/(n + 8), and no CV.
+- **E3a (data level, confirmatory, no LLM):**
+  - Farming inflation of the displayed score, raw vs peer vs FE, over all eligible public attackers (k = 8,
+    LOO, CGM two-way question × attacker).
+  - **Normative check:** does the farmed displayed score predict the attacker's target Brier worse than a
+    uniform record's score? Measured as the correlation difference, by bootstrap. Reported as context for E3b.
+- **E3b (LLM farming discount):**
+  - D_x = Σ (L_farm,x − L_ctl,x)·sign(g) / Σ |g| over valid attacker panels with |g| ≥ 0.10, where
+    g = p_att − mean(p_others).
+  - **Confirmatory: D_C1 < 0**, one-sided. Given an equal displayed score, the itemised view leads the model
+    to give the farmed record less pull than an ordinary record.
+  - D_C2 is the placebo (expected value 0) and D_C3 is secondary.
+  - The direction was chosen after the pilot, so results **excluding the 16 pilot questions** are reported
+    alongside as a pre-declared sensitivity.
+- **Holm family per model:** E1, E2-MIX, E2-PUB and E3b-C1 (4 tests). "All models" claims require every
+  model to pass.
+
+### 10.5 Inference
+- Two-way CGM variance for every confirmatory estimand.
+  - Dimensions: question × forecaster identity (E1 MIX: superforecasters; E2: all members; E3b: attacker).
+  - Linearised ratio-of-sums estimators, normal 95% intervals.
+- The question-clustered percentile bootstrap (2,000 replicates) is reported alongside.
+- Pilot questions are included in the primary sample and excluded in the sensitivity analysis.
