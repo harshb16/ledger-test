@@ -9,7 +9,10 @@ This repository holds Phases 1–3:
 - the LLM harness and a paired pilot;
 - the full Phase 3 run: 4 models, 19,876 responses, $11.22.
 
-The paper is not drafted yet.
+**Paper:** [`paper/main.pdf`](paper/main.pdf), 8-page main body plus references and appendix. Source: `paper/main.tex`; every
+number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed constants in `paper/CLAIMS.md`).
+Independent review: `docs/reviews/phase4_paper_review.md` (READY AFTER FIXES; fixes applied, see
+`docs/reviews/phase4_lead_response.md`).
 
 ## Status (2026-11-13): Phase 3 complete. Results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md)
 Independent review: `docs/reviews/phase3_fable_review.md`, verdict READY WITH LIMITATIONS.
@@ -61,6 +64,8 @@ Independent review: `docs/reviews/phase3_fable_review.md`, verdict READY WITH LI
 | `results/lead_recompute/` | Lead's independent recomputations: baselines, c\* cross-fit, nonce and provider audits, figures |
 | `results/review_phase3/` | Independent reviewer's recomputation scripts and outputs |
 | `results/phase3/e3a/` | Data-level farming inflation (RQ3a) |
+| `results/review_phase4/` | Reviewer's paper spot-check (177 macros re-derived) and exploratory Z1/Z2 check |
+| `paper/` | Paper source, generators (`make_numbers.py`, `make_figures.py`), figures, claims ledger, PDF |
 | `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, cost plan, Phase 3 plan and results, figures, reviews |
 
 ## Setup
@@ -97,6 +102,10 @@ uv run python scripts/analyze_phase3.py results/phase3/live
 uv run python results/lead_recompute/baselines.py && uv run python results/lead_recompute/cstar_crossfit.py
 uv run python results/lead_recompute/nonce_audit.py && uv run python results/lead_recompute/provider_audit.py
 uv run python results/lead_recompute/figures.py
+# Phase 4: exploratory (post hoc) analyses and the paper
+uv run python results/lead_recompute/exploratory_z1_z2.py   # Z1 regime-pooled W, Z2 stated weights
+uv run python paper/make_numbers.py && uv run python paper/make_figures.py
+cd paper && latexmk -pdf main.tex
 ```
 LLM responses are cached on disk under a hash of each request. Re-running `run_pilot.py` replays the cache
 and spends nothing. `results/phase2/spend.jsonl` and `results/phase3/spend.jsonl` are the durable spend ledgers.

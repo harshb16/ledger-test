@@ -1,0 +1,224 @@
+macro,paper,recomputed,level,source,ok
+\estHaikuMIXEC,-0.0164,-0.016380,CSV,estimands.csv,True
+\loHaikuMIXEC,-0.0205,-0.020465,CSV,estimands.csv,True
+\hiHaikuMIXEC,-0.0123,-0.012294,CSV,estimands.csv,True
+\estHaikuMIXcStarC,1.97,1.9689,CSV,estimands.csv,True
+\loHaikuMIXcStarC,1.69,1.6916,CSV,estimands.csv,True
+\hiHaikuMIXcStarC,2.25,2.2463,CSV,estimands.csv,True
+\estHaikuPUBcStarC,0.49,0.4875,CSV,estimands.csv,True
+\holmHaikuPUBcStarC,=0.089,0.08936,CSV,estimands.csv,True
+\estHaikuPUBDC,0.008,0.00832,CSV,estimands.csv,True
+\holmHaikuPUBDC,=0.776,0.77605,CSV,estimands.csv,True
+\oracleFracHaiku,0.62,0.6232,CSV,estimands.csv,True
+\oracleFracConeHaiku,-0.16,-0.1553,CSV,estimands.csv,True
+\oracleFracCthreeHaiku,0.23,0.2292,CSV,estimands.csv,True
+\eOneCommonHaiku,-0.027,-0.02681,CSV,estimands.csv,True
+\eOnePubHaiku,0.000,0.00018,CSV,estimands.csv,True
+\eOnePubLoHaiku,-0.007,-0.00688,CSV,estimands.csv,True
+\eOnePubHiHaiku,0.007,0.00723,CSV,estimands.csv,True
+\estLunaMIXEC,-0.0165,-0.016510,CSV,estimands.csv,True
+\loLunaMIXEC,-0.0214,-0.021354,CSV,estimands.csv,True
+\hiLunaMIXEC,-0.0117,-0.011666,CSV,estimands.csv,True
+\estLunaMIXcStarC,1.81,1.8060,CSV,estimands.csv,True
+\loLunaMIXcStarC,1.40,1.3956,CSV,estimands.csv,True
+\hiLunaMIXcStarC,2.22,2.2163,CSV,estimands.csv,True
+\estLunaPUBcStarC,0.65,0.6532,CSV,estimands.csv,True
+\holmLunaPUBcStarC,=0.170,0.17020,CSV,estimands.csv,True
+\estLunaPUBDC,-0.005,-0.00537,CSV,estimands.csv,True
+\holmLunaPUBDC,=0.302,0.30188,CSV,estimands.csv,True
+\oracleFracLuna,0.63,0.6282,CSV,estimands.csv,True
+\oracleFracConeLuna,0.59,0.5918,CSV,estimands.csv,True
+\oracleFracCthreeLuna,0.45,0.4497,CSV,estimands.csv,True
+\eOneCommonLuna,-0.027,-0.02737,CSV,estimands.csv,True
+\eOnePubLuna,-0.003,-0.00254,CSV,estimands.csv,True
+\eOnePubLoLuna,-0.009,-0.00900,CSV,estimands.csv,True
+\eOnePubHiLuna,0.004,0.00392,CSV,estimands.csv,True
+\estSonnetMIXEC,-0.0297,-0.029694,CSV,estimands.csv,True
+\loSonnetMIXEC,-0.0430,-0.043037,CSV,estimands.csv,True
+\hiSonnetMIXEC,-0.0164,-0.016351,CSV,estimands.csv,True
+\estSonnetMIXcStarC,1.96,1.9604,CSV,estimands.csv,True
+\loSonnetMIXcStarC,1.67,1.6743,CSV,estimands.csv,True
+\hiSonnetMIXcStarC,2.25,2.2464,CSV,estimands.csv,True
+\estSonnetPUBcStarC,-0.03,-0.0273,CSV,estimands.csv,True
+\holmSonnetPUBcStarC,=0.039,0.03890,CSV,estimands.csv,True
+\estSonnetPUBDC,-0.002,-0.00197,CSV,estimands.csv,True
+\holmSonnetPUBDC,=0.441,0.44141,CSV,estimands.csv,True
+\oracleFracSonnet,0.78,0.7776,CSV,estimands.csv,True
+\oracleFracConeSonnet,0.13,0.1349,CSV,estimands.csv,True
+\oracleFracCthreeSonnet,0.41,0.4053,CSV,estimands.csv,True
+\eOneCommonSonnet,-0.030,-0.02969,CSV,estimands.csv,True
+\eOnePubSonnet,0.006,0.00625,CSV,estimands.csv,True
+\eOnePubLoSonnet,-0.003,-0.00329,CSV,estimands.csv,True
+\eOnePubHiSonnet,0.016,0.01579,CSV,estimands.csv,True
+\estSolMIXEC,-0.0193,-0.019323,CSV,estimands.csv,True
+\loSolMIXEC,-0.0282,-0.028179,CSV,estimands.csv,True
+\hiSolMIXEC,-0.0105,-0.010468,CSV,estimands.csv,True
+\estSolMIXcStarC,3.17,3.1695,CSV,estimands.csv,True
+\loSolMIXcStarC,2.06,2.0561,CSV,estimands.csv,True
+\hiSolMIXcStarC,4.28,4.2829,CSV,estimands.csv,True
+\estSolPUBcStarC,0.50,0.4984,CSV,estimands.csv,True
+\holmSolPUBcStarC,=0.533,0.53264,CSV,estimands.csv,True
+\estSolPUBDC,-0.007,-0.00738,CSV,estimands.csv,True
+\holmSolPUBDC,=0.259,0.25880,CSV,estimands.csv,True
+\oracleFracSol,0.51,0.5060,CSV,estimands.csv,True
+\oracleFracConeSol,0.53,0.5276,CSV,estimands.csv,True
+\oracleFracCthreeSol,0.26,0.2569,CSV,estimands.csv,True
+\eOneCommonSol,-0.019,-0.01932,CSV,estimands.csv,True
+\eOnePubSol,0.000,0.00001,CSV,estimands.csv,True
+\eOnePubLoSol,-0.008,-0.00822,CSV,estimands.csv,True
+\eOnePubHiSol,0.008,0.00823,CSV,estimands.csv,True
+\betaBaseMin,0.42,0.4248,CSV,estimands.csv,True
+\betaBaseMax,0.65,0.6503,CSV,estimands.csv,True
+\betaStarEff,1.28,1.2785,CSV,estimands.csv,True
+\betaStarStrong,1.71,1.7148,CSV,estimands.csv,True
+\placeboHaikuDtwo,-0.034,-0.03372,CSV,estimands.csv,True
+\cfGainHaiku,-0.0059,-0.005869,CSV,cstar_crossfit.csv,True
+\cfGainHiHaiku,-0.0022,-0.002200,CSV,cstar_crossfit.csv,True
+\cfGainPubHaiku,-0.0004,-0.000392,CSV,cstar_crossfit.csv,True
+\cDiffHaiku,1.48,1.4814,CSV,04_direct.csv,True
+\cDiffLoHaiku,0.99,0.9894,CSV,04_direct.csv,True
+\cDiffHiHaiku,2.02,2.0199,CSV,04_direct.csv,True
+\cfGainLuna,-0.0049,-0.004897,CSV,cstar_crossfit.csv,True
+\cfGainHiLuna,-0.0011,-0.001107,CSV,cstar_crossfit.csv,True
+\cfGainPubLuna,-0.0003,-0.000309,CSV,cstar_crossfit.csv,True
+\cDiffLuna,1.15,1.1528,CSV,04_direct.csv,True
+\cDiffLoLuna,0.65,0.6463,CSV,04_direct.csv,True
+\cDiffHiLuna,1.67,1.6658,CSV,04_direct.csv,True
+\cfGainSonnet,-0.0123,-0.012310,CSV,cstar_crossfit.csv,True
+\cfGainHiSonnet,-0.0065,-0.006456,CSV,cstar_crossfit.csv,True
+\cfGainPubSonnet,-0.0035,-0.003509,CSV,cstar_crossfit.csv,True
+\cDiffSonnet,1.99,1.9876,CSV,04_direct.csv,True
+\cDiffLoSonnet,0.90,0.8988,CSV,04_direct.csv,True
+\cDiffHiSonnet,3.38,3.3847,CSV,04_direct.csv,True
+\cfGainSol,-0.0233,-0.023258,CSV,cstar_crossfit.csv,True
+\cfGainHiSol,-0.0125,-0.012515,CSV,cstar_crossfit.csv,True
+\cfGainPubSol,0.0028,0.002802,CSV,cstar_crossfit.csv,True
+\cDiffSol,2.67,2.6712,CSV,04_direct.csv,True
+\cDiffLoSol,0.70,0.7042,CSV,04_direct.csv,True
+\cDiffHiSol,4.58,4.5796,CSV,04_direct.csv,True
+\inflRaw,+0.0179,0.017890,CSV,inflation.csv,True
+\inflRawLo,0.0097,0.009739,CSV,inflation.csv,True
+\inflRawHi,0.0260,0.026041,CSV,inflation.csv,True
+\inflPeer,-0.0056,-0.005588,CSV,inflation.csv,True
+\inflPeerLo,-0.0118,-0.011830,CSV,inflation.csv,True
+\inflPeerHi,0.0007,0.000654,CSV,inflation.csv,True
+\inflFe,-0.0060,-0.005990,CSV,inflation.csv,True
+\inflFeLo,-0.0121,-0.012122,CSV,inflation.csv,True
+\inflFeHi,0.0001,0.000141,CSV,inflation.csv,True
+\inflN,4283,4283.00,CSV,inflation.csv,True
+\inflTercA,+0.048,0.04779,CSV,inflation.csv,True
+\inflTercB,+0.031,0.03078,CSV,inflation.csv,True
+\inflTercC,-0.023,-0.02293,CSV,inflation.csv,True
+\normSeedsMean,+0.019,0.01879,CSV,08_normative_seeds.csv,True
+\normSeedsMin,-0.004,-0.00361,CSV,08_normative_seeds.csv,True
+\normSeedsMax,+0.043,0.04296,CSV,08_normative_seeds.csv,True
+\normSeedsN,20,20.00,CSV,08_normative_seeds.csv,True
+\probeHaiku,0.146,0.14627,CSV,07_probe.csv,True
+\probeLuna,0.133,0.13270,CSV,07_probe.csv,True
+\probeSonnet,0.120,0.11976,CSV,07_probe.csv,True
+\probeSol,0.134,0.13432,CSV,07_probe.csv,True
+\probeCrowdLo,0.140,0.13960,CSV,07_probe.csv,True
+\probeCrowdHi,0.144,0.14414,CSV,07_probe.csv,True
+\slopeHaikuMix,2.3,2.315,CSV,08_regime_blind_policy.csv,True
+\slopeHaikuPub,2.6,2.639,CSV,08_regime_blind_policy.csv,True
+\slopeLunaMix,2.7,2.710,CSV,08_regime_blind_policy.csv,True
+\slopeLunaPub,3.3,3.339,CSV,08_regime_blind_policy.csv,True
+\slopeSonnetMix,2.5,2.537,CSV,08_regime_blind_policy.csv,True
+\slopeSonnetPub,2.7,2.675,CSV,08_regime_blind_policy.csv,True
+\slopeSolMix,2.0,1.960,CSV,08_regime_blind_policy.csv,True
+\slopeSolPub,2.2,2.239,CSV,08_regime_blind_policy.csv,True
+\sonnetPubHolmFrozen,0.039,0.03890,CSV,07_conservative_holm.csv,True
+\sonnetPubHolmExact,0.060,0.05960,CSV,07_conservative_holm.csv,True
+\sonnetPubHolmCons,0.133,0.13344,CSV,07_conservative_holm.csv,True
+\noiseCorrPubHaikuA,0.47,0.4663,CSV,04_noise.csv,True
+\noiseCorrPubHaikuB,0.71,0.7121,CSV,04_noise.csv,True
+\noiseCorrPubLunaA,0.69,0.6883,CSV,04_noise.csv,True
+\noiseCorrPubLunaB,0.72,0.7204,CSV,04_noise.csv,True
+\mdeMin,0.016,0.01625,CSV,05_did.csv,True
+\mdeMax,0.033,0.03325,CSV,05_did.csv,True
+\baseEqualmeanHaiku,-0.018,-0.01823,CSV,baseline_brier.csv,True
+\baseEqualmeanLuna,-0.017,-0.01651,CSV,baseline_brier.csv,True
+\baseEqualmeanSonnet,-0.036,-0.03621,CSV,baseline_brier.csv,True
+\baseEqualmeanSol,-0.019,-0.01932,CSV,baseline_brier.csv,True
+\baseMedianHaiku,-0.014,-0.01392,CSV,baseline_brier.csv,True
+\baseMedianLuna,-0.012,-0.01220,CSV,baseline_brier.csv,True
+\baseMedianSonnet,-0.030,-0.02974,CSV,baseline_brier.csv,True
+\baseMedianSol,-0.013,-0.01286,CSV,baseline_brier.csv,True
+\baseUntunedinverHaiku,-0.011,-0.01097,CSV,baseline_brier.csv,True
+\baseUntunedinverLuna,-0.009,-0.00925,CSV,baseline_brier.csv,True
+\baseUntunedinverSonnet,-0.027,-0.02652,CSV,baseline_brier.csv,True
+\baseUntunedinverSol,-0.010,-0.00963,CSV,baseline_brier.csv,True
+\baseSameLLMnorecHaiku,-0.016,-0.01638,CSV,baseline_brier.csv,True
+\baseSameLLMnorecLuna,-0.017,-0.01651,CSV,baseline_brier.csv,True
+\baseSameLLMnorecSonnet,-0.030,-0.02969,CSV,baseline_brier.csv,True
+\baseSameLLMnorecSol,-0.019,-0.01932,CSV,baseline_brier.csv,True
+\baseTopbyrawscorHaiku,-0.002,-0.00222,CSV,baseline_brier.csv,True
+\baseTopbyrawscorLuna,0.000,-0.00050,CSV,baseline_brier.csv,True
+\baseTopbyrawscorSonnet,-0.004,-0.00400,CSV,baseline_brier.csv,True
+\baseTopbyrawscorSol,+0.013,0.01288,CSV,baseline_brier.csv,True
+\baseCVperfweightHaiku,+0.004,0.00407,CSV,baseline_brier.csv,True
+\baseCVperfweightLuna,+0.006,0.00579,CSV,baseline_brier.csv,True
+\baseCVperfweightSonnet,+0.003,0.00266,CSV,baseline_brier.csv,True
+\baseCVperfweightSol,+0.020,0.01955,CSV,baseline_brier.csv,True
+\baseGrouporaclesHaiku,+0.008,0.00805,CSV,baseline_brier.csv,True
+\baseGrouporaclesLuna,+0.010,0.00977,CSV,baseline_brier.csv,True
+\baseGrouporaclesSonnet,+0.002,0.00198,CSV,baseline_brier.csv,True
+\baseGrouporaclesSol,+0.019,0.01886,CSV,baseline_brier.csv,True
+\nonceShiftHaikuCtwo,-0.0124,-0.012353,CSV,nonce_summary.csv,True
+\nonceShiftHaikuCthree,-0.0005,-0.000484,CSV,nonce_summary.csv,True
+\nonceShiftLunaCtwo,+0.0011,0.001095,CSV,nonce_summary.csv,True
+\nonceShiftLunaCthree,-0.0032,-0.003191,CSV,nonce_summary.csv,True
+\nonceShiftSonnetCtwo,+0.0038,0.003811,CSV,nonce_summary.csv,True
+\nonceShiftSolCtwo,+0.0005,0.000514,CSV,nonce_summary.csv,True
+\estHaikuMIXEC,-0.0164,-0.016380,RAW,RAW responses,True
+\estHaikuMIXcStarC,1.97,1.9689,RAW,RAW responses,True
+\oracleFracHaiku,0.62,0.6232,RAW,RAW responses,True
+\baseEqualmeanHaiku,-0.018,-0.01823,RAW,RAW responses,True
+\baseSameLLMnorecHaiku,-0.016,-0.01638,RAW,RAW responses,True
+\baseCVperfweightHaiku,+0.004,0.00407,RAW,RAW responses,True
+\baseGrouporaclesHaiku,+0.008,0.00805,RAW,RAW responses,True
+\eOneCommonHaiku,-0.027,-0.02681,RAW,RAW responses,True
+"(typed) share rescaled MIX outside [0,1]",14--18%,0.146,RAW,Haiku,True
+\estHaikuPUBcStarC,0.49,0.4875,RAW,RAW responses,True
+\eOnePubHaiku,0.000,0.00018,RAW,RAW responses,True
+\pubBrierMeanHaiku,0.1689,0.168854,RAW,RAW responses,True
+\pubBrierWHaiku,0.1695,0.169477,RAW,RAW responses,True
+\estLunaMIXEC,-0.0165,-0.016510,RAW,RAW responses,True
+\estLunaMIXcStarC,1.81,1.8060,RAW,RAW responses,True
+\oracleFracLuna,0.63,0.6282,RAW,RAW responses,True
+\baseEqualmeanLuna,-0.017,-0.01651,RAW,RAW responses,True
+\baseSameLLMnorecLuna,-0.017,-0.01651,RAW,RAW responses,True
+\baseCVperfweightLuna,+0.006,0.00579,RAW,RAW responses,True
+\baseGrouporaclesLuna,+0.010,0.00977,RAW,RAW responses,True
+\eOneCommonLuna,-0.027,-0.02737,RAW,RAW responses,True
+"(typed) share rescaled MIX outside [0,1]",14--18%,0.138,RAW,Luna,True
+\estLunaPUBcStarC,0.65,0.6532,RAW,RAW responses,True
+\eOnePubLuna,-0.003,-0.00254,RAW,RAW responses,True
+\pubBrierMeanLuna,0.1689,0.168854,RAW,RAW responses,True
+\pubBrierWLuna,0.1695,0.169477,RAW,RAW responses,True
+\estSonnetMIXEC,-0.0297,-0.029694,RAW,RAW responses,True
+\estSonnetMIXcStarC,1.96,1.9604,RAW,RAW responses,True
+\oracleFracSonnet,0.78,0.7776,RAW,RAW responses,True
+\baseEqualmeanSonnet,-0.036,-0.03621,RAW,RAW responses,True
+\baseSameLLMnorecSonnet,-0.030,-0.02969,RAW,RAW responses,True
+\baseCVperfweightSonnet,+0.003,0.00266,RAW,RAW responses,True
+\baseGrouporaclesSonnet,+0.002,0.00198,RAW,RAW responses,True
+\eOneCommonSonnet,-0.030,-0.02969,RAW,RAW responses,True
+"(typed) share rescaled MIX outside [0,1]",14--18%,0.157,RAW,Sonnet,True
+\estSonnetPUBcStarC,-0.03,-0.0273,RAW,RAW responses,True
+\eOnePubSonnet,0.006,0.00625,RAW,RAW responses,True
+\estSolMIXEC,-0.0193,-0.019323,RAW,RAW responses,True
+\estSolMIXcStarC,3.17,3.1695,RAW,RAW responses,True
+\oracleFracSol,0.51,0.5060,RAW,RAW responses,True
+\baseEqualmeanSol,-0.019,-0.01932,RAW,RAW responses,True
+\baseSameLLMnorecSol,-0.019,-0.01932,RAW,RAW responses,True
+\baseCVperfweightSol,+0.020,0.01955,RAW,RAW responses,True
+\baseGrouporaclesSol,+0.019,0.01886,RAW,RAW responses,True
+\eOneCommonSol,-0.019,-0.01932,RAW,RAW responses,True
+"(typed) share rescaled MIX outside [0,1]",14--18%,0.176,RAW,Sol,True
+\estSolPUBcStarC,0.50,0.4984,RAW,RAW responses,True
+\eOnePubSol,0.000,0.00001,RAW,RAW responses,True
+\nonceHaikuN,373,373.00,RAW,RAW prompts,True
+\nonceShiftHaikuCtwo,-0.0124,-0.012353,RAW,RAW prompts,True
+\nonceShiftLunaCthree,-0.0032,-0.003191,RAW,RAW prompts,True
+\nonceShiftSonnetCtwo,+0.0038,0.003811,RAW,RAW prompts,True
