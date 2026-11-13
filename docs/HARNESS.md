@@ -60,3 +60,14 @@ OpenRouter's `usage.cost` is retained as billed cost. Reasoning and cached token
 counts are normalized from optional token detail fields (zero if absent). Reasoning
 is billed as output tokens, but a separate dollar amount for reasoning is not
 available here. Raw provider responses are retained in the sanitized cache.
+
+### Phase 3 retry and cap
+
+V2 manifests set metadata.design_version=2, max_tokens=2000. An unparseable completion
+with a length stop, or empty content, gets exactly one retry at 4000, using the same
+messages and a separate settings-dependent cache key. Both raw attempts, including
+usage and parse errors, are persisted in raw_attempts; retried marks the second call.
+Each attempt reserves and settles independently. `scripts/run_phase3.py` uses
+results/phase3/spend.jsonl, defaults to a $14 cap, rejects larger caps, and processes
+efficient models first. It uses per-attempt reservations instead of the optional
+whole-manifest preflight. No live Phase 3 calls were made during implementation.

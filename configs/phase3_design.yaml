@@ -1,0 +1,33 @@
+version: 2
+seed: 20261113
+k: 8
+max_tokens: 2000
+retry_max_tokens: 4000
+retry_count: 1
+cap_usd: 14
+tiers:
+  efficient:
+    models: [efficient_openai, efficient_anthropic]
+    question_ids: 162
+    draws: [0, 1, 2]
+    arms: [C0, C1, C2, C3, C2_swap, C3_swap, C1_farmed, C2_farmed, C3_farmed, C1_control, C2_control, C3_control]
+  strong:
+    models: [strong_openai, strong_anthropic]
+    question_ids: 108
+    subset_rule: "rng_for(20261113, 'strong_subset').choice(sorted(all_ids), 108, replace=False)"
+    draws: [0]
+    arms: [C0, C1, C2, C3, C2_swap, C1_farmed, C2_farmed, C1_control, C2_control]
+matching:
+  M: 2000
+  tolerance: 0.01
+  C1: raw
+  C2: raw
+  C3: peer
+  identical_id_sets: forbidden
+retest_fraction: 0.25
+probe: once_per_question
+estimands: [E1, c_star_MIX, c_star_PUB, D_C1, D_C2, D_C3, beta, beta_star]
+holm_family: [E1_C2_MIX, c_star_C2_MIX, c_star_C2_PUB, D_C1_PUB]
+bootstrap_reps: 2000
+inference: two_way_CGM_linearised_ratio_normal_95
+pilot_sensitivity: exclude_16_pilot_questions

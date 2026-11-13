@@ -33,7 +33,7 @@ def prepare(record, models, adapter):
 
 def run_manifest(manifest_path, adapter_factory, budget, concurrency=4, *,
                  output_dir=None, cache_dir='results/llm_cache', models_path='configs/models.yaml',
-                 reask=False, backoff_base=1.0):
+                 reask=False, backoff_base=1.0, preflight=True):
     if concurrency < 1: raise ValueError('concurrency must be positive')
     manifest_path = Path(manifest_path)
     out = Path(output_dir or Path('results') / manifest_path.stem)
@@ -49,12 +49,27 @@ def run_manifest(manifest_path, adapter_factory, budget, concurrency=4, *,
     except subprocess.CalledProcessError:
         commit = None
 
+    completed_ids = set()
+    completed_offset = 0
+
     def completed():
-        return {json.loads(l)['request_id'] for l in results.read_text().splitlines()} if results.exists() else set()
+        # Read only newly appended rows while holding the results lock below.
+        # A fresh runner starts at zero, preserving cross-process resume checks.
+        nonlocal completed_offset
+        if results.exists():
+            if results.stat().st_size < completed_offset:
+                completed_ids.clear()
+                completed_offset = 0
+            with results.open() as stream:
+                stream.seek(completed_offset)
+                completed_ids.update(json.loads(line)['request_id'] for line in stream)
+                completed_offset = stream.tell()
+        return completed_ids
 
     done = completed()
     tasks = [(r, adapter_factory(r['model_key'])) for r in records if r['request_id'] not in done]
-    budget.preflight([prepare(r, models, a) for r, a in tasks], cache)
+    if preflight:
+        budget.preflight([prepare(r, models, a) for r, a in tasks], cache)
 
     def obtain(request, adapter):
         key = cache.key(request)
@@ -99,6 +114,16 @@ def run_manifest(manifest_path, adapter_factory, budget, concurrency=4, *,
                     {'role': 'user', 'content': 'Return only a valid JSON object matching the supplied schema.'}]}
                 _, value = obtain(repaired, adapter)
                 values.append(value)
+            retried = False
+            if record.get('metadata', {}).get('design_version') == 2 and value['parse_error']:
+                raw = value['response'].get('raw', {})
+                choices = raw.get('choices') or [{}]
+                truncated = choices[0].get('finish_reason') == 'length' or raw.get('stop_reason') == 'max_tokens'
+                if truncated or not value['response'].get('text', '').strip():
+                    retry = {**request, 'settings': {**request['settings'], 'max_tokens': 4000}}
+                    _, value = obtain(retry, adapter)
+                    values.append(value)
+                    retried = True
             response = value['response']
             row = dict(request_id=record['request_id'], cache_key=key, model=request['model'],
                        provider_model=response['provider_model'], generation_id=response.get('generation_id'),
@@ -110,6 +135,8 @@ def run_manifest(manifest_path, adapter_factory, budget, concurrency=4, *,
                        latency=sum(v['latency'] for v in values), attempt_count=sum(v['attempts'] for v in values),
                        timestamp=datetime.now(timezone.utc).isoformat(), git_commit=commit,
                        metadata=record.get('metadata', {}))
+            if record.get('metadata', {}).get('design_version') == 2:
+                row.update(retried=retried, raw_attempts=values)
             with locked(str(results) + '.lock'):
                 with results.open('a') as f:
                     f.write(canonical(sanitize(row)) + '\n')
