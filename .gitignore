@@ -11,3 +11,5 @@ results/llm_cache/
 *.lock
 results/phase3/mock/*
 !results/phase3/mock/analysis/
+results/phase3/live/run.pid
+results/phase3/live/smoke_manifest_*
