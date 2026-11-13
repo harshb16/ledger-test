@@ -1,0 +1,48 @@
+# Phase 1 pre-registration. Written 2026-11-13 BEFORE any aggregation baseline was run.
+# Only exploratory facts known at time of writing: schema, counts, split-half skill reliability (~0.16-0.23).
+seed: 20261113
+data:
+  source_repo: https://github.com/forecastingresearch/forecastbench-datasets
+  commit: 203a0d111398a177e9dd5443539857ffb2755c75
+  files:
+    - datasets/forecast_sets/2024-07-21/2024-07-21.ForecastBench.human_public_individual.json
+    - datasets/forecast_sets/2024-07-21/2024-07-21.ForecastBench.human_super_individual.json
+    - datasets/question_sets/2024-07-21-human.json
+    - datasets/resolution_sets/2024-07-21_resolution_set.json
+cleaning:
+  drop_forecasts_outside_unit_interval: true   # 296 public rows, e.g. 4.88, 5e8
+  clip_for_logit: [0.01, 0.99]                  # only inside log-odds aggregators; Brier uses raw value
+  require_binary_resolution: true
+scoring_unit: "(question_id, resolution_date)"  # dataset Qs: one unit per horizon; market Qs: one unit
+cluster: question_id                             # all inference clusters on question id
+ledger_regimes:
+  LOO:   # retrospective cross-sectional reconstruction (primary for power)
+    description: "ledger = forecaster's scored units on all question ids != target id (and != any test-fold id when fitting)"
+  ASOF:  # information-timeline robustness regime
+    cutoff: "2024-10-19"
+    description: "ledger = units resolving <= cutoff, ids != target id; targets = units resolving > cutoff"
+targets:
+  # one target unit per question id to avoid horizon pseudoreplication
+  LOO: "for dataset Qs a single resolved horizon drawn uniformly at random (seeded); market Qs: their single unit"
+  ASOF: "for dataset Qs a single resolved horizon > cutoff drawn uniformly at random (seeded); market Qs resolving after cutoff"
+panels:
+  size: 5
+  min_ledger_ids: 5          # forecaster eligible only with >=5 distinct non-target scored question ids in ledger
+  draws_per_target: 20       # statistical baselines only; LLM pilot uses draw 0
+  types:
+    PUB: {public: 5, super: 0}
+    MIX: {public: 3, super: 2}
+  selection: "uniform random among eligible forecasters who gave a valid forecast on the target unit; never conditioned on outcomes or skill"
+baselines: [mean, median, extremized_logit_mean, best_historical_raw, best_historical_adj, perf_weighted_raw, perf_weighted_adj]
+hyperparameter_fitting: "grouped 5-fold CV by question id; ledgers in fold k exclude all fold-k question ids; nothing tuned on test folds"
+primary_phase1_outcome: "paired Brier difference (perf_weighted_adj - mean) on MIX panels, LOO regime, cluster bootstrap over question ids (95% CI)"
+secondary:
+  - same for PUB panels and ASOF regime
+  - correlation of ledger skill with target Brier
+  - raw vs adjusted skill rank agreement
+  - farming feasibility (raw vs adjusted score inflation under ex-ante easy-item selection)
+farming_attacker_phase1:
+  information: "only ex-ante observable item features: horizon (days to resolution) and, for market Qs, the public market value at freeze"
+  policy: "ledger restricted to the attacker's own forecasts on ex-ante-easy items (7-day horizon dataset items; market items with freeze value <=0.1 or >=0.9)"
+  control: "same forecaster, same number of ledger items, drawn uniformly from all their items"
+  forbidden: "selecting items using their outcomes or the attacker's realized Brier"
