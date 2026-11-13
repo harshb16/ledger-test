@@ -1,0 +1,45 @@
+{
+  "note": "No API calls. o200k framing approximation; Anthropic prompts multiplied by pilot-measured 1.9. Completion counts and billed cost calibrated by pilot model/condition, controls fall back to farmed then model average. Retry costs not guaranteed by projections; runtime reservations enforce cap.",
+  "estimates": [
+    {
+      "model": "strong_openai",
+      "requests": 1584,
+      "o200k_prompt_tokens": 1096646,
+      "anthropic_factor": 1,
+      "pilot_completion_tokens": 201312.0,
+      "tokenizer_projected_usd": 4.206412,
+      "maximum_2000_output_usd": 33.873292,
+      "pilot_condition_calibrated_usd": 3.7184698636363405
+    },
+    {
+      "model": "strong_anthropic",
+      "requests": 1584,
+      "o200k_prompt_tokens": 1096646,
+      "anthropic_factor": 1.9,
+      "pilot_completion_tokens": 82239.75,
+      "tokenizer_projected_usd": 4.9896522999999995,
+      "maximum_2000_output_usd": 35.847254799999995,
+      "pilot_condition_calibrated_usd": 4.009153499999917
+    },
+    {
+      "model": "efficient_openai",
+      "requests": 8354,
+      "o200k_prompt_tokens": 5721892,
+      "anthropic_factor": 1,
+      "pilot_completion_tokens": 2785159.0568181975,
+      "tokenizer_projected_usd": 1.9647687284090987,
+      "maximum_2000_output_usd": 8.9261892,
+      "pilot_condition_calibrated_usd": 1.827909994318025
+    },
+    {
+      "model": "efficient_anthropic",
+      "requests": 8354,
+      "o200k_prompt_tokens": 5721892,
+      "anthropic_factor": 1.9,
+      "pilot_completion_tokens": 1318987.5909091064,
+      "tokenizer_projected_usd": 1.7466532754545527,
+      "maximum_2000_output_usd": 9.44115948,
+      "pilot_condition_calibrated_usd": 1.4896702954544387
+    }
+  ]
+}
