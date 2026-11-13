@@ -70,7 +70,8 @@ def build_v2(root='.', out='results/phase3/build'):
     for p in payload['panels']:
         for c in ('C1','C2','C3'):
             if c+'_control' in p['variants']:
-                requests.append(dict(request_id=p['panel_id']+'/'+c+'_control',messages=messages(p,p['variants'][c+'_control'],c),metadata=dict(panel_id=p['panel_id'],question_id=p['question_id'],type=p['type'],condition=c+'_control')))
+                msg=messages(p,p['variants'][c+'_control'],c);msg[-1]['content']+='\nCache nonce: control'  # v2: matched control can equal farmed text; force an independent sample
+                requests.append(dict(request_id=p['panel_id']+'/'+c+'_control',messages=msg,metadata=dict(panel_id=p['panel_id'],question_id=p['question_id'],type=p['type'],condition=c+'_control')))
     requests=retest_requests(requests,payload['panels'])
     payload.update(version=2,strong_ids=sorted(strong),pilot_ids=sorted(pilot_ids),matching=dict(M=2000,tolerance=.01))
     (out/'panels.json').write_text(json.dumps(payload,separators=(',',':')))

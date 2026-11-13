@@ -55,3 +55,21 @@ def test_pilot_byte_reproduction(tmp_path):
     from ledger.experiment import build
     pilot=Path('results/phase2/pilot');build('.',tmp_path,16,20261113,1)
     for name in ['panels.json','truth.csv','example_prompts.md']+[f'manifest_{k}.jsonl' for k in ('efficient_openai','efficient_anthropic','strong_openai','strong_anthropic')]:assert (tmp_path/name).read_bytes()==(pilot/name).read_bytes()
+
+
+def test_controls_never_share_a_cache_key_with_farmed():
+    # Matched controls can have the same displayed text as the farmed arm (C2 shows only the score); a shared
+    # cache key would replay the farmed answer and make the placebo mechanically zero.
+    import json
+    from pathlib import Path
+    from ledger.llm.cache import canonical
+    for model in ('efficient_openai', 'strong_anthropic'):
+        rows = {json.loads(l)['request_id']: json.loads(l) for l in Path(f'results/phase3/build/manifest_{model}.jsonl').read_text().splitlines()}
+        keys = [canonical([r['messages'], r['settings']]) for r in rows.values()]
+        controls = [k for k, r in zip(keys, rows.values()) if r['metadata']['condition'].endswith('_control')]
+        assert len(set(controls)) == len(controls) and not set(controls) & (set(keys) - set(controls))
+        # Known, documented: a few base/farmed pairs have identical text (equal score to 3 dp); they share a response.
+        assert len(keys) - len(set(keys)) <= 10
+        for rid, r in rows.items():
+            if r['metadata']['condition'].endswith('_control'):
+                assert r['messages'][-1]['content'].endswith('Cache nonce: control')

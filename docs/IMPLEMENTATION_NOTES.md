@@ -65,3 +65,18 @@ it retains conservative unsettled reservations and inter-process accounting.
 Final offline validation: 38 tests pass; all 19,876 MockAdapter responses parse,
 with zero billed cost. Tokenizer projection $12.91; pilot-condition projection
 $11.05. These are expectations, with the independent $14 runtime cap authoritative.
+
+## Lead fix after v2 implementation (cache-key collision)
+- **Problem:** the response cache is keyed on the content of messages and settings, not on request_id.
+  - In the first v2 build, 373 of 486 C2_control prompts were byte-identical to their C2_farmed partner.
+  - This was expected under score matching, since C2 shows only the score.
+  - Those controls would have replayed the farmed response, making the C2 placebo zero by construction.
+- **Fix:** every `*_control` arm appends `Cache nonce: control`, following the retest precedent, so each control
+  is an independent sample.
+  - The C2 placebo now absorbs both sampling noise and any effect of the nonce.
+  - Test: `test_controls_never_share_a_cache_key_with_farmed`.
+- **Remaining collisions:** 5 base/farmed pairs per efficient manifest are textually identical, because the
+  farmed and honest scores are equal to 3 decimal places.
+  - Each pair shares one response. This is correct for identical prompts, and these arms are not used in the
+    confirmatory E3b.
+- **Cost:** the projection already priced controls as full calls, so it is unchanged.
