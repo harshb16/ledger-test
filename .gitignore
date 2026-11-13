@@ -9,3 +9,5 @@ data/cache/
 results/llm_cache/
 .DS_Store
 *.lock
+results/phase3/mock/*
+!results/phase3/mock/analysis/
