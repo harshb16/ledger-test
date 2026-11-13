@@ -1,0 +1,73 @@
+{
+  "input_rows": 55372,
+  "input_by_group": {
+    "public": 47679,
+    "super": 7693
+  },
+  "raw_forecast_missing": {
+    "id": 0,
+    "source": 0,
+    "forecast": 0,
+    "resolution_date": 5096,
+    "reasoning": 1461,
+    "direction": 55372,
+    "user_id": 0,
+    "group": 0,
+    "searches": 54142,
+    "consulted_urls": 53458
+  },
+  "raw_question_ids": 200,
+  "forecast_question_ids": 189,
+  "null_market_dates": 5096,
+  "null_dataset_dates": 0,
+  "invalid_forecast_by_group": {
+    "public": 296
+  },
+  "duplicate_forecasts": 0,
+  "unresolved_or_unmatched": 21742,
+  "scored_rows": 33334,
+  "scored_ids": 162,
+  "scored_units": 578,
+  "per_forecaster_distinct_ids": {
+    "count": 540.0,
+    "mean": 17.992592592592594,
+    "std": 10.53626746250794,
+    "min": 4.0,
+    "25%": 15.0,
+    "50%": 16.0,
+    "75%": 18.0,
+    "max": 162.0
+  },
+  "per_question_forecasters": {
+    "count": 162.0,
+    "mean": 59.97530864197531,
+    "std": 6.828830567731345,
+    "min": 47.0,
+    "25%": 55.0,
+    "50%": 59.0,
+    "75%": 64.0,
+    "max": 83.0
+  },
+  "shared_ids_between_pairs": {
+    "count": 145530.0,
+    "mean": 1.9944753659039374,
+    "std": 2.231728592718138,
+    "min": 0.0,
+    "25%": 1.0,
+    "50%": 2.0,
+    "75%": 3.0,
+    "max": 90.0
+  },
+  "missing_scored": {
+    "user_id": 0,
+    "group": 0,
+    "question_id": 0,
+    "source": 0,
+    "unit_date": 0,
+    "horizon_days": 0,
+    "forecast": 0,
+    "outcome": 0,
+    "brier": 0
+  },
+  "market_freeze_values": 90
+}

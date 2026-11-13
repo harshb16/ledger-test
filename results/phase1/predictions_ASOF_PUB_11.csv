@@ -1,0 +1,10 @@
+question_id,draw,fold,method,prediction,outcome,brier
+QHFQmCmz8HplpN2QQnl2,9,4,mean,0.154,0.0,0.023716
+QHFQmCmz8HplpN2QQnl2,9,4,median,0.12,0.0,0.0144
+QHFQmCmz8HplpN2QQnl2,9,4,extremized_logit_mean,0.02198652690001707,0.0,0.0004834073651251743
+QHFQmCmz8HplpN2QQnl2,9,4,best_historical_raw,0.12,0.0,0.0144
+QHFQmCmz8HplpN2QQnl2,9,4,best_historical_adj,0.12,0.0,0.0144
+QHFQmCmz8HplpN2QQnl2,9,4,best_historical_fe,0.12,0.0,0.0144
+QHFQmCmz8HplpN2QQnl2,9,4,perf_weighted_raw,0.15400000000000003,0.0,0.023716000000000008
+QHFQmCmz8HplpN2QQnl2,9,4,perf_weighted_adj,0.09990648435222114,0.0,0.009981305615620608
+QHFQmCmz8HplpN2QQnl2,9,4,perf_weighted_fe,0.10831923959331223,0.0,0.01173305766607338

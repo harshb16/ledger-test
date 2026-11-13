@@ -79,3 +79,27 @@ def test_cv_excludes_entire_test_fold_for_training_and_test(toy,monkeypatch):
         expected=set(choices[fold*9]['test_ids'])
         assert all(excluded==expected for _,excluded in calls[fold*9:(fold+1)*9])
     assert pred.groupby(['question_id','draw']).method.nunique().eq(9).all()
+
+def test_id_balancing_and_peer_excludes_self():
+    from ledger.ledger import summarize
+    rows=[]
+    for q,day,aa,bb in [('a',1,0.,1.),('a',2,0.,1.),('b',1,1.,0.)]:
+        for user,loss in [('a',aa),('b',bb)]:
+            rows.append(dict(group='public',user_id=user,question_id=q,unit_date=pd.Timestamp('2024-07-21')+pd.Timedelta(days=day),brier=loss))
+    s=summarize(pd.DataFrame(rows)).set_index('user_id')
+    assert s.loc['a','raw']==pytest.approx(.5)
+    assert s.loc['a','peer']==pytest.approx(0.)
+    assert s.fe.sum()==pytest.approx(0.,abs=1e-10)
+
+def test_test_outcomes_cannot_tune_hyperparameters(toy):
+    from ledger.baselines import evaluate
+    p,_,_=build(toy,targets(toy,'LOO',42),'LOO','MIX',42,draws=1)
+    pred,choices=evaluate(toy,p,'LOO',42)
+    excluded=set(choices[0]['test_ids'])
+    changed=toy.copy();mask=changed.question_id.isin(excluded)
+    changed.loc[mask,'outcome']=1-changed.loc[mask,'outcome']
+    changed.loc[mask,'brier']=(changed.loc[mask,'forecast']-changed.loc[mask,'outcome'])**2
+    p2=p.copy();mask=p2.question_id.isin(excluded);p2.loc[mask,'outcome']=1-p2.loc[mask,'outcome']
+    pred2,choices2=evaluate(changed,p2,'LOO',42)
+    assert choices[:9]==choices2[:9]
+    np.testing.assert_allclose(pred[pred.fold==0].prediction,pred2[pred2.fold==0].prediction)

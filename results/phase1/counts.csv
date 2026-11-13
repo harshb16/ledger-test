@@ -1,0 +1,9 @@
+regime,type,source_type,target_ids,panel_ids,panels
+LOO,PUB,dataset,105,105,2100.0
+LOO,PUB,market,57,57,1140.0
+LOO,MIX,dataset,105,105,2100.0
+LOO,MIX,market,57,57,1140.0
+ASOF,PUB,dataset,105,105,2100.0
+ASOF,PUB,market,45,45,900.0
+ASOF,MIX,dataset,105,105,2100.0
+ASOF,MIX,market,45,45,900.0

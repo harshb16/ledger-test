@@ -1,0 +1,31 @@
+{
+  "input_rows": 55372,
+  "input_by_group": {
+    "public": 47679,
+    "super": 7693
+  },
+  "raw_forecast_missing": {
+    "id": 0,
+    "source": 0,
+    "forecast": 0,
+    "resolution_date": 5096,
+    "reasoning": 1461,
+    "direction": 55372,
+    "user_id": 0,
+    "group": 0,
+    "searches": 54142,
+    "consulted_urls": 53458
+  },
+  "raw_question_ids": 200,
+  "forecast_question_ids": 189,
+  "null_market_dates": 5096,
+  "null_dataset_dates": 0,
+  "invalid_forecast_by_group": {
+    "public": 296
+  },
+  "duplicate_forecasts": 0,
+  "unresolved_or_unmatched": 21742,
+  "scored_rows": 33334,
+  "scored_ids": 162,
+  "scored_units": 578
+}
