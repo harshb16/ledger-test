@@ -1,0 +1,95 @@
+source: https://openrouter.ai/api/v1/models
+fetched_at: '2026-11-13T13:29:48.633371+00:00'
+models:
+  strong_openai:
+    openrouter_id: openai/gpt-6.1-sol
+    direct_id: gpt-6.1-sol
+    pricing:
+      input_per_million: 2.0
+      output_per_million: 10.0
+      overrides:
+      - min_prompt_tokens: 272000
+        prompt: '0.000004'
+        completion: '0.000015'
+        input_cache_read: '0.0000002'
+        input_cache_write: '0.000005'
+    supported_parameters:
+    - include_reasoning
+    - max_completion_tokens
+    - max_tokens
+    - reasoning
+    - reasoning_effort
+    - response_format
+    - seed
+    - structured_outputs
+    - tool_choice
+    - tools
+    - verbosity
+  strong_anthropic:
+    openrouter_id: anthropic/claude-sonnet-5.5
+    direct_id: claude-sonnet-5.5
+    pricing:
+      input_per_million: 2.0
+      output_per_million: 10.0
+      overrides: []
+    supported_parameters:
+    - include_reasoning
+    - max_completion_tokens
+    - max_tokens
+    - reasoning
+    - reasoning_effort
+    - response_format
+    - stop
+    - structured_outputs
+    - tool_choice
+    - tools
+    - verbosity
+  efficient_openai:
+    openrouter_id: openai/gpt-6-luna
+    direct_id: gpt-6-luna
+    pricing:
+      input_per_million: 0.09999999999999999
+      output_per_million: 0.5
+      overrides:
+      - min_prompt_tokens: 272000
+        prompt: '0.0000002'
+        completion: '0.00000075'
+        input_cache_read: '0.00000002'
+        input_cache_write: '0.00000025'
+    supported_parameters:
+    - include_reasoning
+    - max_completion_tokens
+    - max_tokens
+    - reasoning
+    - reasoning_effort
+    - response_format
+    - seed
+    - structured_outputs
+    - tool_choice
+    - tools
+    - verbosity
+  efficient_anthropic:
+    openrouter_id: anthropic/claude-haiku-5.5
+    direct_id: claude-haiku-5.5
+    pricing:
+      input_per_million: 0.09999999999999999
+      output_per_million: 0.5
+      overrides:
+      - min_prompt_tokens: 100000
+        prompt: '0.0000005'
+        completion: '0.0000025'
+        input_cache_read: '0.00000005'
+        input_cache_write: '0.000000625'
+        input_cache_write_1h: '0.000001'
+    supported_parameters:
+    - include_reasoning
+    - max_completion_tokens
+    - max_tokens
+    - reasoning
+    - reasoning_effort
+    - response_format
+    - stop
+    - structured_outputs
+    - tool_choice
+    - tools
+    - verbosity
