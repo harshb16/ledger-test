@@ -1,0 +1,599 @@
+# Descriptive pilot analysis
+
+No significance claims. 2,000 percentile bootstrap replicates; ratios are ratios of sums. MIX pigeonhole independently resamples question and superforecaster identities and multiplies their multiplicities. Refit uncertainty is excluded. Retest SD is the square root of retest_difference_squared. Weights are descriptive. Mock usage and cost are synthetic.
+
+                      model   n  parse_failures  rate
+ anthropic/claude-haiku-5.5 305               0   0.0
+anthropic/claude-sonnet-5.5 305               0   0.0
+          openai/gpt-6-luna 305               0   0.0
+         openai/gpt-6.1-sol 305               0   0.0
+
+                      model  type                   metric    cluster  estimate  n       low      high  fraction_lt_zero
+ anthropic/claude-haiku-5.5   MIX                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX                    E1_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               vs_mean_C1   question  0.092876 16 -0.011307  0.183138          0.037500
+ anthropic/claude-haiku-5.5   MIX               vs_mean_C1 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+ anthropic/claude-haiku-5.5   MIX               vs_stat_C1   question  0.127422 16  0.021435  0.214188          0.011500
+ anthropic/claude-haiku-5.5   MIX               vs_stat_C1 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+ anthropic/claude-haiku-5.5   MIX       oracle_fraction_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX       oracle_fraction_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_base_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             E2_pooled_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   MIX           weight_rank_C1 pigeonhole       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   MIX                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX                    E1_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               vs_mean_C2   question  0.092876 16 -0.011307  0.183138          0.037500
+ anthropic/claude-haiku-5.5   MIX               vs_mean_C2 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+ anthropic/claude-haiku-5.5   MIX               vs_stat_C2   question  0.127422 16  0.021435  0.214188          0.011500
+ anthropic/claude-haiku-5.5   MIX               vs_stat_C2 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+ anthropic/claude-haiku-5.5   MIX       oracle_fraction_C2   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX       oracle_fraction_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_base_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             E2_pooled_C2 pigeonhole  0.000000 27  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   MIX           weight_rank_C2 pigeonhole       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   MIX                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX                    E1_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               vs_mean_C3   question  0.092876 16 -0.011307  0.183138          0.037500
+ anthropic/claude-haiku-5.5   MIX               vs_mean_C3 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+ anthropic/claude-haiku-5.5   MIX               vs_stat_C3   question  0.127083 16  0.030849  0.209560          0.006500
+ anthropic/claude-haiku-5.5   MIX               vs_stat_C3 pigeonhole  0.127083 16 -0.165021  0.245300          0.124494
+ anthropic/claude-haiku-5.5   MIX       oracle_fraction_C3   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX       oracle_fraction_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_base_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             E2_pooled_C3   question  0.000000 25  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             E2_pooled_C3 pigeonhole  0.000000 25  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   MIX           weight_rank_C3 pigeonhole       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   PUB                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB               vs_mean_C1   question  0.101053 16 -0.002361  0.174596          0.029500
+ anthropic/claude-haiku-5.5   PUB               vs_stat_C1   question  0.119889 16  0.012198  0.197913          0.017500
+ anthropic/claude-haiku-5.5   PUB               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   PUB                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB               vs_mean_C2   question  0.101053 16 -0.002361  0.174596          0.029500
+ anthropic/claude-haiku-5.5   PUB               vs_stat_C2   question  0.119889 16  0.012198  0.197913          0.017500
+ anthropic/claude-haiku-5.5   PUB               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   PUB                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB               vs_mean_C3   question  0.101053 16 -0.002361  0.174596          0.029500
+ anthropic/claude-haiku-5.5   PUB               vs_stat_C3   question  0.098496 16 -0.014616  0.188409          0.046000
+ anthropic/claude-haiku-5.5   PUB               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             E2_pooled_C3   question  0.000000 26  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+ anthropic/claude-haiku-5.5   PUB               E2_swap_C3   question  0.000000 10  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             swap_sign_C3   question  0.000000 10  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB         exact_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB      category_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB         farming_brier_C1   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB  farming_brier_C1_middle   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB         inflation_raw_C1   question -0.002430 16 -0.041312  0.033018          0.539000
+ anthropic/claude-haiku-5.5   PUB  inflation_raw_C1_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+ anthropic/claude-haiku-5.5   PUB        inflation_peer_C1   question -0.011401 16 -0.045751  0.022528          0.742500
+ anthropic/claude-haiku-5.5   PUB inflation_peer_C1_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+ anthropic/claude-haiku-5.5   PUB          inflation_fe_C1   question -0.011396 16 -0.045053  0.021713          0.746500
+ anthropic/claude-haiku-5.5   PUB   inflation_fe_C1_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+ anthropic/claude-haiku-5.5   PUB                    E3_C1   question  0.000000 13  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             E3_C1_middle   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB                stat_S_C1   question -0.006072 13 -0.072866  0.066126          0.585000
+ anthropic/claude-haiku-5.5   PUB            stat_brier_C1   question  0.005687 13 -0.006659  0.020708          0.231000
+ anthropic/claude-haiku-5.5   PUB         farming_brier_C2   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB  farming_brier_C2_middle   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB         inflation_raw_C2   question -0.002430 16 -0.041312  0.033018          0.539000
+ anthropic/claude-haiku-5.5   PUB  inflation_raw_C2_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+ anthropic/claude-haiku-5.5   PUB        inflation_peer_C2   question -0.011401 16 -0.045751  0.022528          0.742500
+ anthropic/claude-haiku-5.5   PUB inflation_peer_C2_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+ anthropic/claude-haiku-5.5   PUB          inflation_fe_C2   question -0.011396 16 -0.045053  0.021713          0.746500
+ anthropic/claude-haiku-5.5   PUB   inflation_fe_C2_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+ anthropic/claude-haiku-5.5   PUB                    E3_C2   question  0.000000 13  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             E3_C2_middle   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB                stat_S_C2   question -0.006072 13 -0.072866  0.066126          0.585000
+ anthropic/claude-haiku-5.5   PUB            stat_brier_C2   question  0.005687 13 -0.006659  0.020708          0.231000
+ anthropic/claude-haiku-5.5   PUB         farming_brier_C3   question  0.000000 16  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB  farming_brier_C3_middle   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB         inflation_raw_C3   question -0.002430 16 -0.041312  0.033018          0.539000
+ anthropic/claude-haiku-5.5   PUB  inflation_raw_C3_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+ anthropic/claude-haiku-5.5   PUB        inflation_peer_C3   question -0.011401 16 -0.045751  0.022528          0.742500
+ anthropic/claude-haiku-5.5   PUB inflation_peer_C3_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+ anthropic/claude-haiku-5.5   PUB          inflation_fe_C3   question -0.011396 16 -0.045053  0.021713          0.746500
+ anthropic/claude-haiku-5.5   PUB   inflation_fe_C3_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+ anthropic/claude-haiku-5.5   PUB                    E3_C3   question  0.000000 13  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             E3_C3_middle   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB                stat_S_C3   question -0.044285 13 -0.110589  0.014031          0.923500
+ anthropic/claude-haiku-5.5   PUB            stat_brier_C3   question  0.001685 13 -0.010086  0.014768          0.432500
+ anthropic/claude-haiku-5.5   PUB        E3_contrast_C1-C2   question  0.000000 13  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB        E3_contrast_C3-C2   question  0.000000 13  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB         negative_control   question  0.000000 13  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB    farming_brier_C1_good   question  0.000000  6  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB    inflation_raw_C1_good   question  0.015521  6 -0.000459  0.042288          0.094500
+ anthropic/claude-haiku-5.5   PUB   inflation_peer_C1_good   question  0.000926  6 -0.014436  0.021342          0.466000
+ anthropic/claude-haiku-5.5   PUB     inflation_fe_C1_good   question  0.000367  6 -0.014720  0.020056          0.469000
+ anthropic/claude-haiku-5.5   PUB               E3_C1_good   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB    farming_brier_C2_good   question  0.000000  6  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB    inflation_raw_C2_good   question  0.015521  6 -0.000459  0.042288          0.094500
+ anthropic/claude-haiku-5.5   PUB   inflation_peer_C2_good   question  0.000926  6 -0.014436  0.021342          0.466000
+ anthropic/claude-haiku-5.5   PUB     inflation_fe_C2_good   question  0.000367  6 -0.014720  0.020056          0.469000
+ anthropic/claude-haiku-5.5   PUB               E3_C2_good   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB    farming_brier_C3_good   question  0.000000  6  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB    inflation_raw_C3_good   question  0.015521  6 -0.000459  0.042288          0.094500
+ anthropic/claude-haiku-5.5   PUB   inflation_peer_C3_good   question  0.000926  6 -0.014436  0.021342          0.466000
+ anthropic/claude-haiku-5.5   PUB     inflation_fe_C3_good   question  0.000367  6 -0.014720  0.020056          0.469000
+ anthropic/claude-haiku-5.5   PUB               E3_C3_good   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_swap_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             swap_sign_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_swap_C3   question  0.000000  9  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX               E2_swap_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             swap_sign_C3   question  0.000000  9  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX             swap_sign_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB     farming_brier_C1_bad   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB     inflation_raw_C1_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+ anthropic/claude-haiku-5.5   PUB    inflation_peer_C1_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+ anthropic/claude-haiku-5.5   PUB      inflation_fe_C1_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+ anthropic/claude-haiku-5.5   PUB     farming_brier_C2_bad   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB     inflation_raw_C2_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+ anthropic/claude-haiku-5.5   PUB    inflation_peer_C2_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+ anthropic/claude-haiku-5.5   PUB      inflation_fe_C2_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+ anthropic/claude-haiku-5.5   PUB     farming_brier_C3_bad   question  0.000000  5  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB     inflation_raw_C3_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+ anthropic/claude-haiku-5.5   PUB    inflation_peer_C3_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+ anthropic/claude-haiku-5.5   PUB      inflation_fe_C3_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+ anthropic/claude-haiku-5.5   PUB                E3_C1_bad   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB                E3_C2_bad   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   PUB                E3_C3_bad   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5   MIX           test_retest_SD pigeonhole  0.000000  4  0.000000  0.000000          0.000000
+ anthropic/claude-haiku-5.5 probe        probe_minus_crowd   question  0.125957 16  0.043104  0.194281          0.004000
+anthropic/claude-sonnet-5.5   MIX                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX                    E1_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               vs_mean_C1   question  0.092876 16 -0.011307  0.183138          0.037500
+anthropic/claude-sonnet-5.5   MIX               vs_mean_C1 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+anthropic/claude-sonnet-5.5   MIX               vs_stat_C1   question  0.127422 16  0.021435  0.214188          0.011500
+anthropic/claude-sonnet-5.5   MIX               vs_stat_C1 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+anthropic/claude-sonnet-5.5   MIX       oracle_fraction_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX       oracle_fraction_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_base_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             E2_pooled_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   MIX           weight_rank_C1 pigeonhole       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   MIX                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX                    E1_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               vs_mean_C2   question  0.092876 16 -0.011307  0.183138          0.037500
+anthropic/claude-sonnet-5.5   MIX               vs_mean_C2 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+anthropic/claude-sonnet-5.5   MIX               vs_stat_C2   question  0.127422 16  0.021435  0.214188          0.011500
+anthropic/claude-sonnet-5.5   MIX               vs_stat_C2 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+anthropic/claude-sonnet-5.5   MIX       oracle_fraction_C2   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX       oracle_fraction_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_base_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             E2_pooled_C2 pigeonhole  0.000000 27  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   MIX           weight_rank_C2 pigeonhole       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   MIX                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX                    E1_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               vs_mean_C3   question  0.092876 16 -0.011307  0.183138          0.037500
+anthropic/claude-sonnet-5.5   MIX               vs_mean_C3 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+anthropic/claude-sonnet-5.5   MIX               vs_stat_C3   question  0.127083 16  0.030849  0.209560          0.006500
+anthropic/claude-sonnet-5.5   MIX               vs_stat_C3 pigeonhole  0.127083 16 -0.165021  0.245300          0.124494
+anthropic/claude-sonnet-5.5   MIX       oracle_fraction_C3   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX       oracle_fraction_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_base_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             E2_pooled_C3   question  0.000000 25  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             E2_pooled_C3 pigeonhole  0.000000 25  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   MIX           weight_rank_C3 pigeonhole       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   PUB                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB               vs_mean_C1   question  0.101053 16 -0.002361  0.174596          0.029500
+anthropic/claude-sonnet-5.5   PUB               vs_stat_C1   question  0.119889 16  0.012198  0.197913          0.017500
+anthropic/claude-sonnet-5.5   PUB               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   PUB                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB               vs_mean_C2   question  0.101053 16 -0.002361  0.174596          0.029500
+anthropic/claude-sonnet-5.5   PUB               vs_stat_C2   question  0.119889 16  0.012198  0.197913          0.017500
+anthropic/claude-sonnet-5.5   PUB               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   PUB                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB               vs_mean_C3   question  0.101053 16 -0.002361  0.174596          0.029500
+anthropic/claude-sonnet-5.5   PUB               vs_stat_C3   question  0.098496 16 -0.014616  0.188409          0.046000
+anthropic/claude-sonnet-5.5   PUB               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             E2_pooled_C3   question  0.000000 26  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+anthropic/claude-sonnet-5.5   PUB               E2_swap_C3   question  0.000000 10  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             swap_sign_C3   question  0.000000 10  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB         exact_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB      category_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB         farming_brier_C1   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB  farming_brier_C1_middle   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB         inflation_raw_C1   question -0.002430 16 -0.041312  0.033018          0.539000
+anthropic/claude-sonnet-5.5   PUB  inflation_raw_C1_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+anthropic/claude-sonnet-5.5   PUB        inflation_peer_C1   question -0.011401 16 -0.045751  0.022528          0.742500
+anthropic/claude-sonnet-5.5   PUB inflation_peer_C1_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+anthropic/claude-sonnet-5.5   PUB          inflation_fe_C1   question -0.011396 16 -0.045053  0.021713          0.746500
+anthropic/claude-sonnet-5.5   PUB   inflation_fe_C1_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+anthropic/claude-sonnet-5.5   PUB                    E3_C1   question  0.000000 13  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             E3_C1_middle   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB                stat_S_C1   question -0.006072 13 -0.072866  0.066126          0.585000
+anthropic/claude-sonnet-5.5   PUB            stat_brier_C1   question  0.005687 13 -0.006659  0.020708          0.231000
+anthropic/claude-sonnet-5.5   PUB         farming_brier_C2   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB  farming_brier_C2_middle   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB         inflation_raw_C2   question -0.002430 16 -0.041312  0.033018          0.539000
+anthropic/claude-sonnet-5.5   PUB  inflation_raw_C2_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+anthropic/claude-sonnet-5.5   PUB        inflation_peer_C2   question -0.011401 16 -0.045751  0.022528          0.742500
+anthropic/claude-sonnet-5.5   PUB inflation_peer_C2_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+anthropic/claude-sonnet-5.5   PUB          inflation_fe_C2   question -0.011396 16 -0.045053  0.021713          0.746500
+anthropic/claude-sonnet-5.5   PUB   inflation_fe_C2_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+anthropic/claude-sonnet-5.5   PUB                    E3_C2   question  0.000000 13  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             E3_C2_middle   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB                stat_S_C2   question -0.006072 13 -0.072866  0.066126          0.585000
+anthropic/claude-sonnet-5.5   PUB            stat_brier_C2   question  0.005687 13 -0.006659  0.020708          0.231000
+anthropic/claude-sonnet-5.5   PUB         farming_brier_C3   question  0.000000 16  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB  farming_brier_C3_middle   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB         inflation_raw_C3   question -0.002430 16 -0.041312  0.033018          0.539000
+anthropic/claude-sonnet-5.5   PUB  inflation_raw_C3_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+anthropic/claude-sonnet-5.5   PUB        inflation_peer_C3   question -0.011401 16 -0.045751  0.022528          0.742500
+anthropic/claude-sonnet-5.5   PUB inflation_peer_C3_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+anthropic/claude-sonnet-5.5   PUB          inflation_fe_C3   question -0.011396 16 -0.045053  0.021713          0.746500
+anthropic/claude-sonnet-5.5   PUB   inflation_fe_C3_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+anthropic/claude-sonnet-5.5   PUB                    E3_C3   question  0.000000 13  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             E3_C3_middle   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB                stat_S_C3   question -0.044285 13 -0.110589  0.014031          0.923500
+anthropic/claude-sonnet-5.5   PUB            stat_brier_C3   question  0.001685 13 -0.010086  0.014768          0.432500
+anthropic/claude-sonnet-5.5   PUB        E3_contrast_C1-C2   question  0.000000 13  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB        E3_contrast_C3-C2   question  0.000000 13  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB         negative_control   question  0.000000 13  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB    farming_brier_C1_good   question  0.000000  6  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB    inflation_raw_C1_good   question  0.015521  6 -0.000459  0.042288          0.094500
+anthropic/claude-sonnet-5.5   PUB   inflation_peer_C1_good   question  0.000926  6 -0.014436  0.021342          0.466000
+anthropic/claude-sonnet-5.5   PUB     inflation_fe_C1_good   question  0.000367  6 -0.014720  0.020056          0.469000
+anthropic/claude-sonnet-5.5   PUB               E3_C1_good   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB    farming_brier_C2_good   question  0.000000  6  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB    inflation_raw_C2_good   question  0.015521  6 -0.000459  0.042288          0.094500
+anthropic/claude-sonnet-5.5   PUB   inflation_peer_C2_good   question  0.000926  6 -0.014436  0.021342          0.466000
+anthropic/claude-sonnet-5.5   PUB     inflation_fe_C2_good   question  0.000367  6 -0.014720  0.020056          0.469000
+anthropic/claude-sonnet-5.5   PUB               E3_C2_good   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB    farming_brier_C3_good   question  0.000000  6  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB    inflation_raw_C3_good   question  0.015521  6 -0.000459  0.042288          0.094500
+anthropic/claude-sonnet-5.5   PUB   inflation_peer_C3_good   question  0.000926  6 -0.014436  0.021342          0.466000
+anthropic/claude-sonnet-5.5   PUB     inflation_fe_C3_good   question  0.000367  6 -0.014720  0.020056          0.469000
+anthropic/claude-sonnet-5.5   PUB               E3_C3_good   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_swap_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             swap_sign_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_swap_C3   question  0.000000  9  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX               E2_swap_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             swap_sign_C3   question  0.000000  9  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX             swap_sign_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB     farming_brier_C1_bad   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB     inflation_raw_C1_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+anthropic/claude-sonnet-5.5   PUB    inflation_peer_C1_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+anthropic/claude-sonnet-5.5   PUB      inflation_fe_C1_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+anthropic/claude-sonnet-5.5   PUB     farming_brier_C2_bad   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB     inflation_raw_C2_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+anthropic/claude-sonnet-5.5   PUB    inflation_peer_C2_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+anthropic/claude-sonnet-5.5   PUB      inflation_fe_C2_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+anthropic/claude-sonnet-5.5   PUB     farming_brier_C3_bad   question  0.000000  5  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB     inflation_raw_C3_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+anthropic/claude-sonnet-5.5   PUB    inflation_peer_C3_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+anthropic/claude-sonnet-5.5   PUB      inflation_fe_C3_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+anthropic/claude-sonnet-5.5   PUB                E3_C1_bad   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB                E3_C2_bad   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   PUB                E3_C3_bad   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5   MIX           test_retest_SD pigeonhole  0.000000  4  0.000000  0.000000          0.000000
+anthropic/claude-sonnet-5.5 probe        probe_minus_crowd   question  0.125957 16  0.043104  0.194281          0.004000
+          openai/gpt-6-luna   MIX                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX                    E1_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               vs_mean_C1   question  0.092876 16 -0.011307  0.183138          0.037500
+          openai/gpt-6-luna   MIX               vs_mean_C1 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+          openai/gpt-6-luna   MIX               vs_stat_C1   question  0.127422 16  0.021435  0.214188          0.011500
+          openai/gpt-6-luna   MIX               vs_stat_C1 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+          openai/gpt-6-luna   MIX       oracle_fraction_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX       oracle_fraction_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_base_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             E2_pooled_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   MIX           weight_rank_C1 pigeonhole       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   MIX                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX                    E1_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               vs_mean_C2   question  0.092876 16 -0.011307  0.183138          0.037500
+          openai/gpt-6-luna   MIX               vs_mean_C2 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+          openai/gpt-6-luna   MIX               vs_stat_C2   question  0.127422 16  0.021435  0.214188          0.011500
+          openai/gpt-6-luna   MIX               vs_stat_C2 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+          openai/gpt-6-luna   MIX       oracle_fraction_C2   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX       oracle_fraction_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_base_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             E2_pooled_C2 pigeonhole  0.000000 27  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   MIX           weight_rank_C2 pigeonhole       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   MIX                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX                    E1_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               vs_mean_C3   question  0.092876 16 -0.011307  0.183138          0.037500
+          openai/gpt-6-luna   MIX               vs_mean_C3 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+          openai/gpt-6-luna   MIX               vs_stat_C3   question  0.127083 16  0.030849  0.209560          0.006500
+          openai/gpt-6-luna   MIX               vs_stat_C3 pigeonhole  0.127083 16 -0.165021  0.245300          0.124494
+          openai/gpt-6-luna   MIX       oracle_fraction_C3   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX       oracle_fraction_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_base_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             E2_pooled_C3   question  0.000000 25  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             E2_pooled_C3 pigeonhole  0.000000 25  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   MIX           weight_rank_C3 pigeonhole       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   PUB                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB               vs_mean_C1   question  0.101053 16 -0.002361  0.174596          0.029500
+          openai/gpt-6-luna   PUB               vs_stat_C1   question  0.119889 16  0.012198  0.197913          0.017500
+          openai/gpt-6-luna   PUB               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   PUB                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB               vs_mean_C2   question  0.101053 16 -0.002361  0.174596          0.029500
+          openai/gpt-6-luna   PUB               vs_stat_C2   question  0.119889 16  0.012198  0.197913          0.017500
+          openai/gpt-6-luna   PUB               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   PUB                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB               vs_mean_C3   question  0.101053 16 -0.002361  0.174596          0.029500
+          openai/gpt-6-luna   PUB               vs_stat_C3   question  0.098496 16 -0.014616  0.188409          0.046000
+          openai/gpt-6-luna   PUB               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             E2_pooled_C3   question  0.000000 26  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+          openai/gpt-6-luna   PUB               E2_swap_C3   question  0.000000 10  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             swap_sign_C3   question  0.000000 10  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB         exact_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+          openai/gpt-6-luna   PUB      category_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+          openai/gpt-6-luna   PUB         farming_brier_C1   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB  farming_brier_C1_middle   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB         inflation_raw_C1   question -0.002430 16 -0.041312  0.033018          0.539000
+          openai/gpt-6-luna   PUB  inflation_raw_C1_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+          openai/gpt-6-luna   PUB        inflation_peer_C1   question -0.011401 16 -0.045751  0.022528          0.742500
+          openai/gpt-6-luna   PUB inflation_peer_C1_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+          openai/gpt-6-luna   PUB          inflation_fe_C1   question -0.011396 16 -0.045053  0.021713          0.746500
+          openai/gpt-6-luna   PUB   inflation_fe_C1_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+          openai/gpt-6-luna   PUB                    E3_C1   question  0.000000 13  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             E3_C1_middle   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB                stat_S_C1   question -0.006072 13 -0.072866  0.066126          0.585000
+          openai/gpt-6-luna   PUB            stat_brier_C1   question  0.005687 13 -0.006659  0.020708          0.231000
+          openai/gpt-6-luna   PUB         farming_brier_C2   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB  farming_brier_C2_middle   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB         inflation_raw_C2   question -0.002430 16 -0.041312  0.033018          0.539000
+          openai/gpt-6-luna   PUB  inflation_raw_C2_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+          openai/gpt-6-luna   PUB        inflation_peer_C2   question -0.011401 16 -0.045751  0.022528          0.742500
+          openai/gpt-6-luna   PUB inflation_peer_C2_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+          openai/gpt-6-luna   PUB          inflation_fe_C2   question -0.011396 16 -0.045053  0.021713          0.746500
+          openai/gpt-6-luna   PUB   inflation_fe_C2_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+          openai/gpt-6-luna   PUB                    E3_C2   question  0.000000 13  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             E3_C2_middle   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB                stat_S_C2   question -0.006072 13 -0.072866  0.066126          0.585000
+          openai/gpt-6-luna   PUB            stat_brier_C2   question  0.005687 13 -0.006659  0.020708          0.231000
+          openai/gpt-6-luna   PUB         farming_brier_C3   question  0.000000 16  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB  farming_brier_C3_middle   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB         inflation_raw_C3   question -0.002430 16 -0.041312  0.033018          0.539000
+          openai/gpt-6-luna   PUB  inflation_raw_C3_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+          openai/gpt-6-luna   PUB        inflation_peer_C3   question -0.011401 16 -0.045751  0.022528          0.742500
+          openai/gpt-6-luna   PUB inflation_peer_C3_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+          openai/gpt-6-luna   PUB          inflation_fe_C3   question -0.011396 16 -0.045053  0.021713          0.746500
+          openai/gpt-6-luna   PUB   inflation_fe_C3_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+          openai/gpt-6-luna   PUB                    E3_C3   question  0.000000 13  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             E3_C3_middle   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB                stat_S_C3   question -0.044285 13 -0.110589  0.014031          0.923500
+          openai/gpt-6-luna   PUB            stat_brier_C3   question  0.001685 13 -0.010086  0.014768          0.432500
+          openai/gpt-6-luna   PUB        E3_contrast_C1-C2   question  0.000000 13  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB        E3_contrast_C3-C2   question  0.000000 13  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB         negative_control   question  0.000000 13  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB    farming_brier_C1_good   question  0.000000  6  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB    inflation_raw_C1_good   question  0.015521  6 -0.000459  0.042288          0.094500
+          openai/gpt-6-luna   PUB   inflation_peer_C1_good   question  0.000926  6 -0.014436  0.021342          0.466000
+          openai/gpt-6-luna   PUB     inflation_fe_C1_good   question  0.000367  6 -0.014720  0.020056          0.469000
+          openai/gpt-6-luna   PUB               E3_C1_good   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB    farming_brier_C2_good   question  0.000000  6  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB    inflation_raw_C2_good   question  0.015521  6 -0.000459  0.042288          0.094500
+          openai/gpt-6-luna   PUB   inflation_peer_C2_good   question  0.000926  6 -0.014436  0.021342          0.466000
+          openai/gpt-6-luna   PUB     inflation_fe_C2_good   question  0.000367  6 -0.014720  0.020056          0.469000
+          openai/gpt-6-luna   PUB               E3_C2_good   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB    farming_brier_C3_good   question  0.000000  6  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB    inflation_raw_C3_good   question  0.015521  6 -0.000459  0.042288          0.094500
+          openai/gpt-6-luna   PUB   inflation_peer_C3_good   question  0.000926  6 -0.014436  0.021342          0.466000
+          openai/gpt-6-luna   PUB     inflation_fe_C3_good   question  0.000367  6 -0.014720  0.020056          0.469000
+          openai/gpt-6-luna   PUB               E3_C3_good   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_swap_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             swap_sign_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_swap_C3   question  0.000000  9  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX               E2_swap_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             swap_sign_C3   question  0.000000  9  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX             swap_sign_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB     farming_brier_C1_bad   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB     inflation_raw_C1_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+          openai/gpt-6-luna   PUB    inflation_peer_C1_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+          openai/gpt-6-luna   PUB      inflation_fe_C1_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+          openai/gpt-6-luna   PUB     farming_brier_C2_bad   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB     inflation_raw_C2_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+          openai/gpt-6-luna   PUB    inflation_peer_C2_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+          openai/gpt-6-luna   PUB      inflation_fe_C2_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+          openai/gpt-6-luna   PUB     farming_brier_C3_bad   question  0.000000  5  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB     inflation_raw_C3_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+          openai/gpt-6-luna   PUB    inflation_peer_C3_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+          openai/gpt-6-luna   PUB      inflation_fe_C3_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+          openai/gpt-6-luna   PUB                E3_C1_bad   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB                E3_C2_bad   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   PUB                E3_C3_bad   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna   MIX           test_retest_SD pigeonhole  0.000000  4  0.000000  0.000000          0.000000
+          openai/gpt-6-luna probe        probe_minus_crowd   question  0.125957 16  0.043104  0.194281          0.004000
+         openai/gpt-6.1-sol   MIX                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX                    E1_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               vs_mean_C1   question  0.092876 16 -0.011307  0.183138          0.037500
+         openai/gpt-6.1-sol   MIX               vs_mean_C1 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+         openai/gpt-6.1-sol   MIX               vs_stat_C1   question  0.127422 16  0.021435  0.214188          0.011500
+         openai/gpt-6.1-sol   MIX               vs_stat_C1 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+         openai/gpt-6.1-sol   MIX       oracle_fraction_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX       oracle_fraction_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_base_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             E2_pooled_C1 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   MIX           weight_rank_C1 pigeonhole       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   MIX                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX                    E1_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               vs_mean_C2   question  0.092876 16 -0.011307  0.183138          0.037500
+         openai/gpt-6.1-sol   MIX               vs_mean_C2 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+         openai/gpt-6.1-sol   MIX               vs_stat_C2   question  0.127422 16  0.021435  0.214188          0.011500
+         openai/gpt-6.1-sol   MIX               vs_stat_C2 pigeonhole  0.127422 16 -0.175522  0.249479          0.137146
+         openai/gpt-6.1-sol   MIX       oracle_fraction_C2   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX       oracle_fraction_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_base_C2 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             E2_pooled_C2 pigeonhole  0.000000 27  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   MIX           weight_rank_C2 pigeonhole       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   MIX                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX                    E1_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               vs_mean_C3   question  0.092876 16 -0.011307  0.183138          0.037500
+         openai/gpt-6.1-sol   MIX               vs_mean_C3 pigeonhole  0.092876 16 -0.213752  0.236544          0.175607
+         openai/gpt-6.1-sol   MIX               vs_stat_C3   question  0.127083 16  0.030849  0.209560          0.006500
+         openai/gpt-6.1-sol   MIX               vs_stat_C3 pigeonhole  0.127083 16 -0.165021  0.245300          0.124494
+         openai/gpt-6.1-sol   MIX       oracle_fraction_C3   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX       oracle_fraction_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_base_C3 pigeonhole  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             E2_pooled_C3   question  0.000000 25  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             E2_pooled_C3 pigeonhole  0.000000 25  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   MIX           weight_rank_C3 pigeonhole       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   PUB                    E1_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB               vs_mean_C1   question  0.101053 16 -0.002361  0.174596          0.029500
+         openai/gpt-6.1-sol   PUB               vs_stat_C1   question  0.119889 16  0.012198  0.197913          0.017500
+         openai/gpt-6.1-sol   PUB               E2_base_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             E2_pooled_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB           weight_rank_C1   question       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   PUB                    E1_C2   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB               vs_mean_C2   question  0.101053 16 -0.002361  0.174596          0.029500
+         openai/gpt-6.1-sol   PUB               vs_stat_C2   question  0.119889 16  0.012198  0.197913          0.017500
+         openai/gpt-6.1-sol   PUB               E2_base_C2   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             E2_pooled_C2   question  0.000000 27  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB           weight_rank_C2   question       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   PUB                    E1_C3   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB               vs_mean_C3   question  0.101053 16 -0.002361  0.174596          0.029500
+         openai/gpt-6.1-sol   PUB               vs_stat_C3   question  0.098496 16 -0.014616  0.188409          0.046000
+         openai/gpt-6.1-sol   PUB               E2_base_C3   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             E2_pooled_C3   question  0.000000 26  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB           weight_rank_C3   question       NaN  0       NaN       NaN               NaN
+         openai/gpt-6.1-sol   PUB               E2_swap_C3   question  0.000000 10  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             swap_sign_C3   question  0.000000 10  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB         exact_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+         openai/gpt-6.1-sol   PUB      category_match_rate   question  1.000000 16  1.000000  1.000000          0.000000
+         openai/gpt-6.1-sol   PUB         farming_brier_C1   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB  farming_brier_C1_middle   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB         inflation_raw_C1   question -0.002430 16 -0.041312  0.033018          0.539000
+         openai/gpt-6.1-sol   PUB  inflation_raw_C1_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+         openai/gpt-6.1-sol   PUB        inflation_peer_C1   question -0.011401 16 -0.045751  0.022528          0.742500
+         openai/gpt-6.1-sol   PUB inflation_peer_C1_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+         openai/gpt-6.1-sol   PUB          inflation_fe_C1   question -0.011396 16 -0.045053  0.021713          0.746500
+         openai/gpt-6.1-sol   PUB   inflation_fe_C1_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+         openai/gpt-6.1-sol   PUB                    E3_C1   question  0.000000 13  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             E3_C1_middle   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB                stat_S_C1   question -0.006072 13 -0.072866  0.066126          0.585000
+         openai/gpt-6.1-sol   PUB            stat_brier_C1   question  0.005687 13 -0.006659  0.020708          0.231000
+         openai/gpt-6.1-sol   PUB         farming_brier_C2   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB  farming_brier_C2_middle   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB         inflation_raw_C2   question -0.002430 16 -0.041312  0.033018          0.539000
+         openai/gpt-6.1-sol   PUB  inflation_raw_C2_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+         openai/gpt-6.1-sol   PUB        inflation_peer_C2   question -0.011401 16 -0.045751  0.022528          0.742500
+         openai/gpt-6.1-sol   PUB inflation_peer_C2_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+         openai/gpt-6.1-sol   PUB          inflation_fe_C2   question -0.011396 16 -0.045053  0.021713          0.746500
+         openai/gpt-6.1-sol   PUB   inflation_fe_C2_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+         openai/gpt-6.1-sol   PUB                    E3_C2   question  0.000000 13  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             E3_C2_middle   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB                stat_S_C2   question -0.006072 13 -0.072866  0.066126          0.585000
+         openai/gpt-6.1-sol   PUB            stat_brier_C2   question  0.005687 13 -0.006659  0.020708          0.231000
+         openai/gpt-6.1-sol   PUB         farming_brier_C3   question  0.000000 16  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB  farming_brier_C3_middle   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB         inflation_raw_C3   question -0.002430 16 -0.041312  0.033018          0.539000
+         openai/gpt-6.1-sol   PUB  inflation_raw_C3_middle   question  0.045945  5 -0.026385  0.108828          0.086500
+         openai/gpt-6.1-sol   PUB        inflation_peer_C3   question -0.011401 16 -0.045751  0.022528          0.742500
+         openai/gpt-6.1-sol   PUB inflation_peer_C3_middle   question  0.022715  5 -0.046509  0.091939          0.272000
+         openai/gpt-6.1-sol   PUB          inflation_fe_C3   question -0.011396 16 -0.045053  0.021713          0.746500
+         openai/gpt-6.1-sol   PUB   inflation_fe_C3_middle   question  0.022066  5 -0.046164  0.090296          0.280500
+         openai/gpt-6.1-sol   PUB                    E3_C3   question  0.000000 13  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             E3_C3_middle   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB                stat_S_C3   question -0.044285 13 -0.110589  0.014031          0.923500
+         openai/gpt-6.1-sol   PUB            stat_brier_C3   question  0.001685 13 -0.010086  0.014768          0.432500
+         openai/gpt-6.1-sol   PUB        E3_contrast_C1-C2   question  0.000000 13  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB        E3_contrast_C3-C2   question  0.000000 13  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB         negative_control   question  0.000000 13  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB    farming_brier_C1_good   question  0.000000  6  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB    inflation_raw_C1_good   question  0.015521  6 -0.000459  0.042288          0.094500
+         openai/gpt-6.1-sol   PUB   inflation_peer_C1_good   question  0.000926  6 -0.014436  0.021342          0.466000
+         openai/gpt-6.1-sol   PUB     inflation_fe_C1_good   question  0.000367  6 -0.014720  0.020056          0.469000
+         openai/gpt-6.1-sol   PUB               E3_C1_good   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB    farming_brier_C2_good   question  0.000000  6  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB    inflation_raw_C2_good   question  0.015521  6 -0.000459  0.042288          0.094500
+         openai/gpt-6.1-sol   PUB   inflation_peer_C2_good   question  0.000926  6 -0.014436  0.021342          0.466000
+         openai/gpt-6.1-sol   PUB     inflation_fe_C2_good   question  0.000367  6 -0.014720  0.020056          0.469000
+         openai/gpt-6.1-sol   PUB               E3_C2_good   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB    farming_brier_C3_good   question  0.000000  6  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB    inflation_raw_C3_good   question  0.015521  6 -0.000459  0.042288          0.094500
+         openai/gpt-6.1-sol   PUB   inflation_peer_C3_good   question  0.000926  6 -0.014436  0.021342          0.466000
+         openai/gpt-6.1-sol   PUB     inflation_fe_C3_good   question  0.000367  6 -0.014720  0.020056          0.469000
+         openai/gpt-6.1-sol   PUB               E3_C3_good   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_swap_C2   question  0.000000 11  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_swap_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             swap_sign_C2   question  0.000000 11  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             swap_sign_C2 pigeonhole  0.000000 11  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_swap_C3   question  0.000000  9  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX               E2_swap_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             swap_sign_C3   question  0.000000  9  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX             swap_sign_C3 pigeonhole  0.000000  9  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB     farming_brier_C1_bad   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB     inflation_raw_C1_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+         openai/gpt-6.1-sol   PUB    inflation_peer_C1_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+         openai/gpt-6.1-sol   PUB      inflation_fe_C1_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+         openai/gpt-6.1-sol   PUB     farming_brier_C2_bad   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB     inflation_raw_C2_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+         openai/gpt-6.1-sol   PUB    inflation_peer_C2_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+         openai/gpt-6.1-sol   PUB      inflation_fe_C2_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+         openai/gpt-6.1-sol   PUB     farming_brier_C3_bad   question  0.000000  5  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB     inflation_raw_C3_bad   question -0.072347  5 -0.126500 -0.017480          0.992000
+         openai/gpt-6.1-sol   PUB    inflation_peer_C3_bad   question -0.060309  5 -0.112919 -0.007252          0.992000
+         openai/gpt-6.1-sol   PUB      inflation_fe_C3_bad   question -0.058974  5 -0.111123 -0.006424          0.992000
+         openai/gpt-6.1-sol   PUB                E3_C1_bad   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB                E3_C2_bad   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   PUB                E3_C3_bad   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX           test_retest_SD   question  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol   MIX           test_retest_SD pigeonhole  0.000000  4  0.000000  0.000000          0.000000
+         openai/gpt-6.1-sol probe        probe_minus_crowd   question  0.125957 16  0.043104  0.194281          0.004000
