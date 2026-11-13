@@ -78,9 +78,12 @@ def analyze(out):
                     h,f=ll(c+'_honest'),ll(c+'_farmed')
                     if h is None or f is None:continue
                     add('farming_brier_'+c,p,(f-y)**2-(h-y)**2)
+                    add('farming_brier_'+c+'_'+tercile,p,(f-y)**2-(h-y)**2)
                     for score in ('raw','peer','fe'):
                         records=p['variants'];hon=next(m for m in records[c+'_honest'] if m['letter']==p['attacker'])['record'];farm=next(m for m in records[c+'_farmed'] if m['letter']==p['attacker'])['record']
-                        add('inflation_'+score+'_'+c,p,np.mean([x[score] for x in hon])-np.mean([x[score] for x in farm]))
+                        inflation=np.mean([x[score] for x in hon])-np.mean([x[score] for x in farm])
+                        add('inflation_'+score+'_'+c,p,inflation)
+                        add('inflation_'+score+'_'+c+'_'+tercile,p,inflation)
                     if abs(gap)<.10:continue
                     shifts[c]=(f-h)*np.sign(gap);add('E3_'+c,p,shifts[c],abs(gap));add('E3_'+c+'_'+tercile,p,shifts[c],abs(gap));add('stat_S_'+c,p,(ss(c+'_farmed')-ss(c+'_honest'))*np.sign(gap),abs(gap))
                     add('stat_brier_'+c,p,(ss(c+'_farmed')-y)**2-(ss(c+'_honest')-y)**2)

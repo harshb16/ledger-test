@@ -23,9 +23,9 @@ def predict(out,root=Path('.'),fit=True):
         applicable=[c for c in choices if c['type']==panel['type'] and panel['question_id'] in c['test_ids']]
         for condition,members in panel['variants'].items():
             p=np.array([m['p'] for m in members]);n=np.full(5,payload['k'])
-            for method in ('mean','median','extremized_logit_mean','group_oracle','record_length','top2_raw','top2_adj','perf_weighted_raw','perf_weighted_adj'):
+            for method in ('mean','median','logit_mean','group_oracle','record_length','top2_raw','top2_adj','perf_weighted_raw','perf_weighted_adj'):
                 if method=='group_oracle' and panel['type']!='MIX':continue
-                params=next(c for c in applicable if c['method']==method)
+                params={} if method=='logit_mean' else next(c for c in applicable if c['method']==method)
                 score='peer' if method.endswith('adj') else 'raw'
                 scores=np.array([np.mean([r[score] for r in m['record']]) for m in members])
                 weights=np.full(5,.2)
@@ -34,8 +34,8 @@ def predict(out,root=Path('.'),fit=True):
                     weights=softmax(-params['lam']*n/(n+params['k'])*scores)
                 elif method.startswith('top2'):weights[:]=0;weights[np.argsort(scores)[:2]]=.5
                 elif method=='group_oracle':weights=np.array([m['group']=='super' for m in members],float);weights/=weights.sum()
-                if method in ('median','extremized_logit_mean'):
-                    prediction=aggregate(p,method,a=params.get('a',1))
+                if method in ('median','logit_mean'):
+                    prediction=aggregate(p,'extremized_logit_mean' if method=='logit_mean' else method,a=1)
                 else:prediction=float(weights@p)
                 rows.append(dict(panel_id=panel['panel_id'],question_id=panel['question_id'],type=panel['type'],condition=condition,method=method,prediction=prediction,weights=json.dumps(dict(zip([m['letter'] for m in members],weights.tolist())))))
     pd.DataFrame(rows).to_csv(out/'stat_predictions.csv',index=False)

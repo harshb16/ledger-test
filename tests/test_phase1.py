@@ -106,3 +106,10 @@ def test_test_outcomes_cannot_tune_hyperparameters(toy):
     pred2,choices2=evaluate(changed,p2,'LOO',42)
     assert [c for c in choices if c["fold"]==0]==[c for c in choices2 if c["fold"]==0]
 
+
+def test_added_comparators():
+    assert aggregate([.1,.2,.3,.4,.9],'trimmed_mean')==pytest.approx(.3)
+    assert aggregate([.1,.2,.9],'top2_raw',scores=[.3,.1,.2])==pytest.approx(.55)
+    assert aggregate([.2,.8],'record_length',n=[1,2],gamma=2)==pytest.approx(.68)
+    assert aggregate([.2,.8],'group_oracle',groups=['public','super'])==pytest.approx(.8)
+    assert aggregate([.2,.8],'record_length',n=[8,8],gamma=4)==pytest.approx(.5)

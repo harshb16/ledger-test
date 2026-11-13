@@ -52,11 +52,11 @@ def matched_record(d,farm,rng):
 def displayed_ledger(data,target,excluded,regime,k,seed):
     d=references(allowed(data,target,excluded,regime))
     rng=rng_for(seed,target,tuple(sorted(excluded)),regime,k)
-    units=d.groupby(KEY+['question_id'],sort=True,group_keys=False).sample(n=1,random_state=rng)
+    units=d.iloc[rng.permutation(len(d))].drop_duplicates(KEY+['question_id'])
     sizes=units.groupby(KEY).question_id.transform('size')
     units=units[sizes>=k]
     if units.empty:return pd.DataFrame(columns=KEY+['n_ids','n_units','raw','peer','fe'])
-    sampled=units.groupby(KEY,sort=True,group_keys=False).sample(n=k,random_state=rng)
+    sampled=units.iloc[rng.permutation(len(units))].groupby(KEY,sort=False).head(k)
     result=sampled.groupby(KEY).agg(raw=('brier','mean'),peer=('peer','mean'),fe=('fe','mean')).reset_index()
     result['n_ids']=k;result['n_units']=k
     return result

@@ -56,3 +56,22 @@ def test_build_determinism(tmp_path):
     assert len(a['selected_ids'])==1
     assert (first/'manifest_strong_openai.jsonl').read_bytes()==(second/'manifest_strong_openai.jsonl').read_bytes()
     assert (first/'truth.csv').read_bytes()==(second/'truth.csv').read_bytes()
+
+def test_crossfit_covers_all_ids():
+    choices=json.loads(Path('results/phase2/pilot/stat_hyperparameters.json').read_text())
+    for kind in ('MIX','PUB'):
+        folds=[c for c in choices if c['type']==kind and c['method']=='perf_weighted_raw']
+        ids=[q for c in folds for q in c['test_ids']]
+        assert len(folds)==5 and len(ids)==len(set(ids))==162
+        assert all(c['train_panels']>0 for c in folds)
+
+
+def test_mock_analysis():
+    import pandas as pd
+    out=Path('results/phase2/pilot_mock/analysis')
+    parse=pd.read_csv(out/'parse_failures.csv')
+    assert len(parse)==4 and parse.n.eq(305).all() and parse.parse_failures.eq(0).all()
+    metrics=pd.read_csv(out/'estimands.csv')
+    shifted=metrics[metrics.metric.str.startswith(('E2_','E3_','negative_control','test_retest_SD'))]
+    assert shifted.estimate.eq(0).all()
+    assert pd.read_csv(out/'usage_cost.csv').billed_usd.eq(0).all()

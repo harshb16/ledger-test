@@ -9,10 +9,16 @@ A = [0.5,1.,1.5,2.]
 LAM = [0.,1.,4.,16.,64.,128.,256.,1000.]
 K = [0.,5.,20.]
 
-def aggregate(p, method, scores=None, n=None, population=0., a=1., lam=0., k=0.):
+def aggregate(p, method, scores=None, n=None, population=0., a=1., lam=0., k=0., gamma=1., groups=None):
     p = np.asarray(p)
     if method=='mean': return p.mean()
     if method=='median': return np.median(p)
+    if method=='trimmed_mean': return np.sort(p)[1:-1].mean()
+    if method=='record_length':
+        weights=np.asarray(n,dtype=float)**gamma
+        return weights@p/weights.sum()
+    if method=='group_oracle': return p[np.asarray(groups)=='super'].mean()
+    if method.startswith('top2'): return p[np.argsort(scores)[:2]].mean()
     if method=='extremized_logit_mean': return expit(a*logit(np.clip(p,.01,.99)).mean())
     if method.startswith('best'): return p[np.argmin(scores)]
     shrunk = np.asarray(n)/(np.asarray(n)+k)*np.asarray(scores)+k/(np.asarray(n)+k)*population
