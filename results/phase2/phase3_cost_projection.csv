@@ -1,0 +1,5 @@
+model,questions,panels_per_type,swap_fraction,uplift,projected_usd
+efficient_openai,162,3,1.0,1.15,2.13
+efficient_anthropic,162,3,1.0,1.05,1.59
+strong_openai,108,1,0.25,1.05,4.23
+strong_anthropic,108,1,0.25,1.0,4.36
