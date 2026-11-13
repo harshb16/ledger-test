@@ -1,0 +1,1 @@
+Two-way CGM linearised ratios; normal 95% intervals and 2,000 question bootstrap replicates. W is a hindsight-tuned benchmark; interpret beta relative to beta_star. Sonnet low effort has no reasoning tokens: cross-model contrasts are confounded with reasoning. All-model claims require all models to pass. Undefined zero-denominator estimands are retained as missing.

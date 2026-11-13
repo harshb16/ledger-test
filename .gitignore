@@ -13,3 +13,8 @@ results/phase3/mock/*
 !results/phase3/mock/analysis/
 results/phase3/live/run.pid
 results/phase3/live/smoke_manifest_*
+results/phase3/live/*/responses.jsonl
+results/phase3/live/panels.json
+results/phase3/live/stat_hyperparameters.json
+results/phase3/live/stat_predictions.csv
+results/phase3/live/truth.csv
