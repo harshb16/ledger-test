@@ -1,5 +1,6 @@
 """Seeded cluster inference; each resampled cluster retains all observations."""
 import numpy as np
+import pandas as pd
 
 def interval(values):
     v = np.asarray(values)
@@ -43,3 +44,24 @@ def pigeonhole(frame, value, members, reps=2000, seed=20261113):
         w=qm[questions]*um[indices].prod(axis=1)
         if w.sum(): samples.append(w@values/w.sum())
     return dict(estimate=float(values.mean()),n_clusters=len(q),**interval(samples))
+
+
+def twoway_cgm(frame, value, members):
+    """Cameron-Gelbach-Miller two-way cluster variance for a mean, question x forecaster.
+
+    Each row (panel prediction) belongs to one question cluster and to every member's forecaster
+    cluster (multi-membership). V = V_q + V_u - V_qu; falls back to max(V_q, V_u) if negative.
+    Returns a normal-approximation 95% interval. Replaces the product-weighted pigeonhole bootstrap,
+    which zeroes most 5-member panels per replicate and is overly conservative.
+    """
+    x = frame[value].to_numpy(float); n = len(x); e = x - x.mean()
+    q = frame.question_id.astype(str).to_numpy()
+    vq = pd.Series(e).groupby(q).sum().pow(2).sum() / n**2
+    rows = [(u, qi, ei) for row, qi, ei in zip(members, q, e) for u in set(row)]
+    m = pd.DataFrame(rows, columns=['u', 'q', 'e'])
+    vu = m.groupby('u').e.sum().pow(2).sum() / n**2
+    vqu = m.groupby(['q', 'u']).e.sum().pow(2).sum() / n**2
+    v = vq + vu - vqu
+    if v <= 0: v = max(vq, vu)
+    se = float(np.sqrt(v))
+    return dict(estimate=float(x.mean()), se=se, se_question=float(np.sqrt(vq)), low=float(x.mean() - 1.96 * se), high=float(x.mean() + 1.96 * se))

@@ -8,11 +8,14 @@ import pandas as pd
 import yaml
 from .data import load, DATASET
 from .panels import targets
-from .records import references,draw_record,matched_record,rng_for
+from .records import references,draw_record,rng_for
 
-SYSTEM=('Return JSON with probability and nonnegative weights for A, B, C, D, E. '
-        'Choose the probability that minimises expected Brier score. Forecasts were made at the same time. '
-        'Records are past resolved questions unrelated to the target. No rationale.')
+SYSTEM=('You are aggregating probability forecasts. Five forecasters (A-E) each gave a probability that the same '
+        'binary target question resolves YES. The question text is deliberately withheld: you see only an anonymised '
+        'category code and the time horizon. All five forecasts were made at the same time. If track records are shown, '
+        'they describe each forecaster on past resolved questions that are different from the target. '
+        'Report the probability for the target that minimises expected Brier score, and the non-negative relative weight '
+        'you effectively gave each forecaster. Respond with JSON only, no rationale.')
 SCHEMA={'type':'object','properties':{'probability':{'type':'number','minimum':0,'maximum':1},
  'weights':{'type':'object','properties':{c:{'type':'number','minimum':0} for c in 'ABCDE'},'required':list('ABCDE'),'additionalProperties':False}},'required':['probability','weights'],'additionalProperties':False}
 
@@ -24,15 +27,15 @@ def serialize(r,codes):
 def reliability(m,condition):
     r=m['record'];k=len(r)
     if condition=='C0':return ''
-    if condition=='C1':return '\n'.join(f"{x['category']}, {x['horizon']}, forecast {x['p']:.6f}, outcome {'YES' if x['outcome'] else 'NO'}" for x in r)
+    if condition=='C1':return '\n'.join(f"category {x['category']}, horizon {x['horizon']}: forecast {x['p']:.3f}, resolved {'YES' if x['outcome'] else 'NO'}" for x in r)
     if condition=='C2':return f"Average Brier score on {k} past questions: {np.mean([x['raw'] for x in r]):.3f} (lower is better; always answering 50% scores 0.250)"
     return f"Relative Brier vs other forecasters on the same {k} questions: {np.mean([x['peer'] for x in r]):+.3f} (negative = better than peers, 0 = typical)"
 
 
 def messages(panel,members,condition):
-    header=f"Target category {panel['category']}; horizon {panel['horizon']}.\n"+'\n'.join(f"{m['letter']}: {m['p']:.6f}" for m in members)
-    block='\n\n'.join(m['letter']+':\n'+reliability(m,condition) for m in members) if condition!='C0' else 'none'
-    return [{'role':'system','content':SYSTEM},{'role':'user','content':header+'\n\nReliability:\n'+block}]
+    header=f"Target question: category {panel['category']}, horizon {panel['horizon']}.\nCurrent forecasts (probability of YES):\n"+'\n'.join(f"{m['letter']}: {m['p']:.3f}" for m in members)
+    block='\n\n'.join(m['letter']+':\n'+reliability(m,condition) for m in members) if condition!='C0' else 'No track records are available.'
+    return [{'role':'system','content':SYSTEM},{'role':'user','content':header+'\n\nTrack records:\n'+block}]
 
 
 def build(root,out,n=16,seed=20261113,draws=1):
@@ -96,20 +99,22 @@ def build(root,out,n=16,seed=20261113,draws=1):
                 if kind=='PUB':
                     eligible=[m for m in members if bool(chosen[chosen.user_id.astype(str)==m['user_id']].attacker.iloc[0])]
                     attacker=eligible[r.integers(len(eligible))];hist=d[(d.question_id!=t.question_id)&d.group.eq('public')&d.user_id.astype(str).eq(attacker['user_id'])]
-                    farm=draw_record(hist,k,r,True);honest,levels=matched_record(hist,farm,r);control,_=matched_record(hist,farm,r)
-                    panel.update(attacker=attacker['letter'],match_levels=levels,honest_skill=float(hist.peer.mean()))
+                    farm=draw_record(hist,k,r,True);control=draw_record(hist,k,r)
+                    panel.update(attacker=attacker['letter'],honest_skill=float(hist.peer.mean()))
                     for c in ('C1','C2','C3'):
-                        for label,record in [('honest',honest),('farmed',farm)]:
-                            changed=copy.deepcopy(members)
-                            next(m for m in changed if m['letter']==attacker['letter'])['record']=serialize(record,codes)
-                            variants[c+'_'+label]=(c,changed)
+                        variants[c+'_honest']=(c,copy.deepcopy(members))  # v1.1: honest = base record; no separate request
+                        changed=copy.deepcopy(members)
+                        next(m for m in changed if m['letter']==attacker['letter'])['record']=serialize(farm,codes)
+                        variants[c+'_farmed']=(c,changed)
                     changed=copy.deepcopy(members);next(m for m in changed if m['letter']==attacker['letter'])['record']=serialize(control,codes)
                     variants['C2_control']=('C2',changed)
                 panel['variants']={name:ms for name,(_,ms) in variants.items()}
-                for name,(c,ms) in variants.items():requests.append(dict(request_id=pid+'/'+name,messages=messages(panel,ms,c),metadata=dict(panel_id=pid,question_id=t.question_id,condition=name,type=kind)))
+                for name,(c,ms) in variants.items():
+                    if name.endswith('_honest'):continue
+                    requests.append(dict(request_id=pid+'/'+name,messages=messages(panel,ms,c),metadata=dict(panel_id=pid,question_id=t.question_id,condition=name,type=kind)))
                 panels.append(panel)
         text=questions.loc[questions.id==t.question_id,'question'].iloc[0]
-        requests.append(dict(request_id=str(t.question_id)+'/probe',messages=[{'role':'system','content':'Estimate a probability. Return JSON probability and weights A through E (equal descriptive weights). No rationale.'},{'role':'user','content':text}],metadata=dict(question_id=t.question_id,condition='probe',type='probe')))
+        requests.append(dict(request_id=str(t.question_id)+'/probe',messages=[{'role':'system','content':'Estimate the probability that this question resolves YES. Return JSON only: the probability, and set every weight A-E to 0.2. No rationale.'},{'role':'user','content':text}],metadata=dict(question_id=t.question_id,condition='probe',type='probe')))
     retest=rng_for(seed,'retest').choice(len(panels),round(len(panels)*.25),replace=False)
     for i in retest:
         panel=panels[int(i)];base=next(x for x in requests if x['request_id']==panel['panel_id']+'/C2');repeat=copy.deepcopy(base);repeat['request_id']+='_retest';repeat['metadata']['condition']='C2_retest';repeat['messages'][-1]['content']+='\nCache nonce: retest';requests.append(repeat)

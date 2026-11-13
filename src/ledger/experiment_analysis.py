@@ -48,6 +48,7 @@ def analyze(out):
         for pid,p in panels.items():
             y=truth[p['question_id']];M=stats[pid,'C0','mean'].prediction
             def ll(c):
+                if c.endswith('_honest'):c=c[:-len('_honest')]  # v1.1: honest farming arm is the base condition
                 r=valid.get(pid+'/'+c);return r['parsed']['probability'] if r else None
             def ss(c):return stats[pid,c,'perf_weighted_adj' if c.startswith('C3') else 'perf_weighted_raw'].prediction
             base=ll('C0')
@@ -70,8 +71,6 @@ def analyze(out):
                     a,b=p[c+'_swap_pair'];mp={m['letter']:m['p'] for m in p['members']};add('swap_sign_'+c,p,float(dl*np.sign(mp[b]-mp[a])>0))
             if ll('C2_retest') is not None and ll('C2') is not None:add('retest_difference_squared',p,(ll('C2_retest')-ll('C2'))**2/2)
             if 'attacker' in p:
-                add('exact_match_rate',p,p['match_levels'].count('exact')/payload['k'])
-                add('category_match_rate',p,sum(x!='any' for x in p['match_levels'])/payload['k'])
                 attacker=next(m for m in p['members'] if m['letter']==p['attacker']);gap=attacker['p']-np.mean([m['p'] for m in p['members'] if m['letter']!=p['attacker']]);tercile=('good','middle','bad')[np.searchsorted(cuts,p['honest_skill'])]
                 shifts={}
                 for c in ('C1','C2','C3'):

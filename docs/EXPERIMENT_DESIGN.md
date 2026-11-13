@@ -1,6 +1,6 @@
 # Experiment Design (Phase 2 / Phase 3)
 
-**Version 1, frozen for the pilot on 2026-11-13** (before any paid call). Machine-readable twin:
+**Version 1.1, frozen for the pilot on 2026-11-13** (before any paid call). Machine-readable twin:
 `configs/phase2_design.yaml`. Later changes are logged in §9 with reasons, and the version number is bumped.
 
 ## 1. Task shown to the LLM
@@ -62,11 +62,12 @@ C0, C1, C2, C3.
   - A confident id is one where at least one of the attacker's units has |p − 0.5| ≥ 0.4. The threshold is frozen.
   - The farmed record uses a confident unit for each such id.
 - **Farmed record:** k ids drawn uniformly from the attacker's confident ids.
-- **Honest record:** k ids drawn from all of the attacker's ids, matched to the farmed record's multiset of
-  (category, horizon bucket). Matching first uses exact (category, bucket), then category only, then any id. The
-  match rate is reported.
-- **Presentations:** C1, C2, C3 × {honest, farmed}, giving 6 calls.
-- **Negative control:** C2 with a second independent honest draw, giving 1 call. The expected shift is zero; this
+- **Honest record (v1.1):** the attacker's base-condition record, i.e. k ids drawn uniformly from all of their
+  ids. The honest arm therefore *is* the base C1/C2/C3 call, and no separate request is made. The same attacker
+  and the same k are used in both arms; the only difference is confidence-based selection. Category and horizon
+  composition are deliberately *not* matched, because composition is the farming mechanism (see §9).
+- **Presentations:** C1, C2, C3 × {honest = base, farmed}, giving 3 new calls.
+- **Negative control:** C2 with a second independent uniform honest draw, giving 1 call. The expected shift is zero; this
   measures the noise floor from re-sampling a record.
 - The other four members display the same records as in the base conditions.
 
@@ -80,7 +81,7 @@ noise.
 
 **Calls per question per model:**
 - MIX: 4 base + up to 2 swap.
-- PUB: 4 base + up to 2 swap + 6 farming + 1 negative control.
+- PUB: 4 base + up to 2 swap + 3 farmed + 1 negative control.
 - Plus 1 probe and about 0.5 retest.
 - About 20 calls per question per model at most.
 
@@ -150,3 +151,14 @@ Swap shift sign: (L_swap − L_orig)·sign(p_worst − p_best) > 0.
 ## 9. Change log
 - v0 (draft): unequal record lengths; source names shown; swap as RQ2 primary.
 - v1: changes per the Phase 1 audit (B1, M1–M8). See `docs/METHODOLOGY_REVIEW.md`.
+- v1.1 (before any paid call):
+  - Farming honest control is unmatched. Revised Phase 1 found that the v1 category- and horizon-matched control
+    removes the attack mechanism. Within attacker and within source × horizon cell, confident units are only 0.002
+    Brier better (`results/phase1_revised/matched_farming.md`; lead check). Matched inflation was −0.017, versus
+    unmatched k = 8 inflation of raw +0.020 [0.011, 0.028] and peer −0.004 [−0.012, 0.002] over 290 eligible
+    attackers.
+  - Fable's skill confound is handled by the within-attacker pairing plus stratification by skill tercile. The
+    matched variant is reported only as a mechanism decomposition.
+  - Prompt template made explicit: forecasts are P(YES) for one question; question text is deliberately withheld;
+    probabilities shown to 3 decimals. This is identical across conditions.
+  - Retest adds a one-line cache nonce to the prompt (documented, negligible).

@@ -14,7 +14,7 @@ def test_prompt_privacy_and_condition_invariance(pilot):
         for c in ('C1','C2','C3'):
             msg=messages(p,p['members'],c)
             assert msg[0]==base[0]
-            assert msg[1]['content'].split('Reliability:')[0]==base[1]['content'].split('Reliability:')[0]
+            assert msg[1]['content'].split('Track records:')[0]==base[1]['content'].split('Track records:')[0]
             text=json.dumps(msg).lower()
             assert 'super' not in text
             for source in pilot['category_codes']:assert source.lower() not in text
@@ -70,8 +70,18 @@ def test_mock_analysis():
     import pandas as pd
     out=Path('results/phase2/pilot_mock/analysis')
     parse=pd.read_csv(out/'parse_failures.csv')
-    assert len(parse)==4 and parse.n.eq(305).all() and parse.parse_failures.eq(0).all()
+    assert len(parse)==4 and parse.n.eq(257).all() and parse.parse_failures.eq(0).all()
     metrics=pd.read_csv(out/'estimands.csv')
     shifted=metrics[metrics.metric.str.startswith(('E2_','E3_','negative_control','test_retest_SD'))]
     assert shifted.estimate.eq(0).all()
     assert pd.read_csv(out/'usage_cost.csv').billed_usd.eq(0).all()
+
+def test_farming_v11_honest_is_base_and_not_requested(pilot):
+    ids={json.loads(l)['request_id'] for l in Path('results/phase2/pilot/manifest_strong_openai.jsonl').read_text().splitlines()}
+    for p in pilot['panels']:
+        if 'attacker' not in p: continue
+        for c in ('C1','C2','C3'):
+            assert p['variants'][c+'_honest']==p['variants'][c]
+            assert p['panel_id']+'/'+c+'_honest' not in ids and p['panel_id']+'/'+c+'_farmed' in ids
+        farmed=next(m for m in p['variants']['C2_farmed'] if m['letter']==p['attacker'])['record']
+        assert all(abs(x['p']-.5)>=.4 for x in farmed)

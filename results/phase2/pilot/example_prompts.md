@@ -1,77 +1,79 @@
 ## 1286/MIX/0/C1
 
-Return JSON with probability and nonnegative weights for A, B, C, D, E. Choose the probability that minimises expected Brier score. Forecasts were made at the same time. Records are past resolved questions unrelated to the target. No rationale.
+You are aggregating probability forecasts. Five forecasters (A-E) each gave a probability that the same binary target question resolves YES. The question text is deliberately withheld: you see only an anonymised category code and the time horizon. All five forecasts were made at the same time. If track records are shown, they describe each forecaster on past resolved questions that are different from the target. Report the probability for the target that minimises expected Brier score, and the non-negative relative weight you effectively gave each forecaster. Respond with JSON only, no rationale.
 
-Target category OD; horizon 91–180d.
-A: 0.020000
-C: 0.000000
-B: 0.030000
-E: 0.150000
-D: 0.150000
+Target question: category OD, horizon 91–180d.
+Current forecasts (probability of YES):
+A: 0.020
+C: 0.000
+B: 0.030
+E: 0.150
+D: 0.150
 
-Reliability:
+Track records:
 A:
-AX, 91–180d, forecast 0.030000, outcome NO
-AX, 91–180d, forecast 0.990000, outcome YES
-AX, 8–30d, forecast 1.000000, outcome YES
-AW, 91–180d, forecast 0.010000, outcome NO
-JF, 91–180d, forecast 0.920000, outcome YES
-MI, 91–180d, forecast 0.500000, outcome YES
-MI, ≤7d, forecast 0.500000, outcome YES
-AW, >365d, forecast 0.040000, outcome NO
+category AX, horizon 91–180d: forecast 0.030, resolved NO
+category AX, horizon 91–180d: forecast 0.990, resolved YES
+category AX, horizon 8–30d: forecast 1.000, resolved YES
+category AW, horizon 91–180d: forecast 0.010, resolved NO
+category JF, horizon 91–180d: forecast 0.920, resolved YES
+category MI, horizon 91–180d: forecast 0.500, resolved YES
+category MI, horizon ≤7d: forecast 0.500, resolved YES
+category AW, horizon >365d: forecast 0.040, resolved NO
 
 C:
-AX, 181–365d, forecast 0.950000, outcome YES
-JF, ≤7d, forecast 0.010000, outcome NO
-AX, 91–180d, forecast 0.000000, outcome NO
-MI, 31–90d, forecast 0.510000, outcome YES
-UP, ≤7d, forecast 0.000000, outcome NO
-JF, 8–30d, forecast 0.760000, outcome YES
-IV, ≤7d, forecast 0.480000, outcome NO
-UP, ≤7d, forecast 0.000000, outcome NO
+category AX, horizon 181–365d: forecast 0.950, resolved YES
+category JF, horizon ≤7d: forecast 0.010, resolved NO
+category AX, horizon 91–180d: forecast 0.000, resolved NO
+category MI, horizon 31–90d: forecast 0.510, resolved YES
+category UP, horizon ≤7d: forecast 0.000, resolved NO
+category JF, horizon 8–30d: forecast 0.760, resolved YES
+category IV, horizon ≤7d: forecast 0.480, resolved NO
+category UP, horizon ≤7d: forecast 0.000, resolved NO
 
 B:
-DS, 8–30d, forecast 1.000000, outcome YES
-YX, 8–30d, forecast 0.500000, outcome NO
-UP, 8–30d, forecast 0.000000, outcome NO
-AX, 91–180d, forecast 0.100000, outcome YES
-IV, 181–365d, forecast 0.800000, outcome NO
-DS, 181–365d, forecast 0.600000, outcome YES
-AX, 91–180d, forecast 0.800000, outcome NO
-OD, 181–365d, forecast 0.800000, outcome NO
+category DS, horizon 8–30d: forecast 1.000, resolved YES
+category YX, horizon 8–30d: forecast 0.500, resolved NO
+category UP, horizon 8–30d: forecast 0.000, resolved NO
+category AX, horizon 91–180d: forecast 0.100, resolved YES
+category IV, horizon 181–365d: forecast 0.800, resolved NO
+category DS, horizon 181–365d: forecast 0.600, resolved YES
+category AX, horizon 91–180d: forecast 0.800, resolved NO
+category OD, horizon 181–365d: forecast 0.800, resolved NO
 
 E:
-IV, 31–90d, forecast 0.300000, outcome NO
-YX, 181–365d, forecast 0.000000, outcome NO
-IV, 31–90d, forecast 0.500000, outcome NO
-YX, 91–180d, forecast 0.800000, outcome NO
-MI, 8–30d, forecast 0.500000, outcome YES
-AX, 91–180d, forecast 0.200000, outcome NO
-AW, ≤7d, forecast 0.800000, outcome YES
-UP, 181–365d, forecast 0.400000, outcome YES
+category IV, horizon 31–90d: forecast 0.300, resolved NO
+category YX, horizon 181–365d: forecast 0.000, resolved NO
+category IV, horizon 31–90d: forecast 0.500, resolved NO
+category YX, horizon 91–180d: forecast 0.800, resolved NO
+category MI, horizon 8–30d: forecast 0.500, resolved YES
+category AX, horizon 91–180d: forecast 0.200, resolved NO
+category AW, horizon ≤7d: forecast 0.800, resolved YES
+category UP, horizon 181–365d: forecast 0.400, resolved YES
 
 D:
-IV, 8–30d, forecast 0.500000, outcome YES
-IV, 91–180d, forecast 0.400000, outcome NO
-UP, ≤7d, forecast 0.100000, outcome NO
-DS, ≤7d, forecast 0.800000, outcome NO
-IV, 181–365d, forecast 0.600000, outcome NO
-JF, 91–180d, forecast 0.070000, outcome NO
-DS, 91–180d, forecast 0.050000, outcome NO
-YX, 181–365d, forecast 0.010000, outcome NO
+category IV, horizon 8–30d: forecast 0.500, resolved YES
+category IV, horizon 91–180d: forecast 0.400, resolved NO
+category UP, horizon ≤7d: forecast 0.100, resolved NO
+category DS, horizon ≤7d: forecast 0.800, resolved NO
+category IV, horizon 181–365d: forecast 0.600, resolved NO
+category JF, horizon 91–180d: forecast 0.070, resolved NO
+category DS, horizon 91–180d: forecast 0.050, resolved NO
+category YX, horizon 181–365d: forecast 0.010, resolved NO
 
 ## 1286/PUB/0/C3_farmed
 
-Return JSON with probability and nonnegative weights for A, B, C, D, E. Choose the probability that minimises expected Brier score. Forecasts were made at the same time. Records are past resolved questions unrelated to the target. No rationale.
+You are aggregating probability forecasts. Five forecasters (A-E) each gave a probability that the same binary target question resolves YES. The question text is deliberately withheld: you see only an anonymised category code and the time horizon. All five forecasts were made at the same time. If track records are shown, they describe each forecaster on past resolved questions that are different from the target. Report the probability for the target that minimises expected Brier score, and the non-negative relative weight you effectively gave each forecaster. Respond with JSON only, no rationale.
 
-Target category OD; horizon 91–180d.
-C: 0.900000
-E: 1.000000
-D: 0.030000
-A: 0.030000
-B: 0.300000
+Target question: category OD, horizon 91–180d.
+Current forecasts (probability of YES):
+C: 0.900
+E: 1.000
+D: 0.030
+A: 0.030
+B: 0.300
 
-Reliability:
+Track records:
 C:
 Relative Brier vs other forecasters on the same 8 questions: +0.056 (negative = better than peers, 0 = typical)
 
