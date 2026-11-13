@@ -30,6 +30,18 @@
 - **Normative check:** does a farmed score predict target accuracy worse than a uniform one? This tells us
   whether a discount is warranted at all.
 
+**E3a has already been computed at zero inference cost** (`scripts/e3a_farming.py` → `results/phase3/e3a/`).
+- **Sample:** 4,283 eligible public attacker-target pairs; inflation is uniform score minus farmed score.
+- **Inflation, with two-way CGM intervals:**
+  - Raw: **+0.0179 [0.0097, 0.0260]**.
+  - Peer: −0.0056 [−0.0118, 0.0007].
+  - FE: −0.0060 [−0.0121, 0.0001].
+- **Interpretation:** confident-item farming inflates raw scores slightly, and peer and difficulty adjustment
+  remove the inflation.
+- **Normative check (farmed minus uniform):** the difference in correlation with target Brier is
+  inconclusive (raw +0.005 [−0.023, 0.033]). There is no evidence that a farmed score predicts worse, so a
+  "discount" by the LLM is not clearly warranted. This framing is fixed now for interpreting E3b.
+
 ## 3. Power (from pilot variance)
 - **E1, MIX C2:** pilot SE ≈ 0.008 at 16 questions. The strong tier (108 panels) should reach SE ≈ 0.003. The
   efficient tier (486 panels) should do better again, though less than proportionally because panels within a
@@ -41,10 +53,12 @@
   Haiku, β_C1 ≈ 0) can show little or no discount. This floor effect is declared now.
 
 ## 4. Execution order and safeguards
-1. Commit the v2 design and config. Done before any Phase 3 call.
-2. Build the manifests, run the mock end to end at zero cost, and check that the tests pass.
+1. Commit the v2 design and config. Done before any Phase 3 call (commits bdbaa85, 486debf, 33c1a65).
+2. Build the manifests, run the mock end to end at zero cost, and check that the tests pass. **Done:**
+   19,876 requests (8,354 per efficient model, 1,584 per strong model), all mock responses parsed, and 39 tests
+   pass. Tokenizer projection: $12.91. Pilot-calibrated projection: $11.05.
 3. **The user raises the OpenRouter key limit.** It is currently $5, with $1.62 used.
-4. Run the efficient tier, then the strong tier, under a **$14 hard cap** on `results/phase3/spend.jsonl`. The
+4. Run `scripts/run_phase3.py`: the efficient tier, then the strong tier, under a **$14 hard cap** on `results/phase3/spend.jsonl`. The
    projection is $11.74. Runs are resumable and cached.
 5. Run the frozen analysis unchanged. Any deviation is logged in `EXPERIMENT_DESIGN.md` §9.
 

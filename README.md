@@ -33,6 +33,9 @@ this repository yet.
 | `results/phase1*/` | Phase 1 and revised Phase 1 outputs |
 | `results/phase2/pilot/` | Frozen pilot panels, manifests, truth, statistical predictions |
 | `results/phase2/pilot_live/` | Raw live LLM responses (one JSONL per model) and analysis |
+| `results/phase2/pilot_merged/` | Primary pilot view: truncated responses replaced by max_tokens-2000 retries |
+| `results/phase3/build/` | Frozen design v2 panels and manifests (not yet run) |
+| `results/phase3/e3a/` | Data-level farming inflation (RQ3a) |
 | `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, cost plan, Phase 3 plan |
 
 ## Setup
@@ -55,7 +58,13 @@ uv run python scripts/build_phase2.py --n-questions 16 --seed 20261113 --out res
 uv run python scripts/mock_phase2.py results/phase2/pilot results/phase2/pilot_mock   # zero-cost dry run
 uv run python scripts/run_pilot.py --cap 4.0        # LIVE: shared hard cap, resumable, cached
 uv run python scripts/analyze_phase2.py results/phase2/pilot_live
+# Phase 3 preparation (zero cost; the live run is NOT executed in this repo state)
+uv run python scripts/build_phase3.py               # design v2 manifests -> results/phase3/build
+uv run python scripts/e3a_farming.py                # RQ3a data-level farming inflation (no LLM)
+uv run python scripts/mock_phase3.py && uv run python scripts/analyze_phase3.py results/phase3/mock
+uv run python scripts/estimate_phase3_cost.py
 uv run pytest -q
+# uv run python scripts/run_phase3.py --cap 14     # LIVE Phase 3; requires a raised key limit
 ```
 LLM responses are cached on disk under a hash of each request. Re-running `run_pilot.py` replays the cache
 and spends nothing. `results/phase2/spend.jsonl` is the durable spend ledger.
