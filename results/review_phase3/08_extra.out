@@ -1,0 +1,59 @@
+Sonnet C0 - mean ~ b1*(median-mean) + b2*(mean-0.5) + b0:  [ 0.379  0.024 -0.014] | R2 0.582 | share |C0-median|<0.005: 0.157 | share |C0-mean|<0.005: 0.222
+   MIX Brier C0 0.1417 median 0.1418 mean 0.1482 | C2 0.1120
+   PUB Brier C0 0.1606 median 0.1684 mean 0.1727 | C2 0.1668
+
+### subset_composition
+model type  strong_subset  draw   n   E1_C2  brier_mean  oracle_gap
+Haiku  MIX          False     0  54 -0.0214      0.1346      0.0380
+Haiku  MIX          False     1  54 -0.0113      0.1095      0.0057
+Haiku  MIX          False     2  54 -0.0106      0.1394      0.0333
+Haiku  MIX           True     0 108 -0.0268      0.1482      0.0382
+Haiku  MIX           True     1 108 -0.0094      0.1367      0.0175
+Haiku  MIX           True     2 108 -0.0158      0.1371      0.0241
+Haiku  PUB          False     0  54 -0.0048      0.1765         NaN
+Haiku  PUB          False     1  54 -0.0012      0.1559         NaN
+Haiku  PUB          False     2  54  0.0026      0.1377         NaN
+Haiku  PUB           True     0 108  0.0037      0.1727         NaN
+Haiku  PUB           True     1 108  0.0085      0.1827         NaN
+Haiku  PUB           True     2 108 -0.0097      0.1695         NaN
+ Luna  MIX          False     0  54 -0.0220      0.1346      0.0380
+ Luna  MIX          False     1  54 -0.0107      0.1095      0.0057
+ Luna  MIX          False     2  54 -0.0120      0.1394      0.0333
+ Luna  MIX           True     0 108 -0.0274      0.1482      0.0382
+ Luna  MIX           True     1 108 -0.0113      0.1367      0.0175
+ Luna  MIX           True     2 108 -0.0132      0.1371      0.0241
+ Luna  PUB          False     0  54 -0.0066      0.1765         NaN
+ Luna  PUB          False     1  54  0.0034      0.1559         NaN
+ Luna  PUB          False     2  54 -0.0021      0.1377         NaN
+ Luna  PUB           True     0 108  0.0006      0.1727         NaN
+ Luna  PUB           True     1 108  0.0028      0.1827         NaN
+ Luna  PUB           True     2 108 -0.0121      0.1695         NaN
+
+### regime_blind_policy
+ model type  beta_on_untuned     se  beta_star_untuned  se_star  mean_sd_displayed_score
+ Haiku  MIX           2.3151 0.1131             5.5517   0.8194                   0.0926
+ Haiku  PUB           2.6386 0.1634             2.1428   0.9670                   0.0904
+  Luna  MIX           2.7104 0.0848             5.5517   0.8194                   0.0926
+  Luna  PUB           3.3394 0.1470             2.1428   0.9670                   0.0904
+Sonnet  MIX           2.5370 0.3930             5.8705   1.4740                   0.0914
+Sonnet  PUB           2.6749 0.3503             0.6322   1.9707                   0.0927
+   Sol  MIX           1.9600 0.0710             5.8705   1.4740                   0.0914
+   Sol  PUB           2.2390 0.0587             0.6322   1.9707                   0.0927
+
+### same_category
+ model type  mean_same_cat_share  E1_low_same_cat  E1_high_same_cat  corr_E1_same_cat
+ Haiku  MIX               0.1224          -0.0209           -0.0123            0.0736
+ Haiku  PUB               0.1149          -0.0089            0.0049            0.0664
+  Luna  MIX               0.1224          -0.0183           -0.0149            0.0065
+  Luna  PUB               0.1149          -0.0091            0.0009            0.0067
+Sonnet  MIX               0.1197          -0.0364           -0.0266           -0.0040
+Sonnet  PUB               0.1167           0.0060            0.0065           -0.0033
+   Sol  MIX               0.1197          -0.0222           -0.0180           -0.0533
+   Sol  PUB               0.1167          -0.0007            0.0007            0.0059
+
+### normative check over 20 record-draw seeds (raw)
+         seed    infl   dcorr  dcorr_within  r_farm   r_uni
+mean   9.5000  0.0153  0.0188        0.0209  0.0770  0.0583
+std    5.9161  0.0024  0.0119        0.0119  0.0094  0.0103
+min    0.0000  0.0115 -0.0036       -0.0055  0.0587  0.0314
+max   19.0000  0.0206  0.0430        0.0429  0.0965  0.0783

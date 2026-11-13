@@ -80,3 +80,11 @@ $11.05. These are expectations, with the independent $14 runtime cap authoritati
   - Each pair shares one response. This is correct for identical prompts, and these arms are not used in the
     confirmatory E3b.
 - **Cost:** the projection already priced controls as full calls, so it is unchanged.
+- **Consequence found after the run (2026-11-13).** The nonce line is not inert.
+  - Haiku reasons about 60% less whenever a nonce line is present, and its C2 answers shift on otherwise identical
+    prompts.
+  - The fix therefore traded one artefact (a placebo that is zero by construction) for another (a
+    condition-specific prompt change).
+  - E3b is reported as not identified. See `docs/PHASE3_RESULTS.md` §6.
+  - **Lesson:** cache-busting should go into generation settings (for example a per-request `seed`), never into the
+    prompt text.

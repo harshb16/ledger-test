@@ -1,0 +1,165 @@
+max |own baseline - stat_predictions|: {'mean': np.float64(2.220446049250313e-16), 'median': 0, 'logit_mean': 0, 'oracle': 0, 'top2_raw': 0}
+ model sample type   n   L_C0   L_C1   L_C2   L_C3   mean  median  logit_mean  untuned  W_raw_cv  W_peer_cv  top2_raw  best_raw  oracle  public_mean
+ Haiku    own  MIX 486 0.1345 0.1386 0.1182 0.1285 0.1364  0.1321      0.1319   0.1291    0.1141     0.1168    0.1204    0.1190  0.1101       0.1766
+ Haiku    own  PUB 486 0.1658 0.1684 0.1660 0.1619 0.1689  0.1635      0.1686   0.1670    0.1695     0.1764    0.1741    0.2043     NaN          NaN
+ Haiku common  MIX 108 0.1475 0.1477 0.1207 0.1396 0.1482  0.1418      0.1467   0.1386    0.1094     0.1294    0.1160    0.1228  0.1101       0.2018
+ Haiku common  PUB 108 0.1670 0.1791 0.1707 0.1613 0.1727  0.1684      0.1711   0.1725    0.1781     0.1800    0.1666    0.2113     NaN          NaN
+  Luna    own  MIX 486 0.1364 0.1208 0.1199 0.1246 0.1364  0.1321      0.1319   0.1291    0.1141     0.1168    0.1204    0.1190  0.1101       0.1766
+  Luna    own  PUB 486 0.1688 0.1617 0.1663 0.1653 0.1689  0.1635      0.1686   0.1670    0.1695     0.1764    0.1741    0.2043     NaN          NaN
+  Luna common  MIX 108 0.1482 0.1247 0.1209 0.1342 0.1482  0.1418      0.1467   0.1386    0.1094     0.1294    0.1160    0.1228  0.1101       0.2018
+  Luna common  PUB 108 0.1727 0.1655 0.1733 0.1730 0.1727  0.1684      0.1711   0.1725    0.1781     0.1800    0.1666    0.2113     NaN          NaN
+Sonnet    own  MIX 108 0.1417 0.1366 0.1120 0.1263 0.1482  0.1418      0.1467   0.1386    0.1094     0.1294    0.1160    0.1228  0.1101       0.2018
+Sonnet    own  PUB 108 0.1606 0.1604 0.1668 0.1696 0.1727  0.1684      0.1711   0.1725    0.1781     0.1800    0.1666    0.2113     NaN          NaN
+Sonnet common  MIX 108 0.1417 0.1366 0.1120 0.1263 0.1482  0.1418      0.1467   0.1386    0.1094     0.1294    0.1160    0.1228  0.1101       0.2018
+Sonnet common  PUB 108 0.1606 0.1604 0.1668 0.1696 0.1727  0.1684      0.1711   0.1725    0.1781     0.1800    0.1666    0.2113     NaN          NaN
+   Sol    own  MIX 108 0.1482 0.1281 0.1289 0.1384 0.1482  0.1418      0.1467   0.1386    0.1094     0.1294    0.1160    0.1228  0.1101       0.2018
+   Sol    own  PUB 108 0.1727 0.1685 0.1727 0.1737 0.1727  0.1684      0.1711   0.1725    0.1781     0.1800    0.1666    0.2113     NaN          NaN
+   Sol common  MIX 108 0.1482 0.1281 0.1289 0.1384 0.1482  0.1418      0.1467   0.1386    0.1094     0.1294    0.1160    0.1228  0.1101       0.2018
+   Sol common  PUB 108 0.1727 0.1685 0.1727 0.1737 0.1727  0.1684      0.1711   0.1725    0.1781     0.1800    0.1666    0.2113     NaN          NaN
+ model sample type  C0_minus_mean  absC0_minus_mean
+ Haiku    own  MIX        -0.0061            0.0183
+ Haiku    own  PUB        -0.0135            0.0224
+ Haiku common  MIX        -0.0004            0.0183
+ Haiku common  PUB        -0.0101            0.0204
+  Luna    own  MIX         0.0000            0.0000
+  Luna    own  PUB        -0.0000            0.0000
+  Luna common  MIX         0.0000            0.0000
+  Luna common  PUB         0.0000            0.0000
+Sonnet    own  MIX        -0.0221            0.0411
+Sonnet    own  PUB        -0.0259            0.0401
+Sonnet common  MIX        -0.0221            0.0411
+Sonnet common  PUB        -0.0259            0.0401
+   Sol    own  MIX         0.0000            0.0000
+   Sol    own  PUB         0.0000            0.0000
+   Sol common  MIX         0.0000            0.0000
+   Sol common  PUB         0.0000            0.0000
+ model sample type       contrast    diff     se       z      lo      hi
+ Haiku    own  MIX      L_C2-mean -0.0182 0.0024 -7.4979 -0.0230 -0.0135
+ Haiku    own  MIX    L_C2-median -0.0139 0.0035 -4.0148 -0.0207 -0.0071
+ Haiku    own  MIX  L_C2-W_raw_cv  0.0041 0.0030  1.3729 -0.0017  0.0099
+ Haiku    own  MIX   L_C2-untuned -0.0110 0.0016 -6.7215 -0.0142 -0.0078
+ Haiku    own  MIX L_C3-W_peer_cv  0.0117 0.0030  3.9344  0.0059  0.0175
+ Haiku    own  MIX  L_C1-W_raw_cv  0.0245 0.0059  4.1911  0.0131  0.0360
+ Haiku    own  MIX      L_C0-mean -0.0018 0.0011 -1.6899 -0.0040  0.0003
+ Haiku    own  MIX    L_C2-oracle  0.0081 0.0034  2.3900  0.0014  0.0147
+ Haiku    own  MIX      L_C3-mean -0.0079 0.0018 -4.3159 -0.0114 -0.0043
+ Haiku    own  MIX      L_C1-mean  0.0022 0.0029  0.7770 -0.0034  0.0079
+ Haiku    own  MIX  W_raw_cv-mean -0.0223 0.0045 -4.9146 -0.0312 -0.0134
+ Haiku    own  MIX   untuned-mean -0.0073 0.0011 -6.5105 -0.0094 -0.0051
+ Haiku    own  MIX  L_C2-top2_raw -0.0022 0.0024 -0.9138 -0.0070  0.0025
+ Haiku    own  PUB      L_C2-mean -0.0029 0.0037 -0.7650 -0.0102  0.0045
+ Haiku    own  PUB    L_C2-median  0.0025 0.0046  0.5467 -0.0065  0.0116
+ Haiku    own  PUB  L_C2-W_raw_cv -0.0035 0.0025 -1.3986 -0.0083  0.0014
+ Haiku    own  PUB   L_C2-untuned -0.0010 0.0029 -0.3552 -0.0066  0.0046
+ Haiku    own  PUB L_C3-W_peer_cv -0.0145 0.0053 -2.7299 -0.0249 -0.0041
+ Haiku    own  PUB  L_C1-W_raw_cv -0.0011 0.0050 -0.2175 -0.0109  0.0087
+ Haiku    own  PUB      L_C0-mean -0.0030 0.0014 -2.1826 -0.0057 -0.0003
+ Haiku    own  PUB      L_C3-mean -0.0070 0.0027 -2.6181 -0.0122 -0.0018
+ Haiku    own  PUB      L_C1-mean -0.0005 0.0039 -0.1178 -0.0081  0.0072
+ Haiku    own  PUB  W_raw_cv-mean  0.0006 0.0041  0.1528 -0.0074  0.0086
+ Haiku    own  PUB   untuned-mean -0.0018 0.0011 -1.6858 -0.0040  0.0003
+ Haiku    own  PUB  L_C2-top2_raw -0.0081 0.0039 -2.0618 -0.0159 -0.0004
+  Luna    own  MIX      L_C2-mean -0.0165 0.0027 -6.0811 -0.0218 -0.0112
+  Luna    own  MIX    L_C2-median -0.0122 0.0033 -3.7039 -0.0187 -0.0057
+  Luna    own  MIX  L_C2-W_raw_cv  0.0058 0.0023  2.5099  0.0013  0.0103
+  Luna    own  MIX   L_C2-untuned -0.0092 0.0019 -4.9933 -0.0129 -0.0056
+  Luna    own  MIX L_C3-W_peer_cv  0.0078 0.0016  4.9845  0.0047  0.0108
+  Luna    own  MIX  L_C1-W_raw_cv  0.0067 0.0035  1.9533 -0.0000  0.0135
+  Luna    own  MIX      L_C0-mean  0.0000 0.0000  0.7831 -0.0000  0.0000
+  Luna    own  MIX    L_C2-oracle  0.0098 0.0034  2.8938  0.0032  0.0164
+  Luna    own  MIX      L_C3-mean -0.0118 0.0020 -5.9314 -0.0157 -0.0079
+  Luna    own  MIX      L_C1-mean -0.0156 0.0026 -6.0233 -0.0206 -0.0105
+  Luna    own  MIX  W_raw_cv-mean -0.0223 0.0045 -4.9146 -0.0312 -0.0134
+  Luna    own  MIX   untuned-mean -0.0073 0.0011 -6.5105 -0.0094 -0.0051
+  Luna    own  MIX  L_C2-top2_raw -0.0005 0.0023 -0.2132 -0.0051  0.0041
+  Luna    own  PUB      L_C2-mean -0.0026 0.0033 -0.7743 -0.0090  0.0039
+  Luna    own  PUB    L_C2-median  0.0028 0.0049  0.5771 -0.0068  0.0124
+  Luna    own  PUB  L_C2-W_raw_cv -0.0032 0.0021 -1.5246 -0.0073  0.0009
+  Luna    own  PUB   L_C2-untuned -0.0007 0.0025 -0.2909 -0.0055  0.0041
+  Luna    own  PUB L_C3-W_peer_cv -0.0110 0.0040 -2.7636 -0.0189 -0.0032
+  Luna    own  PUB  L_C1-W_raw_cv -0.0078 0.0029 -2.6774 -0.0135 -0.0021
+  Luna    own  PUB      L_C0-mean -0.0000 0.0000 -1.1174 -0.0000  0.0000
+  Luna    own  PUB      L_C3-mean -0.0035 0.0023 -1.5486 -0.0080  0.0009
+  Luna    own  PUB      L_C1-mean -0.0071 0.0040 -1.7794 -0.0150  0.0007
+  Luna    own  PUB  W_raw_cv-mean  0.0006 0.0041  0.1528 -0.0074  0.0086
+  Luna    own  PUB   untuned-mean -0.0018 0.0011 -1.6858 -0.0040  0.0003
+  Luna    own  PUB  L_C2-top2_raw -0.0078 0.0037 -2.1415 -0.0150 -0.0007
+Sonnet    own  MIX      L_C2-mean -0.0362 0.0065 -5.5394 -0.0490 -0.0234
+Sonnet    own  MIX    L_C2-median -0.0297 0.0093 -3.2080 -0.0479 -0.0116
+Sonnet    own  MIX  L_C2-W_raw_cv  0.0027 0.0023  1.1492 -0.0019  0.0072
+Sonnet    own  MIX   L_C2-untuned -0.0265 0.0046 -5.8054 -0.0355 -0.0176
+Sonnet    own  MIX L_C3-W_peer_cv -0.0031 0.0029 -1.0907 -0.0087  0.0025
+Sonnet    own  MIX  L_C1-W_raw_cv  0.0272 0.0071  3.8579  0.0134  0.0410
+Sonnet    own  MIX      L_C0-mean -0.0065 0.0036 -1.7921 -0.0136  0.0006
+Sonnet    own  MIX    L_C2-oracle  0.0020 0.0061  0.3247 -0.0100  0.0139
+Sonnet    own  MIX      L_C3-mean -0.0220 0.0048 -4.5758 -0.0314 -0.0126
+Sonnet    own  MIX      L_C1-mean -0.0117 0.0063 -1.8590 -0.0240  0.0006
+Sonnet    own  MIX  W_raw_cv-mean -0.0389 0.0065 -5.9761 -0.0516 -0.0261
+Sonnet    own  MIX   untuned-mean -0.0097 0.0023 -4.1352 -0.0143 -0.0051
+Sonnet    own  MIX  L_C2-top2_raw -0.0040 0.0054 -0.7427 -0.0146  0.0066
+Sonnet    own  PUB      L_C2-mean -0.0059 0.0075 -0.7777 -0.0206  0.0089
+Sonnet    own  PUB    L_C2-median -0.0016 0.0083 -0.1963 -0.0180  0.0147
+Sonnet    own  PUB  L_C2-W_raw_cv -0.0113 0.0045 -2.4971 -0.0201 -0.0024
+Sonnet    own  PUB   L_C2-untuned -0.0057 0.0062 -0.9307 -0.0178  0.0063
+Sonnet    own  PUB L_C3-W_peer_cv -0.0104 0.0063 -1.6415 -0.0228  0.0020
+Sonnet    own  PUB  L_C1-W_raw_cv -0.0177 0.0093 -1.8997 -0.0360  0.0006
+Sonnet    own  PUB      L_C0-mean -0.0121 0.0035 -3.4592 -0.0190 -0.0052
+Sonnet    own  PUB      L_C3-mean -0.0031 0.0056 -0.5520 -0.0141  0.0079
+Sonnet    own  PUB      L_C1-mean -0.0123 0.0078 -1.5691 -0.0276  0.0031
+Sonnet    own  PUB  W_raw_cv-mean  0.0054 0.0068  0.8022 -0.0078  0.0187
+Sonnet    own  PUB   untuned-mean -0.0001 0.0020 -0.0668 -0.0040  0.0038
+Sonnet    own  PUB  L_C2-top2_raw  0.0002 0.0072  0.0340 -0.0139  0.0144
+   Sol    own  MIX      L_C2-mean -0.0193 0.0044 -4.4387 -0.0279 -0.0108
+   Sol    own  MIX    L_C2-median -0.0129 0.0084 -1.5226 -0.0294  0.0037
+   Sol    own  MIX  L_C2-W_raw_cv  0.0195 0.0034  5.7784  0.0129  0.0262
+   Sol    own  MIX   L_C2-untuned -0.0096 0.0021 -4.6240 -0.0137 -0.0056
+   Sol    own  MIX L_C3-W_peer_cv  0.0091 0.0028  3.1938  0.0035  0.0146
+   Sol    own  MIX  L_C1-W_raw_cv  0.0187 0.0037  5.0174  0.0114  0.0260
+   Sol    own  MIX      L_C0-mean -0.0000 0.0000 -0.6416 -0.0000  0.0000
+   Sol    own  MIX    L_C2-oracle  0.0189 0.0064  2.9434  0.0063  0.0314
+   Sol    own  MIX      L_C3-mean -0.0098 0.0035 -2.8148 -0.0166 -0.0030
+   Sol    own  MIX      L_C1-mean -0.0201 0.0047 -4.2845 -0.0294 -0.0109
+   Sol    own  MIX  W_raw_cv-mean -0.0389 0.0065 -5.9761 -0.0516 -0.0261
+   Sol    own  MIX   untuned-mean -0.0097 0.0023 -4.1352 -0.0143 -0.0051
+   Sol    own  MIX  L_C2-top2_raw  0.0129 0.0048  2.6615  0.0034  0.0224
+   Sol    own  PUB      L_C2-mean  0.0000 0.0042  0.0021 -0.0082  0.0082
+   Sol    own  PUB    L_C2-median  0.0042 0.0073  0.5762 -0.0101  0.0186
+   Sol    own  PUB  L_C2-W_raw_cv -0.0054 0.0037 -1.4664 -0.0127  0.0018
+   Sol    own  PUB   L_C2-untuned  0.0001 0.0022  0.0628 -0.0043  0.0045
+   Sol    own  PUB L_C3-W_peer_cv -0.0063 0.0066 -0.9440 -0.0193  0.0067
+   Sol    own  PUB  L_C1-W_raw_cv -0.0096 0.0052 -1.8267 -0.0199  0.0007
+   Sol    own  PUB      L_C0-mean  0.0000 0.0000  1.0047 -0.0000  0.0000
+   Sol    own  PUB      L_C3-mean  0.0010 0.0034  0.3038 -0.0056  0.0077
+   Sol    own  PUB      L_C1-mean -0.0042 0.0047 -0.8805 -0.0134  0.0051
+   Sol    own  PUB  W_raw_cv-mean  0.0054 0.0068  0.8022 -0.0078  0.0187
+   Sol    own  PUB   untuned-mean -0.0001 0.0020 -0.0668 -0.0040  0.0038
+   Sol    own  PUB  L_C2-top2_raw  0.0061 0.0073  0.8341 -0.0082  0.0205
+ model sample type      contrast    diff     se       z      lo      hi
+ Haiku common  MIX     L_C2-mean -0.0275 0.0050 -5.5134 -0.0373 -0.0177
+ Haiku common  MIX L_C2-W_raw_cv  0.0114 0.0039  2.8879  0.0036  0.0191
+ Haiku common  MIX  L_C2-untuned -0.0178 0.0029 -6.1282 -0.0235 -0.0121
+ Haiku common  MIX   L_C2-oracle  0.0107 0.0072  1.4879 -0.0034  0.0247
+ Haiku common  PUB     L_C2-mean -0.0020 0.0067 -0.2902 -0.0151  0.0112
+ Haiku common  PUB L_C2-W_raw_cv -0.0074 0.0043 -1.7065 -0.0158  0.0011
+ Haiku common  PUB  L_C2-untuned -0.0018 0.0052 -0.3474 -0.0121  0.0084
+  Luna common  MIX     L_C2-mean -0.0274 0.0063 -4.3459 -0.0397 -0.0150
+  Luna common  MIX L_C2-W_raw_cv  0.0115 0.0026  4.4583  0.0064  0.0166
+  Luna common  MIX  L_C2-untuned -0.0177 0.0043 -4.0963 -0.0261 -0.0092
+  Luna common  MIX   L_C2-oracle  0.0108 0.0055  1.9625  0.0000  0.0216
+  Luna common  PUB     L_C2-mean  0.0006 0.0067  0.0887 -0.0125  0.0137
+  Luna common  PUB L_C2-W_raw_cv -0.0048 0.0048 -1.0058 -0.0142  0.0046
+  Luna common  PUB  L_C2-untuned  0.0007 0.0053  0.1370 -0.0096  0.0111
+Sonnet common  MIX     L_C2-mean -0.0362 0.0065 -5.5394 -0.0490 -0.0234
+Sonnet common  MIX L_C2-W_raw_cv  0.0027 0.0023  1.1492 -0.0019  0.0072
+Sonnet common  MIX  L_C2-untuned -0.0265 0.0046 -5.8054 -0.0355 -0.0176
+Sonnet common  MIX   L_C2-oracle  0.0020 0.0061  0.3247 -0.0100  0.0139
+Sonnet common  PUB     L_C2-mean -0.0059 0.0075 -0.7777 -0.0206  0.0089
+Sonnet common  PUB L_C2-W_raw_cv -0.0113 0.0045 -2.4971 -0.0201 -0.0024
+Sonnet common  PUB  L_C2-untuned -0.0057 0.0062 -0.9307 -0.0178  0.0063
+   Sol common  MIX     L_C2-mean -0.0193 0.0044 -4.4387 -0.0279 -0.0108
+   Sol common  MIX L_C2-W_raw_cv  0.0195 0.0034  5.7784  0.0129  0.0262
+   Sol common  MIX  L_C2-untuned -0.0096 0.0021 -4.6240 -0.0137 -0.0056
+   Sol common  MIX   L_C2-oracle  0.0189 0.0064  2.9434  0.0063  0.0314
+   Sol common  PUB     L_C2-mean  0.0000 0.0042  0.0021 -0.0082  0.0082
+   Sol common  PUB L_C2-W_raw_cv -0.0054 0.0037 -1.4664 -0.0127  0.0018
+   Sol common  PUB  L_C2-untuned  0.0001 0.0022  0.0628 -0.0043  0.0045

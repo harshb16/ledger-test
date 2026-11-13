@@ -1,0 +1,131 @@
+==================== efficient_anthropic Haiku
+manifest 8354 responses 8354 unique 8354 missing 0 extra 0
+message/condition mismatches vs manifest: 0
+parse errors: 0 | own-parse NaN where repo parsed: 0 | own vs repo prob disagreements: 0
+settings: {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}': 8354}
+models: {('anthropic/claude-haiku-5.5', 'anthropic/claude-haiku-5.5', 'anthropic/claude-haiku-5.5'): 8354}
+providers: {'Google': 2978, 'Azure': 3302, 'Anthropic': 2074}
+finish: {'stop': 8354} attempts(len,count,retried): {(1, 1, False): 8354}
+git commits: {'c0f6ca89fd2d5648ef55c20c7c0eb966fa54f895': 8354}
+row ts range: 2026-11-13T15:09:39.089127+00:00 2026-11-13T15:28:19.132613+00:00 | attempt ts range: 2026-11-13T15:09:39.087063+00:00 2026-11-13T15:28:19.129449+00:00
+cache keys shared by >1 request: 5
+  shared kinds: {('C2', 'C2_farmed'): 2, ('C3', 'C3_farmed'): 3}
+generation ids reused: 5
+nonce by condition: {('C0', 'none'): 972, ('C1', 'none'): 972, ('C1_control', 'control'): 486, ('C1_farmed', 'none'): 486, ('C2', 'none'): 972, ('C2_control', 'control'): 486, ('C2_farmed', 'none'): 486, ('C2_retest', 'retest'): 243, ('C2_swap', 'none'): 575, ('C3', 'none'): 972, ('C3_control', 'control'): 486, ('C3_farmed', 'none'): 486, ('C3_swap', 'none'): 570, ('probe', 'none'): 162}
+control == farmed + nonce: {('C1_control', False): 486, ('C2_control', False): 113, ('C2_control', True): 373, ('C3_control', False): 69, ('C3_control', True): 417}
+provider    Anthropic  Azure  Google
+cond                                
+C0                243    377     352
+C1                216    396     360
+C1_control         99    203     184
+C1_farmed         133    192     161
+C2                243    391     338
+C2_control        125    178     183
+C2_farmed         130    203     153
+C2_retest          62     94      87
+C2_swap           131    236     208
+C3                244    379     349
+C3_control        113    199     174
+C3_farmed         125    186     175
+C3_swap           158    212     200
+probe              52     56      54
+==================== efficient_openai Luna
+manifest 8354 responses 8354 unique 8354 missing 0 extra 0
+message/condition mismatches vs manifest: 0
+parse errors: 0 | own-parse NaN where repo parsed: 0 | own vs repo prob disagreements: 0
+settings: {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}': 8354}
+models: {('openai/gpt-6-luna', 'openai/gpt-6-luna', 'openai/gpt-6-luna'): 8354}
+providers: {'OpenAI': 8353, 'Amazon Bedrock': 1}
+finish: {'stop': 8354} attempts(len,count,retried): {(1, 1, False): 8354}
+git commits: {'c0f6ca89fd2d5648ef55c20c7c0eb966fa54f895': 4, 'f48591a51ac6ce7dfd58dc6b9b5f68255bdcced3': 8350}
+row ts range: 2026-11-13T15:09:48.538565+00:00 2026-11-13T16:23:21.267966+00:00 | attempt ts range: 2026-11-13T15:09:48.533705+00:00 2026-11-13T16:23:21.265034+00:00
+cache keys shared by >1 request: 5
+  shared kinds: {('C2', 'C2_farmed'): 2, ('C3', 'C3_farmed'): 3}
+generation ids reused: 5
+nonce by condition: {('C0', 'none'): 972, ('C1', 'none'): 972, ('C1_control', 'control'): 486, ('C1_farmed', 'none'): 486, ('C2', 'none'): 972, ('C2_control', 'control'): 486, ('C2_farmed', 'none'): 486, ('C2_retest', 'retest'): 243, ('C2_swap', 'none'): 575, ('C3', 'none'): 972, ('C3_control', 'control'): 486, ('C3_farmed', 'none'): 486, ('C3_swap', 'none'): 570, ('probe', 'none'): 162}
+control == farmed + nonce: {('C1_control', False): 486, ('C2_control', False): 113, ('C2_control', True): 373, ('C3_control', False): 69, ('C3_control', True): 417}
+provider    Amazon Bedrock  OpenAI
+cond                              
+C0                       0     972
+C1                       0     972
+C1_control               0     486
+C1_farmed                0     486
+C2                       0     972
+C2_control               0     486
+C2_farmed                0     486
+C2_retest                0     243
+C2_swap                  0     575
+C3                       0     972
+C3_control               1     485
+C3_farmed                0     486
+C3_swap                  0     570
+probe                    0     162
+==================== strong_anthropic Sonnet
+manifest 1584 responses 1584 unique 1584 missing 0 extra 0
+message/condition mismatches vs manifest: 0
+parse errors: 0 | own-parse NaN where repo parsed: 0 | own vs repo prob disagreements: 0
+settings: {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}': 1584}
+models: {('anthropic/claude-sonnet-5.5', 'anthropic/claude-sonnet-5.5', 'anthropic/claude-sonnet-5.5'): 1584}
+providers: {'Google': 531, 'Azure': 606, 'Anthropic': 447}
+finish: {'stop': 1584} attempts(len,count,retried): {(1, 1, False): 1584}
+git commits: {'c0f6ca89fd2d5648ef55c20c7c0eb966fa54f895': 4, 'f48591a51ac6ce7dfd58dc6b9b5f68255bdcced3': 1580}
+row ts range: 2026-11-13T15:09:55.006041+00:00 2026-11-13T16:26:44.341311+00:00 | attempt ts range: 2026-11-13T15:09:55.005223+00:00 2026-11-13T16:26:44.340567+00:00
+cache keys shared by >1 request: 1
+  shared kinds: {('C2', 'C2_farmed'): 1}
+generation ids reused: 1
+nonce by condition: {('C0', 'none'): 216, ('C1', 'none'): 216, ('C1_control', 'control'): 108, ('C1_farmed', 'none'): 108, ('C2', 'none'): 216, ('C2_control', 'control'): 108, ('C2_farmed', 'none'): 108, ('C2_retest', 'retest'): 54, ('C2_swap', 'none'): 126, ('C3', 'none'): 216, ('probe', 'none'): 108}
+control == farmed + nonce: {('C1_control', False): 108, ('C2_control', False): 18, ('C2_control', True): 90}
+provider    Anthropic  Azure  Google
+cond                                
+C0                 64     78      74
+C1                 60     79      77
+C1_control         33     37      38
+C1_farmed          36     39      33
+C2                 63     86      67
+C2_control         34     47      27
+C2_farmed          28     44      36
+C2_retest          16     21      17
+C2_swap            33     46      47
+C3                 56     85      75
+probe              24     44      40
+==================== strong_openai Sol
+manifest 1584 responses 1584 unique 1584 missing 0 extra 0
+message/condition mismatches vs manifest: 0
+parse errors: 0 | own-parse NaN where repo parsed: 0 | own vs repo prob disagreements: 0
+settings: {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}': 1584}
+models: {('openai/gpt-6.1-sol', 'openai/gpt-6.1-sol', 'openai/gpt-6.1-sol'): 1584}
+providers: {'OpenAI': 1584}
+finish: {'stop': 1584} attempts(len,count,retried): {(1, 1, False): 1584}
+git commits: {'c0f6ca89fd2d5648ef55c20c7c0eb966fa54f895': 4, 'f48591a51ac6ce7dfd58dc6b9b5f68255bdcced3': 1580}
+row ts range: 2026-11-13T15:09:59.450620+00:00 2026-11-13T16:35:23.062881+00:00 | attempt ts range: 2026-11-13T15:09:59.448615+00:00 2026-11-13T16:35:23.061989+00:00
+cache keys shared by >1 request: 1
+  shared kinds: {('C2', 'C2_farmed'): 1}
+generation ids reused: 1
+nonce by condition: {('C0', 'none'): 216, ('C1', 'none'): 216, ('C1_control', 'control'): 108, ('C1_farmed', 'none'): 108, ('C2', 'none'): 216, ('C2_control', 'control'): 108, ('C2_farmed', 'none'): 108, ('C2_retest', 'retest'): 54, ('C2_swap', 'none'): 126, ('C3', 'none'): 216, ('probe', 'none'): 108}
+control == farmed + nonce: {('C1_control', False): 108, ('C2_control', False): 18, ('C2_control', True): 90}
+provider    OpenAI
+cond              
+C0             216
+C1             216
+C1_control     108
+C1_farmed      108
+C2             216
+C2_control     108
+C2_farmed      108
+C2_retest       54
+C2_swap        126
+C3             216
+probe          108
+==================== panels
+records containing the target id: 0 | records with duplicate ids: 0 | record lengths: {8: 39745}
+panel composition: {('MIX', ('public', 'public', 'public', 'super', 'super')): 486, ('PUB', ('public', 'public', 'public', 'public', 'public')): 486}
+strong ids 108 pilot ids 16 pilot∩strong 13
+strong subset reproduces from declared rule: True
+match validity: {('C1', True): 464, ('C2', True): 464, ('C3', True): 484, ('C1', False): 22, ('C2', False): 22, ('C3', False): 2}
+C1 match distance: median 0.00004 p95 0.00892 max 0.08000
+C2 match distance: median 0.00004 p95 0.00892 max 0.08000
+C3 match distance: median 0.00005 p95 0.00066 max 0.07439
+C2 farmed vs control displayed score identical at 3dp: {True: 373, False: 113}
+==================== truth
+truth rows 162 targets 162 outcomes matching raw resolution file: 162 problems: []
+base rate 0.30864197530864196

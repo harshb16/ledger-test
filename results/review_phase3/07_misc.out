@@ -1,0 +1,86 @@
+spend events {'reserve': 19864, 'settle': 19864} | settled total $11.2153 | estimated settles 0
+  Haiku sum cost_usd in responses: $1.6783
+  Luna sum cost_usd in responses: $1.8911
+  Sonnet sum cost_usd in responses: $4.0114
+  Sol sum cost_usd in responses: $3.6405
+  total from responses $11.2212 (shared-cache pairs double-count)
+Haiku generation ids shared with any pilot response: 0
+Luna generation ids shared with any pilot response: 0
+Sonnet generation ids shared with any pilot response: 0
+Sol generation ids shared with any pilot response: 0
+stat_hyperparameters identical to pilot build: True
+type  fold            method  minimum  train_panels  n_test   a   lam    k  gamma
+ MIX     0 perf_weighted_raw        5           125      33 NaN 128.0  0.0    NaN
+ MIX     0 perf_weighted_adj        5           125      33 NaN  64.0 20.0    NaN
+ MIX     1 perf_weighted_raw        5           120      33 NaN  64.0 20.0    NaN
+ MIX     1 perf_weighted_adj        5           120      33 NaN  16.0  5.0    NaN
+ MIX     2 perf_weighted_raw        5           126      32 NaN  64.0 20.0    NaN
+ MIX     2 perf_weighted_adj        5           126      32 NaN  64.0 20.0    NaN
+ MIX     3 perf_weighted_raw        5           126      32 NaN  16.0  5.0    NaN
+ MIX     3 perf_weighted_adj        5           126      32 NaN  16.0  5.0    NaN
+ MIX     4 perf_weighted_raw        5           124      32 NaN  16.0  0.0    NaN
+ MIX     4 perf_weighted_adj        5           124      32 NaN  16.0  5.0    NaN
+ PUB     0 perf_weighted_raw        5           122      33 NaN  16.0 20.0    NaN
+ PUB     0 perf_weighted_adj        5           122      33 NaN  16.0  5.0    NaN
+ PUB     1 perf_weighted_raw        5           117      33 NaN  16.0  5.0    NaN
+ PUB     1 perf_weighted_adj        5           117      33 NaN  64.0 20.0    NaN
+ PUB     2 perf_weighted_raw        5           121      32 NaN  16.0  5.0    NaN
+ PUB     2 perf_weighted_adj        5           121      32 NaN  16.0  5.0    NaN
+ PUB     3 perf_weighted_raw        5           121      32 NaN  16.0  5.0    NaN
+ PUB     3 perf_weighted_adj        5           121      32 NaN  16.0 20.0    NaN
+ PUB     4 perf_weighted_raw        5           118      32 NaN  64.0 20.0    NaN
+ PUB     4 perf_weighted_adj        5           118      32 NaN 128.0  0.0    NaN
+max |reconstructed W - stat_predictions|: 0.00e+00
+ model   n  probe_brier  crowd_brier  base_rate_brier    diff     se      lo     hi  corr_probe_outcome  share_probe_extreme
+ Haiku 162       0.1463       0.1396           0.2134  0.0067 0.0123 -0.0174 0.0308              0.5767               0.0864
+  Luna 162       0.1327       0.1396           0.2134 -0.0069 0.0098 -0.0260 0.0122              0.6283               0.2531
+Sonnet 108       0.1198       0.1441           0.2085 -0.0244 0.0129 -0.0497 0.0009              0.6599               0.1574
+   Sol 108       0.1343       0.1441           0.2085 -0.0098 0.0135 -0.0363 0.0167              0.6127               0.3056
+ model cond type   n  share_correct_sign  share_zero  mean_signed_shift
+ Haiku   C2  MIX 273              0.9634      0.0256             0.1422
+ Haiku   C2  PUB 302              0.9470      0.0199             0.1405
+ Haiku   C3  MIX 263              0.7338      0.1977             0.0359
+ Haiku   C3  PUB 307              0.6906      0.2443             0.0350
+  Luna   C2  MIX 273              0.9890      0.0000             0.1516
+  Luna   C2  PUB 302              0.9834      0.0033             0.1544
+  Luna   C3  MIX 263              0.9810      0.0038             0.0899
+  Luna   C3  PUB 307              0.9739      0.0000             0.0945
+Sonnet   C2  MIX  65              0.9846      0.0154             0.1532
+Sonnet   C2  PUB  61              1.0000      0.0000             0.1652
+   Sol   C2  MIX  65              1.0000      0.0000             0.1017
+   Sol   C2  PUB  61              1.0000      0.0000             0.1056
+metric families in estimands.csv: ['D', 'E1', 'beta_base', 'beta_star', 'beta_swap', 'c_star', 'oracle_fraction']
+has retest SD: False | probe: False | swap sign: False | weight rank: False
+            model        sample type    metric     est     se  se_cons      p   holm  p_cons  holm_cons
+ claude-haiku-5.5 exclude_pilot  MIX     E1_C2 -0.0156 0.0021   0.0027 0.0000 0.0000  0.0000     0.0000
+ claude-haiku-5.5 exclude_pilot  MIX c_star_C2  1.9267 0.1246   0.1811 0.0000 0.0000  0.0000     0.0000
+ claude-haiku-5.5 exclude_pilot  PUB c_star_C2  0.5117 0.2537   0.2543 0.0542 0.1085  0.0548     0.1097
+ claude-haiku-5.5 exclude_pilot  PUB      D_C1  0.0062 0.0110   0.0110 0.7123 0.7123  0.7115     0.7115
+ claude-haiku-5.5       primary  MIX     E1_C2 -0.0164 0.0021   0.0025 0.0000 0.0000  0.0000     0.0000
+ claude-haiku-5.5       primary  MIX c_star_C2  1.9689 0.1415   0.1644 0.0000 0.0000  0.0000     0.0000
+ claude-haiku-5.5       primary  PUB c_star_C2  0.4875 0.2552   0.2554 0.0447 0.0894  0.0448     0.0895
+ claude-haiku-5.5       primary  PUB      D_C1  0.0083 0.0110   0.0110 0.7761 0.7761  0.7761     0.7761
+claude-sonnet-5.5 exclude_pilot  MIX     E1_C2 -0.0317 0.0077   0.0077 0.0000 0.0001  0.0000     0.0001
+claude-sonnet-5.5 exclude_pilot  MIX c_star_C2  1.9249 0.1115   0.2586 0.0000 0.0000  0.0003     0.0010
+claude-sonnet-5.5 exclude_pilot  PUB c_star_C2 -0.1750 0.4870   0.6258 0.0158 0.0316  0.0604     0.1209
+claude-sonnet-5.5 exclude_pilot  PUB      D_C1 -0.0035 0.0153   0.0153 0.4086 0.4086  0.4086     0.4086
+claude-sonnet-5.5       primary  MIX     E1_C2 -0.0297 0.0068   0.0068 0.0000 0.0000  0.0000     0.0001
+claude-sonnet-5.5       primary  MIX c_star_C2  1.9604 0.1459   0.2586 0.0000 0.0000  0.0002     0.0006
+claude-sonnet-5.5       primary  PUB c_star_C2 -0.0273 0.4396   0.5603 0.0194 0.0389  0.0667     0.1334
+claude-sonnet-5.5       primary  PUB      D_C1 -0.0020 0.0134   0.0134 0.4414 0.4414  0.4414     0.4414
+       gpt-6-luna exclude_pilot  MIX     E1_C2 -0.0166 0.0028   0.0029 0.0000 0.0000  0.0000     0.0000
+       gpt-6-luna exclude_pilot  MIX c_star_C2  1.8377 0.2319   0.2319 0.0003 0.0009  0.0003     0.0009
+       gpt-6-luna exclude_pilot  PUB c_star_C2  0.5992 0.2029   0.2089 0.0483 0.0966  0.0551     0.1101
+       gpt-6-luna exclude_pilot  PUB      D_C1 -0.0018 0.0110   0.0113 0.4345 0.4345  0.4362     0.4362
+       gpt-6-luna       primary  MIX     E1_C2 -0.0165 0.0025   0.0027 0.0000 0.0000  0.0000     0.0000
+       gpt-6-luna       primary  MIX c_star_C2  1.8060 0.2094   0.2094 0.0001 0.0004  0.0001     0.0004
+       gpt-6-luna       primary  PUB c_star_C2  0.6532 0.2014   0.2066 0.0851 0.1702  0.0931     0.1863
+       gpt-6-luna       primary  PUB      D_C1 -0.0054 0.0104   0.0108 0.3019 0.3019  0.3096     0.3096
+      gpt-6.1-sol exclude_pilot  MIX     E1_C2 -0.0192 0.0051   0.0051 0.0002 0.0007  0.0002     0.0007
+      gpt-6.1-sol exclude_pilot  MIX c_star_C2  3.0686 0.5807   0.6350 0.0004 0.0011  0.0011     0.0034
+      gpt-6.1-sol exclude_pilot  PUB      D_C1 -0.0066 0.0071   0.0071 0.1775 0.3550  0.1775     0.3550
+      gpt-6.1-sol exclude_pilot  PUB c_star_C2  0.3091 0.8893   0.9211 0.4372 0.4372  0.4532     0.4532
+      gpt-6.1-sol       primary  MIX     E1_C2 -0.0193 0.0045   0.0045 0.0000 0.0001  0.0000     0.0001
+      gpt-6.1-sol       primary  MIX c_star_C2  3.1695 0.5681   0.5893 0.0001 0.0004  0.0002     0.0007
+      gpt-6.1-sol       primary  PUB      D_C1 -0.0074 0.0065   0.0065 0.1294 0.2588  0.1294     0.2588
+      gpt-6.1-sol       primary  PUB c_star_C2  0.4984 0.8039   0.8278 0.5326 0.5326  0.5445     0.5445

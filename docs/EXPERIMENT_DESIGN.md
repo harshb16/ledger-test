@@ -166,6 +166,14 @@ Swap shift sign: (L_swap − L_orig)·sign(p_worst − p_best) > 0.
   - Retest adds a one-line cache nonce to the prompt (documented, negligible).
 - v2 (after the pilot, before any Phase 3 call): see §10. Motivation: `docs/PILOT_RESULTS.md` and
   `docs/reviews/phase2_fable_review.md` (verdict: FREEZE WITH LISTED CHANGES; all required changes adopted).
+- **v2 implementation change (2026-11-13, before any Phase 3 call; commit 33c1a65).** Every `*_control` request
+  appends `\nCache nonce: control`, so that score-matched controls do not replay the cached farmed response
+  (`docs/IMPLEMENTATION_NOTES.md`). The analysis was not changed.
+- **Post-run finding (2026-11-13; recorded after the run; the specification above is unchanged).** The control
+  nonce was not inert. On C2 pairs whose prompts are identical apart from the nonce line, Haiku's answers shift
+  (D contribution −0.029 [−0.053, −0.006]) and its reasoning tokens drop by about 60%. E3b (D_C1) is therefore
+  reported as **not identified**, not as a null. E1, E2 (c\*), β and E3a do not use control arms and are
+  unaffected. Full audit: `docs/PHASE3_RESULTS.md` §6.
 
 ## 10. Design v2 (Phase 3), overriding §1–§8 where they conflict
 

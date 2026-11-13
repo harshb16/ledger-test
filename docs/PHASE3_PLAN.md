@@ -1,11 +1,14 @@
-# Phase 3 Plan (design v2; frozen, NOT executed)
+# Phase 3 Plan (design v2; frozen; EXECUTED 2026-11-13, results in `docs/PHASE3_RESULTS.md`)
 
 - **Specification:** `docs/EXPERIMENT_DESIGN.md` §10, with the machine-readable twin in
   `configs/phase3_design.yaml`.
 - **History:** the plan was written after the pilot (`docs/PILOT_RESULTS.md`) and revised after the
   independent review (`docs/reviews/phase2_fable_review.md`, verdict FREEZE WITH LISTED CHANGES, every required
   change adopted).
-- **Status:** no Phase 3 call has been made.
+- **Status (updated 2026-11-13):** executed as planned.
+  - 19,876 responses, 0 parse failures, $11.2153 billed.
+  - The frozen analysis was run unchanged. Results and the nonce limitation are in `docs/PHASE3_RESULTS.md`.
+  - The text below is the pre-run plan, kept as written.
 
 ## 1. Changes from v1.1, and why
 | # | Change | Reason |

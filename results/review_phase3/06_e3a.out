@@ -1,0 +1,29 @@
+eligible pairs: mine 4283 original 4283 | attackers 290 | questions 162
+pair-set identical: True 0
+target_brier max abs diff: 0.0
+                   metric     est  se_cgm   se_q      lo      hi  sd_pair  share_positive
+            raw_infl_draw  0.0169  0.0044 0.0022  0.0084  0.0255   0.1386          0.5828
+           peer_infl_draw -0.0054  0.0033 0.0018 -0.0119  0.0011   0.1113          0.4957
+           raw_infl_exact  0.0159  0.0038 0.0009  0.0084  0.0233   0.0670          0.6183
+          peer_infl_exact -0.0063  0.0029 0.0007 -0.0119 -0.0007   0.0505          0.4644
+ orig_pairs_raw_inflation  0.0179  0.0042 0.0019  0.0097  0.0260   0.1360          0.5898
+orig_pairs_peer_inflation -0.0056  0.0032 0.0016 -0.0118  0.0007   0.1089          0.5001
+  orig_pairs_fe_inflation -0.0060  0.0031 0.0016 -0.0121  0.0001   0.1071          0.4959
+attacker-level exact raw inflation: mean 0.0177 sd 0.0690 share>0 0.624 n 290
+
+normative (pooled correlations with target Brier)
+                             est      lo      hi
+r_raw_farm                0.0822  0.0494  0.1151
+r_raw_uni                 0.0567  0.0224  0.0930
+r_peer_farm               0.0810  0.0493  0.1124
+r_peer_uni                0.0723  0.0385  0.1068
+within_r_raw_farm         0.1112  0.0784  0.1423
+within_r_raw_uni          0.0692  0.0375  0.1000
+within_r_peer_farm        0.1089  0.0757  0.1409
+within_r_peer_uni         0.0855  0.0498  0.1181
+r_raw_farm - uni          0.0255 -0.0015  0.0528
+r_peer_farm - uni         0.0087 -0.0173  0.0364
+within_r_raw_farm - uni   0.0420  0.0116  0.0720
+within_r_peer_farm - uni  0.0234 -0.0067  0.0511
+stacked regression (question FE=False): coef [0.1838 0.1526 0.0026] se(question-clustered) [0.0156 0.032  0.0007]
+stacked regression (question FE=True): coef [0.1626 0.0028] se(question-clustered) [0.0262 0.0006]

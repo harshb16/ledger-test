@@ -32,3 +32,15 @@ recomputed numbers, is in `docs/reviews/phase1_fable_review.md`. The lead verifi
 | P6 | MAJOR | The E3b direction was chosen after the pilot, and the pilot questions are reused. | Every confirmatory result is also reported excluding the 16 pilot questions (pre-declared sensitivity). | Adopted |
 | P7 | MAJOR | E2 and E3b were clustered on question only. | Two-way CGM for every confirmatory estimand. | Adopted |
 | P8 | MINOR | Holm wording; the uninformative probe; the reasoning confound. | 4-test Holm family per model, with "all models" claims requiring every model to pass. The probe is called uninformative. Sonnet's lack of reasoning is noted as a confound. | Adopted |
+
+## Phase 3 review (`docs/reviews/phase3_fable_review.md`; verdict READY WITH LIMITATIONS; no blockers)
+Full responses: `docs/PHASE3_RESULTS.md` §9.
+| ID | Severity | Objection | Resolution | Status |
+|---|---|---|---|---|
+| M1 | MAJOR | E3b is not identified: the control-only cache nonce changes Haiku (−0.029 on identical pairs; reasoning 87% → 35%). Luna's D_C3 is a nonce artefact. | Confirmed by an independent lead audit, including provider stratification. D_C1 is reported as not identified. | Adopted |
+| M2 | MAJOR | E3b would be uninformative anyway: no warranted discount, warranted D below the MDE, C1 base-rate confound. | Reported. The proposed seeded follow-up was withdrawn. | Adopted |
+| M3 | MAJOR | PUB c\* does not show over-reliance. Sonnet's significance depends on the SE convention, and noise attenuates c\*. | PUB claims were removed. The MIX − PUB contrast (z 2.6–5.7) is reported instead. | Adopted |
+| M4 | MAJOR | MIX under-reliance is the same fact as E1; the policy is regime-blind; the magnitude is in-sample. | Qualifications added. | Adopted |
+| M5 | MAJOR | LLMs do not beat the CV-tuned performance-weighted aggregator. | Paired with every "records help" claim. | Adopted |
+| M6 | MAJOR | Draw 0 favours experts, so strong-tier magnitudes are not comparable. | Comparable-sample magnitudes only. | Adopted |
+| m1–m7 | MINOR | SE sensitivity; Holm divisor; omitted outputs; single-draw normative check; E3a heterogeneity; provenance; draft text errors. | Added, disclosed or corrected. | Adopted |

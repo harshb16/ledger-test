@@ -34,6 +34,21 @@
 - Before the pilot, the tokenizer estimate (`estimate_cost.py`) was about $1.40 for the four models. The actual
   cost was $1.29.
 
+## Actual Phase 3 spending (2026-11-13)
+| Model | Requests | Billed |
+|---|---|---|
+| efficient_anthropic (Haiku) | 8,354 | $1.6783 |
+| efficient_openai (Luna) | 8,354 | $1.8911 |
+| strong_anthropic (Sonnet) | 1,584 | $4.0114 |
+| strong_openai (Sol) | 1,584 | $3.6405 |
+| **Phase 3 total** (including the $0.0214 smoke test) | 19,876 | **$11.2153** |
+
+- **Reconciliation:** the harness ledger (`results/phase3/spend.jsonl`) shows $11.2153. OpenRouter key usage moved
+  from $1.616770 to $12.832060, a delta of **$11.2153**. The two records agree to the cent.
+- **Project total:** $0.311442 → $12.832060 = **$12.52 of $20**.
+- **Remaining:** $7.48 of the budget. The key limit is $17, so $4.17 is usable before raising it again.
+- **Projection vs actual:** projected $11.74, actual $11.22.
+
 ## Phase 3 projection (design v2; `scripts/project_phase3_cost.py` → `results/phase2/phase3_cost_projection.csv`)
 Measured per-condition pilot billing, scaled by questions and panels. New matched-control arms are priced like
 the corresponding farmed arms.
