@@ -1,0 +1,5 @@
+model,n,parse_failures,rate
+anthropic/claude-haiku-5.5,257,7,0.027237354085603127
+anthropic/claude-sonnet-5.5,257,0,0.0
+openai/gpt-6-luna,257,29,0.11284046692607008
+openai/gpt-6.1-sol,257,0,0.0

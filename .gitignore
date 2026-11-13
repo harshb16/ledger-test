@@ -8,3 +8,4 @@ data/cache/
 *.env
 results/llm_cache/
 .DS_Store
+*.lock

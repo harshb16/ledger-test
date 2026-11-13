@@ -1,0 +1,5 @@
+efficient_openai requests 257 -> results/phase2/pilot_live/efficient_openai/responses.jsonl
+efficient_anthropic requests 257 -> results/phase2/pilot_live/efficient_anthropic/responses.jsonl
+strong_openai requests 257 -> results/phase2/pilot_live/strong_openai/responses.jsonl
+strong_anthropic requests 257 -> results/phase2/pilot_live/strong_anthropic/responses.jsonl
+cumulative phase2 spend $1.2900; open reservations $0.0000
