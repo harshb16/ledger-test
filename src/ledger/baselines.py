@@ -6,7 +6,7 @@ from scipy.special import expit, logit, softmax
 from .ledger import construct, KEY
 
 A = [0.5,1.,1.5,2.]
-LAM = [0.,1.,4.,16.,64.]
+LAM = [0.,1.,4.,16.,64.,128.,256.,1000.]
 K = [0.,5.,20.]
 
 def aggregate(p, method, scores=None, n=None, population=0., a=1., lam=0., k=0.):
@@ -18,20 +18,27 @@ def aggregate(p, method, scores=None, n=None, population=0., a=1., lam=0., k=0.)
     shrunk = np.asarray(n)/(np.asarray(n)+k)*np.asarray(scores)+k/(np.asarray(n)+k)*population
     return softmax(-lam*shrunk)@p
 
-def evaluate(data, panels, regime, seed, minimum=5, ledger_cache=None):
+def evaluate(data, panels, regime, seed, minimum=5, ledger_cache=None, display_k=None):
     if ledger_cache is None: ledger_cache = {}
     if panels.empty: return pd.DataFrame(),[]
     ids = np.array(sorted(panels.question_id.unique()))
     folds = np.array_split(np.random.default_rng(seed).permutation(ids),5)
     predictions, choices = [], []
-    methods = ['mean','median','extremized_logit_mean','best_historical_raw','best_historical_adj','best_historical_fe','perf_weighted_raw','perf_weighted_adj','perf_weighted_fe']
+    methods = ['mean','median','extremized_logit_mean','best_historical_raw','best_historical_adj','best_historical_fe','perf_weighted_raw','perf_weighted_adj','perf_weighted_fe','group_oracle','record_length','top2_raw','top2_adj','top2_fe','trimmed_mean']
     for fold, test in enumerate(folds):
         cache = {}
         for q in ids:
-            key = (regime,q,tuple(sorted(test)))
+            excluded = () if q in test else test
+            key = (regime,q,tuple(sorted(excluded)))
             if key not in ledger_cache:
-                ledger_cache[key] = construct(data,q,excluded=test,regime=regime)
+                ledger_cache[key] = construct(data,q,excluded=excluded,regime=regime)
             cache[q] = ledger_cache[key]
+            if display_k is not None:
+                from .records import displayed_ledger
+                display_key=key+(display_k,seed)
+                if display_key not in ledger_cache:
+                    ledger_cache[display_key]=displayed_ledger(data,q,excluded,regime,display_k,seed)
+                cache[q]=ledger_cache[display_key]
         rows = []
         for (q,draw), panel in panels.groupby(['question_id','draw']):
             led = cache[q]
@@ -45,12 +52,21 @@ def evaluate(data, panels, regime, seed, minimum=5, ledger_cache=None):
         sizes = np.stack([r[2].n_ids.to_numpy() for r in rows])
         test_mask = np.array([r[0] in test for r in rows])
         for method in methods:
+            if method=='group_oracle' and not panels['group'].eq('super').any(): continue
             score = 'peer' if method.endswith('adj') else 'fe' if method.endswith('fe') else 'raw'
             scores = np.stack([r[2][score].to_numpy() for r in rows])
             population = np.array([r[3][score].mean() for r in rows])[:,None]
-            grid = [{'a':a} for a in A] if method=='extremized_logit_mean' else [dict(lam=l,k=k) for l,k in itertools.product(LAM,K)] if method.startswith('perf') else [{}]
+            grid = [{'a':a} for a in A] if method=='extremized_logit_mean' else [dict(lam=l,k=k) for l,k in itertools.product(LAM,K)] if method.startswith('perf') else [{'gamma':g} for g in (.5,1.,2.,4.)] if method=='record_length' else [{}]
             def predict(params):
                 if method=='mean': return probabilities.mean(axis=1)
+                if method=='trimmed_mean': return np.sort(probabilities,axis=1)[:,1:-1].mean(axis=1)
+                if method=='group_oracle':
+                    mask=np.stack([r[2]['group'].eq('super').to_numpy() for r in rows])
+                    return np.divide((probabilities*mask).sum(axis=1),mask.sum(axis=1),out=np.full(len(rows),np.nan),where=mask.sum(axis=1)>0)
+                if method=='record_length':
+                    w=sizes**params['gamma']; return (w*probabilities).sum(axis=1)/w.sum(axis=1)
+                if method.startswith('top2'):
+                    return np.take_along_axis(probabilities,np.argsort(scores,axis=1)[:,:2],axis=1).mean(axis=1)
                 if method=='median': return np.median(probabilities,axis=1)
                 if method=='extremized_logit_mean': return expit(params['a']*logit(np.clip(probabilities,.01,.99)).mean(axis=1))
                 if method.startswith('best'): return probabilities[np.arange(len(rows)),np.argmin(scores,axis=1)]

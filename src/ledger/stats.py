@@ -24,3 +24,22 @@ def correlation(frame, x, y, cluster='question_id', reps=2000, seed=20261113):
     rng = np.random.default_rng(seed)
     samples = corr(g[rng.integers(len(g),size=(reps,len(g)))].sum(axis=1))
     return dict(estimate=float(corr(g.sum(axis=0))),n_pairs=len(d),n_clusters=len(g),**interval(samples))
+
+
+def pigeonhole(frame, value, members, reps=2000, seed=20261113):
+    """Independent question/user resampling; panel weight = m_q * product(m_user).
+
+    Members is a list of unique group-qualified forecaster identifiers per row.
+    Point estimates retain the original panel weighting. Empty draws are omitted.
+    """
+    q,questions=np.unique(frame.question_id.astype(str),return_inverse=True)
+    users=sorted({u for row in members for u in row})
+    lookup={u:i for i,u in enumerate(users)}
+    indices=np.array([[lookup[u] for u in row] for row in members])
+    rng=np.random.default_rng(seed); samples=[]; values=frame[value].to_numpy()
+    for _ in range(reps):
+        qm=rng.multinomial(len(q),np.full(len(q),1/len(q)))
+        um=rng.multinomial(len(users),np.full(len(users),1/len(users)))
+        w=qm[questions]*um[indices].prod(axis=1)
+        if w.sum(): samples.append(w@values/w.sum())
+    return dict(estimate=float(values.mean()),n_clusters=len(q),**interval(samples))

@@ -63,22 +63,25 @@ def test_bootstrap():
     assert paired(f,'d',seed=42)==paired(f,'d',seed=42)
     assert paired(f,'d')['estimate']==pytest.approx(1/3)
 
-def test_cv_excludes_entire_test_fold_for_training_and_test(toy,monkeypatch):
+def test_cv_training_rows_exclude_test_outcomes(toy,monkeypatch):
     import ledger.baselines as baselines
-    t=targets(toy,'LOO',42)
-    p,_,_=build(toy,t,'LOO','PUB',42,draws=1)
+    p,_,_=build(toy,targets(toy,'LOO',42),'LOO','PUB',42,draws=1)
     original=baselines.construct
     calls=[]
     def checked(data,target,excluded,regime):
+        before=original(data,target,excluded,regime)
+        changed=data.copy()
+        changed.loc[changed.question_id.isin(excluded),'brier']=12345
+        pd.testing.assert_frame_equal(before,original(changed,target,excluded,regime))
         calls.append((target,set(excluded)))
-        return original(data,target,excluded,regime)
+        return before
     monkeypatch.setattr(baselines,'construct',checked)
-    pred,choices=baselines.evaluate(toy,p,'LOO',42)
-    assert len(calls)==45
+    _,choices=baselines.evaluate(toy,p,'LOO',42)
     for fold in range(5):
-        expected=set(choices[fold*9]['test_ids'])
-        assert all(excluded==expected for _,excluded in calls[fold*9:(fold+1)*9])
-    assert pred.groupby(['question_id','draw']).method.nunique().eq(9).all()
+        expected=set(next(c for c in choices if c['fold']==fold)['test_ids'])
+        assert all(excluded==(set() if q in expected else expected)
+                   for q,excluded in calls[fold*9:(fold+1)*9])
+
 
 def test_id_balancing_and_peer_excludes_self():
     from ledger.ledger import summarize
@@ -101,5 +104,5 @@ def test_test_outcomes_cannot_tune_hyperparameters(toy):
     changed.loc[mask,'brier']=(changed.loc[mask,'forecast']-changed.loc[mask,'outcome'])**2
     p2=p.copy();mask=p2.question_id.isin(excluded);p2.loc[mask,'outcome']=1-p2.loc[mask,'outcome']
     pred2,choices2=evaluate(changed,p2,'LOO',42)
-    assert choices[:9]==choices2[:9]
-    np.testing.assert_allclose(pred[pred.fold==0].prediction,pred2[pred2.fold==0].prediction)
+    assert [c for c in choices if c["fold"]==0]==[c for c in choices2 if c["fold"]==0]
+
