@@ -3,19 +3,25 @@
 **Can reliability scores improve — or corrupt — AI forecast aggregation?**
 
 Submission for the Apart Research AI × Epistemics Sprint (Nov 13–15 2026), Trust Infrastructure track.
-This repository holds Phases 1–3:
+This repository holds the whole project:
 - data and statistical baselines;
 - the methodology audit and the frozen experiment design;
 - the LLM harness and a paired pilot;
-- the full Phase 3 run: 4 models, 19,876 responses, $11.22.
+- the full Phase 3 run: 4 models, 19,876 responses, $11.22;
+- U1, a pre-registered follow-up on the farming discount: 2 models, 4,500 responses, $1.75;
+- the paper, with exploratory analyses Z1, Z2, Z5 and Z6 (no paid calls).
 
-**Paper:** [`paper/main.pdf`](paper/main.pdf), 8-page main body plus references and appendix. Source: `paper/main.tex`; every
+In total there are 24,376 stored LLM responses. Total API spend is about $14.27 of a $20 budget (`docs/COST_PLAN.md`).
+
+**Paper:** [`paper/main.pdf`](paper/main.pdf), 13 pages: about 7 pages of main text, then references and appendices A–E. Source: `paper/main.tex`; every
 number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed constants in `paper/CLAIMS.md`).
-Independent review: `docs/reviews/phase4_paper_review.md` (READY AFTER FIXES; fixes applied, see
-`docs/reviews/phase4_lead_response.md`).
+Independent reviews: `docs/reviews/phase4_paper_review.md` (READY AFTER FIXES; fixes applied, see
+`docs/reviews/phase4_lead_response.md`), `docs/reviews/u1_prerun_review.md` (RUN AFTER LISTED FIXES) and
+`docs/reviews/u1_results_review.md` (VALID WITH LISTED CAVEATS).
 
-## Status (2026-11-13): Phase 3 complete. Results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md)
-Independent review: `docs/reviews/phase3_fable_review.md`, verdict READY WITH LIMITATIONS.
+## Status (2026-11-14): complete
+Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent review:
+`docs/reviews/phase3_fable_review.md`, verdict READY WITH LIMITATIONS.
 - **RQ1:** showing one raw accuracy score per forecaster improves the LLM aggregate on panels with identifiable
   experts (MIX), for all 4 models.
   - ΔBrier is −0.016 over all three draws (efficient tier) and −0.019 to −0.030 on the common 108-panel sample.
@@ -31,6 +37,20 @@ Independent review: `docs/reviews/phase3_fable_review.md`, verdict READY WITH LI
   The LLM farming-discount test (E3b) is **not identified**, because a cache-nonce line on the control prompts
   changed model behaviour. It would also be uninformative, because no discount is warranted (§2 and §6 of
   `docs/PHASE3_RESULTS.md`).
+- **U1 (pre-registered follow-up to RQ3b, `docs/U1_ADDENDUM.md`):** a redesigned test with no nonce, a
+  warranted-discount arm and matched base rates. It was run on the two efficient models.
+  - GPT-6 Luna discounts the padded record: D_swap = −0.023 [−0.037, −0.008], Holm p = 0.0026. Padding still
+    paid: compared with an honest record, it raised Luna's pull toward the padder (G = +0.049 [+0.030, +0.067]).
+    There was no measurable change in accuracy.
+  - The discount is not shown to be recognition of padding. The model could be reacting to a domain-match cue.
+  - Claude Haiku 5.5 shows no detectable discount (declared underpowered in advance): D_swap = +0.002 [−0.010, +0.015], p = 0.64. The frozen "exploitable" label
+    was not adopted, because its criteria were not met.
+- **Exploratory (post hoc, labelled as such in the paper):**
+  - Z1/Z2: regime-pooled weights and the weights the models state.
+  - Z5 (spec frozen before computing, `docs/Z5_SPEC.md`): no evidence that the LLM gain from scores depends on
+    the model's own knowledge of the question. A post-hoc check finds that the lower no-score leakage on
+    questions the model knows (Haiku, Sonnet) is explained by question easiness.
+  - Z6: a descriptive table of request cost by score format.
 
 ## Questions
 - **RQ1 (utility):** Does showing an LLM each forecaster's track record improve its aggregate Brier score?
@@ -65,8 +85,12 @@ Independent review: `docs/reviews/phase3_fable_review.md`, verdict READY WITH LI
 | `results/review_phase3/` | Independent reviewer's recomputation scripts and outputs |
 | `results/phase3/e3a/` | Data-level farming inflation (RQ3a) |
 | `results/review_phase4/` | Reviewer's paper spot-check (177 macros re-derived) and exploratory Z1/Z2 check |
+| `results/u1/build/` | Frozen U1 panels, manifests, statistical predictions and the pre-run gate |
+| `results/u1/live/` | Raw U1 responses (`<model>/responses.jsonl.gz`), run logs, run notes and the frozen analysis (`analysis/`) |
+| `results/u1/spend.jsonl` | U1 spend ledger |
+| `results/review_u1/`, `results/review_u1_results/` | Reviewer's pre-run checks and post-run recomputation of U1 |
 | `paper/` | Paper source, generators (`make_numbers.py`, `make_figures.py`), figures, claims ledger, PDF |
-| `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, cost plan, Phase 3 plan and results, figures, reviews |
+| `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, cost plan, Phase 3 plan and results, U1 addendum and implementation notes, Z5 spec, figures, reviews |
 
 ## Setup
 ```sh
@@ -102,14 +126,24 @@ uv run python scripts/analyze_phase3.py results/phase3/live
 uv run python results/lead_recompute/baselines.py && uv run python results/lead_recompute/cstar_crossfit.py
 uv run python results/lead_recompute/nonce_audit.py && uv run python results/lead_recompute/provider_audit.py
 uv run python results/lead_recompute/figures.py
-# Phase 4: exploratory (post hoc) analyses and the paper
-uv run python results/lead_recompute/exploratory_z1_z2.py   # Z1 regime-pooled W, Z2 stated weights
+# U1 follow-up (build and mock cost nothing; the live run is already done)
+uv run python scripts/build_u1.py && uv run python scripts/mock_u1.py && uv run python scripts/analyze_u1.py results/u1/mock
+# uv run python scripts/run_u1.py ...              # LIVE U1 (already run; gate and $2 hard cap enforced)
+for m in efficient_anthropic efficient_openai; do gunzip -k results/u1/live/$m/responses.jsonl.gz; done
+cp results/u1/build/{panels.json,stat_predictions.csv} results/u1/live/
+uv run python scripts/analyze_u1.py results/u1/live
+# Phase 4: exploratory analyses and the paper
+uv run python results/lead_recompute/exploratory_z1_z2.py   # Z1 regime-pooled W, Z2 stated weights (post hoc)
+uv run python results/lead_recompute/z5_probe_gain.py       # Z5 probe knowledge (spec in docs/Z5_SPEC.md)
+uv run python results/lead_recompute/z5b_easiness_check.py  # Z5 post-hoc easiness check
+uv run python results/lead_recompute/z6_cost_by_condition.py  # Z6 cost by score format
 uv run python paper/make_numbers.py && uv run python paper/make_figures.py
 cd paper && latexmk -pdf main.tex
 ```
 LLM responses are cached on disk under a hash of each request. Re-running `run_pilot.py` replays the cache
-and spends nothing. `results/phase2/spend.jsonl` and `results/phase3/spend.jsonl` are the durable spend ledgers.
-Both reconcile to the cent with OpenRouter key usage (`docs/COST_PLAN.md`).
+and spends nothing. `results/phase2/spend.jsonl`, `results/phase3/spend.jsonl` and `results/u1/spend.jsonl` are the
+durable spend ledgers. The Phase 2 and Phase 3 ledgers reconcile to the cent with OpenRouter key usage. The U1 total
+comes from its ledger; the OpenRouter counter was not re-read after U1 (`docs/COST_PLAN.md`).
 
 ## Process disclosure
 - The project was orchestrated by Claude Opus 5.5 acting as lead.
