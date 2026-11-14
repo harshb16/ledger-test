@@ -1,0 +1,5 @@
+Haiku D_swap: both A and B reasoned +0.0412 (n 140); neither reasoned -0.0137 (n 356)
+difference +0.0549, CGM se 0.0131, z 4.20, p 2.6e-05 (exploratory; conditioning on a post-treatment variable)
+|pX-pY| mean: both 0.382, neither 0.365; questions: both 97, neither 150
+per-question reasoning share: sd 0.174; questions with share 0: 8, share 1: 0, of 157
+agreement of A and B reasoning state 0.661 (expected if independent 0.541)

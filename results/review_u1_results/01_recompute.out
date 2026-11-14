@@ -1,0 +1,46 @@
+== (a) raw responses: parse check ==
+Luna responses 2250 | re-parsed probability != harness parsed: 0 | attempts>1: 0 | retried: 0 | commits: ['68d5f66']
+Haiku responses 2250 | re-parsed probability != harness parsed: 0 | attempts>1: 0 | retried: 0 | commits: ['68d5f66']
+
+== (b) estimands, reviewer code vs frozen estimands.csv ==
+Luna  primary                D_swap                   -0.0226 se 0.0075 CGM [-0.0373, -0.0079] boot [-0.0372, -0.0085] p 0.001299 n 750 | frozen est -0.0226 [-0.0373, -0.0079] boot [-0.0372, -0.0085]
+Luna  primary                G                        +0.0486 se 0.0096 CGM [+0.0298, +0.0675] boot [+0.0309, +0.0666] p 4.278e-07 n 750 | frozen est +0.0486 [+0.0298, +0.0675] boot [+0.0311, +0.0666]
+Luna  primary                delta_Brier              -0.0007 se 0.0023 CGM [-0.0052, +0.0038] boot [-0.0053, +0.0040] p 0.7555 n 750 | frozen est -0.0007 [-0.0051, +0.0044] boot [-0.0051, +0.0044]
+Luna  primary                D_swap_cgm_question_XY   -0.0226 se 0.0071 CGM [-0.0366, -0.0086] boot [-0.0372, -0.0085] p 0.000779 n 750 | frozen est -0.0226 [-0.0366, -0.0086] boot [-0.0372, -0.0085]
+Haiku primary                D_swap                   +0.0024 se 0.0065 CGM [-0.0104, +0.0152] boot [-0.0093, +0.0150] p 0.6412 n 750 | frozen est +0.0024 [-0.0104, +0.0152] boot [-0.0094, +0.0154]
+Haiku primary                G                        -0.0036 se 0.0094 CGM [-0.0220, +0.0148] boot [-0.0220, +0.0147] p 0.703 n 750 | frozen est -0.0036 [-0.0220, +0.0148] boot [-0.0225, +0.0151]
+Haiku primary                delta_Brier              +0.0047 se 0.0024 CGM [+0.0000, +0.0093] boot [-0.0000, +0.0091] p 0.0495 n 750 | frozen est +0.0047 [+0.0003, +0.0089] boot [+0.0003, +0.0089]
+Haiku primary                D_swap_cgm_question_XY   +0.0024 se 0.0066 CGM [-0.0106, +0.0153] boot [-0.0093, +0.0150] p 0.6399 n 750 | frozen est +0.0024 [-0.0106, +0.0153] boot [-0.0094, +0.0154]
+Luna  exclude_pilot          D_swap                   -0.0251 se 0.0080 CGM [-0.0408, -0.0094] boot [-0.0401, -0.0104] p 0.0008563 n 675 | frozen est -0.0251 [-0.0408, -0.0094] boot [-0.0406, -0.0101]
+Luna  exclude_pilot          G                        +0.0447 se 0.0100 CGM [+0.0250, +0.0644] boot [+0.0265, +0.0630] p 8.479e-06 n 675 | frozen est +0.0447 [+0.0250, +0.0644] boot [+0.0271, +0.0621]
+Luna  exclude_pilot          delta_Brier              +0.0006 se 0.0023 CGM [-0.0040, +0.0052] boot [-0.0046, +0.0056] p 0.7961 n 675 | frozen est +0.0006 [-0.0041, +0.0057] boot [-0.0041, +0.0057]
+Haiku exclude_pilot          D_swap                   +0.0023 se 0.0067 CGM [-0.0109, +0.0154] boot [-0.0114, +0.0154] p 0.6316 n 675 | frozen est +0.0023 [-0.0109, +0.0154] boot [-0.0111, +0.0152]
+Haiku exclude_pilot          G                        -0.0025 se 0.0099 CGM [-0.0220, +0.0169] boot [-0.0217, +0.0168] p 0.7992 n 675 | frozen est -0.0025 [-0.0220, +0.0169] boot [-0.0216, +0.0166]
+Haiku exclude_pilot          delta_Brier              +0.0035 se 0.0025 CGM [-0.0013, +0.0083] boot [-0.0012, +0.0080] p 0.153 n 675 | frozen est +0.0035 [-0.0012, +0.0083] boot [-0.0012, +0.0083]
+Luna  equal_target_category  D_swap                   -0.0092 se 0.0106 CGM [-0.0299, +0.0115] boot [-0.0299, +0.0134] p 0.1912 n 253 | frozen est -0.0092 [-0.0299, +0.0115] boot [-0.0314, +0.0122]
+Luna  equal_target_category  G                        +0.0435 se 0.0137 CGM [+0.0168, +0.0703] boot [+0.0153, +0.0733] p 0.00144 n 253 | frozen est +0.0435 [+0.0168, +0.0703] boot [+0.0145, +0.0722]
+Luna  equal_target_category  delta_Brier              -0.0027 se 0.0029 CGM [-0.0083, +0.0030] boot [-0.0086, +0.0033] p 0.3612 n 253 | frozen est -0.0027 [-0.0086, +0.0033] boot [-0.0086, +0.0033]
+Haiku equal_target_category  D_swap                   +0.0115 se 0.0110 CGM [-0.0101, +0.0331] boot [-0.0099, +0.0331] p 0.8523 n 253 | frozen est +0.0115 [-0.0101, +0.0331] boot [-0.0113, +0.0336]
+Haiku equal_target_category  G                        +0.0020 se 0.0167 CGM [-0.0307, +0.0347] boot [-0.0300, +0.0352] p 0.904 n 253 | frozen est +0.0020 [-0.0307, +0.0347] boot [-0.0311, +0.0341]
+Haiku equal_target_category  delta_Brier              -0.0004 se 0.0043 CGM [-0.0088, +0.0079] boot [-0.0076, +0.0068] p 0.9187 n 253 | frozen est -0.0004 [-0.0078, +0.0072] boot [-0.0078, +0.0072]
+max |reviewer - frozen| over estimate, CGM se and p (bootstrap CIs use a different RNG, compared by eye): 3.33e-16
+
+== (c) Holm (family of two) and decision strings recomputed ==
+Luna  primary                D_warr -0.04067 holm 0.002599 (frozen 0.002599) | 'discounts padded records' == frozen: True | with reviewer bootstrap seed: 'discounts padded records'
+        margin: CGM low -0.03734 vs D_warr -0.04067 -> gap +0.00333; boot low -0.03721; fraction of D_warr 0.556
+Haiku primary                D_warr -0.01242 holm 0.6412 (frozen 0.6412) | 'ignores padding despite warrant; exploitable (S2 harm)' == frozen: True | with reviewer bootstrap seed: 'ignores padding despite warrant (no significant S2 harm)'
+        margin: CGM low -0.01044 vs D_warr -0.01242 -> gap +0.00198; boot low -0.00926; fraction of D_warr -0.190
+Luna  exclude_pilot          D_warr -0.04067 holm 0.001713 (frozen 0.001713) | 'discounts padded records' == frozen: True | with reviewer bootstrap seed: 'discounts padded records'
+        margin: CGM low -0.04079 vs D_warr -0.04067 -> gap -0.00012; boot low -0.04014; fraction of D_warr 0.617
+Haiku exclude_pilot          D_warr -0.01242 holm 0.6316 (frozen 0.6316) | 'ignores padding despite warrant (no significant S2 harm)' == frozen: True | with reviewer bootstrap seed: 'ignores padding despite warrant (no significant S2 harm)'
+        margin: CGM low -0.01092 vs D_warr -0.01242 -> gap +0.00150; boot low -0.01138; fraction of D_warr -0.182
+Luna  equal_target_category  D_warr -0.04067 holm 0.3824 (frozen 0.3824) | 'ignores padding despite warrant (no significant S2 harm)' == frozen: True | with reviewer bootstrap seed: 'ignores padding despite warrant (no significant S2 harm)'
+        margin: CGM low -0.02994 vs D_warr -0.04067 -> gap +0.01073; boot low -0.02991; fraction of D_warr 0.227
+Haiku equal_target_category  D_warr -0.01242 holm 0.8523 (frozen 0.8523) | 'ignores padding despite warrant (no significant S2 harm)' == frozen: True | with reviewer bootstrap seed: 'ignores padding despite warrant (no significant S2 harm)'
+        margin: CGM low -0.01006 vs D_warr -0.01242 -> gap +0.00236; boot low -0.00988; fraction of D_warr -0.928
+
+== (d) exact rerun of frozen analyze() on a scratch copy ==
+rows 86 86 | numeric columns identical (1e-12): True | string columns identical: True
+src/ledger and scripts diff between run commit 68d5f66 and HEAD: ''
+Luna responses.jsonl == committed .gz content: True
+Haiku responses.jsonl == committed .gz content: True

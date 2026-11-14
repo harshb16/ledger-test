@@ -1,0 +1,81 @@
+================ Luna ================
+== (a) equal_target_category subset vs complement ==
+  equal      -0.0092 se 0.0106 CGM [-0.0299, +0.0115] boot [-0.0299, +0.0134] p 0.1912 n 253
+  not equal  -0.0292 se 0.0095 CGM [-0.0479, -0.0105] boot [-0.0476, -0.0117] p 0.001103 n 497
+   difference +0.0199  CGM se 0.0137 z +1.46 p 0.145  boot [-0.0083, +0.0480]
+  target-category items: F mean 0.89, HY mean 0.91; F fewer 257, equal 253, F more 240; equal with both zero: 127
+  F has fewer target-category items than HY    -0.0495 se 0.0133 CGM [-0.0756, -0.0233] boot [-0.0742, -0.0225] p 0.0001037 n 257
+  equal                                        -0.0092 se 0.0106 CGM [-0.0299, +0.0115] boot [-0.0299, +0.0134] p 0.1912 n 253
+  F has more                                   -0.0081 se 0.0143 CGM [-0.0361, +0.0198] boot [-0.0362, +0.0198] p 0.2846 n 240
+  per-panel model num = a*den + b*den*(catF-catHY): a(discount at equal count) -0.0236 (se 0.0076, z -3.11)  b(per extra target-cat item in F) +0.0205 (se 0.0071, z +2.88)
+  power: SE ratio equal-subset/full = 1.41 (sqrt(750/253) = 1.72); primary estimate inside the subset CI: True
+== (b) misses split (exploratory) ==
+  misses in F (raw>.25):  {1: 479, 2: 256, 3: 15} | in HY: {0: 72, 1: 353, 2: 214, 3: 85, 4: 23, 5: 1, 6: 2} | in HX: {0: 26, 1: 148, 2: 233, 3: 198, 4: 109, 5: 33, 6: 3}
+  F 1 miss    -0.0290 se 0.0097 CGM [-0.0480, -0.0101] boot [-0.0486, -0.0098] p 0.001351 n 479
+  F >=2 miss  -0.0120 se 0.0107 CGM [-0.0330, +0.0089] boot [-0.0338, +0.0085] p 0.1301 n 271
+   difference -0.0170  CGM se 0.0139 z -1.22 p 0.222  boot [-0.0442, +0.0093]
+  F has fewer misses than HY       -0.0087 se 0.0142 CGM [-0.0366, +0.0192] boot [-0.0342, +0.0177] p 0.2705 n 179 | mean maxF 0.94 maxHY 0.56
+  same number                      -0.0255 se 0.0090 CGM [-0.0432, -0.0079] boot [-0.0460, -0.0074] p 0.002252 n 480 | mean maxF 0.89 maxHY 0.66
+  F has more misses than HY        -0.0346 se 0.0235 CGM [-0.0807, +0.0116] boot [-0.0755, +0.0054] p 0.07095 n 91 | mean maxF 0.87 maxHY 0.34
+  worst item in F worse than worst in HY     -0.0288 se 0.0079 CGM [-0.0442, -0.0135] boot [-0.0439, -0.0141] p 0.0001194 n 641
+  worst item in F no worse than worst in HY  +0.0126 se 0.0221 CGM [-0.0306, +0.0559] boot [-0.0368, +0.0539] p 0.7165 n 109
+  mean worst-item raw Brier: F 0.901, HY 0.600 | score F 0.1569 HY 0.1570 | confident items in HY: mean 3.73 of 8 (F: 8 of 8)
+  num = a*den + b1*den*(missF-missHY) + b2*den*(maxF-maxHY) + b3*den*(8-confHY)/8: a -0.0425 (se 0.0248, z -1.71)  b_miss_diff -0.0075 (se 0.0097, z -0.77)  b_worst_diff -0.0332 (se 0.0375, z -0.88)  b_share_nonconfident_HY +0.0540 (se 0.0413, z +1.31)
+  num = a*den + b*den*(8-confHY)/8 (composition contrast only): a -0.0433 (se 0.0248, z -1.74)  b +0.0394 (se 0.0390, z +1.01)
+  HY has <=3 confident items (strong composition contrast)   -0.0174 se 0.0089 CGM [-0.0348, +0.0000] boot [-0.0345, -0.0008] p 0.02528 n 352
+  HY has >=4 confident items                                 -0.0273 se 0.0108 CGM [-0.0484, -0.0061] boot [-0.0499, -0.0060] p 0.005772 n 398
+== (c) other splits: residual score mismatch, display order, |pX-pY|, stated weights ==
+  mean(sF - sHY) -0.00009, max |.| 0.00945
+  X listed before Y    -0.0321 se 0.0092 CGM [-0.0502, -0.0140] boot [-0.0501, -0.0143] p 0.0002566 n 387
+  Y listed before X    -0.0125 se 0.0107 CGM [-0.0334, +0.0084] boot [-0.0337, +0.0073] p 0.1202 n 363
+   difference -0.0196  CGM se 0.0132 z -1.49 p 0.137  boot [-0.0436, +0.0048]
+  mean display position X 2.03 Y 2.13
+  |pX-pY| >= median 0.30       -0.0185 se 0.0082 CGM [-0.0345, -0.0024] boot [-0.0345, -0.0024] p 0.01199 n 387
+  below median                 -0.0350 se 0.0157 CGM [-0.0658, -0.0042] boot [-0.0663, -0.0023] p 0.01303 n 363
+  mean of per-panel ratios -0.0252, median -0.0107, share negative 0.523 / zero 0.032 / positive 0.445
+  stated normalised weight on a forecaster when holding F minus when holding HY: -0.0068 (se 0.0036, z -1.90); weight on X: A 0.214 B 0.219 H 0.160; on Y: A 0.227 B 0.219 H 0.253
+================ Haiku ================
+== (a) equal_target_category subset vs complement ==
+  equal      +0.0115 se 0.0110 CGM [-0.0101, +0.0331] boot [-0.0099, +0.0331] p 0.8523 n 253
+  not equal  -0.0021 se 0.0083 CGM [-0.0184, +0.0142] boot [-0.0184, +0.0136] p 0.3992 n 497
+   difference +0.0136  CGM se 0.0141 z +0.97 p 0.332  boot [-0.0136, +0.0414]
+  target-category items: F mean 0.89, HY mean 0.91; F fewer 257, equal 253, F more 240; equal with both zero: 127
+  F has fewer target-category items than HY    -0.0104 se 0.0118 CGM [-0.0335, +0.0127] boot [-0.0333, +0.0139] p 0.1884 n 257
+  equal                                        +0.0115 se 0.0110 CGM [-0.0101, +0.0331] boot [-0.0099, +0.0331] p 0.8523 n 253
+  F has more                                   +0.0065 se 0.0116 CGM [-0.0163, +0.0293] boot [-0.0182, +0.0291] p 0.711 n 240
+  per-panel model num = a*den + b*den*(catF-catHY): a(discount at equal count) +0.0047 (se 0.0066, z +0.71)  b(per extra target-cat item in F) +0.0069 (se 0.0047, z +1.48)
+  power: SE ratio equal-subset/full = 1.69 (sqrt(750/253) = 1.72); primary estimate inside the subset CI: True
+== (b) misses split (exploratory) ==
+  misses in F (raw>.25):  {1: 479, 2: 256, 3: 15} | in HY: {0: 72, 1: 353, 2: 214, 3: 85, 4: 23, 5: 1, 6: 2} | in HX: {0: 26, 1: 148, 2: 233, 3: 198, 4: 109, 5: 33, 6: 3}
+  F 1 miss    +0.0012 se 0.0075 CGM [-0.0135, +0.0159] boot [-0.0143, +0.0180] p 0.562 n 479
+  F >=2 miss  +0.0043 se 0.0119 CGM [-0.0191, +0.0277] boot [-0.0156, +0.0241] p 0.6415 n 271
+   difference -0.0032  CGM se 0.0140 z -0.23 p 0.822  boot [-0.0268, +0.0210]
+  F has fewer misses than HY       +0.0105 se 0.0125 CGM [-0.0139, +0.0350] boot [-0.0123, +0.0327] p 0.8014 n 179 | mean maxF 0.94 maxHY 0.56
+  same number                      -0.0036 se 0.0094 CGM [-0.0220, +0.0148] boot [-0.0212, +0.0154] p 0.3502 n 480 | mean maxF 0.89 maxHY 0.66
+  F has more misses than HY        +0.0171 se 0.0177 CGM [-0.0177, +0.0518] boot [-0.0171, +0.0515] p 0.8319 n 91 | mean maxF 0.87 maxHY 0.34
+  worst item in F worse than worst in HY     -0.0035 se 0.0057 CGM [-0.0147, +0.0078] boot [-0.0145, +0.0081] p 0.273 n 641
+  worst item in F no worse than worst in HY  +0.0353 se 0.0239 CGM [-0.0116, +0.0823] boot [-0.0047, +0.0825] p 0.9301 n 109
+  mean worst-item raw Brier: F 0.901, HY 0.600 | score F 0.1569 HY 0.1570 | confident items in HY: mean 3.73 of 8 (F: 8 of 8)
+  num = a*den + b1*den*(missF-missHY) + b2*den*(maxF-maxHY) + b3*den*(8-confHY)/8: a -0.0008 (se 0.0160, z -0.05)  b_miss_diff -0.0033 (se 0.0095, z -0.34)  b_worst_diff -0.0158 (se 0.0336, z -0.47)  b_share_nonconfident_HY +0.0190 (se 0.0310, z +0.61)
+  num = a*den + b*den*(8-confHY)/8 (composition contrast only): a -0.0012 (se 0.0160, z -0.08)  b +0.0119 (se 0.0250, z +0.48)
+  HY has <=3 confident items (strong composition contrast)   +0.0073 se 0.0093 CGM [-0.0109, +0.0255] boot [-0.0101, +0.0246] p 0.785 n 352
+  HY has >=4 confident items                                 -0.0020 se 0.0089 CGM [-0.0195, +0.0155] boot [-0.0202, +0.0174] p 0.4098 n 398
+== (c) other splits: residual score mismatch, display order, |pX-pY|, stated weights ==
+  mean(sF - sHY) -0.00009, max |.| 0.00945
+  X listed before Y    -0.0120 se 0.0079 CGM [-0.0274, +0.0034] boot [-0.0289, +0.0038] p 0.06318 n 387
+  Y listed before X    +0.0177 se 0.0104 CGM [-0.0027, +0.0381] boot [-0.0021, +0.0376] p 0.9551 n 363
+   difference -0.0297  CGM se 0.0129 z -2.30 p 0.022  boot [-0.0543, -0.0036]
+  mean display position X 2.03 Y 2.13
+  |pX-pY| >= median 0.30       +0.0057 se 0.0071 CGM [-0.0083, +0.0197] boot [-0.0077, +0.0191] p 0.7879 n 387
+  below median                 -0.0076 se 0.0149 CGM [-0.0368, +0.0216] boot [-0.0375, +0.0243] p 0.3052 n 363
+  mean of per-panel ratios -0.0006, median +0.0000, share negative 0.377 / zero 0.232 / positive 0.391
+  stated normalised weight on a forecaster when holding F minus when holding HY: +0.0001 (se 0.0025, z +0.05); weight on X: A 0.204 B 0.202 H 0.187; on Y: A 0.210 B 0.208 H 0.216
+================ Luna reasoning summaries (qualitative; provider-written summaries, not the reasoning itself) ================
+calls with a reasoning summary: {'A': 229, 'B': 255, 'H': 239} of {'A': 750, 'B': 750, 'H': 750}
+  cherry/padd/select               {'A': 0.14, 'B': 0.102, 'H': 0.1}
+  extreme/confident/overconfid     {'A': 0.148, 'B': 0.224, 'H': 0.159}
+  easy/trivial                     {'A': 0.0, 'B': 0.004, 'H': 0.0}
+  miss/wrong/error                 {'A': 0.236, 'B': 0.314, 'H': 0.243}
+  category/domain/same category    {'A': 0.655, 'B': 0.584, 'H': 0.607}
+  calibrat                         {'A': 0.546, 'B': 0.525, 'H': 0.536}
+  brier/score                      {'A': 0.62, 'B': 0.635, 'H': 0.661}

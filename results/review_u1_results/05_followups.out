@@ -1,0 +1,66 @@
+== (a) Haiku: provider routing and reasoning use, by arm, and their relation to S2 ==
+arm          A    B    H
+prov                    
+Anthropic  181  205  208
+Azure      569  545  542
+chi2 provider x arm: p = 0.223
+arm       A    B    H
+reason               
+False   484  482  481
+True    266  268  269
+chi2 reasoning>0 x arm: p = 0.987
+reasoning>0 share by provider: {'Anthropic': 0.207, 'Azure': 0.411}
+Brier by provider: {'Anthropic': 0.1794, 'Azure': 0.1675} | by reasoning>0: {False: 0.1683, True: 0.1748} | L==0.5 share by reasoning>0: {False: 0.078, True: 0.022}
+Brier by arm x reasoning>0:
+          mean                 size          
+arm          A       B       H    A    B    H
+reason                                       
+False   0.1747  0.1666  0.1637  484  482  481
+True    0.1692  0.1791  0.1761  266  268  269
+S2 (A-H dBrier) where A and H were served by the same provider: +0.00441 (CGM se 0.00283, z +1.56; boot [-0.00154, +0.01011]) n 461
+S2 where providers differ:                                     +0.00506 (CGM se 0.00389, z +1.30; boot [-0.00205, +0.01243]) n 289
+S2 where both arms reasoned       +0.00907 (CGM se 0.00754, z +1.20; boot [-0.00542, +0.02323]) n 142
+S2 where neither reasoned         +0.00327 (CGM se 0.00265, z +1.23; boot [-0.00189, +0.00857]) n 357
+S2 where A reasoned, H did not    +0.00642 (CGM se 0.00722, z +0.89; boot [-0.00738, +0.02000]) n 124
+S2 where H reasoned, A did not    +0.00191 (CGM se 0.00614, z +0.31; boot [-0.01038, +0.01382]) n 127
+S2 regression dBrier = c + b*(reason_A - reason_H): c +0.0047 (se 0.0022, z +2.08)  b +0.0023 (se 0.0047, z +0.48)
+Haiku D_swap where A and B same reasoning state   +0.0023 se 0.0064 CGM [-0.0102, +0.0149] boot [-0.0107, +0.0150] p 0.6432 n 496
+Haiku D_swap where different                      +0.0024 se 0.0144 CGM [-0.0259, +0.0307] boot [-0.0258, +0.0312] p 0.566 n 254
+Haiku G where both A and H reasoned: -0.0116 se 0.0227 CGM [-0.0562, +0.0329] boot [-0.0627, +0.0352] p 0.6085 n 142
+Haiku D_swap where both A and B reasoned: +0.0412 se 0.0115 CGM [+0.0186, +0.0638] boot [+0.0180, +0.0641] p 0.9998 n 140
+Haiku D_swap where neither reasoned:     -0.0137 se 0.0069 CGM [-0.0271, -0.0002] boot [-0.0272, -0.0000] p 0.02301 n 356
+
+== (b) Haiku outputs of exactly 0.5 ==
+n 131 by arm {'H': 52, 'A': 41, 'B': 38} | share with reasoning>0: 0.137 | mean of the five forecasts in those panels: 0.538 (all calls 0.361) | |mean_p-0.5|<0.05 share: 0.542 | Brier of 0.5 calls 0.2500 vs simple-mean Brier there 0.2458
+panels with a 0.5 in A but not H: 21 | in H but not A: 32 | S2 excluding panels with any 0.5 in A or H: +0.00439 (CGM se 0.00261, z +1.68; boot [-0.00024, +0.00917]) n 677
+
+== (c) Luna: target-category count difference (catF - catHY), pooled and non-linear ==
+F has fewer target-category items than HY: -0.0495 se 0.0133 CGM [-0.0756, -0.0233] boot [-0.0742, -0.0225] p 0.0001037 n 257
+F has as many or more                    : -0.0087 se 0.0089 CGM [-0.0260, +0.0087] boot [-0.0264, +0.0083] p 0.1636 n 493
+  fewer vs rest: difference -0.0408 CGM se 0.0161 z -2.53 p 0.0114 (one of ~10 exploratory splits in this review; Bonferroni x10)
+  piecewise num = a*den + b_neg*den*min(dc,0) + b_pos*den*max(dc,0): a -0.0138 (se 0.0097, z -1.43)  b_neg +0.0320 (se 0.0116, z +2.77)  b_pos +0.0107 (se 0.0117, z +0.92)
+  by dc value: {-2: (-0.0922, 61), -1: (-0.0347, 181), 0: (-0.0092, 253), 1: (-0.0228, 159), 2: (0.0105, 67)}
+  mean dc -0.020; symmetric-cue check: the count difference is balanced, so a linear domain cue cancels in the pooled D_swap
+  same split for G-type contrast A vs H (catF - catHX): a -0.0121 (se 0.0118, z -1.03)  pi_run +0.5229 (se 0.0982, z +5.32)  b_cat +0.0234 (se 0.0085, z +2.76)
+Haiku  F fewer: -0.0104 se 0.0118 CGM [-0.0335, +0.0127] boot [-0.0333, +0.0139] p 0.1884 n 257
+Haiku  F as many or more: +0.0090 se 0.0073 CGM [-0.0054, +0.0234] boot [-0.0056, +0.0240] p 0.89 n 493
+
+== (d) Luna: misses split is confounded with the displayed score level ==
+              n     sF    sHY  missHY   maxF  maxHY  confHY  delta     tX  absdp
+1 miss      479  0.113  0.113   1.013  0.882  0.521   4.194  0.099  0.213  0.358
+>=2 misses  271  0.234  0.234   2.435  0.935  0.741   2.919  0.081  0.315  0.385
+  low sF: mean sF 0.106 -0.0282 se 0.0129 CGM [-0.0534, -0.0030] boot [-0.0557, -0.0016] p 0.01414 n 250
+  mid sF: mean sF 0.129 -0.0267 se 0.0133 CGM [-0.0529, -0.0006] boot [-0.0521, -0.0031] p 0.02247 n 251
+  high sF: mean sF 0.236 -0.0138 se 0.0118 CGM [-0.0369, +0.0094] boot [-0.0360, +0.0077] p 0.1219 n 249
+  worst item in F worse than worst in HY vs not: difference -0.0415 CGM se 0.0235 z -1.77 p 0.0771
+  F has more misses than HY vs fewer (excluding ties): difference -0.0258 CGM se 0.0273 z -0.95 p 0.3432
+  trend num = a*den + b*den*(missF-missHY): a(at equal misses) -0.0244 (se 0.0082, z -2.97)  b(per extra miss in F) -0.0105 (se 0.0106, z -0.99)
+  panels where F is NOT the record with the worse worst-item and has no more misses than HY (n=102): +0.0079 se 0.0233 CGM [-0.0378, +0.0535] boot [-0.0414, +0.0541] p 0.632 n 102
+
+== (e) spend ledger by time window ==
+settles before 09:00 UTC (Luna window): 2250 $0.9460 | after (Haiku window): 2251 $0.8088
+estimated settle(s): [{'t': Timestamp('2026-11-14 10:08:08.667198896+0000', tz='UTC'), 'amount': 0.0011246}]
+reserves without a settle: 5 | settles without a stored response: 1
+
+== (f) Luna reasoning summaries that mention cherry-picking / padding (first 6, arm A or B) ==
+  calls whose summary matches (cherry|padd|easy question|only confident|all extreme): {'A': 0, 'B': 0, 'H': 0}

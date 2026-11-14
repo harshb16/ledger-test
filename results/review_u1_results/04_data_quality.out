@@ -1,0 +1,70 @@
+================ Luna ================
+responses 2250 | manifest 2250 | same ids: True
+messages actually sent == frozen build manifest: 2250 of 2250
+-- outputs --
+probability: min 0.002 max 0.960; outside [0,1]: 0; exactly 0 or 1: 0; exactly 0.5: 7; distinct values: 502; most common: {0.29: 41, 0.36: 39, 0.19: 37, 0.27: 36}
+       n  mean_L    sd_L  outside_hull  equals_mean  abs_dev_mean  wsum_is_1  wsum_is_100  wsum_0  L_vs_weights   max_w  zero_w  uniform_w
+arm                                                                                                                                       
+A    750  0.3282  0.2037        0.0013       0.0267        0.0659     0.9853          0.0     0.0        0.0136  0.3637  0.0200     0.0013
+B    750  0.3354  0.2035        0.0000       0.0160        0.0602     0.9907          0.0     0.0        0.0132  0.3605  0.0120     0.0000
+H    750  0.3394  0.2046        0.0000       0.0187        0.0632     0.9893          0.0     0.0        0.0127  0.3737  0.0173     0.0000
+weights sum: distribution {1.0: 2224, 1.001: 7, 0.999: 4, 0.9: 3, 0.95: 3, 0.98: 1} | all five letters present: True
+-- routing / generation --
+  provider: {'OpenAI': {'A': 750, 'B': 750, 'H': 750}}
+  model: {'openai/gpt-6-luna': {'A': 750, 'B': 750, 'H': 750}}
+  finish: {'stop': {'A': 750, 'B': 750, 'H': 750}}
+  native: {'completed': {'A': 750, 'B': 750, 'H': 750}}
+  tier: {'default': {'A': 750, 'B': 750, 'H': 750}}
+  settings: {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}': {'A': 750, 'B': 750, 'H': 750}}
+  est: {'False': {'A': 750, 'B': 750, 'H': 750}}
+  system_fingerprint values: 0 | refusals: 0 | cached prompt tokens > 0: 0
+     prompt_tok  completion_tok  reasoning_tok  zero_reasoning    cost  latency_med  latency_p99
+arm                                                                                             
+A     1012.5040        634.9853       585.9907             0.0  0.3141       8.1546      11.9745
+B     1012.5040        640.6413       591.6467             0.0  0.3162       8.1092      11.7742
+H     1013.1507        639.1733       590.1840             0.0  0.3157       8.1959      11.2420
+  wall-clock window: 2026-11-14 07:17:26.284337+00:00 -> 2026-11-14 07:37:16.893762+00:00 | arm share by 10-minute bin (max deviation from 1/3): 0.005
+  within-panel time spread between arms: median 3s, 95th pct 5s, max 28s; panels split across the interruption (>10 min): 0
+-- position / letter (fixed across arms by design; checked on the data) --
+  position of the F holder: arm A (X) mean 2.03, arm B (Y) mean 2.13; X position counts [146, 151, 150, 139, 164]; Y position counts [129, 139, 147, 174, 161]
+  mean stated weight by display position: {'A': [0.198, 0.202, 0.198, 0.2, 0.202], 'B': [0.203, 0.2, 0.195, 0.196, 0.206], 'H': [0.202, 0.197, 0.199, 0.199, 0.204]}
+  mean stated weight by letter: {'A': [0.206, 0.208, 0.189, 0.199, 0.199], 'B': [0.202, 0.201, 0.197, 0.201, 0.2], 'H': [0.2, 0.202, 0.199, 0.198, 0.202]}
+  identical outputs across arms: L_A==L_B 0.032, L_A==L_H 0.037, all three 0.004; corr(L_A,L_B) 0.936 corr(L_A,L_H) 0.944
+================ Haiku ================
+responses 2250 | manifest 2250 | same ids: True
+messages actually sent == frozen build manifest: 2250 of 2250
+-- outputs --
+probability: min 0.010 max 0.930; outside [0,1]: 0; exactly 0 or 1: 0; exactly 0.5: 131; distinct values: 116; most common: {0.2: 259, 0.3: 190, 0.5: 131, 0.12: 110}
+       n  mean_L    sd_L  outside_hull  equals_mean  abs_dev_mean  wsum_is_1  wsum_is_100  wsum_0  L_vs_weights   max_w  zero_w  uniform_w
+arm                                                                                                                                       
+A    750  0.3216  0.1870        0.0053       0.0373        0.0568     0.7800          0.0     0.0        0.0460  0.3020  0.0013     0.0680
+B    750  0.3209  0.1882        0.0027       0.0333        0.0582     0.7827          0.0     0.0        0.0479  0.3015  0.0013     0.0600
+H    750  0.3238  0.1866        0.0027       0.0213        0.0574     0.7853          0.0     0.0        0.0465  0.3053  0.0040     0.0693
+weights sum: distribution {1.0: 1761, 0.9: 40, 0.8: 26, 0.99: 17, 1.01: 17, 1.001: 16} | all five letters present: True
+-- routing / generation --
+  provider: {'Anthropic': {'A': 181, 'B': 205, 'H': 208}, 'Azure': {'A': 569, 'B': 545, 'H': 542}}
+  model: {'anthropic/claude-haiku-5.5': {'A': 750, 'B': 750, 'H': 750}}
+  finish: {'stop': {'A': 750, 'B': 750, 'H': 750}}
+  native: {'end_turn': {'A': 750, 'B': 750, 'H': 750}}
+  tier: {'default': {'A': 750, 'B': 750, 'H': 750}}
+  settings: {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}': {'A': 750, 'B': 750, 'H': 750}}
+  est: {'False': {'A': 750, 'B': 750, 'H': 750}}
+  system_fingerprint values: 0 | refusals: 0 | cached prompt tokens > 0: 0
+     prompt_tok  completion_tok  reasoning_tok  zero_reasoning    cost  latency_med  latency_p99
+arm                                                                                             
+A     1699.3413        375.8827       320.0933          0.6453  0.2684       1.4249       6.9699
+B     1699.3413        372.9800       317.1747          0.6427  0.2673       1.4425       7.5292
+H     1699.1947        385.2360       329.4213          0.6413  0.2719       1.4185       7.5239
+  wall-clock window: 2026-11-14 10:03:12.953484+00:00 -> 2026-11-14 10:09:43.640211+00:00 | arm share by 10-minute bin (max deviation from 1/3): 0.000
+  within-panel time spread between arms: median 3s, 95th pct 5s, max 26s; panels split across the interruption (>10 min): 0
+-- position / letter (fixed across arms by design; checked on the data) --
+  position of the F holder: arm A (X) mean 2.03, arm B (Y) mean 2.13; X position counts [146, 151, 150, 139, 164]; Y position counts [129, 139, 147, 174, 161]
+  mean stated weight by display position: {'A': [0.227, 0.202, 0.192, 0.185, 0.193], 'B': [0.227, 0.203, 0.191, 0.185, 0.194], 'H': [0.224, 0.205, 0.192, 0.187, 0.192]}
+  mean stated weight by letter: {'A': [0.2, 0.182, 0.188, 0.206, 0.224], 'B': [0.204, 0.175, 0.19, 0.206, 0.225], 'H': [0.199, 0.179, 0.193, 0.207, 0.222]}
+  identical outputs across arms: L_A==L_B 0.232, L_A==L_H 0.209, all three 0.083; corr(L_A,L_B) 0.937 corr(L_A,L_H) 0.925
+================ spend ledger ================
+events {'reserve': 4506, 'settle': 4501}
+settles 4501, total $1.7547, estimated 1; keys ['amount', 'estimated', 'event', 'id', 'timestamp']
+  Luna cost in responses: $0.9460
+  Haiku cost in responses: $0.8076
+  responses total $1.7536; ledger settles beyond the 4,500 stored responses: 1 (interrupted call paid but not stored?)
