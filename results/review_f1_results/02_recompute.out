@@ -1,0 +1,110 @@
+== 1. agreement with frozen estimands.csv ==
+rows mine 216 frozen 216 merge {'both': np.int64(216), 'left_only': np.int64(0), 'right_only': np.int64(0)}
+max |mine - frozen| estimate: 4.44e-16
+max |mine - frozen| se: 1.3e-17
+max |mine - frozen| low: 4.44e-16
+max |mine - frozen| high: 4.44e-16
+max |mine - frozen| p: 1.67e-15
+max |mine - frozen| n: 0
+max |mine - frozen| questions: 0
+max |my bootstrap bound (10,000 reps, seed 777) - frozen bootstrap bound (2,000 reps)|, Brier metrics: 0.00075
+exclude_retried identical to primary (0 retries): True
+
+== 2. Holm and decisions (MIX delta_W, family of two) ==
+primary          Luna  +0.00053 [-0.00019, +0.00125] se 0.00037 p 0.1461 boot [-0.00005, +0.00135] n 486 G 162 | holm 0.2922 (frozen 0.2922) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 2.8e-34 | largest |CI bound| 0.00125
+primary          Haiku -0.00126 [-0.00406, +0.00154] se 0.00143 p 0.3764 boot [-0.00431, +0.00115] n 486 G 162 | holm 0.3764 (frozen 0.3764) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 0.0045 | largest |CI bound| 0.00406
+exclude_pilot    Luna  +0.00016 [-0.00024, +0.00057] se 0.00020 p 0.4210 boot [-0.00023, +0.00057] n 438 G 146 | holm 0.8421 (frozen 0.8421) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 7.7e-124 | largest |CI bound| 0.00057
+exclude_pilot    Haiku -0.00053 [-0.00335, +0.00228] se 0.00144 p 0.7098 boot [-0.00367, +0.00180] n 438 G 146 | holm 0.8421 (frozen 0.8421) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 0.00094 | largest |CI bound| 0.00335
+draw0            Luna  +0.00051 [+0.00003, +0.00100] se 0.00024 p 0.0356 boot [+0.00010, +0.00104] n 162 G 162 | holm 0.0711 (frozen 0.0711) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 3.6e-75 | largest |CI bound| 0.00100
+draw0            Haiku +0.00148 [-0.00073, +0.00369] se 0.00113 p 0.1896 boot [-0.00064, +0.00382] n 162 G 162 | holm 0.1896 (frozen 0.1896) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 0.00088 | largest |CI bound| 0.00369
+exclude_retried  Luna  +0.00053 [-0.00019, +0.00125] se 0.00037 p 0.1461 boot [-0.00005, +0.00135] n 486 G 162 | holm 0.2922 (frozen 0.2922) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 2.8e-34 | largest |CI bound| 0.00125
+exclude_retried  Haiku -0.00126 [-0.00406, +0.00154] se 0.00143 p 0.3764 boot [-0.00431, +0.00115] n 486 G 162 | holm 0.3764 (frozen 0.3764) | mine: 'the LLM matches the aggregate and adds nothing measurable' | same as frozen: True | se<0.0026: True | boot CI in ±.005: True | t CI in ±.005: True | TOST p 0.0045 | largest |CI bound| 0.00406
+
+== 3. all primary-sample estimands (mine) ==
+Luna  MIX    delta_W            +0.00053 [-0.00019, +0.00125] se 0.00037 p 0.1461 boot [-0.00005, +0.00135] n 486 G 162
+Luna  MIX    delta_C2           -0.00525 [-0.00991, -0.00060] se 0.00237 p 0.0270 boot [-0.00966, -0.00039] n 486 G 162
+Luna  MIX    delta_C0           -0.02176 [-0.02959, -0.01393] se 0.00399 p 0.0000 boot [-0.02935, -0.01380] n 486 G 162
+Luna  MIX    vs_mean            -0.02176 [-0.02959, -0.01393] se 0.00399 p 0.0000 boot [-0.02934, -0.01380] n 486 G 162
+Luna  MIX    deference          +0.98417 [+0.97348, +0.99486] se 0.00545 p 0.0000 boot [+0.97237, +0.99371] n 486 G 162
+Luna  MIX    copy_W             +0.94650 [+0.92676, +0.96625] se 0.01007 p 0.0000 boot [+0.92593, +0.96502] n 486 G 162
+Luna  MIX    copy_mean          +0.06790 [+0.04564, +0.09016] se 0.01136 p 0.0000 boot [+0.04733, +0.09053] n 486 G 162
+Luna  MIX    drift_probability  +0.00467 [-0.00096, +0.01029] se 0.00287 p 0.1041 boot [-0.00076, +0.01037] n 50 G 43
+Luna  MIX    drift_Brier        +0.00054 [-0.00286, +0.00394] se 0.00174 p 0.7548 boot [-0.00272, +0.00387] n 50 G 43
+Luna  PUB    delta_W            -0.00016 [-0.00052, +0.00021] se 0.00019 p 0.4039 boot [-0.00053, +0.00021] n 486 G 162
+Luna  PUB    delta_C2           +0.00302 [-0.00106, +0.00709] se 0.00208 p 0.1465 boot [-0.00092, +0.00720] n 486 G 162
+Luna  PUB    delta_C0           +0.00048 [-0.00706, +0.00802] se 0.00385 p 0.9012 boot [-0.00679, +0.00817] n 486 G 162
+Luna  PUB    vs_mean            +0.00047 [-0.00707, +0.00801] se 0.00385 p 0.9033 boot [-0.00681, +0.00816] n 486 G 162
+Luna  PUB    deference          +1.00173 [+0.99790, +1.00555] se 0.00195 p 0.0000 boot [+0.99813, +1.00586] n 486 G 162
+Luna  PUB    copy_W             +0.94033 [+0.91900, +0.96166] se 0.01088 p 0.0000 boot [+0.91770, +0.96091] n 486 G 162
+Luna  PUB    copy_mean          +0.07613 [+0.05305, +0.09921] se 0.01178 p 0.0000 boot [+0.05350, +0.09877] n 486 G 162
+Luna  PUB    drift_probability  +0.01142 [-0.00104, +0.02387] se 0.00635 p 0.0724 boot [+0.00030, +0.02505] n 50 G 47
+Luna  PUB    drift_Brier        -0.00570 [-0.01816, +0.00676] se 0.00636 p 0.3702 boot [-0.01924, +0.00505] n 50 G 47
+Luna  pooled delta_W            +0.00019 [-0.00023, +0.00061] se 0.00021 p 0.3748 boot [-0.00019, +0.00064] n 972 G 162
+Luna  pooled delta_C2           -0.00112 [-0.00419, +0.00196] se 0.00157 p 0.4768 boot [-0.00413, +0.00199] n 972 G 162
+Luna  pooled delta_C0           -0.01064 [-0.01602, -0.00527] se 0.00274 p 0.0001 boot [-0.01586, -0.00513] n 972 G 162
+Luna  pooled vs_mean            -0.01065 [-0.01602, -0.00527] se 0.00274 p 0.0001 boot [-0.01587, -0.00514] n 972 G 162
+Luna  pooled deference          +0.99056 [+0.98376, +0.99735] se 0.00347 p 0.0000 boot [+0.98292, +0.99664] n 972 G 162
+Luna  pooled copy_W             +0.94342 [+0.92851, +0.95832] se 0.00761 p 0.0000 boot [+0.92798, +0.95782] n 972 G 162
+Luna  pooled copy_mean          +0.07202 [+0.05512, +0.08891] se 0.00862 p 0.0000 boot [+0.05556, +0.08951] n 972 G 162
+Luna  pooled drift_probability  +0.00804 [+0.00128, +0.01480] se 0.00345 p 0.0197 boot [+0.00183, +0.01511] n 100 G 74
+Luna  pooled drift_Brier        -0.00258 [-0.00911, +0.00395] se 0.00333 p 0.4392 boot [-0.00973, +0.00315] n 100 G 74
+Haiku MIX    delta_W            -0.00126 [-0.00406, +0.00154] se 0.00143 p 0.3764 boot [-0.00431, +0.00115] n 486 G 162
+Haiku MIX    delta_C2           -0.00533 [-0.00940, -0.00126] se 0.00208 p 0.0102 boot [-0.00938, -0.00131] n 486 G 162
+Haiku MIX    delta_C0           -0.02171 [-0.02851, -0.01491] se 0.00347 p 0.0000 boot [-0.02867, -0.01506] n 486 G 162
+Haiku MIX    vs_mean            -0.02356 [-0.03022, -0.01689] se 0.00340 p 0.0000 boot [-0.03030, -0.01697] n 486 G 162
+Haiku MIX    deference          +0.90624 [+0.86271, +0.94976] se 0.02221 p 0.0000 boot [+0.85802, +0.94524] n 486 G 162
+Haiku MIX    copy_W             +0.83128 [+0.79072, +0.87183] se 0.02069 p 0.0000 boot [+0.78807, +0.87037] n 486 G 162
+Haiku MIX    copy_mean          +0.08230 [+0.05733, +0.10728] se 0.01274 p 0.0000 boot [+0.05761, +0.10905] n 486 G 162
+Haiku MIX    drift_probability  -0.00228 [-0.00906, +0.00450] se 0.00346 p 0.5096 boot [-0.00915, +0.00420] n 50 G 43
+Haiku MIX    drift_Brier        +0.00043 [-0.00407, +0.00492] se 0.00229 p 0.8526 boot [-0.00437, +0.00445] n 50 G 43
+Haiku PUB    delta_W            -0.00099 [-0.00215, +0.00016] se 0.00059 p 0.0909 boot [-0.00221, +0.00008] n 486 G 162
+Haiku PUB    delta_C2           +0.00248 [-0.00238, +0.00734] se 0.00248 p 0.3168 boot [-0.00225, +0.00740] n 486 G 162
+Haiku PUB    delta_C0           +0.00266 [-0.00489, +0.01021] se 0.00385 p 0.4905 boot [-0.00469, +0.01034] n 486 G 162
+Haiku PUB    vs_mean            -0.00037 [-0.00776, +0.00701] se 0.00377 p 0.9215 boot [-0.00738, +0.00721] n 486 G 162
+Haiku PUB    deference          +0.95578 [+0.92455, +0.98701] se 0.01593 p 0.0000 boot [+0.92081, +0.98304] n 486 G 162
+Haiku PUB    copy_W             +0.91770 [+0.89207, +0.94332] se 0.01307 p 0.0000 boot [+0.89095, +0.94239] n 486 G 162
+Haiku PUB    copy_mean          +0.07819 [+0.05355, +0.10283] se 0.01257 p 0.0000 boot [+0.05350, +0.10288] n 486 G 162
+Haiku PUB    drift_probability  +0.00630 [-0.00665, +0.01925] se 0.00661 p 0.3404 boot [-0.00650, +0.01916] n 50 G 47
+Haiku PUB    drift_Brier        -0.00598 [-0.01892, +0.00696] se 0.00660 p 0.3652 boot [-0.01842, +0.00710] n 50 G 47
+Haiku pooled delta_W            -0.00113 [-0.00261, +0.00036] se 0.00076 p 0.1363 boot [-0.00276, +0.00020] n 972 G 162
+Haiku pooled delta_C2           -0.00142 [-0.00460, +0.00176] se 0.00162 p 0.3799 boot [-0.00455, +0.00183] n 972 G 162
+Haiku pooled delta_C0           -0.00953 [-0.01470, -0.00435] se 0.00264 p 0.0003 boot [-0.01466, -0.00436] n 972 G 162
+Haiku pooled vs_mean            -0.01196 [-0.01686, -0.00707] se 0.00250 p 0.0000 boot [-0.01676, -0.00702] n 972 G 162
+Haiku pooled deference          +0.92427 [+0.89413, +0.95440] se 0.01538 p 0.0000 boot [+0.89097, +0.95168] n 972 G 162
+Haiku pooled copy_W             +0.87449 [+0.85003, +0.89894] se 0.01247 p 0.0000 boot [+0.84979, +0.89815] n 972 G 162
+Haiku pooled copy_mean          +0.08025 [+0.06233, +0.09816] se 0.00914 p 0.0000 boot [+0.06276, +0.09877] n 972 G 162
+Haiku pooled drift_probability  +0.00201 [-0.00545, +0.00947] se 0.00381 p 0.5973 boot [-0.00558, +0.00958] n 100 G 74
+Haiku pooled drift_Brier        -0.00278 [-0.00949, +0.00394] se 0.00343 p 0.4179 boot [-0.00934, +0.00417] n 100 G 74
+
+frozen confounded_with_time flags:
+              model          sample   type  estimate confounded_with_time
+   efficient_openai         primary    MIX -0.005251                False
+   efficient_openai         primary pooled -0.001117                False
+   efficient_openai         primary    PUB  0.003018                False
+   efficient_openai   exclude_pilot    MIX -0.005622                False
+   efficient_openai   exclude_pilot pooled -0.001217                False
+   efficient_openai   exclude_pilot    PUB  0.003189                False
+   efficient_openai           draw0    MIX -0.010314                False
+   efficient_openai           draw0 pooled -0.002415                False
+   efficient_openai           draw0    PUB  0.005484                False
+   efficient_openai exclude_retried    MIX -0.005251                False
+   efficient_openai exclude_retried pooled -0.001117                False
+   efficient_openai exclude_retried    PUB  0.003018                False
+efficient_anthropic         primary    MIX -0.005330                False
+efficient_anthropic         primary pooled -0.001425                False
+efficient_anthropic         primary    PUB  0.002481                False
+efficient_anthropic   exclude_pilot    MIX -0.005729                False
+efficient_anthropic   exclude_pilot pooled -0.001149                False
+efficient_anthropic   exclude_pilot    PUB  0.003431                False
+efficient_anthropic           draw0    MIX -0.008789                False
+efficient_anthropic           draw0 pooled -0.001326                False
+efficient_anthropic           draw0    PUB  0.006137                False
+efficient_anthropic exclude_retried    MIX -0.005330                False
+efficient_anthropic exclude_retried pooled -0.001425                False
+efficient_anthropic exclude_retried    PUB  0.002481                False
+
+== 4. Brier levels (primary sample) ==
+Luna  MIX: M=0.1364 W=0.1141 C0=0.1364 C2=0.1199 L=0.1146 | W shown rounded to 3dp=0.1141
+Luna  PUB: M=0.1689 W=0.1695 C0=0.1688 C2=0.1663 L=0.1693 | W shown rounded to 3dp=0.1695
+Haiku MIX: M=0.1364 W=0.1141 C0=0.1345 C2=0.1182 L=0.1128 | W shown rounded to 3dp=0.1141
+Haiku PUB: M=0.1689 W=0.1695 C0=0.1658 C2=0.1660 L=0.1685 | W shown rounded to 3dp=0.1695

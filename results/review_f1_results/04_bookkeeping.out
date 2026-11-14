@@ -1,0 +1,6 @@
+spend ledger events Counter({'reserve': 2145, 'settle': 2145})
+  reserve sum 2.2894
+  settle sum 0.4250
+ids 2145 rows per id Counter({2: 2145})
+efficient_anthropic attempt_count 2 17432/MIX/1/C2W retried False cost 0.0001145 cost_estimated False usage {'cached_tokens': 0, 'completion_tokens': 58, 'prompt_tokens': 855, 'reasoning_tokens': 0} parsed 0.02 n raw_attempts 1 raw attempt keys ['attempts', 'latency', 'parse_error', 'parsed', 'request', 'response', 'timestamp'] raw attempts field 2
+sum of response cost_usd 0.4239

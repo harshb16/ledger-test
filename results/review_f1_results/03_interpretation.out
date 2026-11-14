@@ -1,0 +1,88 @@
+== A. Is the gain over C2 just W's own advantage over C2?  delta_C2 = (W - C2) + delta_W exactly ==
+Luna  MIX: Brier(W)-Brier(C2)   -0.00579 [-0.01032, -0.00125] se 0.00231 p 0.0123 boot [-0.01010, -0.00115] n 486 G 162
+Luna  MIX: Brier(C2W)-Brier(C2) -0.00525 [-0.00991, -0.00060] se 0.00237 p 0.0270 boot [-0.00966, -0.00039] n 486 G 162
+Luna  MIX: difference = delta_W +0.00053 [-0.00019, +0.00125] se 0.00037 p 0.1461 boot [-0.00005, +0.00135] n 486 G 162
+Luna  PUB: Brier(W)-Brier(C2)   +0.00317 [-0.00092, +0.00727] se 0.00209 p 0.1285 boot [-0.00077, +0.00742] n 486 G 162
+Luna  PUB: Brier(C2W)-Brier(C2) +0.00302 [-0.00106, +0.00709] se 0.00208 p 0.1465 boot [-0.00092, +0.00720] n 486 G 162
+Luna  PUB: difference = delta_W -0.00016 [-0.00052, +0.00021] se 0.00019 p 0.4039 boot [-0.00053, +0.00021] n 486 G 162
+Haiku MIX: Brier(W)-Brier(C2)   -0.00407 [-0.00956, +0.00143] se 0.00280 p 0.1468 boot [-0.00921, +0.00157] n 486 G 162
+Haiku MIX: Brier(C2W)-Brier(C2) -0.00533 [-0.00940, -0.00126] se 0.00208 p 0.0102 boot [-0.00938, -0.00131] n 486 G 162
+Haiku MIX: difference = delta_W -0.00126 [-0.00406, +0.00154] se 0.00143 p 0.3764 boot [-0.00431, +0.00115] n 486 G 162
+Haiku PUB: Brier(W)-Brier(C2)   +0.00348 [-0.00141, +0.00836] se 0.00249 p 0.1632 boot [-0.00128, +0.00841] n 486 G 162
+Haiku PUB: Brier(C2W)-Brier(C2) +0.00248 [-0.00238, +0.00734] se 0.00248 p 0.3168 boot [-0.00225, +0.00740] n 486 G 162
+Haiku PUB: difference = delta_W -0.00099 [-0.00215, +0.00016] se 0.00059 p 0.0909 boot [-0.00221, +0.00008] n 486 G 162
+
+== B. Copying: baselines and verbatim rate ==
+Luna  MIX: |C2W-W|<=.005 0.947 | verbatim (answer == W as displayed, 3dp) 0.831 | answer == W rounded to 2dp (and not verbatim) 0.021 | baseline: Phase 3 C2 within .005 of W 0.158, verbatim 0.033 | C2R (same day, n=50) within .005 of W 0.180 | C2W within .005 of own Phase 3 C2 answer 0.160
+Luna  PUB: |C2W-W|<=.005 0.940 | verbatim (answer == W as displayed, 3dp) 0.817 | answer == W rounded to 2dp (and not verbatim) 0.031 | baseline: Phase 3 C2 within .005 of W 0.183, verbatim 0.029 | C2R (same day, n=50) within .005 of W 0.240 | C2W within .005 of own Phase 3 C2 answer 0.165
+Haiku MIX: |C2W-W|<=.005 0.831 | verbatim (answer == W as displayed, 3dp) 0.757 | answer == W rounded to 2dp (and not verbatim) 0.045 | baseline: Phase 3 C2 within .005 of W 0.175, verbatim 0.016 | C2R (same day, n=50) within .005 of W 0.200 | C2W within .005 of own Phase 3 C2 answer 0.183
+Haiku PUB: |C2W-W|<=.005 0.918 | verbatim (answer == W as displayed, 3dp) 0.840 | answer == W rounded to 2dp (and not verbatim) 0.074 | baseline: Phase 3 C2 within .005 of W 0.154, verbatim 0.023 | C2R (same day, n=50) within .005 of W 0.160 | C2W within .005 of own Phase 3 C2 answer 0.144
+copy share at other tolerances (MIX):
+  Luna: <=0.0005: 0.833, <=0.001: 0.858, <=0.005: 0.947, <=0.01: 0.965, <=0.02: 0.979, <=0.05: 0.996 | mean |C2W-W| 0.0018, max 0.135
+  Haiku: <=0.0005: 0.757, <=0.001: 0.765, <=0.005: 0.831, <=0.01: 0.862, <=0.02: 0.907, <=0.05: 0.961 | mean |C2W-W| 0.0077, max 0.260
+
+== C. Is copying selective? (copy share by where W is, and by whether W was in fact better) ==
+Luna by |W-M|: {'MIX/|W-M|<=.01': '0.966 (n=59)', 'MIX/.01-.03': '0.962 (n=78)', 'MIX/.03-.06': '0.960 (n=75)', 'MIX/>.06': '0.934 (n=274)', 'PUB/|W-M|<=.01': '0.960 (n=75)', 'PUB/.01-.03': '0.968 (n=95)', 'PUB/.03-.06': '0.928 (n=125)', 'PUB/>.06': '0.927 (n=191)'}
+Luna by W extremity: {'W within .01 of 0/1': {'mean': 0.925, 'size': 53}, '.01-.05': {'mean': 0.985, 'size': 131}, '.05-.2': {'mean': 0.96, 'size': 274}, '.2-.5': {'mean': 0.926, 'size': 514}}
+Luna by own earlier C2 answer far from W (>.05): {('MIX', False): {'mean': 0.969, 'size': 357}, ('MIX', True): {'mean': 0.884, 'size': 129}, ('PUB', False): {'mean': 0.944, 'size': 391}, ('PUB', True): {'mean': 0.926, 'size': 95}}
+  Luna MIX: copy share where W beat own C2 on this panel 0.942 (n=330); where own C2 beat W 0.955 (n=154)
+  Luna PUB: copy share where W beat own C2 on this panel 0.955 (n=242); where own C2 beat W 0.926 (n=244)
+Haiku by |W-M|: {'MIX/|W-M|<=.01': '0.932 (n=59)', 'MIX/.01-.03': '0.910 (n=78)', 'MIX/.03-.06': '0.827 (n=75)', 'MIX/>.06': '0.788 (n=274)', 'PUB/|W-M|<=.01': '0.960 (n=75)', 'PUB/.01-.03': '0.926 (n=95)', 'PUB/.03-.06': '0.920 (n=125)', 'PUB/>.06': '0.895 (n=191)'}
+Haiku by W extremity: {'W within .01 of 0/1': {'mean': 0.698, 'size': 53}, '.01-.05': {'mean': 0.863, 'size': 131}, '.05-.2': {'mean': 0.88, 'size': 274}, '.2-.5': {'mean': 0.893, 'size': 514}}
+Haiku by own earlier C2 answer far from W (>.05): {('MIX', False): {'mean': 0.901, 'size': 344}, ('MIX', True): {'mean': 0.662, 'size': 142}, ('PUB', False): {'mean': 0.921, 'size': 369}, ('PUB', True): {'mean': 0.906, 'size': 117}}
+  Haiku MIX: copy share where W beat own C2 on this panel 0.803 (n=314); where own C2 beat W 0.882 (n=170)
+  Haiku PUB: copy share where W beat own C2 on this panel 0.909 (n=243); where own C2 beat W 0.926 (n=243)
+
+== D. EXPLORATORY: the departures (|C2W - W| > .005) ==
+Luna  MIX : departures n 26 (0.053) in 25 questions | median |dev| 0.013, mean 0.026 | toward equal mean 0.88 | toward own Phase 3 C2 0.85 | toward 0.5 0.58 | median position between W(0) and M(1): 0.13
+         Brier(C2W)-Brier(W) on departures: +0.0097 [-0.0037, +0.0231] se 0.0068 p 0.1563 boot [-0.0012, +0.0248] n 26 G 25 | panels helped 0.27 | contribution to overall delta_W: +0.00052 of +0.00053
+         on departures: Brier M 0.2167, W 0.1552, C2 0.1840, C2W 0.1649 | on copies: W 0.1118, C2 0.1163
+Luna  PUB : departures n 29 (0.060) in 27 questions | median |dev| 0.010, mean 0.014 | toward equal mean 0.45 | toward own Phase 3 C2 0.69 | toward 0.5 0.38 | median position between W(0) and M(1): -0.04
+         Brier(C2W)-Brier(W) on departures: -0.0026 [-0.0085, +0.0034] se 0.0030 p 0.3923 boot [-0.0083, +0.0036] n 29 G 27 | panels helped 0.66 | contribution to overall delta_W: -0.00015 of -0.00016
+         on departures: Brier M 0.1818, W 0.1530, C2 0.1464, C2W 0.1504 | on copies: W 0.1705, C2 0.1676
+Luna  both: departures n 55 (0.057) in 47 questions | median |dev| 0.011, mean 0.020 | toward equal mean 0.65 | toward own Phase 3 C2 0.76 | toward 0.5 0.47 | median position between W(0) and M(1): 0.08
+         Brier(C2W)-Brier(W) on departures: +0.0032 [-0.0042, +0.0106] se 0.0038 p 0.3939 boot [-0.0034, +0.0111] n 55 G 47 | panels helped 0.47 | contribution to overall delta_W: +0.00018 of +0.00019
+         on departures: Brier M 0.1983, W 0.1540, C2 0.1642, C2W 0.1572 | on copies: W 0.1411, C2 0.1418
+   Luna MIX, |dev|>0.01: n 17, +0.0165 [-0.0036, +0.0366] se 0.0102 p 0.1071 boot [-0.0000, +0.0385] n 17 G 16
+   Luna MIX, |dev|>0.02: n 10, +0.0195 [-0.0153, +0.0544] se 0.0178 p 0.2724 boot [-0.0079, +0.0574] n 10 G 9
+   Luna MIX: sum of departure Brier differences by question: most negative [-0.05, -0.02, -0.014], most positive [0.026, 0.052, 0.153], total +0.252; share of |total| from the top 3 questions by |contribution|: 0.55
+   Luna MIX: delta_W after dropping each of the 3 most influential questions: [np.float64(0.00064), np.float64(0.00043), np.float64(0.00022)]
+   Luna all: answers exactly 0.5 in C2W: 11 (of which W within .005 of .5: 11); answers exactly 0: 8 (W displayed as 0.000: 12, outcomes of the exact-0 answers: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+Haiku MIX : departures n 82 (0.169) in 58 questions | median |dev| 0.025, mean 0.044 | toward equal mean 0.93 | toward own Phase 3 C2 0.94 | toward 0.5 0.74 | median position between W(0) and M(1): 0.27
+         Brier(C2W)-Brier(W) on departures: -0.0074 [-0.0237, +0.0089] se 0.0083 p 0.3713 boot [-0.0247, +0.0073] n 82 G 58 | panels helped 0.28 | contribution to overall delta_W: -0.00126 of -0.00126
+         on departures: Brier M 0.1328, W 0.1128, C2 0.1093, C2W 0.1053 | on copies: W 0.1144, C2 0.1200
+Haiku PUB : departures n 40 (0.082) in 36 questions | median |dev| 0.021, mean 0.039 | toward equal mean 0.72 | toward own Phase 3 C2 0.75 | toward 0.5 0.33 | median position between W(0) and M(1): 0.28
+         Brier(C2W)-Brier(W) on departures: -0.0131 [-0.0261, -0.0001] se 0.0066 p 0.0481 boot [-0.0258, +0.0001] n 40 G 36 | panels helped 0.65 | contribution to overall delta_W: -0.00108 of -0.00099
+         on departures: Brier M 0.1875, W 0.1973, C2 0.1990, C2W 0.1842 | on copies: W 0.1670, C2 0.1630
+Haiku both: departures n 122 (0.126) in 81 questions | median |dev| 0.023, mean 0.042 | toward equal mean 0.86 | toward own Phase 3 C2 0.88 | toward 0.5 0.61 | median position between W(0) and M(1): 0.27
+         Brier(C2W)-Brier(W) on departures: -0.0093 [-0.0208, +0.0022] se 0.0059 p 0.1129 boot [-0.0213, +0.0012] n 122 G 81 | panels helped 0.40 | contribution to overall delta_W: -0.00117 of -0.00113
+         on departures: Brier M 0.1508, W 0.1405, C2 0.1387, C2W 0.1312 | on copies: W 0.1420, C2 0.1426
+   Haiku MIX, |dev|>0.01: n 67, -0.0088 [-0.0287, +0.0111] se 0.0101 p 0.3841 boot [-0.0299, +0.0092] n 67 G 48
+   Haiku MIX, |dev|>0.02: n 45, -0.0144 [-0.0433, +0.0146] se 0.0148 p 0.3300 boot [-0.0437, +0.0118] n 45 G 37
+   Haiku MIX: sum of departure Brier differences by question: most negative [-0.465, -0.367, -0.282], most positive [0.065, 0.094, 0.095], total -0.610; share of |total| from the top 3 questions by |contribution|: 0.53
+   Haiku MIX: delta_W after dropping each of the 3 most influential questions: [np.float64(-0.00069), np.float64(-0.00051), np.float64(-0.00031)]
+   Haiku all: answers exactly 0.5 in C2W: 19 (of which W within .005 of .5: 14); answers exactly 0: 1 (W displayed as 0.000: 12, outcomes of the exact-0 answers: [0.0])
+
+== E. EXPLORATORY: effort. Reasoning tokens with and without W ==
+Luna: reasoning tokens mean C2 (Phase 3) 241, C2R 244, C2W 416; share of C2W calls with 0 reasoning tokens 0.000 (C2: 0.001); C2W copies 420 vs departures 349
+Haiku: reasoning tokens mean C2 (Phase 3) 300, C2R 268, C2W 3; share of C2W calls with 0 reasoning tokens 0.991 (C2: 0.190); C2W copies 2 vs departures 14
+
+== F. Drift (C2R vs Phase 3 C2, 100 panels per model) ==
+Luna: n 100; test-retest |C2R-C2| mean 0.0208, median 0.0115, within .005: 0.29, corr 0.9888; sign of (C2R-C2): +54 / -41 / 0 5
+   MIX subsample (n=50): drift_Brier +0.00054 [-0.00286, +0.00394] se 0.00174 p 0.7548 boot [-0.00272, +0.00387] n 50 G 43
+   MIX subsample: same-day contrast Brier(C2W)-Brier(C2R) -0.00616 [-0.01779, +0.00547] se 0.00593 p 0.2990 boot [-0.01798, +0.00478] n 50 G 43
+   MIX subsample: cross-day contrast Brier(C2W)-Brier(C2) -0.00562 [-0.01504, +0.00380] se 0.00480 p 0.2421 boot [-0.01500, +0.00333] n 50 G 43   (full sample: -0.00525)
+   MIX subsample: Brier(W)-Brier(C2R) -0.00555 [-0.01754, +0.00645] se 0.00612 p 0.3647 boot [-0.01756, +0.00576] n 50 G 43
+   PUB subsample (n=50): drift_Brier -0.00570 [-0.01816, +0.00676] se 0.00636 p 0.3702 boot [-0.01924, +0.00505] n 50 G 47
+   PUB subsample: same-day contrast Brier(C2W)-Brier(C2R) +0.00505 [-0.00805, +0.01816] se 0.00669 p 0.4500 boot [-0.00627, +0.01961] n 50 G 47
+   PUB subsample: cross-day contrast Brier(C2W)-Brier(C2) -0.00065 [-0.00663, +0.00534] se 0.00305 p 0.8324 boot [-0.00643, +0.00559] n 50 G 47   (full sample: +0.00302)
+   PUB subsample: Brier(W)-Brier(C2R) +0.00509 [-0.00806, +0.01824] se 0.00671 p 0.4483 boot [-0.00630, +0.01969] n 50 G 47
+Haiku: n 100; test-retest |C2R-C2| mean 0.0221, median 0.0100, within .005: 0.31, corr 0.9867; sign of (C2R-C2): +41 / -38 / 0 21
+   MIX subsample (n=50): drift_Brier +0.00043 [-0.00407, +0.00492] se 0.00229 p 0.8526 boot [-0.00437, +0.00445] n 50 G 43
+   MIX subsample: same-day contrast Brier(C2W)-Brier(C2R) -0.00700 [-0.01710, +0.00309] se 0.00515 p 0.1741 boot [-0.01695, +0.00290] n 50 G 43
+   MIX subsample: cross-day contrast Brier(C2W)-Brier(C2) -0.00658 [-0.01538, +0.00223] se 0.00449 p 0.1434 boot [-0.01521, +0.00191] n 50 G 43   (full sample: -0.00533)
+   MIX subsample: Brier(W)-Brier(C2R) -0.00517 [-0.01771, +0.00738] se 0.00640 p 0.4195 boot [-0.01694, +0.00787] n 50 G 43
+   PUB subsample (n=50): drift_Brier -0.00598 [-0.01892, +0.00696] se 0.00660 p 0.3652 boot [-0.01842, +0.00710] n 50 G 47
+   PUB subsample: same-day contrast Brier(C2W)-Brier(C2R) +0.00883 [-0.00111, +0.01878] se 0.00507 p 0.0817 boot [-0.00044, +0.01897] n 50 G 47
+   PUB subsample: cross-day contrast Brier(C2W)-Brier(C2) +0.00286 [-0.01095, +0.01666] se 0.00704 p 0.6850 boot [-0.00897, +0.01844] n 50 G 47   (full sample: +0.00248)
+   PUB subsample: Brier(W)-Brier(C2R) +0.00853 [-0.00148, +0.01855] se 0.00511 p 0.0950 boot [-0.00077, +0.01875] n 50 G 47

@@ -1,0 +1,62 @@
+== files ==
+panels.json live == build: True
+stat_predictions.csv live == build: True
+stat rows 66072 matched to phase3 build 66072 max |pred diff| 0.0
+truth build == phase3 live: True | outcomes Counter({'0': 112, '1': 50})
+panels 972 Counter({'MIX': 486, 'PUB': 486}) questions 162 pilot q 16 C2R ids 100
+
+== Luna (efficient_openai) ==
+jsonl == gz: True n 1072
+unique ids 1072 ids == manifest ids: True arms Counter({'C2W': 972, 'C2R': 100})
+responses whose sent messages differ from the frozen manifest: 0
+git_commit Counter({'79061b5': 1072}) | model Counter({('openai/gpt-6-luna', 'openai/gpt-6-luna'): 1072})
+attempt_count Counter({1: 1072}) retried Counter({False: 1072}) n raw_attempts Counter({1: 1072}) parse_error Counter({'None': 1072})
+timestamps 2026-11-14T20:05:59.549529+00:00 -> 2026-11-14T20:14:32.097627+00:00
+phase3 C0: n 972 timestamps 2026-11-13T15:09:49.387354+00:00 -> 2026-11-13T16:10:21.864263+00:00 | provider_model Counter({'openai/gpt-6-luna': 972})
+phase3 C2: n 972 timestamps 2026-11-13T15:09:48.538565+00:00 -> 2026-11-13T16:10:23.020074+00:00 | provider_model Counter({'openai/gpt-6-luna': 972})
+cost sum $0.2867 cost_estimated 0 cached_tokens>0 0
+C2W prompts whose last line is not the frozen label + W(.3f): 0
+-- C2W: n 972 prob range [0.0, 0.993] exactly 0: 8 exactly 1: 0 exactly 0.5: 11 distinct 538
+   decimals used: [(0, 8), (1, 25), (2, 126), (3, 809), (4, 4)]
+   parsed keys {('probability', 'weights'): 972}
+   weight keys ok: 972 negative: 0 sum==1 (±.011): 965 sum range (np.float64(0.96), np.float64(1.02)) all equal 0.2: 2 all zero: 0
+   |weights-implied forecast - answer|: median 0.0004, mean 0.0027, share <=0.005: 0.868, share >0.02: 0.026
+   answers outside the range of the five forecasts: 0
+   reasoning tokens mean 416, completion mean 464
+-- C2R: n 100 prob range [0.001, 0.936] exactly 0: 0 exactly 1: 0 exactly 0.5: 0 distinct 92
+   decimals used: [(1, 2), (2, 33), (3, 60), (4, 5)]
+   parsed keys {('probability', 'weights'): 100}
+   weight keys ok: 100 negative: 0 sum==1 (±.011): 100 sum range (np.float64(1.0), np.float64(1.0)) all equal 0.2: 0 all zero: 0
+   |weights-implied forecast - answer|: median 0.0005, mean 0.0034, share <=0.005: 0.800, share >0.02: 0.030
+   answers outside the range of the five forecasts: 0
+   reasoning tokens mean 244, completion mean 292
+-- phase3 C2 (reused): reasoning tokens mean 241, completion mean 290
+
+== Haiku (efficient_anthropic) ==
+jsonl == gz: True n 1072
+unique ids 1072 ids == manifest ids: True arms Counter({'C2W': 972, 'C2R': 100})
+responses whose sent messages differ from the frozen manifest: 0
+git_commit Counter({'79061b5': 1072}) | model Counter({('anthropic/claude-haiku-5.5', 'anthropic/claude-haiku-5.5'): 1072})
+attempt_count Counter({1: 1071, 2: 1}) retried Counter({False: 1072}) n raw_attempts Counter({1: 1072}) parse_error Counter({'None': 1072})
+timestamps 2026-11-14T20:14:38.456330+00:00 -> 2026-11-14T20:16:17.936867+00:00
+phase3 C0: n 972 timestamps 2026-11-13T15:09:40.045858+00:00 -> 2026-11-13T15:25:14.676914+00:00 | provider_model Counter({'anthropic/claude-haiku-5.5': 972})
+phase3 C2: n 972 timestamps 2026-11-13T15:09:41.514594+00:00 -> 2026-11-13T15:25:16.124523+00:00 | provider_model Counter({'anthropic/claude-haiku-5.5': 972})
+cost sum $0.1371 cost_estimated 0 cached_tokens>0 0
+C2W prompts whose last line is not the frozen label + W(.3f): 0
+-- C2W: n 972 prob range [0.0, 0.993] exactly 0: 1 exactly 1: 0 exactly 0.5: 19 distinct 497
+   decimals used: [(0, 1), (1, 54), (2, 219), (3, 698)]
+   parsed keys {('probability', 'weights'): 972}
+   weight keys ok: 972 negative: 0 sum==1 (±.011): 758 sum range (np.float64(0.0), np.float64(7.8)) all equal 0.2: 3 all zero: 3
+   |weights-implied forecast - answer|: median 0.0192, mean 0.0351, share <=0.005: 0.193, share >0.02: 0.487
+   answers outside the range of the five forecasts: 0
+   reasoning tokens mean 3, completion mean 61
+-- C2R: n 100 prob range [0.003, 0.94] exactly 0: 0 exactly 1: 0 exactly 0.5: 1 distinct 63
+   decimals used: [(1, 9), (2, 70), (3, 21)]
+   parsed keys {('probability', 'weights'): 100}
+   weight keys ok: 100 negative: 0 sum==1 (±.011): 71 sum range (np.float64(0.241), np.float64(53.5)) all equal 0.2: 1 all zero: 0
+   |weights-implied forecast - answer|: median 0.0022, mean 0.0099, share <=0.005: 0.730, share >0.02: 0.130
+   answers outside the range of the five forecasts: 0
+   reasoning tokens mean 268, completion mean 325
+-- phase3 C2 (reused): reasoning tokens mean 300, completion mean 355
+
+spend ledger rows 4290 keys ['amount', 'event', 'id', 'timestamp']
