@@ -1,0 +1,208 @@
+{
+  "n": 7,
+  "delta_bar": 0.17438350863822452,
+  "mean_t_X_minus_t_Y": 0.14642636578108165,
+  "G1": false,
+  "G2": true,
+  "G3": false,
+  "models": {
+    "efficient_anthropic": {
+      "pi_C1": 0.2548,
+      "D_full": -0.04443291800101961,
+      "D_warr": -0.023327281950535295,
+      "MDE": 0.19173530861953564,
+      "pass_G3": false
+    },
+    "efficient_openai": {
+      "pi_C1": 0.8344,
+      "D_full": -0.14550559960773454,
+      "D_warr": -0.07639043979406064,
+      "MDE": 0.18463400089288615,
+      "pass_G3": false
+    }
+  },
+  "passing_models": [],
+  "pass": false,
+  "distinct_X": 7,
+  "distinct_Y": 1,
+  "panels_per_question_distribution": {
+    "7": 1
+  },
+  "questions_with_zero_panels": 161,
+  "equal_target_category_count": 7,
+  "projected_cost": {
+    "efficient_openai": 0.009516675,
+    "efficient_anthropic": 0.008018604675925927
+  },
+  "projected_cost_total": 0.017535279675925927,
+  "rung": 2,
+  "rungs_tried": [
+    {
+      "rung": 0,
+      "per_question": 5,
+      "tolerance": 0.02,
+      "n": 0,
+      "delta_bar": 0.0,
+      "mean_t_X_minus_t_Y": 0.0,
+      "G1": false,
+      "G2": false,
+      "G3": false,
+      "models": {
+        "efficient_anthropic": {
+          "pi_C1": 0.2548,
+          "D_full": -0.0,
+          "D_warr": -0.0,
+          "MDE": null,
+          "pass_G3": false
+        },
+        "efficient_openai": {
+          "pi_C1": 0.8344,
+          "D_full": -0.0,
+          "D_warr": -0.0,
+          "MDE": null,
+          "pass_G3": false
+        }
+      },
+      "passing_models": [],
+      "pass": false,
+      "distinct_X": 0,
+      "distinct_Y": 0,
+      "panels_per_question_distribution": {},
+      "questions_with_zero_panels": 162,
+      "equal_target_category_count": 0,
+      "projected_cost": {
+        "efficient_anthropic": 0.0,
+        "efficient_openai": 0.0
+      },
+      "projected_cost_total": 0.0
+    },
+    {
+      "rung": 1,
+      "per_question": 8,
+      "tolerance": 0.02,
+      "n": 0,
+      "delta_bar": 0.0,
+      "mean_t_X_minus_t_Y": 0.0,
+      "G1": false,
+      "G2": false,
+      "G3": false,
+      "models": {
+        "efficient_anthropic": {
+          "pi_C1": 0.2548,
+          "D_full": -0.0,
+          "D_warr": -0.0,
+          "MDE": null,
+          "pass_G3": false
+        },
+        "efficient_openai": {
+          "pi_C1": 0.8344,
+          "D_full": -0.0,
+          "D_warr": -0.0,
+          "MDE": null,
+          "pass_G3": false
+        }
+      },
+      "passing_models": [],
+      "pass": false,
+      "distinct_X": 0,
+      "distinct_Y": 0,
+      "panels_per_question_distribution": {},
+      "questions_with_zero_panels": 162,
+      "equal_target_category_count": 0,
+      "projected_cost": {
+        "efficient_anthropic": 0.0,
+        "efficient_openai": 0.0
+      },
+      "projected_cost_total": 0.0
+    },
+    {
+      "rung": 2,
+      "per_question": 8,
+      "tolerance": 0.03,
+      "n": 7,
+      "delta_bar": 0.17438350863822452,
+      "mean_t_X_minus_t_Y": 0.14642636578108165,
+      "G1": false,
+      "G2": true,
+      "G3": false,
+      "models": {
+        "efficient_anthropic": {
+          "pi_C1": 0.2548,
+          "D_full": -0.04443291800101961,
+          "D_warr": -0.023327281950535295,
+          "MDE": 0.19173530861953564,
+          "pass_G3": false
+        },
+        "efficient_openai": {
+          "pi_C1": 0.8344,
+          "D_full": -0.14550559960773454,
+          "D_warr": -0.07639043979406064,
+          "MDE": 0.18463400089288615,
+          "pass_G3": false
+        }
+      },
+      "passing_models": [],
+      "pass": false,
+      "distinct_X": 7,
+      "distinct_Y": 1,
+      "panels_per_question_distribution": {
+        "7": 1
+      },
+      "questions_with_zero_panels": 161,
+      "equal_target_category_count": 7,
+      "projected_cost": {
+        "efficient_anthropic": 0.0068355,
+        "efficient_openai": 0.009261
+      },
+      "projected_cost_total": 0.0160965
+    }
+  ],
+  "projection": {
+    "note": "Offline approximate tokenizer \u00d7 frozen prices; 1.9 Anthropic calibration, Phase 3 condition mean completion tokens, 1.05 allowance. Not a guarantee; runtime reservations enforce hard cap.",
+    "models": {
+      "efficient_openai": {
+        "requests": 21,
+        "o200k_prompt_tokens": 24730,
+        "prompt_factor": 1.0,
+        "mean_completion_tokens": 627.6666666666666,
+        "pricing": {
+          "input_per_million": 0.09999999999999999,
+          "output_per_million": 0.5,
+          "overrides": [
+            {
+              "min_prompt_tokens": 272000,
+              "prompt": "0.0000002",
+              "completion": "0.00000075",
+              "input_cache_read": "0.00000002",
+              "input_cache_write": "0.00000025"
+            }
+          ]
+        },
+        "projected_usd": 0.009516675
+      },
+      "efficient_anthropic": {
+        "requests": 21,
+        "o200k_prompt_tokens": 24730,
+        "prompt_factor": 1.9,
+        "mean_completion_tokens": 279.81584362139915,
+        "pricing": {
+          "input_per_million": 0.09999999999999999,
+          "output_per_million": 0.5,
+          "overrides": [
+            {
+              "min_prompt_tokens": 100000,
+              "prompt": "0.0000005",
+              "completion": "0.0000025",
+              "input_cache_read": "0.00000005",
+              "input_cache_write": "0.000000625",
+              "input_cache_write_1h": "0.000001"
+            }
+          ]
+        },
+        "projected_usd": 0.008018604675925927
+      }
+    },
+    "total": 0.017535279675925927
+  },
+  "failure_message": "a clean, domain-balanced warranted farming test cannot be built from this round"
+}

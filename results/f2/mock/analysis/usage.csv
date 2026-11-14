@@ -1,0 +1,7 @@
+model,arm,n,parse_failures,retried_share,reasoning_tokens
+efficient_anthropic,A,7,0,0.0,0
+efficient_anthropic,B,7,0,0.0,0
+efficient_anthropic,H,7,0,0.0,0
+efficient_openai,A,7,0,0.0,0
+efficient_openai,B,7,0,0.0,0
+efficient_openai,H,7,0,0.0,0
