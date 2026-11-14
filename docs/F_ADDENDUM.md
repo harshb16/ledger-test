@@ -129,3 +129,17 @@ the effect was concentrated where the honest record was the better domain match.
 ## Deviation log
 (Empty at freeze. Any deviation is logged here with its date and reason, before the run if possible, and is
 never applied silently.)
+
+All entries 2026-11-15, after the offline build (commit 9042b19) and **before any paid call**.
+- **FD1. W number format (F1).** The frozen line wrote `X%`, but also required "the same number format the prompt uses
+  for member forecasts". Phase 3 shows member forecasts as probabilities with three decimals, so W is shown as
+  e.g. `0.123`, with no percent sign. The second requirement is the one that keeps the prompt internally
+  consistent.
+- **FD2. W line placement (F1).** The answer instruction is in the SYSTEM message, before the member list, so the
+  line cannot sit between the list and the instruction. It is appended as one new line after the last record in
+  the user message. SYSTEM is unchanged. Tests assert that this line is the whole difference from Phase 3 C2.
+- **FD3. F2 gate outcome.** The gate failed at every rung (n = 0, 0, 7; final rung: one question, one Y). Under
+  F2.3, F2 is reported as "a clean, domain-balanced warranted farming test cannot be built from this round", with
+  the gate values in `results/f2/build/gate.json`, and **nothing is spent on F2**. The binding constraint is the
+  honest match: a padded record with no misses displays a mean score δ̄ = 0.174 better than its padder's honest
+  level, and almost no honest forecaster in the round has an honest level that close to it.
