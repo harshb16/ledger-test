@@ -1,0 +1,32 @@
+target units 162 | confident & raw<=0.25 implies raw <= 0.010000000000000002 | confident & raw>0.25 implies raw >= 0.81
+
+(5) GATE
+eligible (question, public) pairs: 7998 | distinct publics 500 | (question, super) pairs 1692 distinct supers 39
+X with >=8 confident ids (U1 pool): 4283 (q,X), 290 distinct | with >=8 confident ids with raw<=0.25 (F2 pool): 3386 (q,X), 233 distinct, in 162 questions
+clean s_F (seeded F2 draw): n=3386  min 0.0000  median 0.0032  mean 0.0033  p95 0.0069  max 0.0100 | share exactly 0: 0.030
+  with delta_X >= 0.05 and >=5 eligible: 3376 (q,X), mean delta 0.2011
+honest t_u, (question, public):  min 0.0329 p1 0.0741 p5 0.1089 p25 0.1627 med 0.2097 p75 0.2689
+honest t_u, per public (mean over q): min 0.0636 p1 0.0766 p5 0.1117 p25 0.1630 med 0.2105 p75 0.2690
+honest t_u, (question, super):   min 0.0353 p1 0.0429 p5 0.0492 p25 0.0828 med 0.1029 p75 0.1196
+honest t_u, per super (mean over q):  min 0.0427 p1 0.0447 p5 0.0505 p25 0.0843 med 0.1055 p75 0.1247
+ tol 0.02: (q,X) with >=1 honest public Y within tol of s_F and |pX-pY|>=.10: 0 of 3376 | total such (q,X,Y): 0 | ignoring the forecast-gap rule: 0 (q,X,Y)
+   draw-free bound: (question, public) with t <= 0.03: 0 (0 distinct users); supers: 0 (0 distinct)
+ tol 0.03: (q,X) with >=1 honest public Y within tol of s_F and |pX-pY|>=.10: 8 of 3376 | total such (q,X,Y): 8 | ignoring the forecast-gap rule: 14 (q,X,Y)
+   draw-free bound: (question, public) with t <= 0.04: 3 (3 distinct users); supers: 6 (1 distinct)
+ tol 0.03 pairs before HY bank: 8 (questions 2, Y 2) | pass |score(HY)-s_F|<=.01: 8 | and domain-balanced: 7
+ Codex gate.json: n by rung [0, 0, 7] | final distinct X 7 distinct Y 1
+
+(6) OUTLIER CHECK ON DISPLAYED SCORES
+ public       honest LEVEL t_u:  share of clean s_F below min 1.000 | below p1 1.000 | below p5 1.000 || share of honest t_u <= max clean s_F (0.010): 0.0000 (0 of 7998; 0 distinct users)
+ public       honest DISPLAYED 8-item score: min 0.0000 p1 0.0142 p5 0.0622 p25 0.1400 med 0.2062 | share <= 0.010 (max clean): 0.0071 | share <= 0.0032 (median clean): 0.0028 | share exactly 0: 0.0001
+ super        honest LEVEL t_u:  share of clean s_F below min 1.000 | below p1 1.000 | below p5 1.000 || share of honest t_u <= max clean s_F (0.010): 0.0000 (0 of 1692; 0 distinct users)
+ super        honest DISPLAYED 8-item score: min 0.0000 p1 0.0002 p5 0.0082 p25 0.0496 med 0.0934 | share <= 0.010 (max clean): 0.0544 | share <= 0.0032 (median clean): 0.0307 | share exactly 0: 0.0000
+ public+super honest LEVEL t_u:  share of clean s_F below min 1.000 | below p1 1.000 | below p5 1.000 || share of honest t_u <= max clean s_F (0.010): 0.0000 (0 of 9690; 0 distinct users)
+ public+super honest DISPLAYED 8-item score: min 0.0000 p1 0.0056 p5 0.0364 p25 0.1174 med 0.1863 | share <= 0.010 (max clean): 0.0154 | share <= 0.0032 (median clean): 0.0076 | share exactly 0: 0.0001
+ Phase 3 displayed C2 scores, public n=3888: p1 0.0191 p5 0.0650 med 0.2102 | share <= 0.010: 0.0046
+ Phase 3 displayed C2 scores, super  n=972: p1 0.0002 p5 0.0089 med 0.0901 | share <= 0.010: 0.0525
+ rule "flag displayed score <= 0.01": flags 0.994 of clean padded records | false-flag rate honest public 0.0070, super 0.0544
+ rule "flag displayed score <= 0.02": flags 1.000 of clean padded records | false-flag rate honest public 0.0131, super 0.0833
+ rule "flag displayed score <= 0.03": flags 1.000 of clean padded records | false-flag rate honest public 0.0178, super 0.1277
+ rule "flag displayed score <= 0.05": flags 1.000 of clean padded records | false-flag rate honest public 0.0364, super 0.2530
+ U1 padded records (with misses), n=750: s_F min 0.101 med 0.124 max 0.354 | share <= 0.05: 0.000 | share below p5 of honest public displayed (0.0622): 0.000

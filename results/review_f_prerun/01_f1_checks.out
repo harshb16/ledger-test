@@ -1,0 +1,78 @@
+=== (1) PROMPTS ===
+efficient panels 972 {'MIX': 486, 'PUB': 486} questions 162 draws [0, 1, 2]
+f1 stat_predictions == phase3 rows for the 972 panels: True
+C2R ids 100 {'MIX': 50, 'PUB': 50} questions in C2R 74
+efficient_openai requests 1072 C2W 972 C2R 100 unique ids 1072 violations 0 distinct added-line stems 1 C2W panel set == 972 True design_version {2} settings {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}'}
+efficient_anthropic requests 1072 C2W 972 C2R 100 unique ids 1072 violations 0 distinct added-line stems 1 C2W panel set == 972 True design_version {2} settings {'{"max_tokens": 2000, "reasoning": {"effort": "low"}}'}
+manifests identical across models except model_key: True
+order of first 6 request ids: ['MIX/0/C2W', 'MIX/1/C2W', 'MIX/2/C2W', 'PUB/0/C2W', 'PUB/1/C2W', 'PUB/2/C2W']
+--- tail of one C2W user message ---
+
+A:
+Average Brier score on 8 past questions: 0.163 (lower is better; always answering 50% scores 0.250)
+Statistical aggregate (weights forecasters by their past accuracy, tuned on other questions): 0.045
+
+=== (2) W ===
+MIX folds 5 test ids 162 unique 162 (lam,k) per fold [(128.0, 0.0), (64.0, 20.0), (64.0, 20.0), (16.0, 5.0), (16.0, 0.0)]
+PUB folds 5 test ids 162 unique 162 (lam,k) per fold [(16.0, 20.0), (16.0, 5.0), (16.0, 5.0), (16.0, 5.0), (64.0, 20.0)]
+max |my W - csv W| = 0 | record/target-id violations 0
+W inside [min p, max p] for all panels: True
+MIX n 486 Brier W 0.1141  M 0.1364  best-score member 0.1190 | W-M diff -0.0223 | mean max weight 0.607, share max weight>0.9: 0.158 | |W-M|<=0.005: 0.066 | W==best member (<=.0005): 0.113 | mean|W-M| 0.0898 | W shown as 0.000/1.000: 13
+PUB n 486 Brier W 0.1695  M 0.1689  best-score member 0.2043 | W-M diff 0.0006 | mean max weight 0.447, share max weight>0.9: 0.012 | |W-M|<=0.005: 0.091 | W==best member (<=.0005): 0.000 | mean|W-M| 0.0651 | W shown as 0.000/1.000: 0
+
+=== (3) ANALYSIS ===
+Phase 3 reference (what the F1 contrast will be measured against):
+ efficient_openai MIX n=486 Brier C0 0.1364 C2 0.1199 | Brier(L_C2)-Brier(W) = +0.0058, cluster SE 0.0023 (CI half-width 0.0045) | a(C2, W not shown) 0.56 | |L_C2-W|<=.005: 0.158, |L_C2-M|<=.005: 0.091 | retried C2 0
+ efficient_openai PUB n=486 Brier C0 0.1688 C2 0.1663 | Brier(L_C2)-Brier(W) = -0.0032, cluster SE 0.0021 (CI half-width 0.0041) | a(C2, W not shown) 0.85 | |L_C2-W|<=.005: 0.183, |L_C2-M|<=.005: 0.070 | retried C2 0
+ efficient_anthropic MIX n=486 Brier C0 0.1345 C2 0.1182 | Brier(L_C2)-Brier(W) = +0.0041, cluster SE 0.0028 (CI half-width 0.0055) | a(C2, W not shown) 0.54 | |L_C2-W|<=.005: 0.175, |L_C2-M|<=.005: 0.091 | retried C2 0
+ efficient_anthropic PUB n=486 Brier C0 0.1658 C2 0.1660 | Brier(L_C2)-Brier(W) = -0.0035, cluster SE 0.0025 (CI half-width 0.0049) | a(C2, W not shown) 0.73 | |L_C2-W|<=.005: 0.154, |L_C2-M|<=.005: 0.060 | retried C2 0
+ => if L_C2W tracks W more closely than L_C2 does, the SE of Delta_W shrinks; if not, it stays near the values above.
+reader A: L = W exactly  (expect 0, "matches")
+              model  estimate  se  low  high   p  holm_p                                                  decision   n  questions
+   efficient_openai       0.0 0.0  0.0   0.0 1.0     1.0 the LLM matches the aggregate and adds nothing measurable 486        162
+efficient_anthropic       0.0 0.0  0.0   0.0 1.0     1.0 the LLM matches the aggregate and adds nothing measurable 486        162
+reader B: L = W moved 25% toward the outcome (expect <0, "hybrid helps")
+              model  estimate       se      low      high            p       holm_p     decision   n  questions
+   efficient_openai  -0.04992 0.005174 -0.06006 -0.039779 4.971809e-22 9.943617e-22 hybrid helps 486        162
+efficient_anthropic  -0.04992 0.005174 -0.06006 -0.039779 4.971809e-22 9.943617e-22 hybrid helps 486        162
+reader C: L = W + N(0, .15) (expect >0, "do not put the LLM after the rule")
+              model  estimate       se      low     high        p   holm_p                          decision   n  questions
+   efficient_openai  0.018668 0.004973 0.008921 0.028415 0.000174 0.000348 do not put the LLM after the rule 486        162
+efficient_anthropic  0.011530 0.005340 0.001063 0.021997 0.030851 0.030851 do not put the LLM after the rule 486        162
+reader D: L = M, ignores W (decision depends on Brier(M)-Brier(W) in MIX)
+              model  estimate       se      low     high            p       holm_p                          decision   n  questions
+   efficient_openai  0.022294 0.003975 0.014503 0.030085 2.041614e-08 4.083229e-08 do not put the LLM after the rule 486        162
+efficient_anthropic  0.022294 0.003975 0.014503 0.030085 2.041614e-08 4.083229e-08 do not put the LLM after the rule 486        162
+independent: Brier(M)-Brier(W) MIX = 0.022294, cluster SE 0.003975; balanced check sd(q means)/sqrt(G) = 0.003975
+analyze():   estimate 0.022294, se 0.003975
+ pairing efficient_openai MIX: delta_C2 mine 0.016509 analyze 0.016509 (n 486/486) | delta_C0 mine -0.000001 analyze -0.000001 | drift n 50 est 0 (synthetic C2R = stored C2, expect 0)
+ pairing efficient_openai PUB: delta_C2 mine 0.002551 analyze 0.002551 (n 486/486) | delta_C0 mine 0.000011 analyze 0.000011 | drift n 50 est 0 (synthetic C2R = stored C2, expect 0)
+ pairing efficient_anthropic MIX: delta_C2 mine 0.018228 analyze 0.018228 (n 486/486) | delta_C0 mine 0.001849 analyze 0.001849 | drift n 50 est 0 (synthetic C2R = stored C2, expect 0)
+ pairing efficient_anthropic PUB: delta_C2 mine 0.002852 analyze 0.002852 (n 486/486) | delta_C0 mine 0.003028 analyze 0.003028 | drift n 50 est 0 (synthetic C2R = stored C2, expect 0)
+deference a for L = M (expect 0): 0.0
+deference a for L = W (expect 1): 1.0 1.0 | copy_W share 1.0
+samples x metrics rows: {'draw0': 54, 'exclude_pilot': 54, 'exclude_retried': 54, 'primary': 54}
+         sample               model   n  questions
+        primary    efficient_openai 486        162
+  exclude_pilot    efficient_openai 438        146
+          draw0    efficient_openai 162        162
+exclude_retried    efficient_openai 486        162
+        primary efficient_anthropic 486        162
+  exclude_pilot efficient_anthropic 438        146
+          draw0 efficient_anthropic 162        162
+exclude_retried efficient_anthropic 486        162
+pilot questions: 16 | efficient-tier pilot q: 16
+ decision {'estimate': 0.003, 'holm_p': 0.04, 'low': 0.0005, 'high': 0.0045} -> do not put the LLM after the rule
+ decision {'estimate': 0.002, 'holm_p': 0.2, 'low': -0.004, 'high': 0.0049} -> the LLM matches the aggregate and adds nothing measurable
+ decision {'estimate': 0.002, 'holm_p': 0.2, 'low': -0.004, 'high': 0.0051} -> inconclusive at this n
+ decision {'estimate': -0.02, 'p': 0.03, 'holm_p': 0.06, 'low': -0.04, 'high': -0.001} -> inconclusive at this n
+
+=== (4) COST / LIVE SAFETY ===
+ efficient_openai Phase 3 C2: n 972, billed mean $0.000186 (max $0.000333), prompt tok 409, completion tok 290, retried 0 | F1 at x1.10: $0.2190, at x1.25: $0.2489 | Codex projection $0.2294
+ efficient_anthropic Phase 3 C2: n 972, billed mean $0.000259 (max $0.000454), prompt tok 810, completion tok 355, retried 0 | F1 at x1.10: $0.3049, at x1.25: $0.3465 | Codex projection $0.3260
+ reviewer total at x1.10: $0.5239 | Codex total $0.5554 | cap $0.70
+ efficient_openai per-call reservation $0.00107; 16 concurrent pending $0.0171; retry@4000 reservation $0.00207
+ efficient_anthropic per-call reservation $0.00107; 16 concurrent pending $0.0171; retry@4000 reservation $0.00207
+ exists before run? results/f1/live False
+ exists before run? results/f1/llm_cache False
+ exists before run? results/f1/spend.jsonl False

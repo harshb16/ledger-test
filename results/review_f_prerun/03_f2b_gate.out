@@ -1,0 +1,35 @@
+
+=== F2b: U1 rule + domain-balanced HY (seed 20261115, namespace f2b) ===
+valid pairs 2452 | panels before cap 759 | n 750 | questions with zero panels 2 | distinct X 185, distinct Y 265 | panels/question {5: 134, 4: 15, 1: 5, 2: 3, 3: 3}
+G1 n>=500: True | G2 mean(t_X-t_Y) = 0.0896 >= .03: True | delta_bar 0.0922
+  efficient_anthropic: D_full -0.0235  D_warr -0.0123  MDE 0.0185  | G3 as F2.3/U1-D1 (|D_warr| >= 2 MDE): False (ratio 0.67) | original U1 G3 (|D_full| >= 2 MDE): False
+  efficient_openai: D_full -0.0769  D_warr -0.0404  MDE 0.0178  | G3 as F2.3/U1-D1 (|D_warr| >= 2 MDE): True (ratio 2.26) | original U1 G3 (|D_full| >= 2 MDE): True
+gate pass (Luna): True
+target-category items in F: {0: 365, 1: 232, 2: 119, 3: 34} | F == HY count: 1.000 | F misses: {1: 468, 2: 269, 3: 13} | s_F median 0.125 | match dist max 0.0093
+(question, X, Y) triples also in the U1 build: 88 of 750 | questions shared with U1: 155 of 160
+projected cost at U1 billed rates ($1.69 for 750): $1.69
+
+=== control: U1 rule, no balance (should resemble U1: n=750, delta .093, gap .091) (seed 20261115, namespace f2b) ===
+valid pairs 3016 | panels before cap 781 | n 750 | questions with zero panels 1 | distinct X 185, distinct Y 263 | panels/question {4: 35, 5: 119, 1: 2, 3: 3, 2: 2}
+G1 n>=500: True | G2 mean(t_X-t_Y) = 0.0906 >= .03: True | delta_bar 0.0922
+  efficient_anthropic: D_full -0.0235  D_warr -0.0123  MDE 0.0185  | G3 as F2.3/U1-D1 (|D_warr| >= 2 MDE): False (ratio 0.67) | original U1 G3 (|D_full| >= 2 MDE): False
+  efficient_openai: D_full -0.0769  D_warr -0.0404  MDE 0.0178  | G3 as F2.3/U1-D1 (|D_warr| >= 2 MDE): True (ratio 2.26) | original U1 G3 (|D_full| >= 2 MDE): True
+gate pass (Luna): True
+target-category items in F: {0: 327, 1: 221, 2: 149, 3: 48, 4: 5} | F == HY count: 0.344 | F misses: {1: 470, 2: 266, 3: 14} | s_F median 0.125 | match dist max 0.0093
+(question, X, Y) triples also in the U1 build: 98 of 750 | questions shared with U1: 156 of 161
+projected cost at U1 billed rates ($1.69 for 750): $1.69
+
+=== U1 live, Luna and Haiku: D_swap by domain relation of F vs HY (exploratory split, recomputed) ===
+ efficient_openai all: D_swap -0.0226 (question-cluster SE 0.0074) n=750
+   F fewer  D_swap -0.0495  SE 0.0132  n=257
+   F more   D_swap -0.0081  SE 0.0144  n=240
+   equal    D_swap -0.0092  SE 0.0110  n=253
+   equal with zero target-category items in both: D_swap +0.0023 SE 0.0158 n=127
+   power of F2b (one-sided 5%, SE 0.0074 at n=750) if the true D_swap = -0.0226 (U1 overall): 0.92; with Holm (alpha .025): 0.86
+   power of F2b (one-sided 5%, SE 0.0074 at n=750) if the true D_swap = -0.0092 (U1 equal-category subset): 0.34; with Holm (alpha .025): 0.24
+   power of F2b (one-sided 5%, SE 0.0074 at n=750) if the true D_swap = -0.0407 (D_warr): 1.00; with Holm (alpha .025): 1.00
+ efficient_anthropic all: D_swap 0.0024 (question-cluster SE 0.0066) n=750
+   F fewer  D_swap -0.0104  SE 0.0117  n=257
+   F more   D_swap +0.0065  SE 0.0114  n=240
+   equal    D_swap +0.0115  SE 0.0112  n=253
+   equal with zero target-category items in both: D_swap +0.0269 SE 0.0155 n=127
