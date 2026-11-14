@@ -366,6 +366,26 @@ reg("uoneSfourHi", f(r.high, 3, sign=True), U1, "S4_X_minus_Y high")
 sp1 = pd.read_json(ROOT / "results/u1/spend.jsonl", lines=True)
 reg("uoneSpend", f"{sp1[sp1.event == 'settle'].amount.sum():.2f}", "results/u1/spend.jsonl", "sum settle")
 
+# ---------------- F1 (pre-registered follow-up, docs/F_ADDENDUM.md): showing W ----------------
+F1 = "results/f1/live/analysis/estimands.csv"
+f1 = rd(F1)
+for m, key in U1KEY.items():
+    for metric, tag, d in [("delta_W", "DW", 4), ("delta_C2", "DC", 4)]:
+        r = one(f1, model=key, sample="primary", type="MIX", metric=metric)
+        loc = f"model={key},sample=primary,type=MIX,metric={metric}"
+        reg(f"fone{tag}{m}", f(r.estimate, d, sign=True), F1, loc)
+        reg(f"fone{tag}Lo{m}", f(r.low, d, sign=True), F1, loc + " low")
+        reg(f"fone{tag}Hi{m}", f(r.high, d, sign=True), F1, loc + " high")
+    r = one(f1, model=key, sample="primary", type="MIX", metric="delta_W")
+    reg(f"foneHolm{m}", f"{r.holm_p:.2f}", F1, f"model={key},MIX delta_W holm_p")
+    for typ, tag in [("MIX", ""), ("PUB", "Pub")]:
+        r = one(f1, model=key, sample="primary", type=typ, metric="copy_W")
+        reg(f"foneCopy{tag}{m}", f"{100 * r.estimate:.0f}\\%", F1, f"model={key},type={typ},copy_W x100")
+    r = one(f1, model=key, sample="primary", type="MIX", metric="deference")
+    reg(f"foneDef{m}", f(r.estimate, 2), F1, f"model={key},MIX deference")
+spf = pd.read_json(ROOT / "results/f1/spend.jsonl", lines=True)
+reg("foneSpend", f"{spf[spf.event == 'settle'].amount.sum():.2f}", "results/f1/spend.jsonl", "sum settle")
+
 # Exploratory (post hoc) domain-match split for Luna, recomputed from the reviewer's panel frame.
 PF = "results/review_u1_results/panel_frame_efficient_openai.csv"
 pf = rd(PF)

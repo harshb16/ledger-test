@@ -24,7 +24,17 @@ facts, or values quoted from the results record, and each has a source.
 | "half to three-quarters" | Summary of oracle fractions 0.51–0.78 | `\oracleFrac*` macros |
 | 95–100% correct swap sign (C2) | Appendix C | [R] `results/review_phase3/07_swap_sign.csv` |
 | E(c\*) = 0.5 under pure noise | Derivation | [R] `04_noise.csv` (`null_cstar_pure_noise_s0eqs2`) |
-| 24,376 raw responses (19,876 main + 4,500 U1) | Run | Row above; `results/u1/live/RUN_NOTES.md` (2,250 per model) |
+| 26,520 raw responses (19,876 main + 4,500 U1 + 2,144 F1) | Run | Row above; `results/u1/live/RUN_NOTES.md` (2,250 per model); `results/f1/live/RUN_NOTES.md` (1,072 per model) |
+| F1: 2,144 calls parsed; one transport re-attempt; no frozen parse retry | Run | `results/f1/live/analysis/usage.csv`; [R] `results/review_f1_results/04_bookkeeping.out` |
+| F1: "16--18\%" of answers within 0.005 of W without W shown (Phase 3 C2) | Baseline | `docs/F_ADDENDUM.md` FD5; [R] `results/review_f1_results/03_interpretation.out` (0.158 Luna, 0.175 Haiku) |
+| F1: 83\% (Luna) and 76\% (Haiku) of MIX answers equal displayed W exactly | Exploratory | [R] `results/review_f1_results/03_interpretation.out` (verbatim 0.831, 0.757) |
+| F1: gain over C2 "no more than W's own advantage" | Arithmetic | [R] `results/review_f1_results/03_interpretation.out` §A (W − C2: Luna −0.0058, Haiku −0.0041) |
+| F1: "matches" needs SE below about 0.0026; hybrid gain needs 0.012--0.014 over C2 | Pre-run limits | `docs/F_ADDENDUM.md` FD5; `docs/reviews/f_prerun_review.md` |
+| F1: no Brier drift interval excludes zero; matches holds without pilot and on draw 0 | Robustness | `results/f1/live/analysis/estimands.csv` (drift_Brier; exclude_pilot, draw0 samples) |
+| F1: departures partial, toward the mean, no reliable gain | Exploratory | [R] `results/review_f1_results/03_interpretation.out` §D |
+| F2: gate 0, 0, 7 valid panels vs 500; domain-only variant power about 0.24 | Gate | `results/f2/build/gate.json`; `docs/F_ADDENDUM.md` FD3, FD6; `docs/reviews/f_prerun_review.md` |
+| F2 post hoc: clean padded scores 0.000--0.010; honest minima 0.033 / 0.035; chance rates 0.5--0.7\% / 5\% | Post hoc | `docs/F_ADDENDUM.md` FD7; [R] `results/review_f_prerun/` |
+| F1 spend (\$0.42); about \$14.70 total | Cost | `results/f1/spend.jsonl` (sum of settles) |
 | U1: δ_X ≥ 0.05; match within 0.01; gate ≥ 500 panels and gap ≥ 0.03 | Design | `docs/U1_ADDENDUM.md` §2–§4 (frozen) |
 | U1: D_warr = −1.25·π_C1·0.42·δ̄ | Deviation D1 | `docs/U1_ADDENDUM.md` §8 |
 | U1: 2,250 prompts per model, 0 parse failures, 0 retries | Run | `results/u1/live/RUN_NOTES.md`; `results/u1/live/analysis/usage.csv` |

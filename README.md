@@ -9,15 +9,18 @@ This repository holds the whole project:
 - the LLM harness and a paired pilot;
 - the full Phase 3 run: 4 models, 19,876 responses, $11.22;
 - U1, a pre-registered follow-up on the farming discount: 2 models, 4,500 responses, $1.75;
+- F1, a pre-registered follow-up that shows the models the statistical aggregate W: 2 models, 2,144 responses,
+  $0.43; and F2, a clean padding test whose pre-run gate failed (not run, $0);
 - the paper, with exploratory analyses Z1, Z2, Z5 and Z6 (no paid calls).
 
-In total there are 24,376 stored LLM responses. Total API spend is about $14.27 of a $20 budget (`docs/COST_PLAN.md`).
+In total there are 26,520 stored LLM responses. Total API spend is about $14.70 of a $20 budget (`docs/COST_PLAN.md`).
 
-**Paper:** [`paper/main.pdf`](paper/main.pdf), 13 pages: about 7.5 pages of main text, then references and appendices A–E. Source: `paper/main.tex`; every
+**Paper:** [`paper/main.pdf`](paper/main.pdf), 14 pages: about 8 pages of main text, then references and appendices A–F. Source: `paper/main.tex`; every
 number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed constants in `paper/CLAIMS.md`).
 Independent reviews: `docs/reviews/phase4_paper_review.md` (READY AFTER FIXES; fixes applied, see
 `docs/reviews/phase4_lead_response.md`), `docs/reviews/u1_prerun_review.md` (RUN AFTER LISTED FIXES) and
-`docs/reviews/u1_results_review.md` (VALID WITH LISTED CAVEATS).
+`docs/reviews/u1_results_review.md` (VALID WITH LISTED CAVEATS), `docs/reviews/f_prerun_review.md` (RUN F1 AFTER LISTED
+FIXES) and `docs/reviews/f1_results_review.md` (VALID WITH LISTED CAVEATS).
 
 ## Status (2026-11-14): complete
 Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent review:
@@ -46,6 +49,14 @@ Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent
   - Claude Haiku 5.5 shows no detectable discount (declared underpowered in advance): D_swap = +0.002 [−0.010, +0.015], p = 0.64. The frozen rule printed "exploitable".
     We do not adopt it: padding gave the padder no extra pull, the Brier difference vanishes without the pilot
     questions, and the benchmark margin (0.002) is within the uncertainty of its inputs.
+- **F1 (pre-registered, `docs/F_ADDENDUM.md`):** the C2 prompt plus one labelled line giving W, on all 972
+  efficient-tier panels. In MIX both models **match W** under the frozen rule: Brier(LLM) − Brier(W) = +0.0005
+  [−0.0002, +0.0013] (Luna) and −0.0013 [−0.0041, +0.0015] (Haiku). They do so by copying it: 95% and 83% of MIX
+  answers are within 0.005 of W (16–18% without it). The gain over C2 (−0.005, secondary) is no more than W's own
+  advantage. In PUB, where W has no edge, they copy it just as closely.
+- **F2 (pre-registered):** a repeat of U1 with clean padded records and domain-balanced honest records. Its gate
+  failed (0, 0 and 7 valid panels, 500 needed), so nothing was run. Clean padded records score 0.000–0.010, below
+  every honest forecaster in the round (post hoc description, not a defence).
 - **Exploratory (post hoc, labelled as such in the paper):**
   - Z1/Z2: regime-pooled weights and the weights the models state.
   - Z5 (spec frozen before computing, `docs/Z5_SPEC.md`): no evidence, at this precision, that the LLM gain from
@@ -92,6 +103,10 @@ Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent
 | `results/u1/live/` | Raw U1 responses (`<model>/responses.jsonl.gz`), run logs, run notes and the frozen analysis (`analysis/`) |
 | `results/u1/spend.jsonl` | U1 spend ledger |
 | `results/review_u1/`, `results/review_u1_results/` | Reviewer's pre-run checks and post-run recomputation of U1 |
+| `results/f1/build/`, `results/f2/build/` | Frozen F1 manifests and cost projection; F2 build and failed gate (`gate.json`) |
+| `results/f1/live/` | Raw F1 responses (`<model>/responses.jsonl.gz`), run log, run notes and the frozen analysis (`analysis/`) |
+| `results/f1/spend.jsonl` | F1 spend ledger |
+| `results/review_f_prerun/`, `results/review_f1_results/` | Reviewer's F1/F2 pre-run checks and F1 post-run recomputation |
 | `paper/` | Paper source, generators (`make_numbers.py`, `make_figures.py`), figures, claims ledger, PDF |
 | `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, cost plan, Phase 3 plan and results, U1 addendum and implementation notes, Z5 spec, figures, reviews |
 
@@ -135,6 +150,11 @@ uv run python scripts/build_u1.py && uv run python scripts/mock_u1.py && uv run 
 for m in efficient_anthropic efficient_openai; do gunzip -k results/u1/live/$m/responses.jsonl.gz; done
 cp results/u1/build/{panels.json,stat_predictions.csv} results/u1/live/
 uv run python scripts/analyze_u1.py results/u1/live
+# F1/F2 follow-ups (build and mock cost nothing; F1 live is already run; F2 refuses to run on its failed gate)
+uv run python scripts/build_f1.py && uv run python scripts/mock_f1.py && uv run python scripts/analyze_f1.py results/f1/mock
+uv run python scripts/build_f2.py   # writes results/f2/build/gate.json (failed)
+for m in efficient_anthropic efficient_openai; do gunzip -kf results/f1/live/$m/responses.jsonl.gz; done
+uv run python scripts/analyze_f1.py results/f1/live
 # Phase 4: exploratory analyses and the paper
 uv run python results/lead_recompute/exploratory_z1_z2.py   # Z1 regime-pooled W, Z2 stated weights (post hoc)
 uv run python results/lead_recompute/z5_probe_gain.py       # Z5 probe knowledge (spec in docs/Z5_SPEC.md)
@@ -144,9 +164,9 @@ uv run python paper/make_numbers.py && uv run python paper/make_figures.py
 cd paper && latexmk -pdf main.tex
 ```
 LLM responses are cached on disk under a hash of each request. Re-running `run_pilot.py` replays the cache
-and spends nothing. `results/phase2/spend.jsonl`, `results/phase3/spend.jsonl` and `results/u1/spend.jsonl` are the
-durable spend ledgers. The Phase 2 and Phase 3 ledgers reconcile to the cent with OpenRouter key usage. The U1 total
-comes from its ledger; the OpenRouter counter was not re-read after U1 (`docs/COST_PLAN.md`).
+and spends nothing. `results/phase2/spend.jsonl`, `results/phase3/spend.jsonl`, `results/u1/spend.jsonl` and `results/f1/spend.jsonl` are the
+durable spend ledgers. The Phase 2 and Phase 3 ledgers reconcile to the cent with OpenRouter key usage. The U1 and F1 totals
+come from their ledgers; the OpenRouter counter was not re-read after U1 (`docs/COST_PLAN.md`).
 
 ## Process disclosure
 - The project was orchestrated by Claude Opus 5.5 acting as lead.
