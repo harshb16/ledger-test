@@ -153,4 +153,37 @@ Let L_arm be the model's probability, y the target outcome, and m_−X the mean 
 Any deviation is logged below with its date and reason, and is never applied silently.
 
 ## 8. Deviation log
-(none)
+All entries below were made on 2026-11-14, **before any paid call**. They follow the independent pre-run review
+(`docs/reviews/u1_prerun_review.md`, commit 6dc3c54). No panel, prompt, manifest or gate value changes.
+
+- **D1. Warranted benchmark on the D_swap scale (review MAJOR 1).**
+  - D_full = −π_C1·δ̄ is on the wrong scale for the swap. The swap moves two records (factor 1.25). A ledger gap
+    also predicts only β = 0.42 [0.34, 0.51] of itself on the target (within-question slope of target Brier on
+    t_u). The reviewer estimated β with target outcomes, before any LLM data existed.
+  - Added D_warr = −1.25·π_C1·0.42·δ̄: Haiku −0.0124, Luna −0.0407.
+  - Decision rules 2 and 3 (§6) now use D_warr. It is closer to zero than D_full, so this is the conservative
+    direction for an "ignores padding" claim. D_swap is still reported against D_full, with
+    `decision_vs_D_full_unadjusted`.
+  - G3 is unchanged as frozen. Against D_warr, Luna's margin is about 2.2× the projected MDE; Haiku stays
+    underpowered.
+- **D2. Target outcomes were seen before the run (review MAJOR 2).**
+  - The committed mock analysis (a5bbed4) computed S4 on real outcomes: mean[(p_X−y)²−(p_Y−y)²] = +0.005,
+    95% CI [−0.030, +0.040]. That CI excludes the full ledger gap and includes the shrunken one.
+  - The run is **not** conditional on S4.
+  - Rule 2 is restricted in advance. "Ignores padding" is a behavioural finding. "Exploitable" additionally
+    requires S2 harm (the bootstrap CI of ΔBrier, A vs H, is above 0) for that model.
+- **D3. Labelled robustness row (review MINOR 3).** D_swap with two-way CGM over question × {X, Y} users.
+  Primary inference is unchanged.
+- **D4. Labelled exploratory cut (review MAJOR 3).** Every F contains 1–3 confident misses (raw > 0.25).
+  D_swap is reported split by misses in F (1 or ≥2).
+  - Conclusions are worded as "confident-with-misses" against "mixed" records at equal Brier. Nothing is
+    claimed about clean padded records.
+- **D5. π precision (review MINOR 4).** The gate uses full-precision π (0.2548 / 0.8344) rather than
+  0.25 / 0.83. No gate outcome changes.
+- **D6. Run order and smoke run (review MINOR 1 and 7).**
+  - Luna runs first, then Haiku, so a cap stop cannot truncate the powered model.
+  - Any `--limit` smoke call is part of the single live run, not a separate trial.
+- **Disclosures (review MINOR 5, 6 and 8).**
+  - G is untrimmed.
+  - The stored per-item `fe` field depends on target outcomes but is never displayed or used.
+  - Mock decision strings are not results.

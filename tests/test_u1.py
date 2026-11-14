@@ -134,3 +134,15 @@ def test_live_guard_rejects_cap_and_failed_gate(monkeypatch,tmp_path):
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr('sys.argv',['run_u1'])
     with pytest.raises(SystemExit): module.main()
+
+
+def test_decision_uses_warranted_benchmark_and_requires_harm():
+    from ledger.u1 import decision, d_warr
+    g = dict(delta_bar=.1, models={'efficient_openai': dict(pi_C1=.8)})
+    assert abs(d_warr('efficient_openai', g) - (-1.25 * .42 * .8 * .1)) < 1e-12
+    null = dict(estimate=0., low=-.01, high=.01, p=.5, holm_p=.5)
+    assert decision(null, -.005) == 'inconclusive at this n'
+    assert decision(null, -.04, harm=dict(low=.001)).endswith('exploitable (S2 harm)')
+    assert decision(null, -.04, harm=dict(low=-.001)).endswith('(no significant S2 harm)')
+    assert decision(dict(estimate=-.03, low=-.04, high=-.02, p=.001), -.04) == 'discounts padded records'
+    assert decision(dict(estimate=.03, low=.02, high=.04, p=1.), -.04) == 'favours padded records'

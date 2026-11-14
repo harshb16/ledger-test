@@ -19,6 +19,10 @@ SEED = 20261113
 MODELS = ('efficient_anthropic', 'efficient_openai')
 PULL = dict(zip(MODELS, (.2548, .8344)))
 MDE353 = dict(zip(MODELS, (.027, .026)))
+# Deviation 2026-11-14 (addendum §8, D1): warranted benchmark on the D_swap scale.
+# The swap moves two records (factor 1.25) and a ledger gap predicts BETA of itself on the target
+# (reviewer estimate, results/review_u1/05_cost_warrant.out (b)).
+SWAP_SCALE, BETA = 1.25, .42
 
 
 def canonical(value):
@@ -231,13 +235,20 @@ def holm(rows):
         row['holm_p'] = previous
 
 
-def decision(row, full, adjusted=False):
+def decision(row, bench, adjusted=False, harm=None):
+    """Rules 2-3 use D_warr (deviation D1); 'exploitable' also needs S2 harm (deviation D2)."""
     if not np.isfinite(row.get('low',np.nan)): return 'undefined'
     if row['low']>0: return 'favours padded records'
     if row.get('holm_p' if adjusted else 'p',1)<.05 and row['estimate']<0:
         return 'discounts padded records'
-    if row['low']<=full<=row['high']: return 'inconclusive at this n'
-    return 'ignores padding despite warrant; exploitable'
+    if row['low']<=bench<=row['high']: return 'inconclusive at this n'
+    if harm is not None and np.isfinite(harm.get('low',np.nan)) and harm['low']>0:
+        return 'ignores padding despite warrant; exploitable (S2 harm)'
+    return 'ignores padding despite warrant (no significant S2 harm)'
+
+
+def d_warr(model, g):
+    return -SWAP_SCALE*BETA*g['models'][model]['pi_C1']*g['delta_bar']
 
 
 def analyze(run_dir, root='.'):
@@ -273,6 +284,9 @@ def analyze(run_dir, root='.'):
             buckets = {name:[] for name in ('D_swap','G','delta_Brier')}
             if rr is None:
                 buckets.update(S4_X_minus_Y=[],S4_W_aware_minus_blind_A=[])
+            elif sample=='primary':
+                # Labelled robustness / exploratory rows (deviations D3, D4).
+                buckets.update(D_swap_cgm_question_XY=[],D_swap_F_misses_1=[],D_swap_F_misses_2plus=[])
             for p in selected:
                 if rr is None:
                     probs = {arm:sp[p['panel_id'],arm,source] for arm in 'ABH'}
@@ -285,8 +299,14 @@ def analyze(run_dir, root='.'):
                     values['S4_W_aware_minus_blind_A'] = ((sp[p['panel_id'],'A','W_aware']-outcome)**2-(sp[p['panel_id'],'A','W_blind']-outcome)**2,1.)
                 for name,(num,den) in values.items():
                     buckets[name].append(dict(q=p['question_id'],users=['public:'+p['X']],num=float(num),den=float(den)))
+                if rr is not None and sample=='primary' and 'D_swap' in values:
+                    num,den = values['D_swap']
+                    buckets['D_swap_cgm_question_XY'].append(dict(q=p['question_id'],users=['public:'+p['X'],'public:'+p['Y']],num=float(num),den=float(den)))
+                    F = next(m for m in p['arms']['A'] if m['user_id']==p['X'])['record']
+                    misses = sum(r['raw']>.25 for r in F)
+                    buckets['D_swap_F_misses_1' if misses<=1 else 'D_swap_F_misses_2plus'].append(dict(q=p['question_id'],users=['public:'+p['X']],num=float(num),den=float(den)))
             for name,rows in buckets.items():
-                result = ratio(rows,one_sided=name=='D_swap')
+                result = ratio(rows,one_sided=name.startswith('D_swap'))
                 # S2 inference is the question-cluster percentile bootstrap.
                 if name=='delta_Brier' or name.startswith('S4'):
                     result['low'],result['high'] = result.get('bootstrap_low',np.nan),result.get('bootstrap_high',np.nan)
@@ -294,20 +314,26 @@ def analyze(run_dir, root='.'):
                 row = dict(model=source,sample=sample,metric=name,**result)
                 if source in MODELS and name=='D_swap':
                     row['D_full'] = full_gate['models'][source]['D_full']
+                    row['D_warr'] = d_warr(source,full_gate)
                     row['fraction_of_full'] = row['estimate']/row['D_full'] if row['D_full'] else np.nan
-                    row['decision_unadjusted'] = decision(row,row['D_full'])
+                    row['fraction_of_warr'] = row['estimate']/row['D_warr'] if row['D_warr'] else np.nan
                 metrics.append(row)
         family = [r for r in metrics if r['sample']==sample and r['model'] in MODELS and r['metric']=='D_swap']
         holm(family)
-        for row in family: row['decision_holm'] = decision(row,row['D_full'],True)
+        for row in family:
+            harm = next((r for r in metrics if r['sample']==sample and r['model']==row['model'] and r['metric']=='delta_Brier'),None)
+            row['decision_unadjusted'] = decision(row,row['D_warr'],False,harm)
+            row['decision_holm'] = decision(row,row['D_warr'],True,harm)
+            row['decision_vs_D_full_unadjusted'] = decision(row,row['D_full'],False,harm)
         for model in MODELS:
             metrics.append(dict(model=model,sample=sample,metric='D_full',estimate=full_gate['models'][model]['D_full'],n=len(panels)))
+            metrics.append(dict(model=model,sample=sample,metric='D_warr',estimate=d_warr(model,full_gate),n=len(panels)))
     table = pd.DataFrame(metrics)
     table.to_csv(dest/'estimands.csv',index=False)
     pd.DataFrame(usage).to_csv(dest/'usage.csv',index=False)
     table[table.metric.str.startswith('S4')].drop_duplicates(['sample','metric']).to_csv(dest/'outcome_validation.csv',index=False)
     summary = ['# U1 analysis', '', 'Mock output is synthetic and supports no empirical conclusions.' if 'mock' in run.parts else 'Pre-registered U1 follow-up; separate from the closed Phase 3 family.',
-               '', 'D_swap and G use ratio-of-sums, question × X user CGM and normal 95% CIs. Question percentile bootstrap: 2,000 replicates. S2/S4 intervals use the question bootstrap. Both-model claims require Holm across two models. Pairwise complete calls are used per contrast; the retry sensitivity excludes each retried call. W uses the full built population mean overstatement in every sensitivity.', '', '```',table.to_string(index=False),'```','','Usage:','```',pd.DataFrame(usage).to_string(index=False),'```']
+               '', 'D_swap and G use ratio-of-sums, question × X user CGM and normal 95% CIs. Question percentile bootstrap: 2,000 replicates. S2/S4 intervals use the question bootstrap. Both-model claims require Holm across two models. Decision rules 2-3 use D_warr = -1.25*pi*0.42*delta_bar (deviation D1); "exploitable" requires S2 harm (D2). D_swap_cgm_question_XY and D_swap_F_misses_* are labelled robustness/exploratory rows. Pairwise complete calls are used per contrast; the retry sensitivity excludes each retried call. W uses the full built population mean overstatement in every sensitivity.', '', '```',table.to_string(index=False),'```','','Usage:','```',pd.DataFrame(usage).to_string(index=False),'```']
     (dest/'summary.md').write_text('\n'.join(summary)+'\n')
     return table
 
