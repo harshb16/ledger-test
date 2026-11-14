@@ -347,3 +347,19 @@ macro,value,source,locator
 \uoneDomNotFewerLo,\ensuremath{-}0.026,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY low
 \uoneDomNotFewerHi,\ensuremath{+}0.009,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY high
 \uoneDomNotFewerN,493,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY n
+\costRatioCzeroHaiku,0.39,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_anthropic,condition=C0,cost_ratio_vs_C2"
+\costRatioCzeroLuna,0.47,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_openai,condition=C0,cost_ratio_vs_C2"
+\costRatioCzeroSonnet,0.80,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_anthropic,condition=C0,cost_ratio_vs_C2"
+\costRatioCzeroSol,0.52,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_openai,condition=C0,cost_ratio_vs_C2"
+\costRatioConeHaiku,1.20,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_anthropic,condition=C1,cost_ratio_vs_C2"
+\costRatioConeLuna,2.24,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_openai,condition=C1,cost_ratio_vs_C2"
+\costRatioConeSonnet,1.83,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_anthropic,condition=C1,cost_ratio_vs_C2"
+\costRatioConeSol,1.57,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_openai,condition=C1,cost_ratio_vs_C2"
+\costRatioCthreeHaiku,0.48,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_anthropic,condition=C3,cost_ratio_vs_C2"
+\costRatioCthreeLuna,0.95,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_openai,condition=C3,cost_ratio_vs_C2"
+\costRatioCthreeSonnet,1.02,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_anthropic,condition=C3,cost_ratio_vs_C2"
+\costRatioCthreeSol,0.91,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_openai,condition=C3,cost_ratio_vs_C2"
+\costCtwoHaiku,0.26,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_anthropic,condition=C2,mean_cost_usd x1000"
+\costCtwoLuna,0.19,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_openai,condition=C2,mean_cost_usd x1000"
+\costCtwoSonnet,2.14,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_anthropic,condition=C2,mean_cost_usd x1000"
+\costCtwoSol,2.18,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_openai,condition=C2,mean_cost_usd x1000"

@@ -364,7 +364,28 @@ robustness at little cost, although LLMs used peer-relative scores less effectiv
 \oracleFracCthreeHaiku--\oracleFracCthreeLuna). This tension is worth resolving in score presentation. (4) When the
 items are visible, one model gave a padded record less pull, but not enough to stop padding from paying, and we cannot
 tell recognition of padding from a domain-match cue. Robustness to gaming should therefore come from the score design,
-not from the AI reader.
+not from the AI reader. (5) Table~\ref{tab:formats} puts the trade-offs side by side. On this evidence, one raw score
+per forecaster is the best single format. Itemised records cost \costRatioConeHaiku--\costRatioConeLuna{} times as much per request and help no more, often
+less. A peer-relative score resists farming, but the models extracted less from it. A statistical weighting layer beside the model
+remains worth keeping (Section~\ref{sec:expl}).
+
+\begin{table}[t]
+\centering\small
+\caption{Score format trade-offs (descriptive summary of results above; no new test). \emph{Farming inflation}: E3a
+mean increase in the displayed score from selective-question farming (Brier units; positive means the farmer looks
+better; Section~\ref{sec:rq3}); the difficulty-adjusted score, not shown to models, gives \inflFe. \emph{Oracle
+fraction}: MIX, primary sample, Haiku / Luna / Sonnet / Sol; Sonnet and Sol use 108 draw-0 panels. \emph{Cost}: mean
+cost per request relative to C2 (C2 = \$\costCtwoHaiku{} / \$\costCtwoLuna{} / \$\costCtwoSonnet{} /
+\$\costCtwoSol{} per 1,000 requests), from the stored Phase~3 responses, reasoning tokens included.}
+\label{tab:formats}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Format shown & Farming inflation & Oracle fraction & Cost vs C2 \\
+\midrule
+\input{generated/tab_formats.tex}
+\end{tabular}
+\end{table}
 
 \subsection*{Limitations}
 \emph{Scope:} one ForecastBench round, 162 questions, four models. \emph{Records} are cross-sectional (same round,
