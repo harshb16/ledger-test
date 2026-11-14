@@ -13,7 +13,7 @@ This repository holds the whole project:
 
 In total there are 24,376 stored LLM responses. Total API spend is about $14.27 of a $20 budget (`docs/COST_PLAN.md`).
 
-**Paper:** [`paper/main.pdf`](paper/main.pdf), 13 pages: about 7 pages of main text, then references and appendices A–E. Source: `paper/main.tex`; every
+**Paper:** [`paper/main.pdf`](paper/main.pdf), 13 pages: about 7.5 pages of main text, then references and appendices A–E. Source: `paper/main.tex`; every
 number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed constants in `paper/CLAIMS.md`).
 Independent reviews: `docs/reviews/phase4_paper_review.md` (READY AFTER FIXES; fixes applied, see
 `docs/reviews/phase4_lead_response.md`), `docs/reviews/u1_prerun_review.md` (RUN AFTER LISTED FIXES) and
@@ -24,7 +24,7 @@ Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent
 `docs/reviews/phase3_fable_review.md`, verdict READY WITH LIMITATIONS.
 - **RQ1:** showing one raw accuracy score per forecaster improves the LLM aggregate on panels with identifiable
   experts (MIX), for all 4 models.
-  - ΔBrier is −0.016 over all three draws (efficient tier) and −0.019 to −0.030 on the common 108-panel sample.
+  - ΔBrier is −0.016 to −0.017 over all three draws (efficient tier) and −0.019 to −0.030 on the common 108-panel sample.
   - That is about 50–78% of the oracle gain.
   - The LLMs beat the equal mean but not a cross-validated performance-weighted rule.
   - There is no effect on all-public (PUB) panels.
@@ -39,23 +39,26 @@ Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent
   `docs/PHASE3_RESULTS.md`).
 - **U1 (pre-registered follow-up to RQ3b, `docs/U1_ADDENDUM.md`):** a redesigned test with no nonce, a
   warranted-discount arm and matched base rates. It was run on the two efficient models.
-  - GPT-6 Luna discounts the padded record: D_swap = −0.023 [−0.037, −0.008], Holm p = 0.0026. Padding still
+  - GPT-6 Luna gives the forecast beside the padded record less pull: D_swap = −0.023 [−0.037, −0.008], Holm p = 0.0026. Padding still
     paid: compared with an honest record, it raised Luna's pull toward the padder (G = +0.049 [+0.030, +0.067]).
     There was no measurable change in accuracy.
   - The discount is not shown to be recognition of padding. The model could be reacting to a domain-match cue.
-  - Claude Haiku 5.5 shows no detectable discount (declared underpowered in advance): D_swap = +0.002 [−0.010, +0.015], p = 0.64. The frozen "exploitable" label
-    was not adopted, because its criteria were not met.
+  - Claude Haiku 5.5 shows no detectable discount (declared underpowered in advance): D_swap = +0.002 [−0.010, +0.015], p = 0.64. The frozen rule printed "exploitable".
+    We do not adopt it: padding gave the padder no extra pull, the Brier difference vanishes without the pilot
+    questions, and the benchmark margin (0.002) is within the uncertainty of its inputs.
 - **Exploratory (post hoc, labelled as such in the paper):**
   - Z1/Z2: regime-pooled weights and the weights the models state.
-  - Z5 (spec frozen before computing, `docs/Z5_SPEC.md`): no evidence that the LLM gain from scores depends on
-    the model's own knowledge of the question. A post-hoc check finds that the lower no-score leakage on
-    questions the model knows (Haiku, Sonnet) is explained by question easiness.
+  - Z5 (spec frozen before computing, `docs/Z5_SPEC.md`): no evidence, at this precision, that the LLM gain from
+    scores is concentrated on questions the model already knows. For Haiku and Sonnet the no-record answer beats
+    the equal mean by more on known questions, which meets the pre-set leakage criterion. A post-hoc check shows
+    the logit mean of the panel does the same, so the pattern does not separate leakage from question easiness.
   - Z6: a descriptive table of request cost by score format.
 
 ## Questions
 - **RQ1 (utility):** Does showing an LLM each forecaster's track record improve its aggregate Brier score?
 - **RQ2 (calibration of reliance):** Does the LLM move its forecast as much as the evidence warrants?
-  This is measured by the reliance slope β against a cross-validated performance-weighted aggregator.
+  This is measured by c\*, the outcome-optimal rescaling of the model's own record-induced shift. The scale
+  relative to the cross-validated weighted rule W is a secondary description.
   A record swap serves only as a manipulation check.
 - **RQ3 (gaming):** Does reputation farming (showing only confident, easy items) shift the LLM toward the
   attacker? Do itemised or peer-relative records defend against it?

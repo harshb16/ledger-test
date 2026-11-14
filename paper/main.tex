@@ -46,13 +46,13 @@ paired interventions that swap or pad a record; confirmatory tests were frozen b
 one raw accuracy score per forecaster lowers every model's Brier score (by \eOneAbsHaiku--\eOneAbsLuna{} for the
 efficient models; Holm-adjusted $p<0.001$), about half to three-quarters of the gain from knowing who the experts
 are. But no model beats a cross-validated performance-weighted average tuned for the panel type, and in PUB panels
-records give no measurable benefit. In MIX the models under-react, yet respond to scores in the same way whether or
+records give no measurable benefit. In MIX the models under-react, yet respond similarly whether or
 not experts are present. Padding a record with easy, confident forecasts improves a raw mean Brier by \inflRawAbs,
 which peer-relative or difficulty-adjusted scores remove. Our frozen LLM padding test failed on a prompt artefact.
 In a pre-registered follow-up where a discount was warranted, one of two models gave a
 forecast less pull beside a padded record than beside an honest record of equal score
 ($D=\uoneDLuna$ [\uoneDLoLuna, \uoneDHiLuna]), yet padding still paid. Reliability scores help AI
-aggregators when real skill differences exist, but transparent statistical weighting remains a strong default.
+aggregators when real skill differences exist, but transparent statistical weighting remains a strong default when the panel type is known.
 \end{minipage}
 \end{center}
 \vspace{6pt}
@@ -85,8 +85,8 @@ than reliability \citep{ashkinaze2026}. What is missing is a test with \emph{rea
   evidence that the models' policy is regime-blind (RQ2).
 \item A data-level measurement of record farming and of the protection offered by peer-relative and difficulty-adjusted
   scores (RQ3a). We give a candid account of why our frozen LLM-level farming test is not identified (RQ3b), and a
-  pre-registered follow-up, built so that a discount is warranted, in which one model partly discounts padded records
-  without removing the gain from padding.
+  pre-registered follow-up, built so that a discount is warranted, in which one of two models gives a padded record
+  less pull, without removing the gain from padding.
 \end{enumerate}
 Code, frozen configurations, all 24,376 raw model responses (19,876 main study, 4,500 follow-up), and every script that generates a number in this paper
 are in the project repository (link in the submission form). Each number in the text is generated from a result file and traced in a claims ledger
@@ -122,8 +122,9 @@ per type per question, giving 972 frozen panels. The target question is shown \e
 two-letter category code and a horizon bucket, to limit pretraining knowledge. A text-only probe shows that,
 given the question text, the models are about as accurate as the human crowd (Brier \probeSonnet--\probeHaiku{} against
 \probeCrowdLo--\probeCrowdHi; Appendix~\ref{app:extra}). Pretraining knowledge is therefore plausible, and the main
-prompts rely on withholding the text. An exploratory check finds no sign that the gain from records came from questions the
-models already knew (Appendix~\ref{app:extra}).
+prompts rely on withholding the text. An exploratory check finds no evidence that the gain from records came from questions the
+models already knew; a second check met our pre-set leakage criterion for two models, but a post-hoc control shows it
+does not separate leakage from question easiness (Appendix~\ref{app:extra}).
 
 \subsection{Conditions and interventions}
 Each member's record shows $k=8$ other resolved questions from the same round, drawn uniformly. The target is always
@@ -214,7 +215,7 @@ Model & Oracle frac. & E1 PUB & Held-out gain MIX & Held-out gain PUB & $\cstar_
 \end{tabular}}
 \end{table}
 
-\subsection{RQ1: records help when experts are present, but less than a simple rule}
+\subsection{RQ1: records help when experts are present, but less than a simple rule}\label{sec:rq1}
 On MIX panels, raw scores (C2) lower the Brier score for all four models (Table~\ref{tab:conf}, Fig.~\ref{fig:e1}a),
 so the pre-registered ``all models'' criterion is met. On the common sample, the improvement is \eOneCommonHaiku{}
 (Haiku), \eOneCommonLuna{} (Luna), \eOneCommonSonnet{} (Sonnet) and \eOneCommonSol{} (Sol). This sample is the most
@@ -293,8 +294,8 @@ and Y's record beside Y, arm B swaps the two records, and arm H shows an honest 
 with B ($<0$ is a discount), and $G$ is the pull toward X gained by padding (A vs H). Over \uoneN{} PUB panels in C1
 (\$\uoneSpend), \textbf{Luna} gave the forecast beside the padded record less pull ($D_\text{swap}=\uoneDLuna$
 [\uoneDLoLuna, \uoneDHiLuna], Holm $p=\uoneHolmLuna$), but it is not shown to recognise padding: every padded record
-shows visible misses, the effect is not significant when both records hold equally many target-category items, and it
-is concentrated where the honest record is the better domain match. Padding still paid ($G=\uoneGLuna$ [\uoneGLoLuna,
+shows visible misses, the effect is not significant when both records hold equally many target-category items, and, in
+an exploratory split, it is concentrated where the honest record is the better domain match. Padding still paid ($G=\uoneGLuna$ [\uoneGLoLuna,
 \uoneGHiLuna]). \textbf{Haiku}, declared underpowered before the run, shows no detectable discount
 ($D_\text{swap}=\uoneDHaiku$ [\uoneDLoHaiku, \uoneDHiHaiku]) and no attack gain; we do not adopt the frozen rule's
 ``exploitable'' label (Appendix~\ref{app:uone}).
@@ -312,7 +313,7 @@ reported probability (mean absolute gap at most \pwGapMax) and scores no better 
 the equal mean to the superforecasters' mean, against \revealedShareMin--\revealedShareMax{} for the answers: the
 under-reaction is already in the weights, and asking for weights is not a better recipe.
 
-\section{Discussion and Limitations}
+\section{Discussion and Limitations}\label{sec:disc}
 \textbf{What this means for trust infrastructure.} (1) Reliability metadata is useful to an AI aggregator \emph{when
 there is real skill dispersion to find}. When there is not, it does not help, and a well-calibrated aggregator should
 largely ignore it. (2) Current LLMs read raw scores sensibly but conservatively, with roughly the same policy whether or not experts
@@ -326,9 +327,9 @@ LLMs, however, used peer-relative scores less effectively than raw ones (C3 orac
 items are visible, one model gave a padded record less pull, but not enough to stop padding from paying, and we cannot
 tell recognition of padding from a domain-match cue. Robustness to gaming should therefore come from the score design,
 not from the AI reader. (5) Table~\ref{tab:formats} puts the trade-offs side by side. On this evidence, one raw score
-per forecaster is the best single format. Itemised records cost \costRatioConeHaiku--\costRatioConeLuna{} times as much per request and help no more, often
-less. A peer-relative score resists farming, but the models extracted less from it. A statistical weighting layer beside the model
-remains worth keeping (Section~\ref{sec:expl}).
+per forecaster is the best single format. Itemised records cost \costRatioConeHaiku--\costRatioConeLuna{} times as much per request and help about as much (Luna,
+Sol) or much less (Haiku, Sonnet). A peer-relative score resists farming, but the models extracted less from it. A statistical weighting layer beside the model
+remains worth keeping (Sections~\ref{sec:rq1} and~\ref{sec:expl}).
 
 \begin{table}[t]
 \centering\small
@@ -362,12 +363,12 @@ alongside the records, and chronologically built records from several rounds.
 
 \section{Conclusion}
 Showing an LLM one raw accuracy score per forecaster improves its aggregate when the panel contains identifiable
-experts, and does nothing measurable when it does not. The models use the scores sensibly but conservatively, with the
-same policy in both regimes, and none beats a transparent cross-validated weighting rule that knows the regime. Raw
+experts, and does nothing measurable when it does not. The models use the scores sensibly but conservatively, with a
+similar policy in both regimes, and none beats a transparent cross-validated weighting rule that knows the regime. Raw
 mean Brier can be padded with easy forecasts, and peer-relative or difficulty-adjusted scores remove that inflation at
-little cost. An LLM shown the items partly discounts a padded record, but padding still pays. For trust
+little cost. One of two models shown the items gave a padded record less pull, but padding still paid. For trust
 infrastructure consumed by AI systems, reliability signals are worth exposing, but a statistical
-aggregate is a strong default, and score designs should be robust to selective-question farming.
+aggregate is a strong default when the panel type is known, and score designs should be robust to selective-question farming.
 
 \section*{Code and Data}
 \begin{itemize}
@@ -399,7 +400,7 @@ padder's pull.
 cue, and every padded record showed visible misses); whether Haiku is indifferent to padding (inconclusive); whether the results
 hold for other rounds, chronological track records, other prompts, reasoning settings or models; whether showing the
 statistical aggregate to the model helps (untested); and any over-reaction in all-public panels (not supported). Cross-tier
-magnitudes are not comparable, and $\cstar$ magnitudes are in-sample. Section~5 and the paragraph below list the
+magnitudes are not comparable, and $\cstar$ magnitudes are in-sample. Section~\ref{sec:disc} and the paragraph below list the
 remaining limitations.
 
 \textbf{Further limitations.} \emph{Routing:}
@@ -435,14 +436,13 @@ Design constants (sample sizes, $k$, thresholds) and process figures (cost) are 
 farmed record, which would have made the prompts byte-identical and replayed a cached answer. To prevent this, we
 appended a line ``\texttt{Cache nonce: control}'' to every control prompt. This made the prompt text depend on the arm.
 In \nonceHaikuN{} PUB panels, the C2 control and farmed prompts differ \emph{only} by this line, which gives a natural
-experiment: Haiku's answers shift toward the mean (Appendix Table~\ref{tab:nonce}), its reasoning tokens per call fall
+experiment: Haiku's answers shift toward the mean (Table~\ref{tab:nonce}), its reasoning tokens per call fall
 from \nonceTokFarm{} to \nonceTokCtl{} in these pairs (\nonceTokFarmAll{} to \nonceTokCtlAll{} over all 486 panels), and the implied contribution to $D$ is \nonceHaikuD{}, matching its failed C2 placebo
 (\placeboHaikuDtwo{}). Effects compatible with the nonce also appear for Luna (C3) and Sonnet (C2), and for no model is the
 line shown to be inert. The E3b column of Table~\ref{tab:conf} is therefore reported only for completeness. Even
 without the nonce, the test would be uninformative. No discount is warranted (RQ3a), so $D\approx0$ is also the rational
 response. The minimum detectable effect at 80\% power is \mdeMin--\mdeMax, above any plausible warranted discount. And C1
-records show category codes, so farmed and control records also differ in base-rate information. No estimand other than
-those using the control or retest arms is affected (Appendix~\ref{app:nonce}).
+records show category codes, so farmed and control records also differ in base-rate information.
 
 \begin{table}[h]
 \centering\small
@@ -502,13 +502,14 @@ nominally worse (\pooledWAllSol{} [\pooledWAllLoSol, \pooledWAllHiSol]) and Sonn
 \item \textbf{Did gains come from questions the model knew? (exploratory; definition committed before computing,
   \texttt{docs/Z5\_SPEC.md}).} We split questions at each model's median probe Brier. E1 on ``known'' minus
   ``unknown'' questions is \zfiveAMin{} to \zfiveAMax{} across models, and every CI includes 0 (all
-  bounds within [\zfiveALoMin, \zfiveAHiMax]), so the gain from records is not concentrated where the model knew the answer.
+  bounds within [\zfiveALoMin, \zfiveAHiMax]), so there is no evidence, at this precision, that the gain from records is
+  concentrated where the model knew the answer.
   A second check asks whether the no-record answer (C0) beats the equal mean by more on known questions, as leakage
   through the anonymised prompt would predict. It does for Haiku (\zfiveBHaiku{} [\zfiveBLoHaiku, \zfiveBHiHaiku])
   and Sonnet (\zfiveBSonnet{} [\zfiveBLoSonnet, \zfiveBHiSonnet]), which meets our pre-set leakage criterion.
-  However, a rule that only extremises the crowd mean, with no access to the question, shows a gap of similar or
-  larger size (\zfiveXMin{} to \zfiveXMax). Known questions are also easier, so this pattern does not isolate
-  leakage. We added this extremiser check after seeing the result. Luna and Sol return the equal mean in C0 in at
+  However, the logit mean of the panel, which has no access to the question, shows a gap of similar or larger size on
+  each sample (\zfiveXMin{} to \zfiveXMax). Known questions are also easier, so this pattern does not isolate
+  leakage. We added this logit-mean check after seeing the result. The pre-specified correlations agree with the split. Luna and Sol return the equal mean in C0 in at
   least \zfiveEqMean\% of panels. Question-bootstrap 95\% CIs.
 \item \textbf{Robustness:} E1 MIX and $\cstar$ MIX remain Holm-significant for every model when the 16 pilot questions
   are excluded, on the common sample, and under four SE conventions.
@@ -523,7 +524,7 @@ to the swap contrast ($D_\text{warr}=-1.25\,\pi_{C1}\,0.42\,\bar\delta$, where 0
 target Brier on ledger skill); D2 records that target outcomes had been seen in a mock analysis and requires attack harm
 before an ``exploitable'' label. The gate required at least 500 panels, a mean ledger gap $t_X-t_Y\ge0.03$
 (observed \uoneGap) and power for the more responsive model; Haiku was declared underpowered in advance. Each model
-answered all 2,250 prompts once, with 0 parse failures and 0 retries.
+answered all 2,250 prompts once, with 0 parse failures and 0 retries under the frozen rule.
 
 \textbf{Results in detail.} We rebuilt the test to fix the three problems of the frozen test (the nonce,
 no warranted discount, and base-rate differences; Appendix~\ref{app:nonce}). An
@@ -548,7 +549,7 @@ pad: relative to an honest record, padding raised Luna's pull toward the padder 
 on these questions (\uoneSfour{} [\uoneSfourLo, \uoneSfourHi]), so the warrant rests on the ledgers.
 \textbf{Haiku}, declared underpowered before the run, shows no detectable discount ($D_\text{swap}=\uoneDHaiku$
 [\uoneDLoHaiku, \uoneDHiHaiku]) and no attack gain ($G=\uoneGHaiku$ [\uoneGLoHaiku, \uoneGHiHaiku]). The frozen
-decision rule labels it ``exploitable''; we do not adopt the label (Appendix~\ref{app:uone}). In an exploratory split by
+decision rule labels it ``exploitable''; we do not adopt the label (see below). In an exploratory split by
 whether calls used reasoning tokens, Haiku's swap effect has opposite signs, so its null is an average, not evidence of
 indifference.
 
@@ -563,7 +564,7 @@ $^\ddagger$Printed by the frozen rule; not adopted (see text).}
 Model & $D_\text{swap}$ & Holm $p$ & $D_\text{warr}$ & $G$ & $\Delta$Brier & Frozen decision \\
 \midrule
 Luna & \uoneDLuna{} [\uoneDLoLuna, \uoneDHiLuna] & \uoneHolmLuna & \uoneWarrLuna & \uoneGLuna{} [\uoneGLoLuna, \uoneGHiLuna] & \uoneBLuna{} [\uoneBLoLuna, \uoneBHiLuna] & \uoneDecisionLuna \\
-Haiku & \uoneDHaiku{} [\uoneDLoHaiku, \uoneDHiHaiku] & \uoneHolmHaiku & \uoneWarrHaiku & \uoneGHaiku{} [\uoneGLoHaiku, \uoneGHiHaiku] & \uoneBHaiku{} [\uoneBLoHaiku, \uoneBHiHaiku] & exploitable$^\ddagger$ \\
+Haiku & \uoneDHaiku{} [\uoneDLoHaiku, \uoneDHiHaiku] & \uoneHolmHaiku & \uoneWarrHaiku & \uoneGHaiku{} [\uoneGLoHaiku, \uoneGHiHaiku] & \uoneBHaiku{} [\uoneBLoHaiku, \uoneBHiHaiku] & \uoneDecisionHaiku$^\ddagger$ \\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -577,7 +578,7 @@ uncertainty of its inputs.
 This project was planned, implemented and analysed by AI agents under human direction. An Opus-class model led design
 and analysis; a Codex model implemented the engineering; a separate Claude model, as independent reviewer, audited the
 design and the results and reproduced every confirmatory number (to within $10^{-15}$). The human author set the
-question, budget and constraints, and approved each paid phase. API spend was \$12.52 for the main study and
+question, budget and constraints, and approved each paid phase. API spend was \$12.52 for the pilot and main study and
 \$\uoneSpend{} for the U1 follow-up, of a \$20 budget. No result was
 fitted on held-out outcomes, no analysis was rerun to change a significance call, and all deviations from the frozen
 design (including the nonce flaw) are logged in the repository.

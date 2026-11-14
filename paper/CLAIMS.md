@@ -32,7 +32,14 @@ facts, or values quoted from the results record, and each has a source.
 | U1: Haiku misses D_warr "by about 0.002" | Arithmetic | `\uoneDLoHaiku` − `\uoneWarrHaiku` (generated macros) |
 | U1: Haiku reasoning-split swap effects of opposite sign | Exploratory | [R] `results/review_u1_results/06_haiku_reasoning_split.out` |
 | \$1.75 U1 spend; about \$14.27 total | Cost | `results/u1/spend.jsonl` (sum of settles) |
-| Z5: median split on probe Brier; extremiser check added after seeing results | Exploratory design | `docs/Z5_SPEC.md` (commit a7dfa38); `results/lead_recompute/z5b_easiness_check.py` |
+| Z5: median split on probe Brier; logit-mean (extremiser) check added after seeing results | Exploratory design | `docs/Z5_SPEC.md` (commit a7dfa38); `results/lead_recompute/z5b_easiness_check.py` |
+| "always 50% scores 0.250" reference line in C2 records | Prompt design | Brier of a 0.5 forecast; `src/ledger/experiment.py` |
+| held-out rescaled forecasts clipped to [0.001, 0.999] | Methods | `results/lead_recompute/cstar_crossfit.py` (docstring) |
+| Anthropic models served by three upstream providers, balanced shares | Provider audit | `results/lead_recompute/provider_audit.py` → `provider_by_request.csv`; `docs/PHASE3_RESULTS.md` |
+| 80% power for the MDE | Design | `MDE80_D_C1_one_sided` column (`\mdeMin`, `\mdeMax` in `make_numbers.py`) |
+| "two alternative conventions" (Sonnet PUB c\* Holm) | Robustness | `make_numbers.py` (Frozen, Exact, Cons Holm columns) |
+| "four SE conventions" | Robustness | `docs/PHASE3_RESULTS.md` (Robustness: frozen CGM, CGM pairs once, question-only, jackknife) |
+| Z1 pooled contrast assumes a 50/50 MIX/PUB mix | Exploratory | `results/lead_recompute/exploratory_z1_z2.py` (docstring) |
 
 **Regenerating.**
 
