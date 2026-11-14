@@ -1,0 +1,348 @@
+377 macros parsed
+
+(a) U1 macros vs estimands.csv
+  [ok] uoneDHaiku macro=+0.002 source=0.002363
+  [ok] uoneDLoHaiku macro=-0.010 source=-0.010439
+  [ok] uoneDHiHaiku macro=+0.015 source=0.015164
+  [ok] uoneHolmHaiku macro=0.6412 source=0.641220
+  [ok] uonePHaiku macro=0.6412 source=0.641220
+  [ok] uoneWarrHaiku macro=-0.012 source=-0.012420
+  [ok] uoneFullHaiku macro=-0.024 source=-0.023657
+  [ok] uoneDecisionHaiku 'ignores padding despite warrant; exploitable (S2 harm)'
+  [ok] uoneGHaiku macro=-0.004 source=-0.003584
+  [ok] uoneGLoHaiku macro=-0.022 source=-0.022005
+  [ok] uoneGHiHaiku macro=+0.015 source=0.014838
+  [ok] uoneBHaiku macro=+0.0047 source=0.004658
+  [ok] uoneBLoHaiku macro=+0.0003 source=0.000306
+  [ok] uoneBHiHaiku macro=+0.0089 source=0.008908
+  [ok] uoneDNoPilotHaiku macro=+0.002 source=0.002260
+  [ok] uoneDNoPilotLoHaiku macro=-0.011 source=-0.010920
+  [ok] uoneDNoPilotHiHaiku macro=+0.015 source=0.015439
+  [ok] uoneDEqCatHaiku macro=+0.012 source=0.011523
+  [ok] uoneDEqCatLoHaiku macro=-0.010 source=-0.010059
+  [ok] uoneDEqCatHiHaiku macro=+0.033 source=0.033104
+  [ok] uoneBNoPilotLoHaiku macro=-0.0012 source=-0.001223
+    Haiku: frozen decision under exclude_pilot = 'ignores padding despite warrant (no significant S2 harm)'; equal_target_category = 'ignores padding despite warrant (no significant S2 harm)'
+  [ok] uoneDLuna macro=-0.023 source=-0.022619
+  [ok] uoneDLoLuna macro=-0.037 source=-0.037340
+  [ok] uoneDHiLuna macro=-0.008 source=-0.007898
+  [ok] uoneHolmLuna macro=0.0026 source=0.002599
+  [ok] uonePLuna macro=0.0013 source=0.001299
+  [ok] uoneWarrLuna macro=-0.041 source=-0.040671
+  [ok] uoneFullLuna macro=-0.077 source=-0.077469
+  [ok] uoneDecisionLuna 'discounts padded records'
+  [ok] uoneGLuna macro=+0.049 source=0.048619
+  [ok] uoneGLoLuna macro=+0.030 source=0.029772
+  [ok] uoneGHiLuna macro=+0.067 source=0.067466
+  [ok] uoneBLuna macro=-0.0007 source=-0.000715
+  [ok] uoneBLoLuna macro=-0.0051 source=-0.005131
+  [ok] uoneBHiLuna macro=+0.0044 source=0.004383
+  [ok] uoneDNoPilotLuna macro=-0.025 source=-0.025103
+  [ok] uoneDNoPilotLoLuna macro=-0.041 source=-0.040793
+  [ok] uoneDNoPilotHiLuna macro=-0.009 source=-0.009414
+  [ok] uoneDEqCatLuna macro=-0.009 source=-0.009231
+  [ok] uoneDEqCatLoLuna macro=-0.030 source=-0.029944
+  [ok] uoneDEqCatHiLuna macro=+0.011 source=0.011482
+  [ok] uoneBNoPilotLoLuna macro=-0.0041 source=-0.004068
+    Luna: frozen decision under exclude_pilot = 'discounts padded records'; equal_target_category = 'ignores padding despite warrant (no significant S2 harm)'
+  [ok] uoneEqCatN 
+  [ok] uoneGBlind macro=+0.092 source=0.092166
+  [ok] uoneSfour macro=+0.005 source=0.005127
+  [ok] uoneSfourLo macro=-0.029 source=-0.028964
+  [ok] uoneSfourHi macro=+0.039 source=0.039475
+    Haiku CGM lower bound - D_warr = +0.0020 (paper: 'about 0.002')
+    Luna CGM lower bound - D_warr = +0.0033; D_swap/D_warr = 0.56
+  [ok] uoneDomFewer macro=-0.049 source=-0.049462
+  [ok] uoneDomFewerN n=257
+  [ok] uoneDomNotFewer macro=-0.009 source=-0.008678
+  [ok] uoneDomNotFewerN n=493
+
+(b) Z5 recomputed (own code; bootstrap with a different seed, so CI bounds are compared loosely)
+  [ok] Z5 Haiku A_E1_gain diff +0.00360
+  [ok] Z5 Haiku A_E1_gain CI (loose, 0.003) mine [-0.0056, +0.0138] frozen [-0.0056, +0.0140] r=+0.038 [-0.153, +0.239]
+  [ok] Z5 Haiku B_C0_leakage diff -0.00550
+  [ok] Z5 Haiku B_C0_leakage CI (loose, 0.003) mine [-0.0090, -0.0011] frozen [-0.0086, -0.0012] r=+0.236 [+0.065, +0.400]
+  [ok] Z5b Haiku logit-mean diff -0.0168 mine [-0.0270, -0.0074] frozen [-0.0274, -0.0066]
+  [ok] Z5b Haiku C0==mean share 0.2747
+    Haiku: per-question mean E1 = -0.0164; A-diff CI half-width = 0.0097; equal-mean Brier known 0.087 vs unknown 0.218; E1 known -0.0146 unknown -0.0182
+  [ok] Z5 Luna A_E1_gain diff +0.00183
+  [ok] Z5 Luna A_E1_gain CI (loose, 0.003) mine [-0.0086, +0.0118] frozen [-0.0093, +0.0116] r=+0.000 [-0.181, +0.203]
+  [ok] Z5 Luna B_C0_leakage diff -0.00001
+  [ok] Z5 Luna B_C0_leakage CI (loose, 0.003) mine [-0.0000, +0.0000] frozen [-0.0000, +0.0000] r=+0.075 [-0.114, +0.145]
+  [ok] Z5b Luna logit-mean diff -0.0196 mine [-0.0299, -0.0105] frozen [-0.0311, -0.0099]
+  [ok] Z5b Luna C0==mean share 0.9969
+    Luna: per-question mean E1 = -0.0165; A-diff CI half-width = 0.0102; equal-mean Brier known 0.083 vs unknown 0.221; E1 known -0.0156 unknown -0.0174
+  [ok] Z5 Sonnet A_E1_gain diff +0.00467
+  [ok] Z5 Sonnet A_E1_gain CI (loose, 0.003) mine [-0.0136, +0.0393] frozen [-0.0144, +0.0383] r=-0.065 [-0.261, +0.104]
+  [ok] Z5 Sonnet B_C0_leakage diff -0.01749
+  [ok] Z5 Sonnet B_C0_leakage CI (loose, 0.003) mine [-0.0273, -0.0038] frozen [-0.0270, -0.0045] r=+0.255 [+0.094, +0.426]
+  [ok] Z5b Sonnet logit-mean diff -0.0203 mine [-0.0355, -0.0003] frozen [-0.0348, +0.0003]
+  [ok] Z5b Sonnet C0==mean share 0.1111
+    Sonnet: per-question mean E1 = -0.0297; A-diff CI half-width = 0.0265; equal-mean Brier known 0.087 vs unknown 0.231; E1 known -0.0273 unknown -0.0320
+  [ok] Z5 Sol A_E1_gain diff +0.01346
+  [ok] Z5 Sol A_E1_gain CI (loose, 0.003) mine [-0.0131, +0.0294] frozen [-0.0121, +0.0286] r=-0.100 [-0.242, +0.034]
+  [ok] Z5 Sol B_C0_leakage diff +0.00000
+  [ok] Z5 Sol B_C0_leakage CI (loose, 0.003) mine [-0.0000, +0.0000] frozen [-0.0000, +0.0000] r=-0.034 [-0.178, +0.135]
+  [ok] Z5b Sol logit-mean diff -0.0156 mine [-0.0340, +0.0022] frozen [-0.0336, +0.0028]
+  [ok] Z5b Sol C0==mean share 1.0000
+    Sol: per-question mean E1 = -0.0193; A-diff CI half-width = 0.0212; equal-mean Brier known 0.097 vs unknown 0.222; E1 known -0.0125 unknown -0.0259
+  [ok] zfiveAMin macro=+0.002 source=0.001827
+  [ok] zfiveAMax macro=+0.013 source=0.013455
+  [ok] zfiveALoMin macro=-0.014 source=-0.014441
+  [ok] zfiveAHiMax macro=0.038 source=0.038255
+  [ok] zfiveBHaiku macro=-0.006 source=-0.005500
+  [ok] zfiveBLoHaiku macro=-0.009 source=-0.008644
+  [ok] zfiveBHiHaiku macro=-0.001 source=-0.001227
+  [ok] zfiveBSonnet macro=-0.017 source=-0.017486
+  [ok] zfiveBLoSonnet macro=-0.027 source=-0.026999
+  [ok] zfiveBHiSonnet macro=-0.004 source=-0.004458
+  [ok] zfiveXMin macro=-0.016 source=-0.015625
+  [ok] zfiveXMax macro=-0.020 source=-0.020299
+  [ok] zfiveEqMean macro=99.7 source=99.691358
+    Z5 rows NOT quoted individually in the paper (all 16 numbers of the spec are in the CSV):
+ model      outcome    diff  diff_lo  diff_hi       r    r_lo   r_hi
+ Haiku    A_E1_gain  0.0036  -0.0056   0.0140  0.0376 -0.1529 0.2389
+ Haiku B_C0_leakage -0.0055  -0.0086  -0.0012  0.2358  0.0654 0.4004
+  Luna    A_E1_gain  0.0018  -0.0093   0.0116  0.0000 -0.1808 0.2031
+  Luna B_C0_leakage -0.0000  -0.0000   0.0000  0.0753 -0.1137 0.1454
+Sonnet    A_E1_gain  0.0047  -0.0144   0.0383 -0.0652 -0.2613 0.1040
+Sonnet B_C0_leakage -0.0175  -0.0270  -0.0045  0.2551  0.0940 0.4261
+   Sol    A_E1_gain  0.0135  -0.0121   0.0286 -0.0999 -0.2424 0.0336
+   Sol B_C0_leakage  0.0000  -0.0000   0.0000 -0.0335 -0.1780 0.1348
+    Z5b logit-mean CIs:
+ model  c0_equals_mean_share  extremiser_diff      lo      hi
+ Haiku                0.2747          -0.0168 -0.0274 -0.0066
+  Luna                0.9969          -0.0196 -0.0311 -0.0099
+Sonnet                0.1111          -0.0203 -0.0348  0.0003
+   Sol                1.0000          -0.0156 -0.0336  0.0028
+
+(c) Z6 recomputed from raw responses
+  [ok] Z6 Haiku C0 ratio 0.3922
+  [ok] costRatioCzeroHaiku macro=0.39 source=0.392230
+  [ok] Z6 Haiku C1 ratio 1.1982
+  [ok] costRatioConeHaiku macro=1.20 source=1.198166
+  [ok] Z6 Haiku C3 ratio 0.4803
+  [ok] costRatioCthreeHaiku macro=0.48 source=0.480319
+  [ok] costCtwoHaiku macro=0.26 source=0.258547
+    Haiku: n per condition {'C0': 972, 'C1': 972, 'C2': 972, 'C3': 972}; estimated-cost rows 0; mean completion tokens {'C0': 81.0, 'C1': 280.0, 'C2': 355.0, 'C3': 81.0}; mean reasoning tokens {'C0': 25.0, 'C1': 223.0, 'C2': 300.0, 'C3': 25.0}
+  [ok] Z6 Luna C0 ratio 0.4728
+  [ok] costRatioCzeroLuna macro=0.47 source=0.472776
+  [ok] Z6 Luna C1 ratio 2.2355
+  [ok] costRatioConeLuna macro=2.24 source=2.235465
+  [ok] Z6 Luna C3 ratio 0.9528
+  [ok] costRatioCthreeLuna macro=0.95 source=0.952829
+  [ok] costCtwoLuna macro=0.19 source=0.185736
+    Luna: n per condition {'C0': 972, 'C1': 972, 'C2': 972, 'C3': 972}; estimated-cost rows 0; mean completion tokens {'C0': 125.0, 'C1': 628.0, 'C2': 290.0, 'C3': 272.0}; mean reasoning tokens {'C0': 76.0, 'C1': 579.0, 'C2': 241.0, 'C3': 223.0}
+  [ok] Z6 Sonnet C0 ratio 0.8035
+  [ok] costRatioCzeroSonnet macro=0.80 source=0.803544
+  [ok] Z6 Sonnet C1 ratio 1.8301
+  [ok] costRatioConeSonnet macro=1.83 source=1.830091
+  [ok] Z6 Sonnet C3 ratio 1.0234
+  [ok] costRatioCthreeSonnet macro=1.02 source=1.023363
+  [ok] costCtwoSonnet macro=2.14 source=2.140148
+    Sonnet: n per condition {'C0': 216, 'C1': 216, 'C2': 216, 'C3': 216}; estimated-cost rows 0; mean completion tokens {'C0': 51.0, 'C1': 52.0, 'C2': 52.0, 'C3': 52.0}; mean reasoning tokens {'C0': 0.0, 'C1': 0.0, 'C2': 0.0, 'C3': 0.0}
+  [ok] Z6 Sol C0 ratio 0.5242
+  [ok] costRatioCzeroSol macro=0.52 source=0.524206
+  [ok] Z6 Sol C1 ratio 1.5717
+  [ok] costRatioConeSol macro=1.57 source=1.571659
+  [ok] Z6 Sol C3 ratio 0.9078
+  [ok] costRatioCthreeSol macro=0.91 source=0.907811
+  [ok] costCtwoSol macro=2.18 source=2.178991
+    Sol: n per condition {'C0': 216, 'C1': 216, 'C2': 216, 'C3': 216}; estimated-cost rows 0; mean completion tokens {'C0': 63.0, 'C1': 140.0, 'C2': 136.0, 'C3': 116.0}; mean reasoning tokens {'C0': 15.0, 'C1': 90.0, 'C2': 86.0, 'C3': 66.0}
+    C1/C2 cost ratio range over the four models: 1.2-2.24 (paper prints costRatioConeHaiku-costRatioConeLuna = 1.20-2.24)
+    C1 vs C2 oracle fraction: Haiku -0.16 vs 0.62, Luna 0.59 vs 0.63, Sonnet 0.13 vs 0.78, Sol 0.53 vs 0.51
+
+(d) response counts and spend
+  [ok] Phase 3 responses == 19,876 19876
+  [ok] U1 responses == 4,500 4500
+  [ok] total == 24,376 24376
+    phase2 settles: $1.3053
+    phase3 settles: $11.2153
+    u1 settles: $1.7547
+    sum of three ledgers: $14.2753; paper: $11.22 Phase 3, $12.52 'main study', $1.75 U1; README: about $14.27
+  [ok] Phase 3 == 11.22 
+  [ok] Phase 2 + Phase 3 == 12.52 12.5206
+  [ok] U1 == 1.75 
+  [ok] total ~ 14.27 14.2753
+
+(e) README paths and scripts
+  [ok] exists: configs/ 
+  [ok] exists: configs/data_manifest.yaml 
+  [ok] exists: docs/ 
+  [ok] exists: docs/COST_PLAN.md 
+  [ok] exists: docs/DATA_AUDIT.md 
+  [ok] exists: docs/PHASE3_RESULTS.md 
+  [ok] exists: docs/U1_ADDENDUM.md 
+  [ok] exists: docs/Z5_SPEC.md 
+  [ok] exists: docs/reviews/ 
+  [ok] exists: docs/reviews/phase3_fable_review.md 
+  [ok] exists: docs/reviews/phase4_lead_response.md 
+  [ok] exists: docs/reviews/phase4_paper_review.md 
+  [ok] exists: docs/reviews/u1_prerun_review.md 
+  [ok] exists: docs/reviews/u1_results_review.md 
+  [ok] exists: paper/ 
+  [ok] exists: paper/CLAIMS.md 
+  [ok] exists: paper/generated/claims_ledger.csv 
+  [ok] exists: paper/main.pdf 
+  [ok] exists: paper/main.tex 
+  [ok] exists: paper/make_figures.py 
+  [ok] exists: paper/make_numbers.py 
+  [ok] exists: results/lead_recompute/ 
+  [ok] exists: results/lead_recompute/baselines.py 
+  [ok] exists: results/lead_recompute/cstar_crossfit.py 
+  [ok] exists: results/lead_recompute/exploratory_z1_z2.py 
+  [ok] exists: results/lead_recompute/figures.py 
+  [ok] exists: results/lead_recompute/nonce_audit.py 
+  [ok] exists: results/lead_recompute/provider_audit.py 
+  [ok] exists: results/lead_recompute/z5_probe_gain.py 
+  [ok] exists: results/lead_recompute/z5b_easiness_check.py 
+  [ok] exists: results/lead_recompute/z6_cost_by_condition.py 
+  [ok] exists: results/phase1*/ 
+  [ok] exists: results/phase2/pilot/ 
+  [ok] exists: results/phase2/pilot_live/ 
+  [ok] exists: results/phase2/pilot_merged/ 
+  [ok] exists: results/phase2/spend.jsonl 
+  [ok] exists: results/phase3/build/ 
+  [ok] exists: results/phase3/e3a/ 
+  [ok] exists: results/phase3/live/ 
+  [ok] exists: results/phase3/spend.jsonl 
+  [ok] exists: results/review_phase3/ 
+  [ok] exists: results/review_phase4/ 
+  [ok] exists: results/review_u1/ 
+  [ok] exists: results/review_u1_results/ 
+  [ok] exists: results/u1/build/ 
+  [ok] exists: results/u1/live/ 
+  [ok] exists: results/u1/spend.jsonl 
+  [ok] exists: scripts/ 
+  [ok] exists: scripts/analyze_phase2.py 
+  [ok] exists: scripts/analyze_phase3.py 
+  [ok] exists: scripts/analyze_u1.py 
+  [ok] exists: scripts/build_phase2.py 
+  [ok] exists: scripts/build_phase3.py 
+  [ok] exists: scripts/build_u1.py 
+  [ok] exists: scripts/e3a_farming.py 
+  [ok] exists: scripts/estimate_phase3_cost.py 
+  [ok] exists: scripts/fetch_data.py 
+  [ok] exists: scripts/matched_farming.py 
+  [ok] exists: scripts/mock_phase2.py 
+  [ok] exists: scripts/mock_phase3.py 
+  [ok] exists: scripts/mock_u1.py 
+  [ok] exists: scripts/revise_phase1.py 
+  [ok] exists: scripts/run_phase1.py 
+  [ok] exists: scripts/run_phase3.py 
+  [ok] exists: scripts/run_pilot.py 
+  [ok] exists: scripts/run_u1.py 
+  [ok] exists: scripts/twoway_phase1.py 
+  [ok] exists: src/ledger/ 
+  [ok] cp source exists: results/phase3/build/panels.json 
+  [ok] cp source exists: results/phase3/build/stat_predictions.csv 
+  [ok] cp source exists: results/phase3/build/truth.csv 
+  [ok] cp source exists: results/phase3/build/stat_hyperparameters.json 
+  [ok] cp source exists: results/u1/build/panels.json 
+  [ok] cp source exists: results/u1/build/stat_predictions.csv 
+  [ok] tracked in git: paper/make_figures.py 
+  [ok] tracked in git: paper/make_numbers.py 
+  [ok] tracked in git: results/lead_recompute/baselines.py 
+  [ok] tracked in git: results/lead_recompute/cstar_crossfit.py 
+  [ok] tracked in git: results/lead_recompute/exploratory_z1_z2.py 
+  [ok] tracked in git: results/lead_recompute/figures.py 
+  [ok] tracked in git: results/lead_recompute/nonce_audit.py 
+  [ok] tracked in git: results/lead_recompute/provider_audit.py 
+  [ok] tracked in git: results/lead_recompute/z5_probe_gain.py 
+  [ok] tracked in git: results/lead_recompute/z5b_easiness_check.py 
+  [ok] tracked in git: results/lead_recompute/z6_cost_by_condition.py 
+  [ok] tracked in git: scripts/analyze_phase2.py 
+  [ok] tracked in git: scripts/analyze_phase3.py 
+  [ok] tracked in git: scripts/analyze_u1.py 
+  [ok] tracked in git: scripts/build_phase2.py 
+  [ok] tracked in git: scripts/build_phase3.py 
+  [ok] tracked in git: scripts/build_u1.py 
+  [ok] tracked in git: scripts/e3a_farming.py 
+  [ok] tracked in git: scripts/estimate_phase3_cost.py 
+  [ok] tracked in git: scripts/fetch_data.py 
+  [ok] tracked in git: scripts/matched_farming.py 
+  [ok] tracked in git: scripts/mock_phase2.py 
+  [ok] tracked in git: scripts/mock_phase3.py 
+  [ok] tracked in git: scripts/mock_u1.py 
+  [ok] tracked in git: scripts/revise_phase1.py 
+  [ok] tracked in git: scripts/run_phase1.py 
+  [ok] tracked in git: scripts/run_phase3.py 
+  [ok] tracked in git: scripts/run_pilot.py 
+  [ok] tracked in git: scripts/run_u1.py 
+  [ok] tracked in git: scripts/twoway_phase1.py 
+
+(f) numbers typed in main.tex body (macros, refs, cites, labels, comments and table specs stripped)
+    main.tex:35: ['2026']
+    main.tex:40: ['0.84']
+    main.tex:43: ['162', '972']
+    main.tex:47: ['0.001']
+    main.tex:91: ['24,376', '19,876', '4,500']
+    main.tex:111: ['2026']
+    main.tex:117: ['2024', '-07', '-21']
+    main.tex:118: ['162', '59']
+    main.tex:121: ['972']
+    main.tex:129: ['8']
+    main.tex:132: ['8']
+    main.tex:133: ['8', '50', '0.250']
+    main.tex:138: ['8']
+    main.tex:139: ['0.5', '0.4', '8']
+    main.tex:140: ['0.01']
+    main.tex:143: ['5.5', '6', '486']
+    main.tex:144: ['5.5', '6.1']
+    main.tex:145: ['108']
+    main.tex:146: ['2,000']
+    main.tex:147: ['19,876', '11.22']
+    main.tex:148: ['108']
+    main.tex:152: ['16', '16']
+    main.tex:169: ['2,000']
+    main.tex:181: ['95']
+    main.tex:182: ['486', '108']
+    main.tex:197: ['95']
+    main.tex:198: ['486', '108']
+    main.tex:206: ['0.001', '0.999']
+    main.tex:239: ['95']
+    main.tex:240: ['486', '108']
+    main.tex:247: ['10']
+    main.tex:265: ['0.5']
+    main.tex:270: ['8']
+    main.tex:290: ['8', '0.05']
+    main.tex:338: ['108']
+    main.tex:340: ['1,000']
+    main.tex:352: ['162']
+    main.tex:354: ['108']
+    main.tex:375: ['24,376']
+    main.tex:377: ['4.0']
+    main.tex:379: ['13', '2026']
+    main.tex:408: ['14', '-18']
+    main.tex:409: ['0,1']
+    main.tex:418: ['4.0']
+    main.tex:424: ['24,376']
+    main.tex:427: ['164']
+    main.tex:428: ['$8.9', '-16', '48']
+    main.tex:439: ['486']
+    main.tex:443: ['80']
+    main.tex:451: ['95']
+    main.tex:468: ['95', '486', '108']
+    main.tex:482: ['$0.5']
+    main.tex:488: ['50', '50']
+    main.tex:512: ['95']
+    main.tex:513: ['16']
+    main.tex:515: ['95', '-100']
+    main.tex:522: ['-1.25', '0.42', '0.42']
+    main.tex:524: ['500', '03']
+    main.tex:526: ['2,250']
+    main.tex:530: ['8', '0.05']
+    main.tex:532: ['0.01']
+    main.tex:557: ['95']
+    main.tex:571: ['0.002']
+    main.tex:579: ['$10', '-15']
+    main.tex:580: ['12.52']
+    main.tex:581: ['20']
+    macros defined but not used in main.tex or generated tables: baseCVperfweightHaiku, baseCVperfweightLuna, baseCVperfweightSol, baseCVperfweightSonnet, baseEqualmeanHaiku, baseEqualmeanLuna, baseEqualmeanSol, baseEqualmeanSonnet, baseGrouporaclesHaiku, baseGrouporaclesLuna, baseGrouporaclesSol, baseGrouporaclesSonnet, baseMedianHaiku, baseMedianLuna, baseMedianSol, baseMedianSonnet, baseSameLLMnorecHaiku, baseSameLLMnorecLuna, baseSameLLMnorecSol, baseSameLLMnorecSonnet, baseTopbyrawscorHaiku, baseTopbyrawscorLuna, baseTopbyrawscorSol, baseTopbyrawscorSonnet, baseUntunedinverHaiku, baseUntunedinverLuna, baseUntunedinverSol, baseUntunedinverSonnet, cDiffHaiku, cDiffHiHaiku, cDiffHiLuna, cDiffHiSol, cDiffHiSonnet, cDiffLoHaiku, cDiffLoLuna, cDiffLoSol, cDiffLoSonnet, cDiffLuna, cDiffSol, cDiffSonnet, cfGainHaiku, cfGainHiHaiku, cfGainHiLuna, cfGainHiSol, cfGainHiSonnet, cfGainLoHaiku, cfGainLoLuna, cfGainLoSol, cfGainLoSonnet, cfGainLuna, cfGainPubHaiku, cfGainPubHiHaiku, cfGainPubHiLuna, cfGainPubHiSol, cfGainPubHiSonnet, cfGainPubLoHaiku, cfGainPubLoLuna, cfGainPubLoSol, cfGainPubLoSonnet, cfGainPubLuna, cfGainPubSol, cfGainPubSonnet, cfGainSol, cfGainSonnet, eOneCommonAbsMax, eOneCommonAbsMin, eOnePubHaiku, eOnePubHiHaiku, eOnePubHiLuna, eOnePubHiSol, eOnePubHiSonnet, eOnePubLoHaiku, eOnePubLoLuna, eOnePubLoSol, eOnePubLoSonnet, eOnePubLuna, eOnePubSol, eOnePubSonnet, estHaikuMIXEC, estHaikuMIXcStarC, estHaikuPUBDC, estHaikuPUBcStarC, estLunaMIXEC, estLunaPUBDC, estLunaPUBcStarC, estSolMIXEC, estSolPUBDC, estSolPUBcStarC, estSonnetMIXEC, estSonnetMIXcStarC, estSonnetPUBDC, estSonnetPUBcStarC, hiHaikuMIXEC, hiHaikuMIXcStarC, hiHaikuPUBDC, hiHaikuPUBcStarC, hiLunaMIXEC, hiLunaMIXcStarC, hiLunaPUBDC, hiLunaPUBcStarC, hiSolMIXEC, hiSolMIXcStarC, hiSolPUBDC, hiSolPUBcStarC, hiSonnetMIXEC, hiSonnetMIXcStarC, hiSonnetPUBDC, hiSonnetPUBcStarC, holmHaikuMIXEC, holmHaikuMIXcStarC, holmHaikuPUBDC, holmHaikuPUBcStarC, holmLunaMIXEC, holmLunaMIXcStarC, holmLunaPUBDC, holmLunaPUBcStarC, holmSolMIXEC, holmSolMIXcStarC, holmSolPUBDC, holmSolPUBcStarC, holmSonnetMIXEC, holmSonnetMIXcStarC, holmSonnetPUBDC, holmSonnetPUBcStarC, loHaikuMIXEC, loHaikuMIXcStarC, loHaikuPUBDC, loHaikuPUBcStarC, loLunaMIXEC, loLunaMIXcStarC, loLunaPUBDC, loLunaPUBcStarC, loSolMIXEC, loSolMIXcStarC, loSolPUBDC, loSolPUBcStarC, loSonnetMIXEC, loSonnetMIXcStarC, loSonnetPUBDC, loSonnetPUBcStarC, nonceShiftHaikuCthree, nonceShiftHaikuCtwo, nonceShiftLunaCthree, nonceShiftLunaCtwo, nonceShiftSolCtwo, nonceShiftSonnetCtwo, normRaw, normRawHi, normRawLo, oracleFracHiHaiku, oracleFracHiLuna, oracleFracHiSol, oracleFracHiSonnet, oracleFracLoHaiku, oracleFracLoLuna, oracleFracLoSol, oracleFracLoSonnet, pubBrierMeanLuna, pubBrierWLuna, pubWHaiku, pubWHiHaiku, pubWHiLuna, pubWHiSol, pubWLoHaiku, pubWLoLuna, pubWLoSol, pubWLuna, pubWSol, statedSuperMax, statedSuperMin, uoneBNoPilotLoLuna, uoneDEqCatHaiku, uoneDEqCatHiHaiku, uoneDEqCatLoHaiku, uoneDNoPilotHaiku, uoneDNoPilotHiHaiku, uoneDNoPilotHiLuna, uoneDNoPilotLoHaiku, uoneDNoPilotLoLuna, uoneDecisionHaiku, uoneDomNotFewerN, uoneFullHaiku, uoneFullLuna, uonePHaiku, uonePLuna
+
+(g) abstract word count and self-references
+    abstract ~252 words (template asks for 150-250)
+    main.tex:445: \ref{app:nonce} points at the section it is in
+    main.tex:551: \ref{app:uone} points at the section it is in
+
+ALL CHECKS OK
