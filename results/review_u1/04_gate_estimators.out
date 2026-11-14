@@ -1,0 +1,53 @@
+== (a) gate ==
+n 750 | G1 True | mean(tX-tY) 0.090806 G2 True | delta_bar 0.092844
+matches gate.json: True True True
+Haiku pi=0.25 (addendum-rounded): D_full -0.02321  MDE 0.01852  2xMDE 0.03705  G3 False  ratio 1.25
+Haiku pi=0.2548 (full-precision): D_full -0.02366  MDE 0.01852  2xMDE 0.03705  G3 False  ratio 1.28
+   gate.json: {'pi_C1': 0.2548, 'D_full': -0.02365662350923299, 'MDE': 0.018523390618350625, 'pass_G3': False}
+Luna pi=0.83 (addendum-rounded): D_full -0.07706  MDE 0.01784  2xMDE 0.03567  G3 True  ratio 4.32
+Luna pi=0.8344 (full-precision): D_full -0.07747  MDE 0.01784  2xMDE 0.03567  G3 True  ratio 4.34
+   gate.json: {'pi_C1': 0.8344, 'D_full': -0.0774689429203454, 'MDE': 0.017837339113967267, 'pass_G3': True}
+G3 as coded = any model passes; spec: "the more responsive model" (Luna) passes -> True
+
+== (b) is the sqrt(353/n) MDE scaling safe? Phase 3 D_C1 per-panel influence, clustering by question ==
+Haiku: n 353 questions 158 panels/q 2.23 D_C1 0.0083 se_iid 0.0109 se_question 0.0106 deff 0.96 rho -0.027 mean|den| 0.315 sd(resid num) 0.0643
+   projected U1 SE for D_swap if numerator noise is as in Phase 3: 0.0064 (deff 1.00, mean den 0.368); MDE80 one-sided 0.0159; x2 if numerator sd doubles: 0.0317
+Luna: n 353 questions 158 panels/q 2.23 D_C1 -0.0054 se_iid 0.0118 se_question 0.0108 deff 0.84 rho -0.112 mean|den| 0.315 sd(resid num) 0.0700
+   projected U1 SE for D_swap if numerator noise is as in Phase 3: 0.0069 (deff 1.00, mean den 0.368); MDE80 one-sided 0.0173; x2 if numerator sd doubles: 0.0346
+
+== (c) scale of the warranted benchmark on the swap contrast (synthetic readers, no LLM) ==
+reader c=1.5: own pi_C1 0.229 | spec D_full=-pi*delta_bar -0.0212 | actual D_swap under FULL discount -0.0281 (blind +0.00002) | actual/spec 1.32 | G blind +0.0213
+reader c=5.0: own pi_C1 0.670 | spec D_full=-pi*delta_bar -0.0622 | actual D_swap under FULL discount -0.0923 (blind +0.00005) | actual/spec 1.49 | G blind +0.0615
+analytic: discounting F by delta moves L_A by -pi*delta*(pX-m_-X) and L_B by -pi*delta*(pY-m_-Y); difference = -pi*delta*(5/4)(pX-pY) => D_swap(full) = -1.25*pi*delta (delta weighted by |pX-pY|)
+|pX-pY|-weighted delta: 0.09287 vs unweighted delta_bar 0.09284
+
+== (d) independent W (with the population shrinkage term kept) vs stat_predictions.csv ==
+PUB perf_weighted_raw folds: [(0, 16.0, 20.0, 33), (1, 16.0, 5.0, 33), (2, 16.0, 5.0, 32), (3, 16.0, 5.0, 32), (4, 64.0, 20.0, 32)] | each U1 question in exactly one test fold: True
+max |independent W - stat_predictions.csv| = 3.33e-16
+W_blind: D_swap +0.00007   G +0.09217
+W_aware: D_swap -0.17250   G -0.03246
+frozen analysis code on the same W: {('W_blind', 'D_swap'): 7e-05, ('W_blind', 'G'): 0.09217, ('W_aware', 'D_swap'): -0.1725, ('W_aware', 'G'): -0.03246}
+
+== (e) synthetic end-to-end sign test through the frozen analyze() ==
+-- readers that FULLY discount the padded record (expect D_swap<0, small one-sided p, "discounts")
+              model metric  estimate     se     low    high      p  holm_p  D_full  fraction_of_full      decision_unadjusted            decision_holm
+efficient_anthropic D_swap   -0.0311 0.0045 -0.0400 -0.0222 0.0000     0.0 -0.0237            1.3158 discounts padded records discounts padded records
+efficient_anthropic      G   -0.0011 0.0062 -0.0133  0.0110 0.8548     NaN     NaN               NaN                      NaN                      NaN
+   efficient_openai D_swap   -0.0913 0.0044 -0.0999 -0.0828 0.0000     0.0 -0.0775            1.1790 discounts padded records discounts padded records
+   efficient_openai      G   -0.0131 0.0083 -0.0294  0.0031 0.1138     NaN     NaN               NaN                      NaN                      NaN
+-- blind readers (expect D_swap ~ 0, p ~ .5; G>0 because padding raises pull toward X)
+              model metric  estimate     se     low   high      p  holm_p  D_full  fraction_of_full                          decision_unadjusted                                decision_holm
+efficient_anthropic D_swap   -0.0019 0.0043 -0.0103 0.0065 0.3296  0.4409 -0.0237            0.0797 ignores padding despite warrant; exploitable ignores padding despite warrant; exploitable
+efficient_anthropic      G    0.0153 0.0051  0.0054 0.0252 0.0024     NaN     NaN               NaN                                          NaN                                          NaN
+   efficient_openai D_swap   -0.0036 0.0046 -0.0126 0.0055 0.2204  0.4409 -0.0775            0.0460 ignores padding despite warrant; exploitable ignores padding despite warrant; exploitable
+   efficient_openai      G    0.0675 0.0070  0.0538 0.0811 0.0000     NaN     NaN               NaN                                          NaN                                          NaN
+-- readers that FAVOUR the padded record (expect D_swap>0, one-sided p near 1, "favours padded records")
+              model metric  estimate     se    low   high   p  holm_p  D_full  fraction_of_full    decision_unadjusted          decision_holm
+efficient_anthropic D_swap    0.0377 0.0037 0.0305 0.0449 1.0     1.0 -0.0237           -1.5955 favours padded records favours padded records
+efficient_anthropic      G    0.0395 0.0063 0.0271 0.0518 0.0     NaN     NaN               NaN                    NaN                    NaN
+   efficient_openai D_swap    0.1192 0.0054 0.1087 0.1298 1.0     1.0 -0.0775           -1.5391 favours padded records favours padded records
+   efficient_openai      G    0.1594 0.0099 0.1400 0.1788 0.0     NaN     NaN               NaN                    NaN                    NaN
+sign assertions passed
+holm(.03,.04) -> [0.06, 0.06] (expect .06,.06)
+holm(.01,.5) -> [0.02, 0.5] (expect .02,.5)
+one-sided p for z=-1.645 via ratio(): 0.05

@@ -1,0 +1,21 @@
+== (a) cost ==
+Haiku Phase3 PUB C1: n 486 mean $0.000336 p95 $0.000741 max $0.000925 retried 0.000 | addendum assumes $0.00031
+Haiku Phase3 PUB C1_farmed: n 486 mean $0.000327 p95 $0.000744 max $0.000880 retried 0.000 | addendum assumes $0.00031
+   projected 2250 calls: $0.745 (resample 99.9th pct $0.775)
+   per-call reservation (budget.project) ~$0.00112; 16 concurrent pending ~$0.018
+Luna Phase3 PUB C1: n 486 mean $0.000419 p95 $0.000503 max $0.000582 retried 0.000 | addendum assumes $0.00042
+Luna Phase3 PUB C1_farmed: n 486 mean $0.000420 p95 $0.000500 max $0.000576 retried 0.000 | addendum assumes $0.00042
+   projected 2250 calls: $0.943 (resample 99.9th pct $0.951)
+   per-call reservation (budget.project) ~$0.00112; 16 concurrent pending ~$0.018
+projected total $1.689 vs cap $2.00 -> headroom $0.311; default --models order runs Haiku (underpowered) first, Luna last
+
+== (b) warrant on target outcomes (diagnostic; see docstring) ==
+S4: mean Brier(X) 0.2397  Brier(Y) 0.2346  fillers 0.2264
+S4: mean[(pX-y)^2-(pY-y)^2] = +0.0051  question-bootstrap 95% CI [-0.0297, +0.0399]  | ledger-implied gap mean(tX-tY) = +0.0908; G2 threshold 0.03
+   share of panels with X strictly better than Y on the target: 0.544; by question (mean diff>0 share): 0.465
+
+population (all eligible publics on the 157 target units, n=7756): within-question slope of target Brier on LOO level t = 0.424 [0.343, 0.511]
+   (1.0 = a ledger gap of 0.09 means 0.09 worse on the same target; 0 = raw level says nothing about same-question accuracy)
+   pooled (between-question) slope for comparison: 0.394; sd of t within question 0.0754, overall 0.0760
+   implied same-target gap for the built panels = slope x mean(tX-tY) = +0.0385
+   ids answered per public forecaster: median 16, IQR 15-17; question pool 162

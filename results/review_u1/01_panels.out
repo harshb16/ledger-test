@@ -1,0 +1,29 @@
+panels 750 questions 157 max per q 5 distinct X 188 distinct Y 262
+VIOLATIONS (all must be 0):
+{'A.X!=F|B.Y!=F': 0, 'A.Y!=B.X|H.Y': 0, 'AB_item_multiset': 0, 'F_has_target': 0, 'F_len_or_dup': 0, 'F_not_confident': 0, 'F_not_in_ledger': 0, 'HX_has_target': 0, 'HX_len_or_dup': 0, 'HX_not_in_ledger': 0, 'HY_has_target': 0, 'HY_len_or_dup': 0, 'HY_not_in_ledger': 0, 'X_lt8_confident_ids': 0, 'delta': 0, 'delta_lt_.05': 0, 'fill_has_target': 0, 'fill_len_or_dup': 0, 'fill_not_in_ledger': 0, 'filler_differs': 0, 'letters': 0, 'lt8_loo_ids': 0, 'match_distance_field': 0, 'match_far': 0, 'order_letters_p': 0, 'p_mismatch': 0, 'pgap_lt_.10': 0, 's_F': 0, 'tY_far': 0, 't_X': 0, 't_Y': 0, 'x_eq_y': 0}
+
+-- gate inputs recomputed from scored.csv --
+mean delta_X 0.092844   mean(t_X-t_Y) 0.090806
+
+-- distributions --
+             tX        tY        sF       sHY       sHX     delta   conf_HY   conf_HX    miss_F   miss_HY  same_cat_F  same_cat_HY     yes_F    yes_HY  shared_ids  share_conf_units_X
+count  750.0000  750.0000  750.0000  750.0000  750.0000  750.0000  750.0000  750.0000  750.0000  750.0000    750.0000      750.000  750.0000  750.0000    750.0000            750.0000
+mean     0.2497    0.1589    0.1569    0.1570    0.2455    0.0928    0.4667    0.5642    1.3813    1.5267      0.8920        0.912    0.2092    0.2748      0.4080              0.5540
+std      0.0625    0.0598    0.0611    0.0611    0.1060    0.0342    0.2426    0.2276    0.5256    0.9605      0.9289        0.871    0.1140    0.1477      0.6083              0.2115
+min      0.1521    0.0818    0.1013    0.0953    0.0000    0.0501    0.0000    0.0000    1.0000    0.0000      0.0000        0.000    0.0000    0.0000      0.0000              0.1667
+25%      0.1994    0.1141    0.1077    0.1082    0.1703    0.0680    0.2500    0.3750    1.0000    1.0000      0.0000        0.000    0.1250    0.1250      0.0000              0.3793
+50%      0.2342    0.1298    0.1241    0.1244    0.2387    0.0841    0.5000    0.5000    1.0000    1.0000      1.0000        1.000    0.2500    0.2500      0.0000              0.5424
+75%      0.2959    0.2184    0.2175    0.2177    0.3159    0.1092    0.6250    0.7500    2.0000    2.0000      2.0000        1.000    0.2500    0.3750      1.0000              0.7029
+max      0.5515    0.3628    0.3538    0.3538    0.7025    0.2700    1.0000    1.0000    3.0000    6.0000      4.0000        4.000    0.6250    0.7500      3.0000              1.0000
+
+|p_X-p_Y| mean 0.3680 median 0.3000 ; |p_X-m_-X| mean 0.2694 ; share |gap|<0.10: 0.200
+share p_X > p_Y: 0.435
+F misses (items with raw>0.25) distribution: {1: np.int64(479), 2: np.int64(256), 3: np.int64(15)}
+HY misses distribution: {0: np.int64(72), 1: np.int64(353), 2: np.int64(214), 3: np.int64(85), 4: np.int64(23), 5: np.int64(1), 6: np.int64(2)}
+s_F quantiles {0.05: 0.1025, 0.25: 0.1077, 0.5: 0.1241, 0.75: 0.2175, 0.95: 0.2502}
+share of HY items that are themselves confident: 0.467 ; panels where HY is 100% confident: 0.064
+equal target-category count panels: 253
+mean position X 2.032 Y 2.132 (0..4)
+top-5 X by panels: {'P0ljpFQFe6': 16, 'Pu7Sn5a8cp': 13, 'PqSCtDbxAl': 13, 'PH4KYaDmle': 12, 'PubanmsIpo': 12} | top-5 Y: {'PwjW4t2vO9': 18, 'PridxBta30': 17, 'PkTc8YMq47': 13, 'PyC8GkjQI4': 13, 'PHjZECcFUA': 13}
+X that also appear as Y somewhere: 86
+repeated (X,Y) pairs across questions: 17 pairs; repeated (q,Y): 111 ; repeated (q,X): 64

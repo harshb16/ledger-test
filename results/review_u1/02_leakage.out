@@ -1,0 +1,16 @@
+-- static: lines of src/ledger/u1.py mentioning truth/outcome --
+211: def contrast_rows(p, probabilities, outcome):
+221: result['delta_Brier'] = ((a-outcome)**2-(h-outcome)**2,1.)
+246: # Target outcomes are first accessed here, solely for S2/S4 and W harm.
+249: truth = pd.read_csv(root/'results/phase3/build/truth.csv',dtype={'question_id':str}).set_index('question_id').outcome.to_dict()
+281: outcome = truth[p['question_id']]
+282: values = contrast_rows(p,probs,outcome)
+284: values['S4_X_minus_Y'] = ((p['p_X']-outcome)**2-(p['p_Y']-outcome)**2,1.)
+285: values['S4_W_aware_minus_blind_A'] = ((sp[p['panel_id'],'A','W_aware']-outcome)**2-(sp[p['panel_id'],'A','W_blind']-outcome)**2,1.)
+308: table[table.metric.str.startswith('S4')].drop_duplicates(['sample','metric']).to_csv(dest/'outcome_validation.csv',index=False)
+build() spans lines 102 - 210
+
+-- dynamic: target outcomes flipped for 10 questions (one at a time) --
+{'panels': 48, 'identical_ex_fe': 48, 'fe_changed': 48, 'prompts_same': 144, 'prompts': 144, 'w_same': np.int64(144), 'w': 144}
+PASS
+note: fe_changed counts panels whose stored (never displayed in C1, never used) `fe` field moved when the target outcome flipped.

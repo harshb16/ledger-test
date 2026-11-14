@@ -1,0 +1,8 @@
+== efficient_anthropic: U1 rows 2250 (expect 2250); Phase 3 rows 8354, of which C1 972
+Phase3 C1 grammar matches own template: 972 / 972
+VIOLATIONS (all must be 0): {'n_messages!=2': 0, 'system_differs': 0, 'schema_differs': 0, 'settings_differ': 0, 'top_level_keys': 0, 'seed_or_provider_or_temperature': 0, 'nonce_or_seed_text': 0, 'grammar': 0, 'collides_phase3_messages': 0, 'collides_phase3_user': 0, 'design_version!=2': 0, 'model_key': 0, 'duplicate_prompts': 0, 'duplicate_request_ids': 0, 'header_differs_across_arms': 0, 'block_order_differs': 0, 'A/B: non-XY block differs': 0, 'A/B: not an exact swap of X,Y blocks': 0, 'A/B: X,Y blocks identical text (no contrast)': 0, 'A/H: block other than X differs': 0, 'A/H: X block identical': 0, 'header p mismatch': 0, '3dp tie p_X==p_Y in prompt': 0}
+== efficient_openai: U1 rows 2250 (expect 2250); Phase 3 rows 8354, of which C1 972
+Phase3 C1 grammar matches own template: 972 / 972
+VIOLATIONS (all must be 0): {'n_messages!=2': 0, 'system_differs': 0, 'schema_differs': 0, 'settings_differ': 0, 'top_level_keys': 0, 'seed_or_provider_or_temperature': 0, 'nonce_or_seed_text': 0, 'grammar': 0, 'collides_phase3_messages': 0, 'collides_phase3_user': 0, 'design_version!=2': 0, 'model_key': 0, 'duplicate_prompts': 0, 'duplicate_request_ids': 0, 'header_differs_across_arms': 0, 'block_order_differs': 0, 'A/B: non-XY block differs': 0, 'A/B: not an exact swap of X,Y blocks': 0, 'A/B: X,Y blocks identical text (no contrast)': 0, 'A/H: block other than X differs': 0, 'A/H: X block identical': 0, 'header p mismatch': 0, '3dp tie p_X==p_Y in prompt': 0}
+two model manifests identical apart from model_key: True
+request order (first 6): ['C1_A', 'C1_B', 'C1_H', 'C1_A', 'C1_B', 'C1_H']
