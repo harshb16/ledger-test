@@ -122,7 +122,8 @@ per type per question, giving 972 frozen panels. The target question is shown \e
 two-letter category code and a horizon bucket, to limit pretraining knowledge. A text-only probe shows that,
 given the question text, the models are about as accurate as the human crowd (Brier \probeSonnet--\probeHaiku{} against
 \probeCrowdLo--\probeCrowdHi; Appendix~\ref{app:extra}). Pretraining knowledge is therefore plausible, and the main
-prompts rely on withholding the text.
+prompts rely on withholding the text. An exploratory check finds no sign that the gain from records came from questions the
+models already knew (Appendix~\ref{app:extra}).
 
 \subsection{Conditions and interventions}
 Each member's record shows $k=8$ other resolved questions from the same round, drawn uniformly. The target is always
@@ -490,6 +491,17 @@ and the retest SD (an upper bound on sampling noise).
 \item \textbf{Probe (question text, no forecasts):} Brier \probeHaiku{} (Haiku), \probeLuna{} (Luna), \probeSonnet{}
   (Sonnet), \probeSol{} (Sol), against crowd \probeCrowdLo--\probeCrowdHi. Pretraining knowledge is plausible, so the
   main prompts rely on anonymisation.
+\item \textbf{Did gains come from questions the model knew? (exploratory; definition committed before computing,
+  \texttt{docs/Z5\_SPEC.md}).} We split questions at each model's median probe Brier. E1 on ``known'' minus
+  ``unknown'' questions is \zfiveAMin{} to \zfiveAMax{} across models, and every CI includes 0 (all
+  bounds within [\zfiveALoMin, \zfiveAHiMax]), so the gain from records is not concentrated where the model knew the answer.
+  A second check asks whether the no-record answer (C0) beats the equal mean by more on known questions, as leakage
+  through the anonymised prompt would predict. It does for Haiku (\zfiveBHaiku{} [\zfiveBLoHaiku, \zfiveBHiHaiku])
+  and Sonnet (\zfiveBSonnet{} [\zfiveBLoSonnet, \zfiveBHiSonnet]), which meets our pre-set leakage criterion.
+  However, a rule that only extremises the crowd mean, with no access to the question, shows a gap of similar or
+  larger size (\zfiveXMin{} to \zfiveXMax). Known questions are also easier, so this pattern does not isolate
+  leakage. We added this extremiser check after seeing the result. Luna and Sol return the equal mean in C0 in at
+  least \zfiveEqMean\% of panels. Question-bootstrap 95\% CIs.
 \item \textbf{Robustness:} E1 MIX and $\cstar$ MIX remain Holm-significant for every model when the 16 pilot questions
   are excluded, on the common sample, and under four SE conventions.
 \item \textbf{Swap check:} with C2 records, 95--100\% of swaps move the aggregate in the expected direction.

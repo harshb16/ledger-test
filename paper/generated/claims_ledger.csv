@@ -363,3 +363,16 @@ macro,value,source,locator
 \costCtwoLuna,0.19,results/lead_recompute/z6_cost_by_condition.csv,"tier=efficient_openai,condition=C2,mean_cost_usd x1000"
 \costCtwoSonnet,2.14,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_anthropic,condition=C2,mean_cost_usd x1000"
 \costCtwoSol,2.18,results/lead_recompute/z6_cost_by_condition.csv,"tier=strong_openai,condition=C2,mean_cost_usd x1000"
+\zfiveAMin,\ensuremath{+}0.002,results/lead_recompute/z5_probe_gain.csv,"min diff, outcome=A_E1_gain"
+\zfiveAMax,\ensuremath{+}0.013,results/lead_recompute/z5_probe_gain.csv,"max diff, outcome=A_E1_gain"
+\zfiveALoMin,\ensuremath{-}0.014,results/lead_recompute/z5_probe_gain.csv,"min diff_lo, outcome=A_E1_gain"
+\zfiveAHiMax,0.038,results/lead_recompute/z5_probe_gain.csv,"max diff_hi, outcome=A_E1_gain"
+\zfiveBHaiku,\ensuremath{-}0.006,results/lead_recompute/z5_probe_gain.csv,"model=Haiku,outcome=B_C0_leakage diff"
+\zfiveBLoHaiku,\ensuremath{-}0.009,results/lead_recompute/z5_probe_gain.csv,"model=Haiku,outcome=B_C0_leakage diff_lo"
+\zfiveBHiHaiku,\ensuremath{-}0.001,results/lead_recompute/z5_probe_gain.csv,"model=Haiku,outcome=B_C0_leakage diff_hi"
+\zfiveBSonnet,\ensuremath{-}0.017,results/lead_recompute/z5_probe_gain.csv,"model=Sonnet,outcome=B_C0_leakage diff"
+\zfiveBLoSonnet,\ensuremath{-}0.027,results/lead_recompute/z5_probe_gain.csv,"model=Sonnet,outcome=B_C0_leakage diff_lo"
+\zfiveBHiSonnet,\ensuremath{-}0.004,results/lead_recompute/z5_probe_gain.csv,"model=Sonnet,outcome=B_C0_leakage diff_hi"
+\zfiveXMin,\ensuremath{-}0.016,results/lead_recompute/z5b_easiness_check.csv,max extremiser_diff (closest to 0)
+\zfiveXMax,\ensuremath{-}0.020,results/lead_recompute/z5b_easiness_check.csv,min extremiser_diff
+\zfiveEqMean,99.7,results/lead_recompute/z5b_easiness_check.csv,"min c0_equals_mean_share over Luna, Sol (x100)"

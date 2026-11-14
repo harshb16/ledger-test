@@ -32,6 +32,7 @@ facts, or values quoted from the results record, and each has a source.
 | U1: Haiku misses D_warr "by about 0.002" | Arithmetic | `\uoneDLoHaiku` − `\uoneWarrHaiku` (generated macros) |
 | U1: Haiku reasoning-split swap effects of opposite sign | Exploratory | [R] `results/review_u1_results/06_haiku_reasoning_split.out` |
 | \$1.75 U1 spend; about \$14.27 total | Cost | `results/u1/spend.jsonl` (sum of settles) |
+| Z5: median split on probe Brier; extremiser check added after seeing results | Exploratory design | `docs/Z5_SPEC.md` (commit a7dfa38); `results/lead_recompute/z5b_easiness_check.py` |
 
 **Regenerating.**
 
