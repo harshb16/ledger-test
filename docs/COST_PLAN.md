@@ -49,6 +49,13 @@
 - **Remaining:** $7.48 of the budget. The key limit is $17, so $4.17 is usable before raising it again.
 - **Projection vs actual:** projected $11.74, actual $11.22.
 
+### U1 follow-up (actual, 2026-11-14)
+
+- **Spend:** $1.7547 for 4,500 responses (2,250 each from Haiku and Luna), against a $2.00 cap. Source: the sum of
+  settles in `results/u1/spend.jsonl`.
+- **Project total:** $12.52 + $1.75 = **about $14.27 of $20**. The OpenRouter key-usage counter was not re-read
+  for U1, so this total comes from the ledgers alone.
+
 ## Phase 3 projection (design v2; `scripts/project_phase3_cost.py` → `results/phase2/phase3_cost_projection.csv`)
 Measured per-condition pilot billing, scaled by questions and panels. New matched-control arms are priced like
 the corresponding farmed arms.
