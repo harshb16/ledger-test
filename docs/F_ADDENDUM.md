@@ -143,3 +143,28 @@ All entries 2026-11-15, after the offline build (commit 9042b19) and **before an
   the gate values in `results/f2/build/gate.json`, and **nothing is spent on F2**. The binding constraint is the
   honest match: a padded record with no misses displays a mean score δ̄ = 0.174 better than its padder's honest
   level, and almost no honest forecaster in the round has an honest level that close to it.
+
+Entries after the independent pre-run review (`docs/reviews/f_prerun_review.md`, commit 0ffa4fa), 2026-11-15,
+**before any paid call**:
+- **FD4. W line label (review MAJOR 1).** After FD1 removed the `%`, nothing marked W as a probability, and it sat
+  directly under the last track record. The line is now preceded by a blank line and reads
+  `Statistical aggregate forecast (probability of YES; weights forecasters by their past accuracy, tuned on other
+  questions): 0.xxx`. Rebuilt; tests updated and passing; projected cost $0.557. No other prompt text changes.
+- **FD5. What the F1 decision rules can conclude (review MAJOR 2), stated before the run.**
+  - "Matches W within ±0.005" needs an SE below about 0.0026. Phase 3 SEs of the corresponding contrast were 0.0023
+    (Luna) and 0.0028 (Haiku), so for Haiku this verdict is borderline reachable.
+  - A "hybrid helps" verdict needs roughly 0.012–0.014 Brier improvement over Phase 3 C2.
+  - The copying share is read against a baseline: 16–18% of Phase 3 C2 answers were already within 0.005 of W
+    without seeing it.
+  - In PUB, W is no better than the equal mean (0.1695 vs 0.1689), so PUB cannot show a hybrid gain; PUB results
+    are descriptive only.
+  - Any null is worded as a result for "this display of W", not for hybrids in general.
+- **FD6. F2 replacement.** The reviewer confirmed the gate failure independently. F2b (U1 plus domain balance only)
+  passes its gate offline, but its power at the effect seen in U1's equal-count subset (−0.009) is about 0.24.
+  F2b is therefore **not run** unless the user decides otherwise; F2 is reported as not buildable, with the
+  post-hoc description below.
+- **FD7. Post-hoc description (not pre-registered).** Clean padded records display scores of 0.000–0.010, below
+  every honest level in the round (public minimum 0.033, superforecaster minimum 0.035). Honest 8-item displayed
+  records reach ≤ 0.010 by chance in about 0.5–0.7% of public and about 5% of superforecaster records, and a padded
+  record with even one miss does not stand out. This is reported as a description, not as a defence. It uses
+  leave-one-out ledgers only (no target outcome).

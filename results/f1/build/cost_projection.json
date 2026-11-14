@@ -3,7 +3,7 @@
   "models": {
     "efficient_openai": {
       "requests": 1072,
-      "o200k_prompt_tokens": 632318,
+      "o200k_prompt_tokens": 639122,
       "prompt_factor": 1.0,
       "mean_completion_tokens": 289.6934156378601,
       "pricing": {
@@ -19,11 +19,11 @@
           }
         ]
       },
-      "projected_usd": 0.22943284432098765
+      "projected_usd": 0.2301472643209877
     },
     "efficient_anthropic": {
       "requests": 1072,
-      "o200k_prompt_tokens": 632318,
+      "o200k_prompt_tokens": 639122,
       "prompt_factor": 1.9,
       "mean_completion_tokens": 355.07510288065845,
       "pricing": {
@@ -40,8 +40,8 @@
           }
         ]
       },
-      "projected_usd": 0.32598370890123457
+      "projected_usd": 0.3273411069012346
     }
   },
-  "total": 0.5554165532222222
+  "total": 0.5574883712222223
 }

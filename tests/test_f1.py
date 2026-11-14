@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import pytest
-from ledger.f1 import LABEL, decision
+from ledger.f1 import LABEL, SEP, decision
 from ledger.followup import MODELS, clustered, bootstrap
 
 BUILD=Path('results/f1/build')
@@ -30,7 +30,7 @@ def test_exact_prompt_delta():
             if row['metadata']['condition']=='C2R': assert row['messages']==base['messages']
             else:
                 assert row['messages'][:-1]==base['messages'][:-1]
-                assert row['messages'][-1]['content']==base['messages'][-1]['content']+'\n'+LABEL+f"{w[row['metadata']['panel_id']]:.3f}"
+                assert row['messages'][-1]['content']==base['messages'][-1]['content']+SEP+LABEL+f"{w[row['metadata']['panel_id']]:.3f}"
 
 
 def test_question_cluster_se_and_reproducible_bootstrap():

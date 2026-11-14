@@ -9,14 +9,16 @@ from .followup import MODELS, SEED, read_responses, clustered, projection
 from .records import rng_for
 from .u1 import holm
 
-LABEL = 'Statistical aggregate (weights forecasters by their past accuracy, tuned on other questions): '
+# FD4: blank line before W and an explicit probability label (pre-run review MAJOR 1).
+SEP = '\n\n'
+LABEL = 'Statistical aggregate forecast (probability of YES; weights forecasters by their past accuracy, tuned on other questions): '
 
 
 def hybrid_messages(base, w):
     result = copy.deepcopy(base)
     assert not any('Cache nonce' in m['content'] for m in result)
     # Member forecasts are probabilities formatted .3f, despite the addendum's X% shorthand.
-    result[-1]['content'] += '\n'+LABEL+f'{w:.3f}'
+    result[-1]['content'] += SEP+LABEL+f'{w:.3f}'
     return result
 
 
