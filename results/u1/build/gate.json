@@ -1,0 +1,42 @@
+{
+  "n": 750,
+  "delta_bar": 0.09284389132352036,
+  "mean_t_X_minus_t_Y": 0.09080621760923892,
+  "G1": true,
+  "G2": true,
+  "G3": true,
+  "models": {
+    "efficient_anthropic": {
+      "pi_C1": 0.2548,
+      "D_full": -0.02365662350923299,
+      "MDE": 0.018523390618350625,
+      "pass_G3": false
+    },
+    "efficient_openai": {
+      "pi_C1": 0.8344,
+      "D_full": -0.0774689429203454,
+      "MDE": 0.017837339113967267,
+      "pass_G3": true
+    }
+  },
+  "passing_models": [
+    "efficient_openai"
+  ],
+  "pass": true,
+  "distinct_X": 188,
+  "distinct_Y": 262,
+  "panels_per_question_distribution": {
+    "5": 132,
+    "4": 20,
+    "1": 2,
+    "3": 2,
+    "2": 1
+  },
+  "questions_with_zero_panels": 5,
+  "equal_target_category_count": 253,
+  "projected_cost": {
+    "efficient_anthropic": 0.732375,
+    "efficient_openai": 0.9922500000000001
+  },
+  "projected_cost_total": 1.724625
+}

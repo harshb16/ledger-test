@@ -1,0 +1,5 @@
+/mock/*
+!/mock/analysis/
+/live/
+/llm_cache/
+/spend.jsonl*

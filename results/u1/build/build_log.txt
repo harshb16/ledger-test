@@ -1,0 +1,1019 @@
+{
+  "questions": [
+    {
+      "question_id": "0750nMx1Fqq4CWdoBHdX",
+      "eligible_publics": 53,
+      "valid_pairs": 21,
+      "selected": 5
+    },
+    {
+      "question_id": "0c20162bae6257b7fcaa67c009a710e82f0faad0ce168d775b2bc3524121f83a",
+      "eligible_publics": 49,
+      "valid_pairs": 27,
+      "selected": 5
+    },
+    {
+      "question_id": "0m2HGw8Pd4ZTIgga0Pzv",
+      "eligible_publics": 46,
+      "valid_pairs": 29,
+      "selected": 5
+    },
+    {
+      "question_id": "0x0784ce77446e73c456f7ea8216108ce3a2673488aba71afdaadb0939324b4c59",
+      "eligible_publics": 51,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "0x122678509891ed9fe0b9ad7ff7a71a1a36aad334d9eae2d5421648b511371df1",
+      "eligible_publics": 50,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "0x154efa11ed56deca4d0d06adf2bb711a420f5128f2a274be0d6631ed4380ca78",
+      "eligible_publics": 46,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "0x2c1d8f3388f56e1641a57eec4d7645cb1dccb42054cf0d6aacc7e353d778b4f1",
+      "eligible_publics": 51,
+      "valid_pairs": 11,
+      "selected": 5
+    },
+    {
+      "question_id": "0x31a5dcf98ab184ef2c167c7daaca2155242d61f841cb9ac9615f1e03c77b7732",
+      "eligible_publics": 51,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "0x438883974dfc3b261a0826c47f3f54329e9632314f85e5950b85f57d9e490363",
+      "eligible_publics": 63,
+      "valid_pairs": 18,
+      "selected": 5
+    },
+    {
+      "question_id": "0x4ac4849343a847d75cff15174a139ef9c4bc89bdb8c8bcdd7bee61204912d549",
+      "eligible_publics": 53,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "0x573dfc705c8f4250064b3ad30d2cc43397f16c9fc5b343473c860bbd04d7a3ca",
+      "eligible_publics": 41,
+      "valid_pairs": 14,
+      "selected": 5
+    },
+    {
+      "question_id": "0x5cd8bb97af43191779906af4e624fd87eb2a07bcdb19a22b8f0943cc20dca848",
+      "eligible_publics": 46,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "0x60752c2a562d7faff00a82238520a13a9a5a5ee2927afd397d224dc54361afd6",
+      "eligible_publics": 49,
+      "valid_pairs": 7,
+      "selected": 5
+    },
+    {
+      "question_id": "0x63634b4e14297a748923f86dca4fa0c6c659db0f5fadeeb8e419e48e20759c34",
+      "eligible_publics": 46,
+      "valid_pairs": 9,
+      "selected": 5
+    },
+    {
+      "question_id": "0x7e912d337aec54d321a4d415bd05e5a6676c3f04617f07def1281be7e0af3e91",
+      "eligible_publics": 41,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "0x81bb9ebd9312790810d3d40ee6545d97a8cbaee3233959b3e2bb4c37604e5e82",
+      "eligible_publics": 49,
+      "valid_pairs": 21,
+      "selected": 5
+    },
+    {
+      "question_id": "0xa05e93dbcfefc56ee0ab0151512dccaae63840650eaae9ed8a89d5dcbe238f22",
+      "eligible_publics": 41,
+      "valid_pairs": 7,
+      "selected": 5
+    },
+    {
+      "question_id": "0xa4855d0b28960be4824c31c280d274572e176313d8efda21446cabe6bdc32efc",
+      "eligible_publics": 55,
+      "valid_pairs": 45,
+      "selected": 5
+    },
+    {
+      "question_id": "0xa8b22d7d3402b9823aca8ba68fa9beee749049bf67b8efa0935fcb8963d5d357",
+      "eligible_publics": 51,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "0xb3a14c854a91cc1d57bb4ed3ce1f74a1c3a08b9d6316f30874bda08e90fa663e",
+      "eligible_publics": 47,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "0xc8081f7c63082b34b1b2497f339c291e00587e8800b48db8096fbe763c2be31c",
+      "eligible_publics": 52,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "0xd9773233f3dd345b0cf99b4338e9663dee025c76bcdae2d8f11efb4327a3566d",
+      "eligible_publics": 55,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "0xea3b3876ef2d1777f4320c79e9fb08cd4dbea4f174403995b8884f34aa5d76c9",
+      "eligible_publics": 50,
+      "valid_pairs": 0,
+      "selected": 0
+    },
+    {
+      "question_id": "0xf5875410202b3545491774ab5e712a6e05a0ffe780c52270cc8d70cc95164411",
+      "eligible_publics": 51,
+      "valid_pairs": 61,
+      "selected": 5
+    },
+    {
+      "question_id": "0xfe495172d67c0bd95c8c62b9a9f9815b6e35d9653e5a1f4f8c1abb051e4f3638",
+      "eligible_publics": 60,
+      "valid_pairs": 11,
+      "selected": 5
+    },
+    {
+      "question_id": "0yVJeShTMcm0FA8UrcCL",
+      "eligible_publics": 47,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "1285",
+      "eligible_publics": 51,
+      "valid_pairs": 1,
+      "selected": 1
+    },
+    {
+      "question_id": "1286",
+      "eligible_publics": 46,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "1342",
+      "eligible_publics": 49,
+      "valid_pairs": 22,
+      "selected": 5
+    },
+    {
+      "question_id": "1353",
+      "eligible_publics": 52,
+      "valid_pairs": 14,
+      "selected": 5
+    },
+    {
+      "question_id": "1363",
+      "eligible_publics": 50,
+      "valid_pairs": 9,
+      "selected": 5
+    },
+    {
+      "question_id": "1373",
+      "eligible_publics": 48,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "1374",
+      "eligible_publics": 47,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "1386",
+      "eligible_publics": 46,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "1399",
+      "eligible_publics": 47,
+      "valid_pairs": 3,
+      "selected": 3
+    },
+    {
+      "question_id": "1413",
+      "eligible_publics": 56,
+      "valid_pairs": 0,
+      "selected": 0
+    },
+    {
+      "question_id": "17179",
+      "eligible_publics": 50,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "17180",
+      "eligible_publics": 45,
+      "valid_pairs": 22,
+      "selected": 5
+    },
+    {
+      "question_id": "17432",
+      "eligible_publics": 51,
+      "valid_pairs": 5,
+      "selected": 5
+    },
+    {
+      "question_id": "1a0426c8b3d715290f3ad93dae8dfc9f84d6f6e38ea1fd4d20f11496049204b5",
+      "eligible_publics": 46,
+      "valid_pairs": 2,
+      "selected": 2
+    },
+    {
+      "question_id": "1b12215032357c20078f36029eca8e2c67788d7834cba572d712b7d769a288ee",
+      "eligible_publics": 48,
+      "valid_pairs": 38,
+      "selected": 5
+    },
+    {
+      "question_id": "1d9b2c247a0f16b0531b5fc49bfed62658a4e7c10dc8bd6fee98fb5ff57cf8c0",
+      "eligible_publics": 48,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "1f7b3ef2436775c7530d7858dc141a4cf7a5692745e9f476e1bbd534d183f3f2",
+      "eligible_publics": 43,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "20895",
+      "eligible_publics": 50,
+      "valid_pairs": 25,
+      "selected": 5
+    },
+    {
+      "question_id": "21114",
+      "eligible_publics": 46,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "2577",
+      "eligible_publics": 50,
+      "valid_pairs": 6,
+      "selected": 5
+    },
+    {
+      "question_id": "27b3562010fedb45de26cc72b0f1dfcd422aaa195c5c1acdd369833f55a2ac51",
+      "eligible_publics": 55,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "27e948952d66a749e55f37f9cb63036955768951570c627c3f16ec378df057f9",
+      "eligible_publics": 54,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "2ZLAoe3EAFVhcFAXXfPp",
+      "eligible_publics": 50,
+      "valid_pairs": 22,
+      "selected": 5
+    },
+    {
+      "question_id": "2cab1958b1bd726695b512f3fa260e0b2ad5dbeadc5c5e1bc5b35104733c57fc",
+      "eligible_publics": 49,
+      "valid_pairs": 4,
+      "selected": 4
+    },
+    {
+      "question_id": "2f9337f5d2cc530629386a651bc047c7b76cb3d2fa3222a2fca72a8a7a20e7b2",
+      "eligible_publics": 54,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "3527af895c3fba5850bad3c91193244d88ef272e0bc7251e828b9b2029236ad9",
+      "eligible_publics": 55,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "38ffedf32d4ca14903ace5aea31ec5a49444b8f646db87a8d0a32746c5359abe",
+      "eligible_publics": 53,
+      "valid_pairs": 14,
+      "selected": 5
+    },
+    {
+      "question_id": "3c37fef353460bfd130fde0117638badaee913ee8c79b8cdf4c35e2c5710126a",
+      "eligible_publics": 51,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "3d8c7edc8a70211d39a3e4827f448e5908cd5e98dbbb1e3d7501c7761a877788",
+      "eligible_publics": 49,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "4204aec5ff81b3d331f27141b072979d838ed95bcd0de36e887ca9a70523060a",
+      "eligible_publics": 56,
+      "valid_pairs": 35,
+      "selected": 5
+    },
+    {
+      "question_id": "447c809c60421e327f266315b62b36749b6362b8b688c133985c93c9ad9be608",
+      "eligible_publics": 41,
+      "valid_pairs": 4,
+      "selected": 4
+    },
+    {
+      "question_id": "45db5d06a001a6fa62eb9b23236adab43c56970d70a833ca206fa42a57f4b7e6",
+      "eligible_publics": 48,
+      "valid_pairs": 11,
+      "selected": 5
+    },
+    {
+      "question_id": "4c98ccd0d64f8cad6896b50e8131b7173dcc95e40e1492413d69a7bf75d3328c",
+      "eligible_publics": 44,
+      "valid_pairs": 29,
+      "selected": 5
+    },
+    {
+      "question_id": "4d0226bb7d28b3509344cecbac6e7003dbb7cb5ac9ffc68518218fb163925931",
+      "eligible_publics": 41,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "4puVWhIkvQiHnTxbH4NL",
+      "eligible_publics": 43,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "5713f8a61c04fa270a3a9e1791e4d9b5fa8e0d1cc1c1c232aef84d80c5b89c09",
+      "eligible_publics": 45,
+      "valid_pairs": 28,
+      "selected": 5
+    },
+    {
+      "question_id": "5f484517610914d8596bbc5302f164a81bb62bab27d481137fe178bc7a038ed8",
+      "eligible_publics": 55,
+      "valid_pairs": 3,
+      "selected": 3
+    },
+    {
+      "question_id": "600e496f50daaa9743707de63ce115d974431d123cd136ff68b8f92bc74eb435",
+      "eligible_publics": 47,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "61c0fb3703e68cee2439afd5c2d71522bc6649a1fa154491f58981456fa8ab68",
+      "eligible_publics": 55,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "6427",
+      "eligible_publics": 54,
+      "valid_pairs": 39,
+      "selected": 5
+    },
+    {
+      "question_id": "7444",
+      "eligible_publics": 45,
+      "valid_pairs": 0,
+      "selected": 0
+    },
+    {
+      "question_id": "7664",
+      "eligible_publics": 51,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "7c17d34e37d8cea481d3933f4e1c2c091bd523c3980043e539cde90fbc08f29a",
+      "eligible_publics": 51,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "7de1da056e3c1cf3e02778d4631cd6d10a716795d083dd2f64d3988d10b27848",
+      "eligible_publics": 50,
+      "valid_pairs": 4,
+      "selected": 4
+    },
+    {
+      "question_id": "8cdd7e6836d4ad5c7964232f54746ec002813b42220648e34541e1757fd1d2be",
+      "eligible_publics": 47,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "9043472375a02690dfb338bd3d11605105562e5cae9672a989961b0c5bef9b51",
+      "eligible_publics": 56,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "917240d03f7e16595c3decf76c8e905081ffcc59d16c50f0128332abd87516ee",
+      "eligible_publics": 47,
+      "valid_pairs": 4,
+      "selected": 4
+    },
+    {
+      "question_id": "9d683eff8747219752163f7d11d94ff96bbf3b3386a147b59c4829ddb5dac130",
+      "eligible_publics": 48,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "9fa89a7d296950fe794a71be32c65e5d50930a8dbe0f9a8c780f27eec1529e60",
+      "eligible_publics": 42,
+      "valid_pairs": 5,
+      "selected": 5
+    },
+    {
+      "question_id": "AXON",
+      "eligible_publics": 48,
+      "valid_pairs": 20,
+      "selected": 5
+    },
+    {
+      "question_id": "BAMLCC0A0CMTRIV",
+      "eligible_publics": 46,
+      "valid_pairs": 41,
+      "selected": 5
+    },
+    {
+      "question_id": "BAMLH0A2HYB",
+      "eligible_publics": 46,
+      "valid_pairs": 17,
+      "selected": 5
+    },
+    {
+      "question_id": "CBRE",
+      "eligible_publics": 45,
+      "valid_pairs": 39,
+      "selected": 5
+    },
+    {
+      "question_id": "CCL",
+      "eligible_publics": 52,
+      "valid_pairs": 37,
+      "selected": 5
+    },
+    {
+      "question_id": "CLX",
+      "eligible_publics": 52,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "CTAS",
+      "eligible_publics": 46,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "CZR",
+      "eligible_publics": 51,
+      "valid_pairs": 28,
+      "selected": 5
+    },
+    {
+      "question_id": "DAAA",
+      "eligible_publics": 56,
+      "valid_pairs": 38,
+      "selected": 5
+    },
+    {
+      "question_id": "DAY",
+      "eligible_publics": 48,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "DCOILBRENTEU",
+      "eligible_publics": 41,
+      "valid_pairs": 10,
+      "selected": 5
+    },
+    {
+      "question_id": "DECK",
+      "eligible_publics": 53,
+      "valid_pairs": 22,
+      "selected": 5
+    },
+    {
+      "question_id": "DFII10",
+      "eligible_publics": 47,
+      "valid_pairs": 38,
+      "selected": 5
+    },
+    {
+      "question_id": "DPCREDIT",
+      "eligible_publics": 42,
+      "valid_pairs": 0,
+      "selected": 0
+    },
+    {
+      "question_id": "DPSACBW027SBOG",
+      "eligible_publics": 45,
+      "valid_pairs": 1,
+      "selected": 1
+    },
+    {
+      "question_id": "DTB1YR",
+      "eligible_publics": 55,
+      "valid_pairs": 13,
+      "selected": 5
+    },
+    {
+      "question_id": "DTB3",
+      "eligible_publics": 46,
+      "valid_pairs": 14,
+      "selected": 5
+    },
+    {
+      "question_id": "DTB4WK",
+      "eligible_publics": 51,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "ECBDFR",
+      "eligible_publics": 56,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "EXPINF30YR",
+      "eligible_publics": 49,
+      "valid_pairs": 28,
+      "selected": 5
+    },
+    {
+      "question_id": "FANG",
+      "eligible_publics": 45,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "FFIV",
+      "eligible_publics": 47,
+      "valid_pairs": 33,
+      "selected": 5
+    },
+    {
+      "question_id": "GLW",
+      "eligible_publics": 49,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "H41RESPPALDKNWW",
+      "eligible_publics": 52,
+      "valid_pairs": 32,
+      "selected": 5
+    },
+    {
+      "question_id": "HFuD5HPpd2ZR9gLk6nhj",
+      "eligible_publics": 49,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "HUM",
+      "eligible_publics": 50,
+      "valid_pairs": 44,
+      "selected": 5
+    },
+    {
+      "question_id": "IHLIDXUS",
+      "eligible_publics": 47,
+      "valid_pairs": 18,
+      "selected": 5
+    },
+    {
+      "question_id": "IUDSOIA",
+      "eligible_publics": 55,
+      "valid_pairs": 10,
+      "selected": 5
+    },
+    {
+      "question_id": "KCFbp1TH0RYN4j5zYdmh",
+      "eligible_publics": 50,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "KHC",
+      "eligible_publics": 45,
+      "valid_pairs": 30,
+      "selected": 5
+    },
+    {
+      "question_id": "KMB",
+      "eligible_publics": 50,
+      "valid_pairs": 47,
+      "selected": 5
+    },
+    {
+      "question_id": "KtGRsTouYWiDPaPhRC3o",
+      "eligible_publics": 46,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "LULU",
+      "eligible_publics": 55,
+      "valid_pairs": 26,
+      "selected": 5
+    },
+    {
+      "question_id": "NASDAQ100",
+      "eligible_publics": 54,
+      "valid_pairs": 36,
+      "selected": 5
+    },
+    {
+      "question_id": "PNVVTlruggno0Yw5tjVS",
+      "eligible_publics": 51,
+      "valid_pairs": 31,
+      "selected": 5
+    },
+    {
+      "question_id": "QHFQmCmz8HplpN2QQnl2",
+      "eligible_publics": 50,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "REAINTRATREARAT10Y",
+      "eligible_publics": 47,
+      "valid_pairs": 40,
+      "selected": 5
+    },
+    {
+      "question_id": "RJF",
+      "eligible_publics": 52,
+      "valid_pairs": 22,
+      "selected": 5
+    },
+    {
+      "question_id": "RRPONTTLD",
+      "eligible_publics": 48,
+      "valid_pairs": 6,
+      "selected": 5
+    },
+    {
+      "question_id": "SNA",
+      "eligible_publics": 50,
+      "valid_pairs": 31,
+      "selected": 5
+    },
+    {
+      "question_id": "SOFRINDEX",
+      "eligible_publics": 54,
+      "valid_pairs": 52,
+      "selected": 5
+    },
+    {
+      "question_id": "SOLV",
+      "eligible_publics": 51,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "T",
+      "eligible_publics": 42,
+      "valid_pairs": 25,
+      "selected": 5
+    },
+    {
+      "question_id": "T10YIE",
+      "eligible_publics": 45,
+      "valid_pairs": 5,
+      "selected": 5
+    },
+    {
+      "question_id": "TMBACBW027SBOG",
+      "eligible_publics": 53,
+      "valid_pairs": 35,
+      "selected": 5
+    },
+    {
+      "question_id": "TPR",
+      "eligible_publics": 44,
+      "valid_pairs": 19,
+      "selected": 5
+    },
+    {
+      "question_id": "TPkEjiNb1wVCIGFnPcDD",
+      "eligible_publics": 52,
+      "valid_pairs": 12,
+      "selected": 5
+    },
+    {
+      "question_id": "TSCO",
+      "eligible_publics": 48,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "VB1RhUVlnNfhclAh4LvR",
+      "eligible_publics": 51,
+      "valid_pairs": 4,
+      "selected": 4
+    },
+    {
+      "question_id": "WLCFLPCL",
+      "eligible_publics": 43,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "WYNN",
+      "eligible_publics": 45,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "a6df218adf1cf6a40983148234c46052bc83c7d2b8e31157dfdd6e58a9f83f5d",
+      "eligible_publics": 51,
+      "valid_pairs": 22,
+      "selected": 5
+    },
+    {
+      "question_id": "ac7b7ca153f613fa81d9c0eff4f0aa25bb62bba04da7610ae4eec7e1586425bb",
+      "eligible_publics": 47,
+      "valid_pairs": 13,
+      "selected": 5
+    },
+    {
+      "question_id": "b48c0a80ed5a62b128815b699b93d3d167bf2a3265058028871320c0a5c85913",
+      "eligible_publics": 46,
+      "valid_pairs": 6,
+      "selected": 5
+    },
+    {
+      "question_id": "c37effa43385e2f5a9a91bc99a278ac376fb8f10f1e11ea39fb621bfbf6e2c2f",
+      "eligible_publics": 53,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "ccda7990a2565cabd7c375a036751bd3b953b8bed45d859010919cd3a84d7e78",
+      "eligible_publics": 54,
+      "valid_pairs": 21,
+      "selected": 5
+    },
+    {
+      "question_id": "cf373450466c71a49a7f2e82e176b66198255960bb1cf71d1721cd258d0c2b81",
+      "eligible_publics": 52,
+      "valid_pairs": 14,
+      "selected": 5
+    },
+    {
+      "question_id": "cfecaf75abdfe4be7627c5e61a5d7c88541a74fbf3f030dd0b3b81e3f456e655",
+      "eligible_publics": 54,
+      "valid_pairs": 17,
+      "selected": 5
+    },
+    {
+      "question_id": "d61d058797047fb9793684b123dcf88a66f843695d9e65e9bc6df0f49ec9d936",
+      "eligible_publics": 49,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "d9c14625f757e5fb87a7bdfe5154170e6fd569a1bb4b215cf1fb50e704bdc739",
+      "eligible_publics": 56,
+      "valid_pairs": 40,
+      "selected": 5
+    },
+    {
+      "question_id": "e2ebe8c99e10583715b46ee35c93275a9a6b5721f812e6ce07f996daa8159732",
+      "eligible_publics": 49,
+      "valid_pairs": 18,
+      "selected": 5
+    },
+    {
+      "question_id": "e53dabd31f71786f3b044bd12e498deee5a732a43de2d9be7468ebaced466977",
+      "eligible_publics": 50,
+      "valid_pairs": 29,
+      "selected": 5
+    },
+    {
+      "question_id": "eda8e5b43e0db651905667586e1e72a7d5679cbb5b3ef4dd6faa6444759e2dee",
+      "eligible_publics": 49,
+      "valid_pairs": 0,
+      "selected": 0
+    },
+    {
+      "question_id": "f29228009a407cdf130062251d274b898fc8e925f21b5d9c16376e35fd5a9fbd",
+      "eligible_publics": 53,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "fa23cf1ab8ae4be34faeccb0c0453b19974158a7a1cb10657339b11a869ce089",
+      "eligible_publics": 50,
+      "valid_pairs": 16,
+      "selected": 5
+    },
+    {
+      "question_id": "iPG19DGNrWEkbUBjfk6L",
+      "eligible_publics": 48,
+      "valid_pairs": 11,
+      "selected": 5
+    },
+    {
+      "question_id": "iokMHn6kkmntt9E0aHHz",
+      "eligible_publics": 54,
+      "valid_pairs": 27,
+      "selected": 5
+    },
+    {
+      "question_id": "lFx5LHHUTgHnQPquiOMs",
+      "eligible_publics": 53,
+      "valid_pairs": 25,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07015.D",
+      "eligible_publics": 53,
+      "valid_pairs": 15,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07020.D",
+      "eligible_publics": 56,
+      "valid_pairs": 13,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07110.D",
+      "eligible_publics": 43,
+      "valid_pairs": 14,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07117.D",
+      "eligible_publics": 44,
+      "valid_pairs": 24,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07130.D",
+      "eligible_publics": 55,
+      "valid_pairs": 26,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07190.D",
+      "eligible_publics": 56,
+      "valid_pairs": 32,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07240.D",
+      "eligible_publics": 51,
+      "valid_pairs": 30,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07335.D",
+      "eligible_publics": 53,
+      "valid_pairs": 31,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07460.D",
+      "eligible_publics": 52,
+      "valid_pairs": 41,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07481.D",
+      "eligible_publics": 57,
+      "valid_pairs": 36,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07577.D",
+      "eligible_publics": 46,
+      "valid_pairs": 8,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07591.D",
+      "eligible_publics": 49,
+      "valid_pairs": 26,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07607.D",
+      "eligible_publics": 45,
+      "valid_pairs": 17,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07621.D",
+      "eligible_publics": 41,
+      "valid_pairs": 13,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07650.D",
+      "eligible_publics": 48,
+      "valid_pairs": 23,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.07761.D",
+      "eligible_publics": 46,
+      "valid_pairs": 10,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.78897.D",
+      "eligible_publics": 52,
+      "valid_pairs": 35,
+      "selected": 5
+    },
+    {
+      "question_id": "meteofrance_TEMPERATURE_celsius.78925.D",
+      "eligible_publics": 44,
+      "valid_pairs": 25,
+      "selected": 5
+    },
+    {
+      "question_id": "taYZcNp99aWqZLI2nq9v",
+      "eligible_publics": 45,
+      "valid_pairs": 20,
+      "selected": 5
+    }
+  ],
+  "gate": {
+    "n": 750,
+    "delta_bar": 0.09284389132352036,
+    "mean_t_X_minus_t_Y": 0.09080621760923892,
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "models": {
+      "efficient_anthropic": {
+        "pi_C1": 0.2548,
+        "D_full": -0.02365662350923299,
+        "MDE": 0.018523390618350625,
+        "pass_G3": false
+      },
+      "efficient_openai": {
+        "pi_C1": 0.8344,
+        "D_full": -0.0774689429203454,
+        "MDE": 0.017837339113967267,
+        "pass_G3": true
+      }
+    },
+    "passing_models": [
+      "efficient_openai"
+    ],
+    "pass": true,
+    "distinct_X": 188,
+    "distinct_Y": 262,
+    "panels_per_question_distribution": {
+      "5": 132,
+      "4": 20,
+      "1": 2,
+      "3": 2,
+      "2": 1
+    },
+    "questions_with_zero_panels": 5,
+    "equal_target_category_count": 253,
+    "projected_cost": {
+      "efficient_anthropic": 0.732375,
+      "efficient_openai": 0.9922500000000001
+    },
+    "projected_cost_total": 1.724625
+  },
+  "n_before_subsample": 765
+}
