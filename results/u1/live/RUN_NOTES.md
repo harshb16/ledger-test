@@ -13,3 +13,6 @@
   - Responses: 2,250 per model; 0 parse failures; 0 retries; no duplicate request_ids.
   - Spend: $1.7547 (settles on `results/u1/spend.jsonl`; 1 of 4,501 settles is estimated). Cap: $2.00.
 - **Analysis:** `scripts/analyze_u1.py results/u1/live`, frozen code, run once.
+- **Unstored call:** the ledger holds 4,501 settles for 4,500 stored responses (no duplicate request_ids).
+  One Haiku call was paid for (estimated settle) without a stored response; the cause was not investigated.
+  Its cost is included in the $1.7547. Every panel has exactly one stored response per model.

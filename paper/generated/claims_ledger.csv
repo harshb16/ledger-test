@@ -288,3 +288,62 @@ macro,value,source,locator
 \eOneAbsLuna,0.017,results/phase3/live/analysis/estimands.csv,"|E1| model=openai/gpt-6-luna,primary MIX"
 \eOneCommonAbsMin,0.019,results/phase3/live/analysis/estimands.csv,min |E1| common_draw0 MIX
 \eOneCommonAbsMax,0.030,results/phase3/live/analysis/estimands.csv,max |E1| common_draw0 MIX
+\uoneN,750,results/u1/build/gate.json,n
+\uoneDeltaBar,0.093,results/u1/build/gate.json,delta_bar
+\uoneGap,0.091,results/u1/build/gate.json,mean_t_X_minus_t_Y
+\uoneDHaiku,\ensuremath{+}0.002,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=D_swap"
+\uoneDLoHaiku,\ensuremath{-}0.010,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=D_swap low"
+\uoneDHiHaiku,\ensuremath{+}0.015,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=D_swap high"
+\uoneGHaiku,\ensuremath{-}0.004,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=G"
+\uoneGLoHaiku,\ensuremath{-}0.022,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=G low"
+\uoneGHiHaiku,\ensuremath{+}0.015,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=G high"
+\uoneBHaiku,\ensuremath{+}0.0047,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=delta_Brier"
+\uoneBLoHaiku,\ensuremath{+}0.0003,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=delta_Brier low"
+\uoneBHiHaiku,\ensuremath{+}0.0089,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,metric=delta_Brier high"
+\uonePHaiku,0.6412,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,primary D_swap p"
+\uoneHolmHaiku,0.6412,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,primary D_swap holm_p"
+\uoneWarrHaiku,\ensuremath{-}0.012,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,primary D_warr"
+\uoneFullHaiku,\ensuremath{-}0.024,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,primary D_full"
+\uoneDecisionHaiku,ignores padding despite warrant; exploitable (S2 harm),results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,primary decision_holm"
+\uoneDNoPilotHaiku,\ensuremath{+}0.002,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=exclude_pilot,metric=D_swap"
+\uoneDNoPilotLoHaiku,\ensuremath{-}0.011,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=exclude_pilot,metric=D_swap low"
+\uoneDNoPilotHiHaiku,\ensuremath{+}0.015,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=exclude_pilot,metric=D_swap high"
+\uoneDEqCatHaiku,\ensuremath{+}0.012,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=equal_target_category,metric=D_swap"
+\uoneDEqCatLoHaiku,\ensuremath{-}0.010,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=equal_target_category,metric=D_swap low"
+\uoneDEqCatHiHaiku,\ensuremath{+}0.033,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=equal_target_category,metric=D_swap high"
+\uoneBNoPilotLoHaiku,\ensuremath{-}0.0012,results/u1/live/analysis/estimands.csv,"model=efficient_anthropic,exclude_pilot delta_Brier low"
+\uoneDLuna,\ensuremath{-}0.023,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=D_swap"
+\uoneDLoLuna,\ensuremath{-}0.037,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=D_swap low"
+\uoneDHiLuna,\ensuremath{-}0.008,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=D_swap high"
+\uoneGLuna,\ensuremath{+}0.049,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=G"
+\uoneGLoLuna,\ensuremath{+}0.030,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=G low"
+\uoneGHiLuna,\ensuremath{+}0.067,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=G high"
+\uoneBLuna,\ensuremath{-}0.0007,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=delta_Brier"
+\uoneBLoLuna,\ensuremath{-}0.0051,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=delta_Brier low"
+\uoneBHiLuna,\ensuremath{+}0.0044,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=primary,metric=delta_Brier high"
+\uonePLuna,0.0013,results/u1/live/analysis/estimands.csv,"model=efficient_openai,primary D_swap p"
+\uoneHolmLuna,0.0026,results/u1/live/analysis/estimands.csv,"model=efficient_openai,primary D_swap holm_p"
+\uoneWarrLuna,\ensuremath{-}0.041,results/u1/live/analysis/estimands.csv,"model=efficient_openai,primary D_warr"
+\uoneFullLuna,\ensuremath{-}0.077,results/u1/live/analysis/estimands.csv,"model=efficient_openai,primary D_full"
+\uoneDecisionLuna,discounts padded records,results/u1/live/analysis/estimands.csv,"model=efficient_openai,primary decision_holm"
+\uoneDNoPilotLuna,\ensuremath{-}0.025,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=exclude_pilot,metric=D_swap"
+\uoneDNoPilotLoLuna,\ensuremath{-}0.041,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=exclude_pilot,metric=D_swap low"
+\uoneDNoPilotHiLuna,\ensuremath{-}0.009,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=exclude_pilot,metric=D_swap high"
+\uoneDEqCatLuna,\ensuremath{-}0.009,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=equal_target_category,metric=D_swap"
+\uoneDEqCatLoLuna,\ensuremath{-}0.030,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=equal_target_category,metric=D_swap low"
+\uoneDEqCatHiLuna,\ensuremath{+}0.011,results/u1/live/analysis/estimands.csv,"model=efficient_openai,sample=equal_target_category,metric=D_swap high"
+\uoneBNoPilotLoLuna,\ensuremath{-}0.0041,results/u1/live/analysis/estimands.csv,"model=efficient_openai,exclude_pilot delta_Brier low"
+\uoneEqCatN,253,results/u1/live/analysis/estimands.csv,equal_target_category n
+\uoneGBlind,\ensuremath{+}0.092,results/u1/live/analysis/estimands.csv,"model=W_blind,primary G"
+\uoneSfour,\ensuremath{+}0.005,results/u1/live/analysis/estimands.csv,S4_X_minus_Y estimate
+\uoneSfourLo,\ensuremath{-}0.029,results/u1/live/analysis/estimands.csv,S4_X_minus_Y low
+\uoneSfourHi,\ensuremath{+}0.039,results/u1/live/analysis/estimands.csv,S4_X_minus_Y high
+\uoneSpend,1.75,results/u1/spend.jsonl,sum settle
+\uoneDomFewer,\ensuremath{-}0.049,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY
+\uoneDomFewerLo,\ensuremath{-}0.076,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY low
+\uoneDomFewerHi,\ensuremath{-}0.023,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY high
+\uoneDomFewerN,257,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY n
+\uoneDomNotFewer,\ensuremath{-}0.009,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY
+\uoneDomNotFewerLo,\ensuremath{-}0.026,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY low
+\uoneDomNotFewerHi,\ensuremath{+}0.009,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY high
+\uoneDomNotFewerN,493,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF >= catHY n

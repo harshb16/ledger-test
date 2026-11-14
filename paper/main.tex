@@ -38,20 +38,21 @@ Harsh Bhatia\\Independent researcher\par\vspace{6pt}
 \textbf{With}\\Apart Research\par\vspace{10pt}
 {\large\bfseries Abstract}\par\vspace{4pt}
 \begin{minipage}{0.84\linewidth}\itshape\small
-Track records are the obvious metadata to show an LLM asked to combine other people's forecasts. We test whether it helps, how much the model relies on it, and whether it can be
-gamed. From real individual forecasts in a ForecastBench human round (162 resolved binary questions) we build 972
-five-person panels, either mixed (MIX: two superforecasters, three public forecasters) or all-public (PUB). Four LLMs
-see identical forecasts under four record presentations, plus paired interventions that swap or ``farm'' a record. Confirmatory tests were frozen before data collection. In MIX panels, one raw accuracy score per
-forecaster lowers every model's Brier score (by \eOneAbsHaiku--\eOneAbsLuna{} for the efficient models,
-\eOneCommonAbsMin--\eOneCommonAbsMax{} on a sample shared by all four; Holm-adjusted $p<0.001$): about half
-to three-quarters of the gain from knowing who the experts are. But no model beats a cross-validated
-performance-weighted average tuned for the panel type, and in PUB panels records give no measurable benefit. In MIX
-the models under-react: scaling up their record-induced shift improves held-out accuracy, yet they respond to scores
-in the same way whether or not experts are present. Padding a record with easy, confident forecasts improves a raw
-mean Brier by \inflRawAbs, which peer-relative or difficulty-adjusted scores remove; the inflation is modest and did
-not reduce predictiveness. Whether LLMs discount farmed records is not identified, owing to a
-prompt artefact that we report in full. Reliability scores help AI aggregators when real skill differences
-exist, but transparent statistical weighting remains a strong default.
+Track records are the obvious metadata to show an LLM asked to combine other people's forecasts. We test whether
+they help, how much the model relies on them, and whether they can be gamed. From a ForecastBench
+human round (162 resolved binary questions) we build 972 five-person panels, mixed (MIX: two superforecasters, three
+public forecasters) or all-public (PUB). Four LLMs see identical forecasts under four record presentations, plus
+paired interventions that swap or pad a record; confirmatory tests were frozen before data collection. In MIX panels,
+one raw accuracy score per forecaster lowers every model's Brier score (by \eOneAbsHaiku--\eOneAbsLuna{} for the
+efficient models; Holm-adjusted $p<0.001$), about half to three-quarters of the gain from knowing who the experts
+are. But no model beats a cross-validated performance-weighted average tuned for the panel type, and in PUB panels
+records give no measurable benefit. In MIX the models under-react, yet respond to scores in the same way whether or
+not experts are present. Padding a record with easy, confident forecasts improves a raw mean Brier by \inflRawAbs,
+which peer-relative or difficulty-adjusted scores remove. Our frozen LLM padding test failed on a prompt artefact.
+In a pre-registered follow-up where a discount was warranted, one of two models gave a
+forecast less pull beside a padded record than beside an honest record of equal score
+($D=\uoneDLuna$ [\uoneDLoLuna, \uoneDHiLuna]), yet padding still paid. Reliability scores help AI
+aggregators when real skill differences exist, but transparent statistical weighting remains a strong default.
 \end{minipage}
 \end{center}
 \vspace{6pt}
@@ -83,10 +84,11 @@ than reliability \citep{ashkinaze2026}. What is missing is a test with \emph{rea
 \item A reliance estimand, $\cstar$, that needs no statistical benchmark. It shows MIX under-reaction that survives cross-fitting, together with
   evidence that the models' policy is regime-blind (RQ2).
 \item A data-level measurement of record farming and of the protection offered by peer-relative and difficulty-adjusted
-  scores (RQ3a). We also give a candid account of why our LLM-level farming test is not identified (RQ3b), with
-  design lessons for future studies.
+  scores (RQ3a). We give a candid account of why our frozen LLM-level farming test is not identified (RQ3b), and a
+  pre-registered follow-up, built so that a discount is warranted, in which one model partly discounts padded records
+  without removing the gain from padding.
 \end{enumerate}
-Code, frozen configurations, all 19,876 raw model responses, and every script that generates a number in this paper
+Code, frozen configurations, all 24,376 raw model responses (19,876 main study, 4,500 follow-up), and every script that generates a number in this paper
 are in the project repository (link in the submission form). Each number in the text is generated from a result file and traced in a claims ledger
 (Appendix~\ref{app:repro}).
 
@@ -170,7 +172,8 @@ cross-validation over questions, separately for MIX and PUB. $W$ therefore knows
 \section{Results}
 Table~\ref{tab:conf} gives the confirmatory family. Every confirmatory estimate was reproduced by independent code
 (Appendix~\ref{app:repro}). The cross-fitted, noise-corrected, regime-blind and MIX$-$PUB analyses in \S\ref{sec:rq2},
-the heterogeneity, normative and nonce analyses in \S\ref{sec:rq3}, and \S\ref{sec:expl} are post hoc.
+the heterogeneity, normative and nonce analyses in \S\ref{sec:rq3}, and \S\ref{sec:expl} are post hoc. The U1
+follow-up in \S\ref{sec:rq3} is a separate pre-registered study, not part of the confirmatory family.
 
 \begin{table}[t]
 \centering\small
@@ -289,7 +292,7 @@ qualifies the threat. Averaged over \normSeedsN{} record draws, a farmed raw sco
 slightly \emph{better} than a uniform one (correlation difference \normSeedsMean{}, range \normSeedsMin{} to
 \normSeedsMax{}). In these data, a rational aggregator would therefore apply little or no discount.
 
-\textbf{RQ3b (LLM discount): not identified.} The score-matched control often displays exactly the same C2 score as the
+\textbf{RQ3b (LLM discount), frozen test: not identified.} The score-matched control often displays exactly the same C2 score as the
 farmed record, which would have made the prompts byte-identical and replayed a cached answer. To prevent this, we
 appended a line ``\texttt{Cache nonce: control}'' to every control prompt. This made the prompt text depend on the arm.
 In \nonceHaikuN{} PUB panels, the C2 control and farmed prompts differ \emph{only} by this line, which gives a natural
@@ -301,6 +304,33 @@ without the nonce, the test would be uninformative. No discount is warranted (RQ
 response. The minimum detectable effect at 80\% power is \mdeMin--\mdeMax, above any plausible warranted discount. And C1
 records show category codes, so farmed and control records also differ in base-rate information. No estimand other than
 those using the control or retest arms is affected (Appendix~\ref{app:nonce}).
+
+\textbf{RQ3b follow-up (U1, pre-registered).} We rebuilt the test to fix all three problems; the addendum was frozen
+before any U1 output, and independent reviews preceded and followed the single run (Appendix~\ref{app:uone}). An
+attacker X is a public forecaster whose padded record F (8 confident items) displays a raw Brier at least 0.05 better
+than X's honest level (mean overstatement \uoneDeltaBar). An honest peer Y, with a different forecast, shows a uniform
+record of its own matched to F's score within 0.01. Arm A shows F beside X and Y's record beside Y; arm B swaps the two
+records, so the items shown are identical; arm H shows an honest record for X. The primary estimand is
+$D_\text{swap}=\sum (L_A-L_B)\,\mathrm{sign}(p_X-p_Y)/\sum|p_X-p_Y|$ ($<0$ is a discount), and $G$ is the pull toward X
+gained by padding (A vs H). We ran \uoneN{} PUB panels on Haiku and Luna in C1, with no nonce, a fresh cache and
+\$\uoneSpend.
+For \textbf{Luna}, the forecast beside the padded record received less pull: $D_\text{swap}=\uoneDLuna$
+[\uoneDLoLuna, \uoneDHiLuna] (Holm $p=\uoneHolmLuna$), and \uoneDNoPilotLuna{} without the pilot questions. We do not
+interpret its ratio to the warranted benchmark (\uoneWarrLuna), whose inputs are uncertain. Nor is it shown that Luna
+recognises padding. Every padded record contains one to three visible confident misses, the effect is not significant
+in the pre-registered subset where both records hold equally many target-category items (\uoneDEqCatLuna{}
+[\uoneDEqCatLoLuna, \uoneDEqCatHiLuna], $n=\uoneEqCatN$), and in an exploratory split it is concentrated where the
+honest record is the better domain match (\uoneDomFewer{} [\uoneDomFewerLo, \uoneDomFewerHi], $n=\uoneDomFewerN$;
+elsewhere \uoneDomNotFewer{} [\uoneDomNotFewerLo, \uoneDomNotFewerHi]). The discount did not remove the incentive to
+pad: relative to an honest record, padding raised Luna's pull toward the padder ($G=\uoneGLuna$ [\uoneGLoLuna,
+\uoneGHiLuna]; a reader of displayed scores alone gives \uoneGBlind), with no measurable change in accuracy
+($\Delta$Brier $=\uoneBLuna$ [\uoneBLoLuna, \uoneBHiLuna]). Target outcomes do not confirm that the padders were worse
+on these questions (\uoneSfour{} [\uoneSfourLo, \uoneSfourHi]), so the warrant rests on the ledgers.
+\textbf{Haiku}, declared underpowered before the run, shows no detectable discount ($D_\text{swap}=\uoneDHaiku$
+[\uoneDLoHaiku, \uoneDHiHaiku]) and no attack gain ($G=\uoneGHaiku$ [\uoneGLoHaiku, \uoneGHiHaiku]). The frozen
+decision rule labels it ``exploitable''; we do not adopt the label (Appendix~\ref{app:uone}). In an exploratory split by
+whether calls used reasoning tokens, Haiku's swap effect has opposite signs, so its null is an average, not evidence of
+indifference.
 
 \subsection{Exploratory analyses (post hoc)}\label{sec:expl}
 These analyses were not in the frozen design and have no multiplicity control.
@@ -331,7 +361,10 @@ regime is known. Showing that aggregate to the model, or to the human, is a natu
 it. (3) Selective-question farming inflates raw mean Brier, and peer-relative or difficulty-adjusted scores neutralise
 it. The threat is modest here: farmed scores were no less predictive of target accuracy than uniform ones. Score designers can obtain this
 robustness at little cost, although LLMs used peer-relative scores less effectively than raw ones (C3 oracle fraction
-\oracleFracCthreeHaiku--\oracleFracCthreeLuna). This tension is worth resolving in score presentation.
+\oracleFracCthreeHaiku--\oracleFracCthreeLuna). This tension is worth resolving in score presentation. (4) When the
+items are visible, one model gave a padded record less pull, but not enough to stop padding from paying, and we cannot
+tell recognition of padding from a domain-match cue. Robustness to gaming should therefore come from the score design,
+not from the AI reader.
 
 \subsection*{Limitations}
 \emph{Scope:} one ForecastBench round, 162 questions, four models. \emph{Records} are cross-sectional (same round,
@@ -341,14 +374,14 @@ draw 0; cross-model contrasts are confounded with reasoning (Sonnet emits no rea
 OpenRouter served the Anthropic models from three upstream providers, with balanced shares across conditions.
 \emph{Standard errors:} the frozen two-way SE lacks a small-sample correction; one PUB cell depends on the SE
 convention and is not interpreted. \emph{In-sample magnitudes:} rescaling by $\cstar$ would push 14--18\% of MIX
-forecasts outside $[0,1]$. \emph{Farming:} E3b is not identified, and the fixed-effect abilities in E3a were fitted on
+forecasts outside $[0,1]$. \emph{Farming:} E3b is not identified; U1 tests one padding pattern (confident records with visible misses) on two
+efficient models in C1 only, and its warranted benchmark is uncertain. The fixed-effect abilities in E3a were fitted on
 data that include the target questions. \emph{Multiplicity:} the common-sample Holm correction divides by 4 for a
 3-test family (conservative); post hoc analyses have no multiplicity control. Dual-use and ethical considerations, and
 a statement of what the results do and do not establish, are in Appendix~\ref{app:ethics}.
 
-\subsection*{Future Work} A farming test needs an arm in which a discount \emph{is} warranted, for example records farmed
-from a skill-uncorrelated pool, with power computed against that warranted effect. Cache-busting must go into request
-settings (for example a seed), never into prompt text. Next steps: regime-aware prompts, showing the statistical aggregate
+\subsection*{Future Work} U1 should be repeated with clean padded records, domain-balanced honest records and the
+strong-tier models. Cache-busting must go into request settings (for example a seed), never into prompt text. Next steps: regime-aware prompts, showing the statistical aggregate
 alongside the records, and chronologically built records from several rounds.
 
 \section{Conclusion}
@@ -356,13 +389,14 @@ Showing an LLM one raw accuracy score per forecaster improves its aggregate when
 experts, and does nothing measurable when it does not. The models use the scores sensibly but conservatively, with the
 same policy in both regimes, and none beats a transparent cross-validated weighting rule that knows the regime. Raw
 mean Brier can be padded with easy forecasts, and peer-relative or difficulty-adjusted scores remove that inflation at
-little cost. For trust infrastructure consumed by AI systems, reliability signals are worth exposing, but a statistical
+little cost. An LLM shown the items partly discounts a padded record, but padding still pays. For trust
+infrastructure consumed by AI systems, reliability signals are worth exposing, but a statistical
 aggregate is a strong default, and score designs should be robust to selective-question farming.
 
 \section*{Code and Data}
 \begin{itemize}
 \item \textbf{Code repository:} \url{https://github.com/harshb16/ledger-test} (code, frozen configurations and
-  manifests, all 19,876 raw model responses, analysis scripts, reviews, and the claims ledger for this paper).
+  manifests, all 24,376 raw model responses, analysis scripts, reviews, and the claims ledger for this paper).
 \item \textbf{Data:} ForecastBench human-round datasets, commit \texttt{203a0d1}
   (\url{https://github.com/forecastingresearch/forecastbench-datasets}), CC BY-SA 4.0; fetched and checksum-verified
   by \texttt{scripts/fetch\_data.py}.
@@ -382,8 +416,11 @@ Usage Statement).
 \textbf{What the results establish.} For one ForecastBench round, four models and the prompts used here: raw accuracy
 scores improve an LLM aggregate on panels with superforecasters; the models under-react relative to the outcome-optimal
 scale and use a regime-blind policy; a cross-validated performance-weighted rule is at least as good in mixed panels;
-record padding inflates raw mean Brier, and peer-relative or difficulty-adjusted scores remove the inflation.
-\textbf{What they do not establish.} Whether LLMs discount farmed records (E3b is not identified); whether the results
+record padding inflates raw mean Brier, and peer-relative or difficulty-adjusted scores remove the inflation; with
+itemised records, one efficient model (Luna) gives a padded record somewhat less pull, but padding still raises the
+padder's pull.
+\textbf{What they do not establish.} Whether LLMs recognise padding as such (the U1 discount may be a domain-match
+cue, and every padded record showed visible misses); whether Haiku is indifferent to padding (inconclusive); whether the results
 hold for other rounds, chronological track records, other prompts, reasoning settings or models; whether showing the
 statistical aggregate to the model helps (untested); and any over-reaction in all-public panels (not supported). Cross-tier
 magnitudes are not comparable, and $\cstar$ magnitudes are in-sample. Section~5 lists the remaining limitations.
@@ -400,7 +437,7 @@ upstream data; prompts show members only as letters A--E with their numeric fore
 free-text rationales or question text. No new human data were collected.
 
 \section{Reproducibility and claims ledger}\label{app:repro}
-All 19,876 raw responses are committed (gzipped) with frozen panels, manifests and configs. The frozen analysis
+All 24,376 raw responses are committed (gzipped) with frozen panels, manifests and configs. The frozen analysis
 (\texttt{scripts/analyze\_phase3.py}) generates every confirmatory estimand. Independent recomputations by the lead
 (\texttt{results/lead\_recompute/}) and the reviewer (\texttt{results/review\_phase3/}) agree with it: the reviewer
 reproduced 164 frozen estimand rows, including every confirmatory estimate, SE and $p$-value, to within
@@ -437,11 +474,43 @@ and the retest SD (an upper bound on sampling noise).
 \item \textbf{Swap check:} with C2 records, 95--100\% of swaps move the aggregate in the expected direction.
 \end{itemize}
 
+\section{U1: pre-registered warranted farming follow-up}\label{app:uone}
+\textbf{Process.} The addendum (\texttt{docs/U1\_ADDENDUM.md}) was frozen before any build output. The panels, gate and
+analysis code were then built offline, reviewed independently, and amended before the paid run with six logged
+deviations (D1--D6), none of which changed panels or prompts. The main deviation (D1) rescales the warranted benchmark
+to the swap contrast ($D_\text{warr}=-1.25\,\pi_{C1}\,0.42\,\bar\delta$, where 0.42 is the within-question slope of
+target Brier on ledger skill); D2 records that target outcomes had been seen in a mock analysis and requires attack harm
+before an ``exploitable'' label. The gate required at least 500 panels, a mean ledger gap $t_X-t_Y\ge0.03$
+(observed \uoneGap) and power for the more responsive model; Haiku was declared underpowered in advance. Each model
+answered all 2,250 prompts once, with 0 parse failures and 0 retries.
+
+\begin{table}[h]
+\centering\small
+\caption{U1 primary results ($n=\uoneN$ panels). $D_\text{swap}$: two-way CGM (question $\times$ attacker) 95\% CI,
+one-sided $p$ Holm-adjusted over two models. $G$ and $\Delta$Brier (A $-$ H): CGM and question-bootstrap CIs.
+$^\ddagger$Printed by the frozen rule; not adopted (see text).}
+\label{tab:uone}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}lllllll@{}}
+\toprule
+Model & $D_\text{swap}$ & Holm $p$ & $D_\text{warr}$ & $G$ & $\Delta$Brier & Frozen decision \\
+\midrule
+Luna & \uoneDLuna{} [\uoneDLoLuna, \uoneDHiLuna] & \uoneHolmLuna & \uoneWarrLuna & \uoneGLuna{} [\uoneGLoLuna, \uoneGHiLuna] & \uoneBLuna{} [\uoneBLoLuna, \uoneBHiLuna] & \uoneDecisionLuna \\
+Haiku & \uoneDHaiku{} [\uoneDLoHaiku, \uoneDHiHaiku] & \uoneHolmHaiku & \uoneWarrHaiku & \uoneGHaiku{} [\uoneGLoHaiku, \uoneGHiHaiku] & \uoneBHaiku{} [\uoneBLoHaiku, \uoneBHiHaiku] & exploitable$^\ddagger$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\textbf{Why Haiku's ``exploitable'' label is not adopted.} The rule fires because the $D_\text{swap}$ interval excludes
+$D_\text{warr}$ (\uoneWarrHaiku) by about 0.002, and arm A scored worse than the attack-free arm. But padding gave the
+padder no extra pull ($G=\uoneGHaiku$), the Brier difference vanishes without the pilot questions (lower bound
+\uoneBNoPilotLoHaiku) and comes from arms that show different items, and the benchmark margin lies within the
+uncertainty of its inputs.
+
 \section*{LLM Usage Statement}
 This project was planned, implemented and analysed by AI agents under human direction. An Opus-class model led design
 and analysis; a Codex model implemented the engineering; a separate Claude model, as independent reviewer, audited the
 design and the results and reproduced every confirmatory number (to within $10^{-15}$). The human author set the
-question, budget and constraints, and approved each paid phase. API spend was \$12.52 of a \$20 budget. No result was
+question, budget and constraints, and approved each paid phase. API spend was \$12.52 for the main study and
+\$\uoneSpend{} for the U1 follow-up, of a \$20 budget. No result was
 fitted on held-out outcomes, no analysis was rerun to change a significance call, and all deviations from the frozen
 design (including the nonce flaw) are logged in the repository.
 The report text was drafted by the lead model and revised after an independent review. Every number in it is generated

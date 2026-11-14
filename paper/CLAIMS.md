@@ -24,6 +24,14 @@ facts, or values quoted from the results record, and each has a source.
 | "half to three-quarters" | Summary of oracle fractions 0.51–0.78 | `\oracleFrac*` macros |
 | 95–100% correct swap sign (C2) | Appendix C | [R] `results/review_phase3/07_swap_sign.csv` |
 | E(c\*) = 0.5 under pure noise | Derivation | [R] `04_noise.csv` (`null_cstar_pure_noise_s0eqs2`) |
+| 24,376 raw responses (19,876 main + 4,500 U1) | Run | Row above; `results/u1/live/RUN_NOTES.md` (2,250 per model) |
+| U1: δ_X ≥ 0.05; match within 0.01; gate ≥ 500 panels and gap ≥ 0.03 | Design | `docs/U1_ADDENDUM.md` §2–§4 (frozen) |
+| U1: D_warr = −1.25·π_C1·0.42·δ̄ | Deviation D1 | `docs/U1_ADDENDUM.md` §8 |
+| U1: 2,250 prompts per model, 0 parse failures, 0 retries | Run | `results/u1/live/RUN_NOTES.md`; `results/u1/live/analysis/usage.csv` |
+| U1: "one to three visible misses" in every padded record (1: 479, 2: 256, 3: 15) | Design check | [R] `results/review_u1_results/03_luna_mechanism.out` (b) |
+| U1: Haiku misses D_warr "by about 0.002" | Arithmetic | `\uoneDLoHaiku` − `\uoneWarrHaiku` (generated macros) |
+| U1: Haiku reasoning-split swap effects of opposite sign | Exploratory | [R] `results/review_u1_results/06_haiku_reasoning_split.out` |
+| \$1.75 U1 spend; about \$14.27 total | Cost | `results/u1/spend.jsonl` (sum of settles) |
 
 **Regenerating.**
 
