@@ -10,7 +10,7 @@ This repository holds the whole project:
 - the full Phase 3 run: 4 models, 19,876 responses, $11.22;
 - U1, a pre-registered follow-up on the farming discount: 2 models, 4,500 responses, $1.75;
 - F1, a pre-registered follow-up that shows the models the statistical aggregate W: 2 models, 2,144 responses,
-  $0.43; and F2, a clean padding test whose pre-run gate failed (not run, $0);
+  $0.42; and F2, a clean padding test whose pre-run gate failed (not run, $0);
 - the paper, with exploratory analyses Z1, Z2, Z5 and Z6 (no paid calls).
 
 In total there are 26,520 stored LLM responses. Total API spend is about $14.70 of a $20 budget (`docs/COST_PLAN.md`).

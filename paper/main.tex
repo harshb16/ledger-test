@@ -42,7 +42,7 @@ Track records are the obvious metadata to show an LLM asked to combine other peo
 they help, how much models rely on them, and whether they can be gamed. From a ForecastBench
 human round (162 resolved binary questions) we build 972 five-person panels, mixed (MIX: two superforecasters, three
 public forecasters) or all-public (PUB). Four LLMs see identical forecasts under four record presentations and
-paired swap or padding interventions; confirmatory tests were frozen in advance. In MIX panels,
+paired swap or padding interventions; confirmatory tests were frozen in advance. In MIX,
 one raw accuracy score per forecaster lowers every model's Brier score (by \eOneAbsHaiku--\eOneAbsLuna{} for the
 efficient models; Holm-adjusted $p<0.001$), about half to three-quarters of the gain from knowing who the experts
 are. But no model beats a cross-validated performance-weighted average tuned for the panel type, and in PUB panels
@@ -51,7 +51,7 @@ not experts are present. Padding a record with easy, confident forecasts improve
 which peer-relative or difficulty-adjusted scores remove. Our frozen LLM padding test failed on a prompt artefact;
 in a pre-registered follow-up where a discount was warranted, one of two models gave a
 padded record less pull than an equally scored honest record
-($D=\uoneDLuna$ [\uoneDLoLuna, \uoneDHiLuna]), yet padding still paid. Shown the weighted average, two models copied it,
+($D=\uoneDLuna$ [\uoneDLoLuna, \uoneDHiLuna]), yet padding still paid. Shown the weighted average, two efficient models copied it,
 adding nothing measurable. Reliability scores help AI
 aggregators when real skill differences exist, but transparent statistical weighting remains a strong default when the panel type is known.
 \end{minipage}
@@ -88,8 +88,9 @@ than reliability \citep{ashkinaze2026}. What is missing is a test with \emph{rea
   scores (RQ3a). We give a candid account of why our frozen LLM-level farming test is not identified (RQ3b), and a
   pre-registered follow-up, built so that a discount is warranted, in which one of two models gives a padded record
   less pull, without removing the gain from padding.
-\item A pre-registered follow-up (F1) showing that efficient models given the cross-validated weighted average copy it
-  and add nothing measurable, even in all-public panels where it has no edge.
+\item A pre-registered follow-up (F1) showing that two efficient models given the labelled cross-validated weighted
+  average copy it and add nothing measurable in mixed panels, and copy it as closely in all-public panels where
+  it has no edge (descriptive).
 \end{enumerate}
 Code, frozen configurations, all 26,520 raw model responses (19,876 main study, 6,644 follow-up), and every script that generates a number in this paper
 are in the project repository (link in the submission form). Each number in the text is generated from a result file and traced in a claims ledger
@@ -242,7 +243,7 @@ line giving $W$, labelled as a statistical aggregate that weights forecasters by
 \foneDWHaiku{} [\foneDWLoHaiku, \foneDWHiHaiku] for Haiku (Holm $p=\foneHolmLuna$, \foneHolmHaiku). Both intervals lie
 inside the pre-specified $\pm0.005$ margin, so each model \emph{matches} $W$ and adds nothing measurable. They did so by
 returning it: \foneCopyLuna{} (Luna) and \foneCopyHaiku{} (Haiku) of MIX answers were within 0.005 of $W$, against
-16--18\% without it. The gain over the same models' answers without $W$ (\foneDCLuna, \foneDCHaiku; secondary) is no
+16--18\% without it. The gain over the same models' answers without $W$ (\foneDCLuna{} [\foneDCLoLuna, \foneDCHiLuna] and \foneDCHaiku{} [\foneDCLoHaiku, \foneDCHiHaiku]; secondary, unadjusted; those answers are one day older) is no
 more than $W$'s own advantage. In PUB, where $W$ has no edge, they followed it as closely (\foneCopyPubLuna,
 \foneCopyPubHaiku; descriptive).
 
@@ -371,7 +372,8 @@ superforecasters'', and the models are not told that experts may be present. \em
 draw 0; cross-model contrasts are confounded with reasoning (Sonnet emits no reasoning tokens). \emph{Farming:} E3b is not identified; U1 tests one padding pattern (confident records with visible misses) on two
 efficient models in C1 only, and its warranted benchmark is uncertain. A pre-registered repeat with clean padded and
 domain-balanced honest records (F2) could not be built from this round (Appendix~\ref{app:fone}). \emph{F1} tests one
-labelled display of $W$ to two efficient models; it cannot show whether a model would detect a poor aggregate. Dual-use and ethical considerations, and
+labelled display of $W$ to two efficient models; it cannot show whether a model would detect a poor aggregate, and says nothing about hybrids in which the
+model holds information the rule lacks. Dual-use and ethical considerations, and
 a statement of what the results do and do not establish, are in Appendix~\ref{app:ethics}.
 
 \subsection*{Future Work} U1 should be repeated with clean padded records and domain-balanced honest records, which
@@ -385,7 +387,7 @@ experts, and does nothing measurable when it does not. The models use the scores
 similar policy in both regimes, and none beats a transparent cross-validated weighting rule that knows the regime. Raw
 mean Brier can be padded with easy forecasts, and peer-relative or difficulty-adjusted scores remove that inflation at
 little cost. One of two models shown the items gave a padded record less pull, but padding still paid. Shown the statistical
-aggregate, the models copied it. For trust
+aggregate, two efficient models copied it and added nothing measurable. For trust
 infrastructure consumed by AI systems, reliability signals are worth exposing, but a statistical
 aggregate is a strong default when the panel type is known, and score designs should be robust to selective-question farming.
 
@@ -418,7 +420,7 @@ padder's pull.
 \textbf{What they do not establish.} Whether LLMs recognise padding as such (the U1 discount may be a domain-match
 cue, and every padded record showed visible misses); whether Haiku is indifferent to padding (inconclusive); whether the results
 hold for other rounds, chronological track records, other prompts, reasoning settings or models; whether an LLM shown the
-statistical aggregate would correct a poor one (F1 shows only that it copies a good one); and any over-reaction in all-public panels (not supported). Cross-tier
+statistical aggregate would correct a poor one (F1 shows only that two efficient models copy a labelled one); and any over-reaction in all-public panels (not supported). Cross-tier
 magnitudes are not comparable, and $\cstar$ magnitudes are in-sample. Section~\ref{sec:disc} and the paragraph below list the
 remaining limitations.
 
@@ -619,7 +621,7 @@ not stand out. This describes the round; it is not a tested defence.
 This project was planned, implemented and analysed by AI agents under human direction. An Opus-class model led design
 and analysis; a Codex model implemented the engineering; a separate Claude model, as independent reviewer, audited the
 design and the results and reproduced every confirmatory number (to within $10^{-15}$). The human author set the
-question, budget and constraints, and approved each paid phase. API spend was \$12.52 for the pilot and main study and
+question, budget and constraints, and approved each paid phase. API spend was \$12.52 for the pilot and main study,
 \$\uoneSpend{} for the U1 follow-up and \$\foneSpend{} for F1, of a \$20 budget. No result was
 fitted on held-out outcomes, no analysis was rerun to change a significance call, and all deviations from the frozen
 design (including the nonce flaw) are logged in the repository.

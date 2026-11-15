@@ -59,10 +59,11 @@
 ### F1 and F2 follow-ups (actual, 2026-11-15)
 
 - **F1 spend:** $0.4250 for 2,144 responses (1,072 each from Haiku and Luna: 972 C2W + 100 C2R), against a $0.70
-  hard cap and a $0.557 projection (Luna $0.287, Haiku $0.139; Haiku cost well under its projection). Source: the
+  hard cap and a $0.557 projection (Luna $0.230, Haiku $0.327). Actual: Luna $0.287, above its projection; Haiku $0.139, well
+  under. Source: the
   sum of settles in `results/f1/spend.jsonl`, which includes one failed transport attempt ($0.0011).
 - **F2:** $0. The pre-run gate failed, so the run script refuses to start (`results/f2/build/gate.json`).
-- **Project total:** $12.52 + $1.75 + $0.43 = **about $14.70 of $20**, from the ledgers alone.
+- **Project total:** $12.5206 + $1.7547 + $0.4250 = $14.7003, **about $14.70 of $20**, from the ledgers alone.
 
 ## Phase 3 projection (design v2; `scripts/project_phase3_cost.py` → `results/phase2/phase3_cost_projection.csv`)
 Measured per-condition pilot billing, scaled by questions and panels. New matched-control arms are priced like
