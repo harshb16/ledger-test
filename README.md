@@ -108,7 +108,7 @@ Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent
 | `results/f1/spend.jsonl` | F1 spend ledger |
 | `results/review_f_prerun/`, `results/review_f1_results/` | Reviewer's F1/F2 pre-run checks and F1 post-run recomputation |
 | `paper/` | Paper source, generators (`make_numbers.py`, `make_figures.py`), figures, claims ledger, PDF |
-| `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, cost plan, Phase 3 plan and results, U1 addendum and implementation notes, Z5 spec, figures, reviews |
+| `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, Phase 3 plan and results, U1 addendum and implementation notes, Z5 spec, figures, reviews |
 
 ## Setup
 ```sh
@@ -127,14 +127,13 @@ uv run python scripts/twoway_phase1.py              # CGM two-way intervals
 uv run python scripts/matched_farming.py            # farming inflation, matched and unmatched
 # Phase 2
 uv run python scripts/build_phase2.py --n-questions 16 --seed 20261113 --out results/phase2/pilot
-uv run python scripts/mock_phase2.py results/phase2/pilot results/phase2/pilot_mock   # zero-cost dry run
+uv run python scripts/mock_phase2.py results/phase2/pilot results/phase2/pilot_mock   # dry run, no API calls
 uv run python scripts/run_pilot.py --cap 4.0        # LIVE: shared hard cap, resumable, cached
 uv run python scripts/analyze_phase2.py results/phase2/pilot_live
 # Phase 3 build (zero cost)
 uv run python scripts/build_phase3.py               # design v2 manifests -> results/phase3/build
 uv run python scripts/e3a_farming.py                # RQ3a data-level farming inflation (no LLM)
 uv run python scripts/mock_phase3.py && uv run python scripts/analyze_phase3.py results/phase3/mock
-uv run python scripts/estimate_phase3_cost.py
 uv run pytest -q
 # uv run python scripts/run_phase3.py --cap 14     # LIVE Phase 3 (already run; reruns replay the cache)
 # Phase 3 analysis from the committed raw responses (no paid calls)
@@ -163,10 +162,8 @@ uv run python results/lead_recompute/z6_cost_by_condition.py  # Z6 cost by score
 uv run python paper/make_numbers.py && uv run python paper/make_figures.py
 cd paper && latexmk -pdf main.tex
 ```
-LLM responses are cached on disk under a hash of each request. Re-running `run_pilot.py` replays the cache
-and spends nothing. `results/phase2/spend.jsonl`, `results/phase3/spend.jsonl`, `results/u1/spend.jsonl` and `results/f1/spend.jsonl` are the
-durable spend ledgers. The Phase 2 and Phase 3 ledgers reconcile to the cent with OpenRouter key usage. The U1 and F1 totals
-come from their ledgers; the OpenRouter counter was not re-read after U1 (`docs/COST_PLAN.md`).
+LLM responses are cached on disk under a hash of each request, so re-running a live script replays the cache
+instead of calling the API. The `spend.jsonl` files are the run harness's hard-cap ledgers.
 
 ## Process disclosure
 - The project was orchestrated by Claude Opus 5.5 acting as lead.

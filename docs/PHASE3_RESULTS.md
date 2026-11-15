@@ -58,7 +58,7 @@ happened (0 or 1). Lower is better.
 | Strong tier | Sonnet (`anthropic/claude-sonnet-5.5`) and Sol (`openai/gpt-6.1-sol`): nested 108-question subset at draw 0, no C3 farming or swap arms, 1,584 requests each | `results/phase3/build/manifest_strong_*.jsonl` |
 | Responses | 19,876 unique rows, matching the manifests 1:1 [R]; 0 parse failures; 0 truncation retries; all `finish_reason = stop` [R] | `results/phase3/live/<model>/responses.jsonl.gz` |
 | Integrity | 162/162 outcomes match the raw resolution file; 0 of 39,745 displayed records contain the target id; no pilot cache replay [R] | `results/review_phase3/01_integrity.out`, `07_misc.out` |
-| Cost | $11.2153 (harness ledger), identical to the OpenRouter key-usage delta of $11.2153 [L] | `results/phase3/spend.jsonl`, `docs/COST_PLAN.md` |
+| Cost | $11.2153 (harness ledger), identical to the OpenRouter key-usage delta of $11.2153 [L] | `results/phase3/spend.jsonl` |
 
 **Conditions** (what the model sees beside the five forecasts):
 

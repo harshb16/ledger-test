@@ -1,4 +1,4 @@
-"""EXPLORATORY / POST HOC (not in the frozen design; proposed in docs/BRAINSTORM_EXTENSIONS.md Z1, Z2). No API calls.
+"""EXPLORATORY / POST HOC (not in the frozen design; Z1, Z2). No API calls.
 
 Z1  Regime-pooled W. The frozen W tunes (lam, k) separately for MIX and PUB, so it 'knows' the regime; the LLM is not
     told. We re-tune W on the Phase 3 panels with the frozen question folds, (a) per type and (b) pooled over types,

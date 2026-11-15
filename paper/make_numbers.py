@@ -363,8 +363,6 @@ r = one(u1, model="W_blind", sample="primary", metric="S4_X_minus_Y")
 reg("uoneSfour", f(r.estimate, 3, sign=True), U1, "S4_X_minus_Y estimate")
 reg("uoneSfourLo", f(r.low, 3, sign=True), U1, "S4_X_minus_Y low")
 reg("uoneSfourHi", f(r.high, 3, sign=True), U1, "S4_X_minus_Y high")
-sp1 = pd.read_json(ROOT / "results/u1/spend.jsonl", lines=True)
-reg("uoneSpend", f"{sp1[sp1.event == 'settle'].amount.sum():.2f}", "results/u1/spend.jsonl", "sum settle")
 
 # ---------------- F1 (pre-registered follow-up, docs/F_ADDENDUM.md): showing W ----------------
 F1 = "results/f1/live/analysis/estimands.csv"
@@ -383,8 +381,6 @@ for m, key in U1KEY.items():
         reg(f"foneCopy{tag}{m}", f"{100 * r.estimate:.0f}\\%", F1, f"model={key},type={typ},copy_W x100")
     r = one(f1, model=key, sample="primary", type="MIX", metric="deference")
     reg(f"foneDef{m}", f(r.estimate, 2), F1, f"model={key},MIX deference")
-spf = pd.read_json(ROOT / "results/f1/spend.jsonl", lines=True)
-reg("foneSpend", f"{spf[spf.event == 'settle'].amount.sum():.2f}", "results/f1/spend.jsonl", "sum settle")
 
 # Exploratory (post hoc) domain-match split for Luna, recomputed from the reviewer's panel frame.
 PF = "results/review_u1_results/panel_frame_efficient_openai.csv"

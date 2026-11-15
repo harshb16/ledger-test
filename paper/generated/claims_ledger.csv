@@ -338,7 +338,6 @@ macro,value,source,locator
 \uoneSfour,\ensuremath{+}0.005,results/u1/live/analysis/estimands.csv,S4_X_minus_Y estimate
 \uoneSfourLo,\ensuremath{-}0.029,results/u1/live/analysis/estimands.csv,S4_X_minus_Y low
 \uoneSfourHi,\ensuremath{+}0.039,results/u1/live/analysis/estimands.csv,S4_X_minus_Y high
-\uoneSpend,1.75,results/u1/spend.jsonl,sum settle
 \foneDWHaiku,\ensuremath{-}0.0013,results/f1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,type=MIX,metric=delta_W"
 \foneDWLoHaiku,\ensuremath{-}0.0041,results/f1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,type=MIX,metric=delta_W low"
 \foneDWHiHaiku,\ensuremath{+}0.0015,results/f1/live/analysis/estimands.csv,"model=efficient_anthropic,sample=primary,type=MIX,metric=delta_W high"
@@ -359,7 +358,6 @@ macro,value,source,locator
 \foneCopyLuna,95\%,results/f1/live/analysis/estimands.csv,"model=efficient_openai,type=MIX,copy_W x100"
 \foneCopyPubLuna,94\%,results/f1/live/analysis/estimands.csv,"model=efficient_openai,type=PUB,copy_W x100"
 \foneDefLuna,0.98,results/f1/live/analysis/estimands.csv,"model=efficient_openai,MIX deference"
-\foneSpend,0.42,results/f1/spend.jsonl,sum settle
 \uoneDomFewer,\ensuremath{-}0.049,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY
 \uoneDomFewerLo,\ensuremath{-}0.076,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY low
 \uoneDomFewerHi,\ensuremath{-}0.023,results/review_u1_results/panel_frame_efficient_openai.csv,D_swap where catF < catHY high
