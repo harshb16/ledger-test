@@ -7,13 +7,13 @@ This repository holds the whole project:
 - data and statistical baselines;
 - the methodology audit and the frozen experiment design;
 - the LLM harness and a paired pilot;
-- the full Phase 3 run: 4 models, 19,876 responses, $11.22;
-- U1, a pre-registered follow-up on the farming discount: 2 models, 4,500 responses, $1.75;
-- F1, a pre-registered follow-up that shows the models the statistical aggregate W: 2 models, 2,144 responses,
-  $0.42; and F2, a clean padding test whose pre-run gate failed (not run, $0);
+- the full Phase 3 run: 4 models, 19,876 responses;
+- U1, a pre-registered follow-up on the farming discount: 2 models, 4,500 responses;
+- F1, a pre-registered follow-up that shows the models the statistical aggregate W: 2 models, 2,144 responses;
+  and F2, a clean padding test whose pre-run gate failed (not run);
 - the paper, with exploratory analyses Z1, Z2, Z5 and Z6 (no paid calls).
 
-In total there are 26,520 stored LLM responses. Total API spend is about $14.70 of a $20 budget (`docs/COST_PLAN.md`).
+In total there are 26,520 stored LLM responses.
 
 **Paper:** [`paper/main.pdf`](paper/main.pdf), 14 pages: about 8 pages of main text, then references and appendices A–F. Source: `paper/main.tex`; every
 number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed constants in `paper/CLAIMS.md`).
@@ -146,7 +146,7 @@ uv run python results/lead_recompute/nonce_audit.py && uv run python results/lea
 uv run python results/lead_recompute/figures.py
 # U1 follow-up (build and mock cost nothing; the live run is already done)
 uv run python scripts/build_u1.py && uv run python scripts/mock_u1.py && uv run python scripts/analyze_u1.py results/u1/mock
-# uv run python scripts/run_u1.py ...              # LIVE U1 (already run; gate and $2 hard cap enforced)
+# uv run python scripts/run_u1.py ...              # LIVE U1 (already run; gate and hard cap enforced)
 for m in efficient_anthropic efficient_openai; do gunzip -k results/u1/live/$m/responses.jsonl.gz; done
 cp results/u1/build/{panels.json,stat_predictions.csv} results/u1/live/
 uv run python scripts/analyze_u1.py results/u1/live

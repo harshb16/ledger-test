@@ -34,7 +34,7 @@
 {\Large\bfseries THE LEDGER TEST: CAN RELIABILITY SCORES IMPROVE---OR CORRUPT---AI FORECAST AGGREGATION?%
 \footnote{Research conducted at the \href{https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15}{AI x Epistemics Research Sprint}, November 2026.}}\par
 \vspace{6pt}\rule{\linewidth}{0.6pt}\par\vspace{10pt}
-Harsh Bhatia\\Independent researcher\par\vspace{6pt}
+Harsh Bhatia\par\vspace{6pt}
 \textbf{With}\\Apart Research\par\vspace{10pt}
 {\large\bfseries Abstract}\par\vspace{4pt}
 \begin{minipage}{0.84\linewidth}\itshape\small
@@ -147,9 +147,9 @@ mean raw Brier matches the farmed one within 0.01. Further arms are a test--rete
 \subsection{Models and runs}
 The efficient tier comprises Claude Haiku 5.5 (\textbf{Haiku}) and GPT-6 Luna (\textbf{Luna}), run on all 486
 panels per type. The strong tier comprises Claude Sonnet 5.5 (\textbf{Sonnet}) and GPT-6.1 Sol (\textbf{Sol}), run on a
-seeded nested subset of 108 questions at draw 0 for budget reasons. All models were called through OpenRouter with
+seeded nested subset of 108 questions at draw 0. All models were called through OpenRouter with
 reasoning effort ``low'' and at most 2,000 output tokens. Sonnet emits no reasoning tokens at this setting. The run
-produced 19,876 responses with 0 parse failures, at a cost of \$11.22. Cross-model comparisons use only the
+produced 19,876 responses with 0 parse failures. Cross-model comparisons use only the
 common 108-question draw-0 sample.
 
 \subsection{Estimands and inference}
@@ -238,8 +238,8 @@ panels, no predictor beats the equal mean, including $W$ (Brier \pubBrierWHaiku{
 is nominally worse than every LLM (significantly for Sonnet: \pubWSonnet{} [\pubWLoSonnet, \pubWHiSonnet]).
 
 \textbf{F1 follow-up (pre-registered): showing $W$.} We reran C2 on all 972 efficient-tier panels with one added
-line giving $W$, labelled as a statistical aggregate that weights forecasters by past accuracy (Appendix~\ref{app:fone};
-\$\foneSpend). In MIX, Brier(LLM) $-$ Brier($W$) was \foneDWLuna{} [\foneDWLoLuna, \foneDWHiLuna] for Luna and
+line giving $W$, labelled as a statistical aggregate that weights forecasters by past accuracy (Appendix~\ref{app:fone}).
+In MIX, Brier(LLM) $-$ Brier($W$) was \foneDWLuna{} [\foneDWLoLuna, \foneDWHiLuna] for Luna and
 \foneDWHaiku{} [\foneDWLoHaiku, \foneDWHiHaiku] for Haiku (Holm $p=\foneHolmLuna$, \foneHolmHaiku). Both intervals lie
 inside the pre-specified $\pm0.005$ margin, so each model \emph{matches} $W$ and adds nothing measurable. They did so by
 returning it: \foneCopyLuna{} (Luna) and \foneCopyHaiku{} (Haiku) of MIX answers were within 0.005 of $W$, against
@@ -305,8 +305,8 @@ needed; the addendum was frozen before any U1 output, and independent reviews pr
 (Appendix~\ref{app:uone}). A padder X's record F (8 confident items) displays a raw Brier at least 0.05 better than X's
 honest level; an honest peer Y, with a different forecast, shows a record matched to F's score. Arm A shows F beside X
 and Y's record beside Y, arm B swaps the two records, and arm H shows an honest record for X. $D_\text{swap}$ compares A
-with B ($<0$ is a discount), and $G$ is the pull toward X gained by padding (A vs H). Over \uoneN{} PUB panels in C1
-(\$\uoneSpend), \textbf{Luna} gave the forecast beside the padded record less pull ($D_\text{swap}=\uoneDLuna$
+with B ($<0$ is a discount), and $G$ is the pull toward X gained by padding (A vs H). Over \uoneN{} PUB panels in C1,
+\textbf{Luna} gave the forecast beside the padded record less pull ($D_\text{swap}=\uoneDLuna$
 [\uoneDLoLuna, \uoneDHiLuna], Holm $p=\uoneHolmLuna$), but it is not shown to recognise padding: every padded record
 shows visible misses, the effect is not significant when both records hold equally many target-category items, and, in
 an exploratory split, it is concentrated where the honest record is the better domain match. Padding still paid ($G=\uoneGLuna$ [\uoneGLoLuna,
@@ -402,8 +402,8 @@ aggregate is a strong default when the panel type is known, and score designs sh
 \end{itemize}
 
 \section*{Author Contributions}
-H.B.\ set the research question, track, budget and constraints, approved each paid phase, and is responsible for the
-report. Design, implementation, analysis and drafting were carried out by AI agents under his direction (see the LLM
+H.B.\ set the research question, track and constraints, approved each paid phase, and is responsible for the
+report. Design, implementation, analysis and drafting were carried out by AI agents under the author's direction (see the LLM
 Usage Statement).
 
 \bibliographystyle{plainnat}
@@ -449,7 +449,7 @@ All 26,520 raw responses are committed (gzipped) with frozen panels, manifests a
 reproduced 164 frozen estimand rows, including every confirmatory estimate, SE and $p$-value, to within
 $8.9\times10^{-16}$, and the lead reproduced the 48 headline E1 and $\cstar$ estimates. Every number in this paper is a \LaTeX{} macro generated by
 \texttt{paper/make\_numbers.py}. \texttt{paper/generated/claims\_ledger.csv} maps each macro to its source file and row.
-Design constants (sample sizes, $k$, thresholds) and process figures (cost) are typed and are listed in
+Design constants (sample sizes, $k$, thresholds) and process figures are typed and are listed in
 \texttt{paper/CLAIMS.md}.
 
 \section{Nonce audit}\label{app:nonce}
@@ -554,8 +554,7 @@ than X's honest level (mean overstatement \uoneDeltaBar). An honest peer Y, with
 record of its own matched to F's score within 0.01. Arm A shows F beside X and Y's record beside Y; arm B swaps the two
 records, so the items shown are identical; arm H shows an honest record for X. The primary estimand is
 $D_\text{swap}=\sum (L_A-L_B)\,\mathrm{sign}(p_X-p_Y)/\sum|p_X-p_Y|$ ($<0$ is a discount), and $G$ is the pull toward X
-gained by padding (A vs H). We ran \uoneN{} PUB panels on Haiku and Luna in C1, with no nonce, a fresh cache and
-\$\uoneSpend.
+gained by padding (A vs H). We ran \uoneN{} PUB panels on Haiku and Luna in C1, with no nonce and a fresh cache.
 For \textbf{Luna}, the forecast beside the padded record received less pull: $D_\text{swap}=\uoneDLuna$
 [\uoneDLoLuna, \uoneDHiLuna] (Holm $p=\uoneHolmLuna$), and \uoneDNoPilotLuna{} without the pilot questions. We do not
 interpret its ratio to the warranted benchmark (\uoneWarrLuna), whose inputs are uncertain. Nor is it shown that Luna
@@ -621,8 +620,7 @@ not stand out. This describes the round; it is not a tested defence.
 This project was planned, implemented and analysed by AI agents under human direction. An Opus-class model led design
 and analysis; a Codex model implemented the engineering; a separate Claude model, as independent reviewer, audited the
 design and the results and reproduced every confirmatory number (to within $10^{-15}$). The human author set the
-question, budget and constraints, and approved each paid phase. API spend was \$12.52 for the pilot and main study,
-\$\uoneSpend{} for the U1 follow-up and \$\foneSpend{} for F1, of a \$20 budget. No result was
+question and constraints, and approved each paid phase. No result was
 fitted on held-out outcomes, no analysis was rerun to change a significance call, and all deviations from the frozen
 design (including the nonce flaw) are logged in the repository.
 The report text was drafted by the lead model and revised after an independent review. Every number in it is generated

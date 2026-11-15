@@ -17,7 +17,6 @@ facts, or values quoted from the results record, and each has a source.
 | 16 pilot questions | Design | `docs/EXPERIMENT_DESIGN.md` §10.4 |
 | reasoning effort "low", max 2,000 tokens | Settings | `src/ledger/experiment_v2.py:83` |
 | 19,876 responses, 0 parse failures | Run | `docs/PHASE3_RESULTS.md` §1 [R] `results/review_phase3/01_integrity.out` |
-| \$11.22 Phase 3; \$12.52 total; \$20 budget | Cost | `results/phase3/spend.jsonl`, `docs/COST_PLAN.md` |
 | 2,000 bootstrap replicates; 5-fold W CV; 10-fold c\* cross-fit | Methods | `docs/EXPERIMENT_DESIGN.md` §10.5; `results/lead_recompute/baselines.py`; `cstar_crossfit.py` |
 | 164 rows within 8.9e-16; 48 headline estimates | Reproduction | `results/review_phase3/02_reproduce.out`; `results/lead_recompute/headline_reproduction.csv` |
 | 14–18% of rescaled MIX forecasts outside [0, 1] | RQ2 caveat | `docs/PHASE3_RESULTS.md` §2 [R] `04_cstar.out` |
@@ -34,14 +33,12 @@ facts, or values quoted from the results record, and each has a source.
 | F1: departures partial, toward the mean, no reliable gain | Exploratory | [R] `results/review_f1_results/03_interpretation.out` §D |
 | F2: gate 0, 0, 7 valid panels vs 500; domain-only variant power about 0.24 | Gate | `results/f2/build/gate.json`; `docs/F_ADDENDUM.md` FD3, FD6; `docs/reviews/f_prerun_review.md` |
 | F2 post hoc: clean padded scores 0.000--0.010; honest minima 0.033 / 0.035; chance rates 0.5--0.7\% / 5\% | Post hoc | `docs/F_ADDENDUM.md` FD7; [R] `results/review_f_prerun/` |
-| F1 spend (\$0.42); about \$14.70 total | Cost | `results/f1/spend.jsonl` (sum of settles) |
 | U1: δ_X ≥ 0.05; match within 0.01; gate ≥ 500 panels and gap ≥ 0.03 | Design | `docs/U1_ADDENDUM.md` §2–§4 (frozen) |
 | U1: D_warr = −1.25·π_C1·0.42·δ̄ | Deviation D1 | `docs/U1_ADDENDUM.md` §8 |
 | U1: 2,250 prompts per model, 0 parse failures, 0 retries | Run | `results/u1/live/RUN_NOTES.md`; `results/u1/live/analysis/usage.csv` |
 | U1: "one to three visible misses" in every padded record (1: 479, 2: 256, 3: 15) | Design check | [R] `results/review_u1_results/03_luna_mechanism.out` (b) |
 | U1: Haiku misses D_warr "by about 0.002" | Arithmetic | `\uoneDLoHaiku` − `\uoneWarrHaiku` (generated macros) |
 | U1: Haiku reasoning-split swap effects of opposite sign | Exploratory | [R] `results/review_u1_results/06_haiku_reasoning_split.out` |
-| \$1.75 U1 spend; about \$14.27 total | Cost | `results/u1/spend.jsonl` (sum of settles) |
 | Z5: median split on probe Brier; logit-mean (extremiser) check added after seeing results | Exploratory design | `docs/Z5_SPEC.md` (commit a7dfa38); `results/lead_recompute/z5b_easiness_check.py` |
 | "always 50% scores 0.250" reference line in C2 records | Prompt design | Brier of a 0.5 forecast; `src/ledger/experiment.py` |
 | held-out rescaled forecasts clipped to [0.001, 0.999] | Methods | `results/lead_recompute/cstar_crossfit.py` (docstring) |
