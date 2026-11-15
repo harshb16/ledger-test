@@ -3,7 +3,7 @@ name = "ledger"
 version = "0.1.0"
 description = "The Ledger Test: can reliability scores improve or corrupt LLM forecast aggregation?"
 authors = [
-    { name = "Harsh", email = "harshbhatia1605@gmail.com" }
+    { name = "Harsh Bhatia" }
 ]
 requires-python = ">=3.13"
 dependencies = [
