@@ -108,7 +108,7 @@ smoke option exists. No generation seed, nonce, routing pin or retry change.
 
 ## Reproduction and validation
 
-From /Users/harsh/Desktop/ledger-test:
+From the repository root:
 
 ```sh
 uv run python scripts/build_f1.py

@@ -15,16 +15,24 @@ This repository holds the whole project:
 
 In total there are 26,520 stored LLM responses.
 
-**Paper:** [`paper/main.pdf`](paper/main.pdf), 14 pages: about 8 pages of main text, then references and appendices A–F. Source: `paper/main.tex`; every
-number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed constants in `paper/CLAIMS.md`).
-Independent reviews: `docs/reviews/phase4_paper_review.md` (READY AFTER FIXES; fixes applied, see
-`docs/reviews/phase4_lead_response.md`), `docs/reviews/u1_prerun_review.md` (RUN AFTER LISTED FIXES) and
-`docs/reviews/u1_results_review.md` (VALID WITH LISTED CAVEATS), `docs/reviews/f_prerun_review.md` (RUN F1 AFTER LISTED
-FIXES) and `docs/reviews/f1_results_review.md` (VALID WITH LISTED CAVEATS).
+**Paper:** [`paper/main.pdf`](paper/main.pdf), 14 pages: about 8 pages of main text, then references and appendices A–F.
+Source: `paper/main.tex`. Every number is a generated macro traced in `paper/generated/claims_ledger.csv` (typed
+constants in `paper/CLAIMS.md`).
+
+**Independent reviews** (Claude Fable 5.2, all in [`docs/reviews/`](docs/reviews/)):
+
+| Stage | Review | Verdict |
+|---|---|---|
+| Phase 1 | `phase1_fable_review.md` | REVISE, then GO to the pilot |
+| Phase 2 (pilot and design) | `phase2_fable_review.md` | FREEZE WITH LISTED CHANGES |
+| Phase 3 | `phase3_fable_review.md` | READY WITH LIMITATIONS |
+| Paper | `phase4_paper_review.md` | READY AFTER FIXES (applied, see `phase4_lead_response.md`) |
+| U1 pre-run / results | `u1_prerun_review.md`, `u1_results_review.md` | RUN AFTER LISTED FIXES / VALID WITH LISTED CAVEATS |
+| F1/F2 pre-run / F1 results | `f_prerun_review.md`, `f1_results_review.md` | RUN F1 AFTER LISTED FIXES / VALID WITH LISTED CAVEATS |
+| Final paper | `final_paper_review.md`, `f_paper_review.md` | READY AFTER FIXES (applied) |
 
 ## Status (2026-11-15): complete
-Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent review:
-`docs/reviews/phase3_fable_review.md`, verdict READY WITH LIMITATIONS.
+Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md).
 - **RQ1:** showing one raw accuracy score per forecaster improves the LLM aggregate on panels with identifiable
   experts (MIX), for all 4 models.
   - ΔBrier is −0.016 to −0.017 over all three draws (efficient tier) and −0.019 to −0.030 on the common 108-panel sample.
@@ -101,12 +109,12 @@ Phase 3 results: [`docs/PHASE3_RESULTS.md`](docs/PHASE3_RESULTS.md). Independent
 | `results/review_phase4/` | Reviewer's paper spot-check (177 macros re-derived) and exploratory Z1/Z2 check |
 | `results/u1/build/` | Frozen U1 panels, manifests, statistical predictions and the pre-run gate |
 | `results/u1/live/` | Raw U1 responses (`<model>/responses.jsonl.gz`), run logs, run notes and the frozen analysis (`analysis/`) |
-| `results/u1/spend.jsonl` | U1 spend ledger |
 | `results/review_u1/`, `results/review_u1_results/` | Reviewer's pre-run checks and post-run recomputation of U1 |
 | `results/f1/build/`, `results/f2/build/` | Frozen F1 manifests and cost projection; F2 build and failed gate (`gate.json`) |
 | `results/f1/live/` | Raw F1 responses (`<model>/responses.jsonl.gz`), run log, run notes and the frozen analysis (`analysis/`) |
-| `results/f1/spend.jsonl` | F1 spend ledger |
 | `results/review_f_prerun/`, `results/review_f1_results/` | Reviewer's F1/F2 pre-run checks and F1 post-run recomputation |
+| `results/review_final/` | Reviewer's final pre-submission checks |
+| `tests/` | Unit and integration tests (`uv run pytest -q`) |
 | `paper/` | Paper source, generators (`make_numbers.py`, `make_figures.py`), figures, claims ledger, PDF |
 | `docs/` | Plan, related work, data audit, baselines, methodology review, decisions, design, pilot results, Phase 3 plan and results, U1 addendum and implementation notes, Z5 spec, figures, reviews |
 

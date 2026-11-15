@@ -1,17 +1,17 @@
 Traceback (most recent call last):
-  File "/Users/harsh/Desktop/ledger-test/src/ledger/llm/runner.py", line 149, in run_manifest
+  File "./src/ledger/llm/runner.py", line 149, in run_manifest
     list(pool.map(run, tasks))
     ~~~~^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 625, in result_iterator
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 625, in result_iterator
     yield _result_or_cancel(fs.pop())
           ~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 318, in _result_or_cancel
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 318, in _result_or_cancel
     return fut.result(timeout)
            ~~~~~~~~~~^^^^^^^^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 455, in result
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 455, in result
     self._condition.wait(timeout)
     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/threading.py", line 359, in wait
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/threading.py", line 359, in wait
     waiter.acquire()
     ~~~~~~~~~~~~~~^^
 KeyboardInterrupt
@@ -19,24 +19,24 @@ KeyboardInterrupt
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/Users/harsh/Desktop/ledger-test/scripts/run_u1.py", line 36, in <module>
+  File "./scripts/run_u1.py", line 36, in <module>
     main()
     ~~~~^^
-  File "/Users/harsh/Desktop/ledger-test/scripts/run_u1.py", line 30, in main
+  File "./scripts/run_u1.py", line 30, in main
     run_manifest(manifest,lambda _:OpenRouterAdapter(),guard,concurrency=args.concurrency,
     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                  output_dir=f'results/u1/live/{model}',cache_dir='results/u1/llm_cache',preflight=False)
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/harsh/Desktop/ledger-test/src/ledger/llm/runner.py", line 148, in run_manifest
+  File "./src/ledger/llm/runner.py", line 148, in run_manifest
     with ThreadPoolExecutor(max_workers=concurrency) as pool:
          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 653, in __exit__
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/_base.py", line 653, in __exit__
     self.shutdown(wait=True)
     ~~~~~~~~~~~~~^^^^^^^^^^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/thread.py", line 239, in shutdown
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/concurrent/futures/thread.py", line 239, in shutdown
     t.join()
     ~~~~~~^^
-  File "/Users/harsh/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/threading.py", line 1095, in join
+  File "~/.local/share/uv/python/cpython-3.13.15-macos-aarch64-none/lib/python3.13/threading.py", line 1095, in join
     self._handle.join(timeout)
     ~~~~~~~~~~~~~~~~~^^^^^^^^^
 KeyboardInterrupt

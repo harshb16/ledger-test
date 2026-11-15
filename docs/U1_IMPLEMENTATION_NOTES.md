@@ -105,7 +105,7 @@ is present. Both manifests have exactly the frozen 2000-token/low-effort setting
 
 ## Validation and exact commands
 
-Run from `/Users/harsh/Desktop/ledger-test`:
+Run from the repository root:
 
 ```sh
 uv run python scripts/build_u1.py
