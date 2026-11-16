@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "The Ledger Test: Can Reliability Scores Improve — or Corrupt — AI Forecast Aggregation?"
+authors:
+  - family-names: Bhatia
+    given-names: Harsh
+date-released: 2026-11-15
+license: MIT
+repository-code: "https://github.com/harshb16/ledger-test"
+abstract: >-
+  Tests whether showing LLM aggregators each forecaster's track record improves their
+  aggregate forecasts, how much the models rely on those records, and whether the records
+  can be gamed by padding. Uses ForecastBench human-round data, four LLMs and
+  pre-registered confirmatory tests.
+keywords:
+  - forecast aggregation
+  - track records
+  - LLM evaluation
+  - reputation farming
+  - epistemics
+preferred-citation:
+  type: report
+  title: "The Ledger Test: Can Reliability Scores Improve — or Corrupt — AI Forecast Aggregation?"
+  authors:
+    - family-names: Bhatia
+      given-names: Harsh
+  year: 2026
+  month: 11
+  institution:
+    name: "Apart Research AI × Epistemics Research Sprint"
+  url: "https://github.com/harshb16/ledger-test"

@@ -2,7 +2,8 @@
 
 **Can reliability scores improve — or corrupt — AI forecast aggregation?**
 
-Paper: [`paper/main.pdf`](paper/main.pdf). Written for the Apart Research AI × Epistemics Sprint (November 2026),
+Paper: [`paper/main.pdf`](paper/main.pdf). Video (about 4 min):
+[Google Drive](https://drive.google.com/file/d/1taJj1Ja65N1eSwTDM-sUMzAySvvyjQtF/view?usp=sharing). Written for the Apart Research AI × Epistemics Sprint (November 2026),
 Trust Infrastructure track.
 
 Track records are the obvious metadata to show an LLM asked to combine other people's forecasts. We test whether
