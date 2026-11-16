@@ -11,6 +11,8 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage[numbers,sort&compress]{natbib}
+\setlength{\bibsep}{1pt plus 0.5pt}
+\renewcommand{\bibfont}{\footnotesize}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={The Ledger Test: Can Reliability Scores Improve or Corrupt AI Forecast Aggregation?},pdfauthor={Harsh Bhatia}}
 \usepackage{enumitem}
@@ -22,7 +24,10 @@
 \emergencystretch=2em
 \setlist{itemsep=1pt,topsep=3pt,parsep=0pt}
 \usepackage{caption}
-\captionsetup{font=small,labelfont=bf}
+\captionsetup{font=small,labelfont=bf,skip=4pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
 
 \input{generated/numbers.tex}
 \newcommand{\cstar}{c^{*}}
@@ -410,13 +415,12 @@ Usage Statement).
 \bibliography{refs}
 
 \appendix
+\small\linespread{0.97}\selectfont
 \section{Limitations and Dual-Use / Ethical Considerations}\label{app:ethics}
-\textbf{What the results establish.} For one ForecastBench round, four models and the prompts used here: raw accuracy
-scores improve an LLM aggregate on panels with superforecasters; the models under-react relative to the outcome-optimal
-scale and use a regime-blind policy; a cross-validated performance-weighted rule is at least as good in mixed panels;
-record padding inflates raw mean Brier, and peer-relative or difficulty-adjusted scores remove the inflation; with
-itemised records, one efficient model (Luna) gives a padded record somewhat less pull, but padding still raises the
-padder's pull.
+\textbf{What the results establish.} For one ForecastBench round, four models and these prompts: raw scores improve
+an LLM aggregate on panels with superforecasters; models under-react and use a regime-blind policy; a cross-validated
+weighted rule is at least as good in mixed panels; padding inflates raw mean Brier, which peer-relative or
+difficulty-adjusted scores remove; and one efficient model discounts a padded itemised record, though padding still pays.
 \textbf{What they do not establish.} Whether LLMs recognise padding as such (the U1 discount may be a domain-match
 cue, and every padded record showed visible misses); whether Haiku is indifferent to padding (inconclusive); whether the results
 hold for other rounds, chronological track records, other prompts, reasoning settings or models; whether an LLM shown the
@@ -466,7 +470,7 @@ response. The minimum detectable effect at 80\% power is \mdeMin--\mdeMax, above
 records show category codes, so farmed and control records also differ in base-rate information.
 
 \begin{table}[h]
-\centering\small
+\centering\footnotesize
 \caption{Identical-text pairs: PUB panels where the control and farmed prompts differ only by the nonce line. Mean
 (control $-$ farmed) probability, implied contribution to $D$, and change in reasoning tokens per call.
 Question-cluster bootstrap 95\% CIs; \textbf{bold} excludes 0.}
@@ -484,7 +488,7 @@ and the retest SD (an upper bound on sampling noise).
 
 \section{Additional checks}\label{app:extra}
 \begin{table}[h]
-\centering\small
+\centering\footnotesize
 \caption{LLM (C2) Brier minus baseline Brier, MIX panels. Negative means the LLM is better. \textbf{Bold}: the
 question-cluster bootstrap 95\% CI excludes 0. Haiku and Luna: 486 panels over three draws; Sonnet and Sol: 108 draw-0 panels, a sample more favourable to experts. Do not compare magnitudes across the two pairs.}
 \label{tab:base}
@@ -528,9 +532,9 @@ nominally worse (\pooledWAllSol{} [\pooledWAllLoSol, \pooledWAllHiSol]) and Sonn
   A second check asks whether the no-record answer (C0) beats the equal mean by more on known questions, as leakage
   through the anonymised prompt would predict. It does for Haiku (\zfiveBHaiku{} [\zfiveBLoHaiku, \zfiveBHiHaiku])
   and Sonnet (\zfiveBSonnet{} [\zfiveBLoSonnet, \zfiveBHiSonnet]), which meets our pre-set leakage criterion.
-  However, the logit mean of the panel, which has no access to the question, shows a gap of similar or larger size on
-  each sample (\zfiveXMin{} to \zfiveXMax). Known questions are also easier, so this pattern does not isolate
-  leakage. We added this logit-mean check after seeing the result. The pre-specified correlations agree with the split. Luna and Sol return the equal mean in C0 in at
+  However, the panel's logit mean, which never sees the question, shows a similar or larger gap (\zfiveXMin{} to
+  \zfiveXMax; check added after seeing the result): known questions are easier, so this does not isolate leakage.
+  The pre-specified correlations agree with the split. Luna and Sol return the equal mean in C0 in at
   least \zfiveEqMean\% of panels. Question-bootstrap 95\% CIs.
 \item \textbf{Robustness:} E1 MIX and $\cstar$ MIX remain Holm-significant for every model when the 16 pilot questions
   are excluded, on the common sample, and under four SE conventions.
@@ -544,37 +548,34 @@ deviations (D1--D6), none of which changed panels or prompts. The main deviation
 to the swap contrast ($D_\text{warr}=-1.25\,\pi_{C1}\,0.42\,\bar\delta$, where 0.42 is the within-question slope of
 target Brier on ledger skill); D2 records that target outcomes had been seen in a mock analysis and requires attack harm
 before an ``exploitable'' label. The gate required at least 500 panels, a mean ledger gap $t_X-t_Y\ge0.03$
-(observed \uoneGap) and power for the more responsive model; Haiku was declared underpowered in advance. Each model
+(observed \uoneGap) and power for the more responsive model. Each model
 answered all 2,250 prompts once, with 0 parse failures and 0 retries under the frozen rule.
 
-\textbf{Results in detail.} We rebuilt the test to fix the three problems of the frozen test (the nonce,
-no warranted discount, and base-rate differences; Appendix~\ref{app:nonce}). An
-attacker X is a public forecaster whose padded record F (8 confident items) displays a raw Brier at least 0.05 better
+\textbf{Results in detail.} The rebuilt test fixes the nonce, the missing warranted discount and the base-rate differences
+(Appendix~\ref{app:nonce}). An attacker X is a public forecaster whose padded record F (8 confident items) displays a raw Brier at least 0.05 better
 than X's honest level (mean overstatement \uoneDeltaBar). An honest peer Y, with a different forecast, shows a uniform
 record of its own matched to F's score within 0.01. Arm A shows F beside X and Y's record beside Y; arm B swaps the two
 records, so the items shown are identical; arm H shows an honest record for X. The primary estimand is
 $D_\text{swap}=\sum (L_A-L_B)\,\mathrm{sign}(p_X-p_Y)/\sum|p_X-p_Y|$ ($<0$ is a discount), and $G$ is the pull toward X
 gained by padding (A vs H). We ran \uoneN{} PUB panels on Haiku and Luna in C1, with no nonce and a fresh cache.
-For \textbf{Luna}, the forecast beside the padded record received less pull: $D_\text{swap}=\uoneDLuna$
-[\uoneDLoLuna, \uoneDHiLuna] (Holm $p=\uoneHolmLuna$), and \uoneDNoPilotLuna{} without the pilot questions. We do not
+For \textbf{Luna}, the forecast beside the padded record received less pull (Table~\ref{tab:uone}; \uoneDNoPilotLuna{}
+without the pilot questions). We do not
 interpret its ratio to the warranted benchmark (\uoneWarrLuna), whose inputs are uncertain. Nor is it shown that Luna
 recognises padding. Every padded record contains one to three visible confident misses, the effect is not significant
 in the pre-registered subset where both records hold equally many target-category items (\uoneDEqCatLuna{}
 [\uoneDEqCatLoLuna, \uoneDEqCatHiLuna], $n=\uoneEqCatN$), and in an exploratory split it is concentrated where the
 honest record is the better domain match (\uoneDomFewer{} [\uoneDomFewerLo, \uoneDomFewerHi], $n=\uoneDomFewerN$;
 elsewhere \uoneDomNotFewer{} [\uoneDomNotFewerLo, \uoneDomNotFewerHi]). The discount did not remove the incentive to
-pad: relative to an honest record, padding raised Luna's pull toward the padder ($G=\uoneGLuna$ [\uoneGLoLuna,
-\uoneGHiLuna]; a reader of displayed scores alone gives \uoneGBlind), with no measurable change in accuracy
-($\Delta$Brier $=\uoneBLuna$ [\uoneBLoLuna, \uoneBHiLuna]). Target outcomes do not confirm that the padders were worse
+pad: relative to an honest record, padding raised Luna's pull toward the padder ($G>0$; a reader of displayed
+scores alone gives \uoneGBlind), with no measurable change in accuracy. Target outcomes do not confirm that the padders were worse
 on these questions (\uoneSfour{} [\uoneSfourLo, \uoneSfourHi]), so the warrant rests on the ledgers.
-\textbf{Haiku}, declared underpowered before the run, shows no detectable discount ($D_\text{swap}=\uoneDHaiku$
-[\uoneDLoHaiku, \uoneDHiHaiku]) and no attack gain ($G=\uoneGHaiku$ [\uoneGLoHaiku, \uoneGHiHaiku]). The frozen
+\textbf{Haiku}, declared underpowered before the run, shows no detectable discount and no attack gain. The frozen
 decision rule labels it ``exploitable''; we do not adopt the label (see below). In an exploratory split by
 whether calls used reasoning tokens, Haiku's swap effect has opposite signs, so its null is an average, not evidence of
 indifference.
 
 \begin{table}[h]
-\centering\small
+\centering\footnotesize
 \caption{U1 primary results ($n=\uoneN$ panels). $D_\text{swap}$: two-way CGM (question $\times$ attacker) 95\% CI,
 one-sided $p$ Holm-adjusted over two models. $G$ and $\Delta$Brier (A $-$ H): CGM and question-bootstrap CIs.
 $^\ddagger$Printed by the frozen rule; not adopted (see text).}
